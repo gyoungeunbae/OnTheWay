@@ -21,6 +21,6 @@
 ## 코딩규칙
 
 - swift lint 적용
-
+https://github.com/realm/SwiftLint
 
 
