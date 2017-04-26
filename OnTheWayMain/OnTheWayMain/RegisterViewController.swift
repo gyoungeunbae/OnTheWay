@@ -23,7 +23,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.userNameTextFiled.delegate = self
         self.pwdTextFiled.delegate = self
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -56,5 +57,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return true
+    }
+    
+    //키보드 올라오고 내려갈때 뷰 이동하는 func
+    func keyboardUP(notification: Notification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            self.view.frame.origin.y = 0
+            self.view.frame.origin.y -= 80
+        }
+    }
+    
+    func keyboardDown(notification: Notification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            self.view.frame.origin.y = 0
+        }
     }
 }
