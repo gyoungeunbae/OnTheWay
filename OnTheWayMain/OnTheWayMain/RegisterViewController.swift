@@ -9,7 +9,9 @@
 import UIKit
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var checkPwdLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var confirmPwdTextFiled: UITextField!
     @IBOutlet weak var userNameTextFiled: UITextField!
@@ -20,8 +22,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.emailTextField.delegate = self
+        self.confirmPwdTextFiled.delegate = self
         self.userNameTextFiled.delegate = self
         self.pwdTextFiled.delegate = self
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -35,9 +39,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         self.userNameTextFiled.becomeFirstResponder() //텍스트필드에 포커스
-        print("--------")
-        print(regiser.isValidEmailAddress(emailAddressString: emailTextField.text!))
-        
 
     }
     
@@ -51,10 +52,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 emailLabel.text = "확인"
             }
             self.pwdTextFiled.becomeFirstResponder()
-        } else if(textField.isEqual(self.pwdTextFiled)){
+        } else if(textField.isEqual(self.pwdTextFiled)) {
             self.confirmPwdTextFiled.becomeFirstResponder()
-        } else {
+        } else if(textField.isEqual(self.confirmPwdTextFiled)) {
             textField.resignFirstResponder()
+            self.RegisterBnt(UIButton.self)
         }
         return true
     }
@@ -71,5 +73,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.view.frame.origin.y = 0
         }
+    }
+    @IBAction func RegisterBnt(_ sender: Any) {
+//        let listVc = self.storyboard?.instantiateViewController(withIdentifier: "list") as! ListViewController
+//        
+//        self.navigationController?.pushViewController(listVc, animated: true)
+        
     }
 }
