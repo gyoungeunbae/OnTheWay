@@ -8,11 +8,19 @@
 
 import UIKit
 
-//하루 목표 걸음수
-let stepOfGoal = 10000
-let π:CGFloat = CGFloat(M_PI)
-
+//걸음수 관련
+//IBDesignable은 코어그래픽을 스토리보드에서 실시간으로 프리뷰 가능하게 한다
 @IBDesignable class CounterView: UIView {
+    
+    class var sharedInstance: CounterView {
+        struct Singleton {
+            static let instance = CounterView()
+        }
+        return Singleton.instance
+    }
+    
+    let stepOfGoal = 10000
+    let π:CGFloat = CGFloat(M_PI)
     
     @IBInspectable var stepOfWalked: Int = 0
     @IBInspectable var outlineColor: UIColor = UIColor.blue
