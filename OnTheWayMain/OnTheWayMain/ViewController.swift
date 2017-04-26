@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  OnTheWayMain
-//
-//  Created by junwoo on 2017. 4. 22..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
 
 import UIKit
 import HealthKit
@@ -24,8 +17,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var walkRecordLabel: UILabel!
     
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //건강데이터 요청
@@ -37,8 +28,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
-
 }
 
 private extension ViewController {
@@ -117,11 +106,9 @@ private extension ViewController {
         let imageViews = [sundayImageView, mondayImageView, tuesdayImageView, wednesdayImageView, thursdayImageView, fridayImageView, saturdayImageView]
         let weekArr = CalenderManager.sharedInstance.getWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
-        
             
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, results, error in
             
-                
                 var steps: Int = 0
                 
                 if (results?.count)! > 0 {
@@ -137,7 +124,6 @@ private extension ViewController {
             DispatchQueue.main.async {
                 CalenderManager.sharedInstance.weekDic.updateValue(steps, forKey: indexOfDay)
                 
-                
                 switch ratioOfSuccess {
                 case 0..<0.5:
                     imageViews[indexOfDay]?.backgroundColor = UIColor.black
@@ -147,48 +133,10 @@ private extension ViewController {
                     imageViews[indexOfDay]?.backgroundColor = UIColor.green
                 }
             }
-            
-
-            
         }
         
         HealthKitManager.sharedInstance.healthStore?.execute(query)
         
-
-        
-        
-        
-        
-//        for i in 0..<weekArr.count {
-//            let predicate = HKQuery.predicateForSamples(withStart: weekArr[i], end: weekArr[i].addingTimeInterval(60*60*24) as Date)
-//            
-//            let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, results, error in
-//                
-//                var steps: Int = 0
-//                //print(results)
-//                
-//                if (results?.count)! > 0 {
-//                    for result in results as! [HKQuantitySample]
-//                    {
-//                        steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
-//                        
-//                    }
-//                }
-//                
-//                weekDic.updateValue(steps, forKey: stringArr[i])
-//                print(steps)
-//                
-//                
-//            }
-//            
-//            
-//            
-//            HealthKitManager.sharedInstance.healthStore?.execute(query)
-//            
-//            
-//            
-//        }
-
     }
     
 
