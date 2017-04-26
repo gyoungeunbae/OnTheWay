@@ -9,7 +9,12 @@
 import UIKit
 
 class RoundImageView: UIImageView {
-    static var sharedInstance = RoundImageView()
+    class var sharedInstance: RoundImageView {
+        struct Singleton {
+            static let instance = RoundImageView()
+        }
+        return Singleton.instance
+    }
     
     //요일 이미지뷰 원모양으로
     func setRounded() {

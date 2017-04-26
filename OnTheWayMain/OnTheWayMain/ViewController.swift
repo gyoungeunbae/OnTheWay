@@ -11,26 +11,16 @@ import HealthKit
 
 
 class ViewController: UIViewController {
-    var myCalender = CalenderManager.sharedInstance
-    var roundImageView = RoundImageView.sharedInstance
-    fileprivate let healthKitManager = HealthKitManager.sharedInstance
-
+    
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var sundayImageView: RoundImageView!
     @IBOutlet weak var mondayImageView: RoundImageView!
-    
     @IBOutlet weak var tuesdayImageView: RoundImageView!
-    
     @IBOutlet weak var wednesdayImageView: RoundImageView!
-    
     @IBOutlet weak var thursdayImageView: RoundImageView!
-    
     @IBOutlet weak var fridayImageView: RoundImageView!
-    
     @IBOutlet weak var saturdayImageView: RoundImageView!
-    
-    
     @IBOutlet weak var counterView: CounterView!
-    
     @IBOutlet weak var walkRecordLabel: UILabel!
     
     
@@ -56,8 +46,8 @@ private extension ViewController {
     //건강데이터 요청 메소드
     func requestHealthKitAuthorization() {
         
-        let dataTypesToRead = NSSet(objects: healthKitManager.stepsCount as Any)
-        healthKitManager.healthStore?.requestAuthorization(toShare: nil, read: dataTypesToRead as? Set<HKObjectType>, completion: { [unowned self] (success, error) in
+        let dataTypesToRead = NSSet(objects: HealthKitManager.sharedInstance.stepsCount as Any)
+        HealthKitManager.sharedInstance.healthStore?.requestAuthorization(toShare: nil, read: dataTypesToRead as? Set<HKObjectType>, completion: { [unowned self] (success, error) in
             if success {
                 
                 for i in 0...6 {
@@ -99,14 +89,25 @@ private extension ViewController {
                 }
             }
             //print(steps)
+            let ratioOfSuccess: Double = Double(steps) / Double(self.counterView.stepOfGoal)
             DispatchQueue.main.async {
                 self.walkRecordLabel.text = "\(steps)"
                 self.counterView.stepOfWalked = steps
                 self.counterView.setNeedsDisplay()
+                
+                switch ratioOfSuccess {
+                case 0..<0.5:
+                    self.messageLabel.text = "운동 부족입니다!"
+                case 0.5..<1.0:
+                    self.messageLabel.text = "거의 다 왔어요!"
+                default:
+                    self.messageLabel.text = "축하합니다!"
+                }
+
             }
         }
         
-        healthKitManager.healthStore?.execute(query)
+        HealthKitManager.sharedInstance.healthStore?.execute(query)
     }
     
     //이번주 일주일 걸음수 요청
@@ -114,7 +115,7 @@ private extension ViewController {
         
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
         let imageViews = [sundayImageView, mondayImageView, tuesdayImageView, wednesdayImageView, thursdayImageView, fridayImageView, saturdayImageView]
-        let weekArr = myCalender.getWeekArr()
+        let weekArr = CalenderManager.sharedInstance.getWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
         
             
@@ -132,8 +133,10 @@ private extension ViewController {
                     }
                 }
             let ratioOfSuccess: Double = Double(steps) / Double(self.counterView.stepOfGoal)
+            
             DispatchQueue.main.async {
-                self.myCalender.weekDic.updateValue(steps, forKey: indexOfDay)
+                CalenderManager.sharedInstance.weekDic.updateValue(steps, forKey: indexOfDay)
+                
                 
                 switch ratioOfSuccess {
                 case 0..<0.5:
@@ -149,7 +152,7 @@ private extension ViewController {
             
         }
         
-        self.healthKitManager.healthStore?.execute(query)
+        HealthKitManager.sharedInstance.healthStore?.execute(query)
         
 
         
@@ -180,7 +183,7 @@ private extension ViewController {
 //            
 //            
 //            
-//            self.healthKitManager.healthStore?.execute(query)
+//            HealthKitManager.sharedInstance.healthStore?.execute(query)
 //            
 //            
 //            

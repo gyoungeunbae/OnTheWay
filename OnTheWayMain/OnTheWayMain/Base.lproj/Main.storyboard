@@ -178,6 +178,7 @@
                     <connections>
                         <outlet property="counterView" destination="OBC-v9-xLn" id="9P1-Dg-0La"/>
                         <outlet property="fridayImageView" destination="esp-rf-Udm" id="Tvm-ML-Myb"/>
+                        <outlet property="messageLabel" destination="hgH-Pm-LPD" id="Hb7-if-gm8"/>
                         <outlet property="mondayImageView" destination="AZI-oe-LPG" id="ydv-Yj-fSZ"/>
                         <outlet property="saturdayImageView" destination="fmZ-PD-vqA" id="ewM-QB-4VW"/>
                         <outlet property="sundayImageView" destination="qXZ-pa-rNb" id="0re-SF-Bux"/>

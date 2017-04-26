@@ -9,7 +9,13 @@
 import Foundation
 
 class CalenderManager {
-    static var sharedInstance = CalenderManager()
+    class var sharedInstance: CalenderManager {
+        struct Singleton {
+            static let instance = CalenderManager()
+        }
+        return Singleton.instance
+    }
+    
     
     var myCalender = Calendar.current   //그레고리안 달력
     var myDate = Date() //현재 날짜
@@ -41,3 +47,5 @@ class CalenderManager {
     
     
 }
+
+
