@@ -17,6 +17,8 @@
 		484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C0B1EACE50700754888 /* HealthKitManager.swift */; };
 		484F4C0E1EADBC7000754888 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C0D1EADBC7000754888 /* RoundImageView.swift */; };
 		484F4C111EAE188C00754888 /* CalenderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C101EAE188C00754888 /* CalenderManager.swift */; };
+		9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */; };
+		9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		484F4C0B1EACE50700754888 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		484F4C0D1EADBC7000754888 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		484F4C101EAE188C00754888 /* CalenderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderManager.swift; sourceTree = "<group>"; };
+		9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegiserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				484F4BF01EAA63A300754888 /* Assets.xcassets */,
 				484F4BF21EAA63A300754888 /* LaunchScreen.storyboard */,
 				484F4BF51EAA63A300754888 /* Info.plist */,
+				9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */,
+				9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */,
 			);
 			path = OnTheWayMain;
 			sourceTree = "<group>";
@@ -122,7 +128,7 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = TM6U8P8E5J;
+						DevelopmentTeam = QLAGA64KZQ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
@@ -170,6 +176,8 @@
 			files = (
 				484F4C0E1EADBC7000754888 /* RoundImageView.swift in Sources */,
 				484F4BEC1EAA63A300754888 /* ViewController.swift in Sources */,
+				9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */,
+				9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */,
 				484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */,
 				484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */,
 				484F4C021EAB680100754888 /* CounterView.swift in Sources */,
@@ -299,10 +307,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-				DEVELOPMENT_TEAM = TM6U8P8E5J;
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.OnTheWayMain;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.OnTheWay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -313,10 +321,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-				DEVELOPMENT_TEAM = TM6U8P8E5J;
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.OnTheWayMain;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.OnTheWay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
