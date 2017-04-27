@@ -10,7 +10,7 @@ import UIKit
 import HealthKit
 
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var sundayImageView: RoundImageView!
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
 
 }
 
-private extension ViewController {
+private extension MainViewController {
     
     //건강데이터 요청 메소드
     func requestHealthKitAuthorization() {
