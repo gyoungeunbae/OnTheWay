@@ -11,6 +11,9 @@ import UIKit
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var checkPwdLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var pwdLabel: UILabel!
+    
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var confirmPwdTextFiled: UITextField!
@@ -43,20 +46,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if(textField.isEqual(self.userNameTextFiled)){ //유저네임필드에서 리턴키를 누르면
-            self.emailTextField.becomeFirstResponder() //이메일필드로 포커스 이동
+        //TextField에서 리턴키를 누르면
+        if(textField.isEqual(self.userNameTextFiled)){
+            self.emailTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
         } else if(textField.isEqual(self.emailTextField)){
-            if(regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
-                emailLabel.text = "이메일 입력해"
-            } else {
-                emailLabel.text = "확인"
-            }
             self.pwdTextFiled.becomeFirstResponder()
         } else if(textField.isEqual(self.pwdTextFiled)) {
             self.confirmPwdTextFiled.becomeFirstResponder()
         } else if(textField.isEqual(self.confirmPwdTextFiled)) {
             textField.resignFirstResponder()
-            self.RegisterBnt(UIButton.self)
         }
         return true
     }
@@ -75,9 +73,30 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
     @IBAction func RegisterBnt(_ sender: Any) {
-//        let listVc = self.storyboard?.instantiateViewController(withIdentifier: "list") as! ListViewController
-//        
-//        self.navigationController?.pushViewController(listVc, animated: true)
+        let mainVc = self.storyboard?.instantiateViewController(withIdentifier: "main") as! ViewController
+        
+        if((userNameTextFiled.text?.characters.count)! < 1 ){
+            userNameLabel.text = "이름을 적어주세요"
+        } else {
+            userNameLabel.text = ""
+        }
+        
+        if((emailTextField.text?.characters.count)! < 1 || regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
+            emailLabel.text = "이메일을 적어주세요"
+        } else {
+            emailLabel.text = ""
+        }
+        
+        if((pwdTextFiled.text?.characters.count)! < 1 || regiser.isPasswordValid(pwdTextFiled.text!)){
+            pwdLabel.text = "비밀번호를 적어주세요"
+        } else {
+            pwdLabel.text = ""
+        }
+        
+        if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (pwdTextFiled.text?.characters.count)! > 0) {
+        self.present(mainVc, animated: true, completion: nil)
+        }
+        
         
     }
 }
