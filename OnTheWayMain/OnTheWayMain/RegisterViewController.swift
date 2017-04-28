@@ -66,7 +66,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     //TextField에서 리턴키를 눌렀을 때의 액션
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainView = storyboard.instantiateViewController(withIdentifier: "main")
+        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
         
         if(textField.isEqual(self.userNameTextFiled)){
             self.emailTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
@@ -87,7 +87,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 confirmPwdLabel.text = ""
             }
             if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
-                self.present(mainView, animated: true, completion: nil)
+                self.present(mainVC, animated: true, completion: nil)
             }
             
         }
@@ -96,7 +96,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     //패스워드 강도 체크
     func checkPwdStrength() {
-        let checkedValue = regiser.isValidPwd(PwdString: pwdTextFiled.text!)
+        let checkedValue = regiser.isValidPwd(pwdString: pwdTextFiled.text!)
         switch(checkedValue){
         case 1:
             pwdStrengthLabel.text = "강함"
@@ -118,9 +118,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func RegisterBnt(_ sender: Any) {
+
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainView = storyboard.instantiateViewController(withIdentifier: "main")
+        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
         
+
         
         if((userNameTextFiled.text?.characters.count)! < 1 ){
             userNameLabel.text = "이름을 적어주세요"
@@ -141,7 +143,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
-            self.present(mainView, animated: true, completion: nil)
+            self.present(mainVC, animated: true, completion: nil)
         }
     }
 }

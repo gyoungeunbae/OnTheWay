@@ -36,7 +36,7 @@ class RegisterManager {
     }
     
     //패스워드 강도 체크하는 함수
-    func isValidPwd(PwdString: String) -> Int {
+    func isValidPwd(pwdString: String) -> Int {
         
         let strongPwd = "(?=.+[!A-Z])(?=.+[0-9])[a-z.-_]{8,12}"
         let normalPwd = "(?=.+[A-Z]|.+[0-9])[a-z.-_]{8,12}"
@@ -49,13 +49,13 @@ class RegisterManager {
             let regexNormal = try NSRegularExpression(pattern: normalPwd)
             let regexWeak = try NSRegularExpression(pattern: weakPwd)
             
-            let nsString = PwdString as NSString
+            let nsString = pwdString as NSString
             
-            let resultsStrong = regexStrong.matches(in: PwdString, range: NSRange(location: 0, length: nsString.length))
+            let resultsStrong = regexStrong.matches(in: pwdString, range: NSRange(location: 0, length: nsString.length))
             
-            let resultsNormal = regexNormal.matches(in: PwdString, range: NSRange(location: 0, length: nsString.length))
+            let resultsNormal = regexNormal.matches(in: pwdString, range: NSRange(location: 0, length: nsString.length))
             
-            let resultsWeak = regexWeak.matches(in: PwdString, range: NSRange(location: 0, length: nsString.length))
+            let resultsWeak = regexWeak.matches(in: pwdString, range: NSRange(location: 0, length: nsString.length))
             
             
             if(resultsStrong.count != 0) {
@@ -64,7 +64,7 @@ class RegisterManager {
                 checkPwd = 2
             } else if(resultsWeak.count != 0) {
                 checkPwd = 3
-            } else if(PwdString.characters.count < 7) {
+            } else if(pwdString.characters.count < 7) {
                 checkPwd = 4
             }
             
