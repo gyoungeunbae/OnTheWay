@@ -12,7 +12,7 @@
         <!--Register View Controller-->
         <scene sceneID="kDI-2g-Ky1">
             <objects>
-                <viewController storyboardIdentifier="Register" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HQ6-mx-d4y" customClass="RegisterViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registerVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HQ6-mx-d4y" customClass="RegisterViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="st3-Hj-jk6"/>
                         <viewControllerLayoutGuide type="bottom" id="nU3-ux-QYZ"/>
