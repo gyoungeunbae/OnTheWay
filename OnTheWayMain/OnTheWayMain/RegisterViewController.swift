@@ -96,7 +96,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     //패스워드 강도 체크
     func checkPwdStrength() {
-        let checkedValue = regiser.isValidPwd(PwdString: pwdTextFiled.text!)
+        let checkedValue = regiser.isValidPwd(pwdString: pwdTextFiled.text!)
         switch(checkedValue){
         case 1:
             pwdStrengthLabel.text = "강함"
