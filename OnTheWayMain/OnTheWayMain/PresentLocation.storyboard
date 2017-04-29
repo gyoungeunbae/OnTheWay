@@ -20,12 +20,23 @@
                     <view key="view" contentMode="scaleToFill" id="BCd-Uy-Wbv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="roN-1q-Gq1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="roN-1q-Gq1" firstAttribute="leading" secondItem="BCd-Uy-Wbv" secondAttribute="leading" id="3rV-Ob-gQF"/>
+                            <constraint firstAttribute="trailing" secondItem="roN-1q-Gq1" secondAttribute="trailing" id="K1V-ge-e7O"/>
+                            <constraint firstItem="roN-1q-Gq1" firstAttribute="top" secondItem="BCd-Uy-Wbv" secondAttribute="top" id="WDT-RR-1dI"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKY-jb-aF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-299" y="-60"/>
+            <point key="canvasLocation" x="-300" y="-60.719640179910051"/>
         </scene>
     </scenes>
 </document>
