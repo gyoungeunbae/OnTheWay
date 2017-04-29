@@ -7,12 +7,14 @@
 //
 
 import UIKit
-
+import GoogleMaps
 class PresentLocationViewController: UIViewController {
 
+    @IBOutlet weak var viewMap: GMSMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 48.857165, longitude: 2.354613, zoom: 8.0)
+        viewMap.camera = camera
         // Do any additional setup after loading the view.
     }
 
