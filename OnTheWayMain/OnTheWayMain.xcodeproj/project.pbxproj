@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */; };
+		288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */; };
 		484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4BE91EAA63A300754888 /* AppDelegate.swift */; };
 		484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BED1EAA63A300754888 /* Main.storyboard */; };
 		484F4BF11EAA63A300754888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BF01EAA63A300754888 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheWayMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationViewController.swift; sourceTree = "<group>"; };
+		288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PresentLocation.storyboard; sourceTree = "<group>"; };
 		484F4BE61EAA63A300754888 /* OnTheWayMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheWayMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		484F4BE91EAA63A300754888 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		484F4BEE1EAA63A300754888 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */,
+				288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */,
 			);
 			name = PresentLocation;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				48D7F5BE1EB2524C000D747B /* Login.storyboard in Resources */,
 				48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */,
 				484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */,
+				288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */,
 				9B86D7961EB1E41B009FCAA6 /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
