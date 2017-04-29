@@ -30,3 +30,9 @@ https://github.com/realm/SwiftLint
 ex) [Th] Add scrum170424
 명령어 제일 첫글자는 대문자로!
 
+## Cording Rule
+Instance name: 소문자로 시작해야 한다.
+Class name: 대문자로 시작해야 한다.
+Struct name: 대문자로 시작해야 한다.
+Method name: (소문자)동사+명사
+
