@@ -23,4 +23,10 @@
 - swift lint 적용
 https://github.com/realm/SwiftLint
 
+## Commit Rule
+
+[이름] 명령 대상
+
+ex) [Th] Add scrum170424
+명령어 제일 첫글자는 대문자로!
 
