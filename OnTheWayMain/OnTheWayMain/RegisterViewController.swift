@@ -23,7 +23,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTextFiled: UITextField!
     @IBOutlet weak var pwdTextFiled: UITextField!
     
-    var regiser = RegisterManager()
+    var register = RegisterManager()
+    var pushServerRegister = ServerManager()
 
     
     
@@ -71,7 +72,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         if(textField.isEqual(self.userNameTextFiled)){
             self.emailTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
         } else if(textField.isEqual(self.emailTextField)){
-            if((emailTextField.text?.characters.count)! < 1 || regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
+            if((emailTextField.text?.characters.count)! < 1 || register.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
                 emailLabel.text = "이메일을 적어주세요"
             } else {
                 emailLabel.text = ""
@@ -86,7 +87,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             } else {
                 confirmPwdLabel.text = ""
             }
-            if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
+            if((userNameTextFiled.text?.characters.count)! > 0 && register.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
                 self.present(mainVC, animated: true, completion: nil)
             }
             
@@ -96,12 +97,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     //패스워드 강도 체크
     func checkPwdStrength() {
-        let checkedValue = regiser.isValidPwd(pwdString: pwdTextFiled.text!)
+        let checkedValue = register.isValidPwd(pwdString: pwdTextFiled.text!)
         switch(checkedValue){
         case 1:
             pwdStrengthLabel.text = "강함"
             pwdColorLabel.backgroundColor = UIColor.green
-            
         case 2:
             pwdStrengthLabel.text = "보통"
             pwdColorLabel.backgroundColor = UIColor.yellow
@@ -121,6 +121,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+        let alert = UIAlertController(title: "Alert", message: "이미 가입된 이메일 입니다.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
 
         
@@ -130,7 +133,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             userNameLabel.text = ""
         }
         
-        if((emailTextField.text?.characters.count)! < 1 || regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
+        if((emailTextField.text?.characters.count)! < 1 || register.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
             emailLabel.text = "이메일을 적어주세요"
         } else {
             emailLabel.text = ""
@@ -142,8 +145,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             confirmPwdLabel.text = ""
         }
         
-        if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
-            self.present(mainVC, animated: true, completion: nil)
+        if((userNameTextFiled.text?.characters.count)! > 0 && register.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
+            pushServerRegister.registerReq(email: emailTextField.text!, password: pwdTextFiled.text!, username: userNameTextFiled.text!,callback: { (isUser) in
+                print(isUser)
+                
+                if isUser == true {
+                    self.present(mainVC, animated: true, completion: nil)
+                } else {
+                    self.present(alert, animated: true, completion: nil)
+
+                }
+                
+            })
         }
     }
 }
