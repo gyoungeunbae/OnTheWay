@@ -25,6 +25,13 @@ class LoginViewController: UIViewController {
    
     }
     
+    @IBAction func registerBnt(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Register", bundle: nil)
+        let registerVC = storyboard.instantiateViewController(withIdentifier: "registerVC")
+        self.present(registerVC, animated: true, completion: nil)
+
+        
+    }
     //페이스북 로그인 버튼
     @IBAction func loginWithFacebook(_ sender: Any) {
         let readPermissions = ["public_profile"]

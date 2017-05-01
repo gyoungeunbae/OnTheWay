@@ -8,4 +8,6 @@ target 'OnTheWayMain' do
   pod 'GooglePlaces'
   # Pods for OnTheWayMain
   pod 'FBSDKLoginKit'
+  pod 'Alamofire'
+  pod 'ObjectMapper'
 end
