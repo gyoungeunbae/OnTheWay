@@ -8,30 +8,41 @@
 
 import UIKit
 import GoogleMaps
-class PresentLocationViewController: UIViewController {
+import CoreLocation
 
-    @IBOutlet weak var viewMap: GMSMapView!
+class PresentLocationViewController: UIViewController, CLLocationManagerDelegate {
+
+    @IBOutlet weak var myView: UIView!
+    
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 48.857165, longitude: 2.354613, zoom: 8.0)
-        viewMap.camera = camera
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+        //myView = GMSMapView()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.showCurrentLocationOnMap()
+        self.locationManager.stopUpdatingLocation()
+        
+    }
+    func showCurrentLocationOnMap() {
+        let camera = GMSCameraPosition.camera(withLatitude: (self.locationManager.location?.coordinate.latitude)!, longitude: (self.locationManager.location?.coordinate.longitude)!, zoom: 14)
+        let mapView = GMSMapView.map(withFrame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.myView.frame.size.width, height: self.myView.frame.size.height)) , camera: camera)
+        
+        mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+        
+        let marker = GMSMarker()
+        marker.position=camera.target
+        marker.snippet = "Current loaction"
+        marker.appearAnimation =  GMSMarkerAnimation.pop
+        marker.map = mapView
+        self.myView?.addSubview(mapView)
+    }
 
 }
