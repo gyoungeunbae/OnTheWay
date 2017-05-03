@@ -124,8 +124,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)
         })
-        
     }
+    
     @IBAction func RegisterBnt(_ sender: Any) {
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
