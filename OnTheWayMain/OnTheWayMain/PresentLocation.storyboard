@@ -35,7 +35,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="viewMap" destination="roN-1q-Gq1" id="wQN-fx-Jx4"/>
+                        <outlet property="myView" destination="roN-1q-Gq1" id="mpr-vo-jfG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKY-jb-aF3" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -25,8 +25,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     var register = RegisterManager()
     var pushServerRegister = ServerManager()
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +33,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.userNameTextFiled.delegate = self
         self.pwdTextFiled.delegate = self
         self.userNameTextFiled.becomeFirstResponder() //텍스트필드에 포커스
+        
         
         //키보드 올라 올라가고 내려갈 때 상태 확인
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -63,7 +62,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
 
 
-    
     //TextField에서 리턴키를 눌렀을 때의 액션
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -117,6 +115,17 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func backBnt(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
+//         self.present(loginVC, animated: true, completion: nil)
+        
+        self.dismiss(animated: true, completion: {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)
+        })
+        
+    }
     @IBAction func RegisterBnt(_ sender: Any) {
 
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -125,7 +134,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
-
         
         if((userNameTextFiled.text?.characters.count)! < 1 ){
             userNameLabel.text = "이름을 적어주세요"
@@ -151,9 +159,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 
                 if isUser == true {
                     self.present(mainVC, animated: true, completion: nil)
+                    
                 } else {
+                    
                     self.present(alert, animated: true, completion: nil)
-
                 }
                 
             })

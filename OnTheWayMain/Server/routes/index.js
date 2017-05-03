@@ -34,5 +34,18 @@ router.route('/user/register')
     // todo: 중복 유저에 대한 대응 
 });
 
+router.route('/user/login').post(function(req, res) {
+    User.find({email: req.body.email, password: req.body.password}, function(err, user) {
+        if (err) {
+            return res.send({ message: 'error'});
+        }
+        if (user.length == 1) {
+            return res.send({message: 1});
+        } else {
+            return res.send({message: 0});
+        }
+    });
+});
+
 
 module.exports = router;
