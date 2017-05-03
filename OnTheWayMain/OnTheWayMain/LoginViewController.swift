@@ -12,6 +12,9 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +28,22 @@ class LoginViewController: UIViewController {
    
     }
     
+        
+    @IBAction func loginWithEmail(_ sender: Any) {
+        guard let email = emailTextField.text, !email.isEmpty else { return }
+        guard let password = passwordTextField.text, !password.isEmpty else { return }
+        
+        PassportService.requestLogin(email: email, password: password, completion: { idString in
+            print("11111111111111")
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+            self.present(mainVC, animated: false, completion: nil)
+        })
+        
+    }
+
+        
+          
     //페이스북 로그인 버튼
     @IBAction func loginWithFacebook(_ sender: Any) {
         let readPermissions = ["public_profile"]

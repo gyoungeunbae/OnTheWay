@@ -12,12 +12,21 @@ class MainViewController: UIViewController {
     @IBOutlet weak var saturdayImageView: RoundImageView!
     @IBOutlet weak var counterView: CounterView!
     @IBOutlet weak var walkRecordLabel: UILabel!
+    var sessionId: String = ""
     
-    
+    @IBAction func logoutBtn(_ sender: Any) {
+        PassportService.logout()
+        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
+        self.present(loginVC, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        PassportService.getSession(completion: { idString in
+            self.sessionId = idString
+        })
+            
         //건강데이터 요청
         
         requestHealthKitAuthorization()
@@ -66,17 +75,24 @@ private extension MainViewController {
         
         
         // The actual HealthKit Query which will fetch all of the steps and add them up for us.
+        
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, results, error in
             var steps: Int = 0
+            
             
             if (results?.count)! > 0
             {
                 for result in results as! [HKQuantitySample]
                 {
-                    steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                    if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
+                        steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                        //print(result)
+                    }
+                    
                 }
+                
             }
-            //print(steps)
+            
             let ratioOfSuccess: Double = Double(steps) / Double(self.counterView.stepOfGoal)
             DispatchQueue.main.async {
                 self.walkRecordLabel.text = "\(steps)"
@@ -112,8 +128,10 @@ private extension MainViewController {
             if (results?.count)! > 0 {
                 
                 for result in results as! [HKQuantitySample] {
-                    
-                    steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                    if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
+                        steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                        //print(result)
+                    }
                     
                 }
             }

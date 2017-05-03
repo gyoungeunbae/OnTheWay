@@ -3,6 +3,11 @@ var app = express()
 
 //post의 res 받을때 필요함
 var bodyParser = require('body-parser')
+var router = require('./router/index')
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy
+var session = require('express-session')
+var flash = require('connect-flash')
 
 //bodyparser 로 post 의 응답 받기(json형태, ascii 형태)
 app.use(bodyParser.json());
@@ -11,13 +16,23 @@ app.use(bodyParser.urlencoded({ extended: true}));
 //static 디렉토리 여기로 사용하겠다
 app.use(express.static('public'));
 
-// 라우터 모듈 가져오기
-var posts = require('./router/posts')
-var upload = require('./router/upload')
- 
+//session
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}))
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//flash 
+app.use(flash());
+
 // api에 대한 router는 main을 써라
-app.use('/posts', posts)
-app.use('/upload', upload)
+app.use('/ontheway',router)
+
 
 // attach server
 app.set('port', process.env.PORT || 3000)

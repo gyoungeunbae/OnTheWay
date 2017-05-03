@@ -64,86 +64,95 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     
     //TextField에서 리턴키를 눌렀을 때의 액션
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
-        
-        if(textField.isEqual(self.userNameTextFiled)){
-            self.emailTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
-        } else if(textField.isEqual(self.emailTextField)){
-            if((emailTextField.text?.characters.count)! < 1 || regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
-                emailLabel.text = "이메일을 적어주세요"
-            } else {
-                emailLabel.text = ""
-            }
-            self.pwdTextFiled.becomeFirstResponder()
-        } else if(textField.isEqual(self.pwdTextFiled)) {
-            self.checkPwdStrength()
-            self.confirmPwdTextFiled.becomeFirstResponder()
-        } else if(textField.isEqual(self.confirmPwdTextFiled)) {
-            if((confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == false) {
-                confirmPwdLabel.text = "불일치"
-            } else {
-                confirmPwdLabel.text = ""
-            }
-            if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
-                self.present(mainVC, animated: true, completion: nil)
-            }
-            
-        }
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+//        
+//        if(textField.isEqual(self.userNameTextFiled)){
+//            self.emailTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
+//        } else if(textField.isEqual(self.emailTextField)){
+//            if((emailTextField.text?.characters.count)! < 1 || regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
+//                emailLabel.text = "이메일을 적어주세요"
+//            } else {
+//                emailLabel.text = ""
+//            }
+//            self.pwdTextFiled.becomeFirstResponder()
+//        } else if(textField.isEqual(self.pwdTextFiled)) {
+//            self.checkPwdStrength()
+//            self.confirmPwdTextFiled.becomeFirstResponder()
+//        } else if(textField.isEqual(self.confirmPwdTextFiled)) {
+//            if((confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == false) {
+//                confirmPwdLabel.text = "불일치"
+//            } else {
+//                confirmPwdLabel.text = ""
+//            }
+//            if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
+//                self.present(mainVC, animated: true, completion: nil)
+//            }
+//            
+//        }
+//        return true
+//    }
     
     //패스워드 강도 체크
-    func checkPwdStrength() {
-        let checkedValue = regiser.isValidPwd(pwdString: pwdTextFiled.text!)
-        switch(checkedValue){
-        case 1:
-            pwdStrengthLabel.text = "강함"
-            pwdColorLabel.backgroundColor = UIColor.green
-            
-        case 2:
-            pwdStrengthLabel.text = "보통"
-            pwdColorLabel.backgroundColor = UIColor.yellow
-        case 3:
-            pwdStrengthLabel.text = "약함"
-            pwdColorLabel.backgroundColor = UIColor.red
-        case 4:
-            pwdStrengthLabel.text = "8자리 이상 비밀번호"
-            pwdColorLabel.backgroundColor = UIColor.red
-        default:
-            pwdStrengthLabel.text = ""
-            pwdColorLabel.backgroundColor = UIColor.white
-        }
-    }
+//    func checkPwdStrength() {
+//        let checkedValue = regiser.isValidPwd(pwdString: pwdTextFiled.text!)
+//        switch(checkedValue){
+//        case 1:
+//            pwdStrengthLabel.text = "강함"
+//            pwdColorLabel.backgroundColor = UIColor.green
+//            
+//        case 2:
+//            pwdStrengthLabel.text = "보통"
+//            pwdColorLabel.backgroundColor = UIColor.yellow
+//        case 3:
+//            pwdStrengthLabel.text = "약함"
+//            pwdColorLabel.backgroundColor = UIColor.red
+//        case 4:
+//            pwdStrengthLabel.text = "8자리 이상 비밀번호"
+//            pwdColorLabel.backgroundColor = UIColor.red
+//        default:
+//            pwdStrengthLabel.text = ""
+//            pwdColorLabel.backgroundColor = UIColor.white
+//        }
+//    }
     
     @IBAction func RegisterBnt(_ sender: Any) {
 
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
         
+        var username = userNameTextFiled.text
+        var email = emailTextField.text
+        var password = pwdTextFiled.text
 
+//        if((userNameTextFiled.text?.characters.count)! < 1 ){
+//            userNameLabel.text = "이름을 적어주세요"
+//        } else {
+//            userNameLabel.text = ""
+//        }
+//        
+//        if((emailTextField.text?.characters.count)! < 1 || regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
+//            emailLabel.text = "이메일을 적어주세요"
+//        } else {
+//            emailLabel.text = ""
+//        }
+//        
+//        if((confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == false) {
+//            confirmPwdLabel.text = "불일치"
+//        } else {
+//            confirmPwdLabel.text = ""
+//        }
         
-        if((userNameTextFiled.text?.characters.count)! < 1 ){
-            userNameLabel.text = "이름을 적어주세요"
-        } else {
-            userNameLabel.text = ""
-        }
+//        if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
+        PassportService.requestRegister(username: username!, email: email!, password: password!, completion: { idString in
+            let passport = Passport(id: idString, username: username, password: password, email: email)
+            //싱글톤 자판기에 넣기
+            PassportManager.sharedInstance.addPassport(passport)
+            let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
+            self.present(loginVC, animated: true, completion: nil)
+
+        })
+        //}
         
-        if((emailTextField.text?.characters.count)! < 1 || regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == false){
-            emailLabel.text = "이메일을 적어주세요"
-        } else {
-            emailLabel.text = ""
-        }
-        
-        if((confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == false) {
-            confirmPwdLabel.text = "불일치"
-        } else {
-            confirmPwdLabel.text = ""
-        }
-        
-        if((userNameTextFiled.text?.characters.count)! > 0 && regiser.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
-            self.present(mainVC, animated: true, completion: nil)
-        }
     }
 }
