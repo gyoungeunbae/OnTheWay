@@ -131,6 +131,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    //비밀번호 잊었을때 ForgetPassword View로 이동
     @IBAction func forgetPasswordButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let forgetPasswordVC = storyboard.instantiateViewController(withIdentifier: "forgetPasswordVC")

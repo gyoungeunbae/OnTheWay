@@ -25,15 +25,7 @@ class ForgetPasswordViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    //이메일 입력했을 때 데이터베이스의 비밀번호 요청
     @IBAction func submitEmailButton(_ sender: Any) {
         
         if (self.emailTextField.text != nil) {
@@ -49,6 +41,7 @@ class ForgetPasswordViewController: UIViewController {
         
     }
 
+    //뒤로가기 버튼
     @IBAction func backButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
