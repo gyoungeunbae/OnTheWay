@@ -1,6 +1,7 @@
 import UIKit
 import HealthKit
 class MainViewController: UIViewController {
+
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var sundayImageView: RoundImageView!
@@ -44,6 +45,7 @@ private extension MainViewController {
     func requestHealthKitAuthorization() {
         
         let dataTypesToRead = NSSet(objects: HealthKitManager.sharedInstance.stepsCount as Any)
+     
         HealthKitManager.sharedInstance.healthStore?.requestAuthorization(toShare: nil, read: dataTypesToRead as? Set<HKObjectType>, completion: { [unowned self] (success, error) in
             if success {
                 
@@ -64,6 +66,9 @@ private extension MainViewController {
     //오늘 걸음수 데이터 요청
     func todayStepQuery() { // this function gives you all of the steps the user has taken since the beginning of the current day.
         
+        
+      
+        
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
         let date = NSDate()
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
@@ -71,7 +76,6 @@ private extension MainViewController {
         
         //오늘
         let predicate = HKQuery.predicateForSamples(withStart: newDate, end: NSDate() as Date)
-        
         
         
         // The actual HealthKit Query which will fetch all of the steps and add them up for us.
@@ -92,7 +96,6 @@ private extension MainViewController {
                 }
                 
             }
-            
             let ratioOfSuccess: Double = Double(steps) / Double(self.counterView.stepOfGoal)
             DispatchQueue.main.async {
                 self.walkRecordLabel.text = "\(steps)"
