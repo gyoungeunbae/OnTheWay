@@ -68,16 +68,11 @@ router.get('/', function(req, res) {
 
 
 
-
-
 router.post('/', passport.authenticate('local-register', {
         successRedirect: '/login',
         failureRedirect: '/register',
         failureFlash: true})
 )
-
-
-
 
 
 passport.serializeUser(function(user, done) {
