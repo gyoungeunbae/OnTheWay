@@ -20,6 +20,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var pushServerLogin = ServerManager()
     
     
+//    @IBOutlet weak var emailTextField: UITextField!
+//    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.emailTextField.delegate = self
@@ -41,6 +44,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
    
     }
     
+
+        
+//    @IBAction func loginWithEmail(_ sender: Any) {
+//        guard let email = emailTextField.text, !email.isEmpty else { return }
+//        guard let password = passwordTextField.text, !password.isEmpty else { return }
+//        
+//        PassportService.requestLogin(email: email, password: password, completion: { idString in
+//            print("11111111111111")
+//            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+//            self.present(mainVC, animated: false, completion: nil)
+//        })
+//        
+//    }
+
+        
+          
+
     func keyboardUP(notification: Notification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.view.frame.origin.y = 0
@@ -68,6 +89,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     }
     
+
     //페이스북 로그인 버튼
     @IBAction func loginWithFacebook(_ sender: Any) {
         let readPermissions = ["public_profile"]
@@ -108,6 +130,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    //비밀번호 잊었을때 ForgetPassword View로 이동
+    @IBAction func forgetPasswordButton(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let forgetPasswordVC = storyboard.instantiateViewController(withIdentifier: "forgetPasswordVC")
+        self.present(forgetPasswordVC, animated: false, completion: nil)
+
     }
     
 }

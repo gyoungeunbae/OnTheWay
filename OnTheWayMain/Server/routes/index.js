@@ -1,8 +1,5 @@
 
-var express = require('express');
-var path = require('path');
-var fs = require('fs');
-
+var express = require('express')
 var router = express.Router();
 
 var User = require('../model/user'); //user폴더를 import함 
@@ -25,8 +22,9 @@ router.route('/user/register')
       
             newUser.save(function(err) {
                 if (err) {
-                    return res.send({ message: 'Error' });
+                    return res.send({ message: err });
                 }
+                console.log("db saved")
                 res.send({ message: 1 });
             });
         }
@@ -47,5 +45,32 @@ router.route('/user/login').post(function(req, res) {
     });
 });
 
+router.route('/user/email').post(function(req, res) {
+    User.find({email: req.body.email}, function(err, user) {
+        if (err) {
+            return res.send(err)
+        }
+        if (!user) {
+            console.log("no user")
+            return res.send({ message: 'no user'});
+        }
+        if (user.length == 1) {
+            return res.json({ 'password': user[0].password})
+            
+        } 
+    });
+});
+
+// router.route('/user/:email')
+//     //특정 포스트 불러오기 메소드
+//     .get(function(req, res) {
+//         User.findById(req.params.email, function(err, user) {
+//             if (err) {
+//                 return res.send(err)
+//             }
+//             console.log("1111")
+//             return res.send({ "password": user.password })
+//         })
+//     })
 
 module.exports = router;

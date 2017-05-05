@@ -21,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Alamofire (~> 4.4)
   - FBSDKLoginKit
   - GoogleMaps
   - GooglePlaces
@@ -35,6 +36,6 @@ SPEC CHECKSUMS:
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   ObjectMapper: 042708195cc46c20871cbcbec0453826398273fd
 
-PODFILE CHECKSUM: bf987d944de93eade3e6816270600da58f774cde
+PODFILE CHECKSUM: 1a2df4f812d4918de1afba0e19deed85eb229e6c
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
