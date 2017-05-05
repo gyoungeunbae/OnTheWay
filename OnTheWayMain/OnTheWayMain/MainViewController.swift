@@ -13,21 +13,12 @@ class MainViewController: UIViewController {
     @IBOutlet weak var saturdayImageView: RoundImageView!
     @IBOutlet weak var counterView: CounterView!
     @IBOutlet weak var walkRecordLabel: UILabel!
-    var sessionId: String = ""
     
-    @IBAction func logoutBtn(_ sender: Any) {
-        PassportService.logout()
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
-        self.present(loginVC, animated: true, completion: nil)
-    }
     
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        PassportService.getSession(completion: { idString in
-            self.sessionId = idString
-        })
-            
+                    
         //건강데이터 요청
         
         requestHealthKitAuthorization()
