@@ -26,6 +26,8 @@
 		48D7F5CE1EBB18F6000D747B /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5CD1EBB18F6000D747B /* ForgetPasswordViewController.swift */; };
 		48D7F5D01EBC36F9000D747B /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5CF1EBC36F9000D747B /* Mapbox.framework */; };
 		48D7F5D11EBC36F9000D747B /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5CF1EBC36F9000D747B /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		48D7F5D81EBC405D000D747B /* MyPath.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D7F5D71EBC405D000D747B /* MyPath.storyboard */; };
+		48D7F5DA1EBC4070000D747B /* MyPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5D91EBC4070000D747B /* MyPathViewController.swift */; };
 		80A0B8A420E8DDAC9156F120 /* Pods_OnTheWayMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */; };
 		9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */; };
 		9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */; };
@@ -72,6 +74,8 @@
 		48D7F5BF1EB2F198000D747B /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		48D7F5CD1EBB18F6000D747B /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		48D7F5CF1EBC36F9000D747B /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		48D7F5D71EBC405D000D747B /* MyPath.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPath.storyboard; sourceTree = "<group>"; };
+		48D7F5D91EBC4070000D747B /* MyPathViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPathViewController.swift; sourceTree = "<group>"; };
 		8A997F240127FC08BC32C6C2 /* Pods-OnTheWayMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheWayMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheWayMain/Pods-OnTheWayMain.debug.xcconfig"; sourceTree = "<group>"; };
 		9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegiserManager.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 		484F4BE81EAA63A300754888 /* OnTheWayMain */ = {
 			isa = PBXGroup;
 			children = (
+				48D7F5D61EBC4046000D747B /* MyPath */,
 				9BEB12C41EB6DCC000772CF1 /* network */,
 				288B4D101EB49E5400F4B80F /* PresentLocation */,
 				9BEB127F1EB1FF1A00772CF1 /* Calender */,
@@ -162,6 +167,15 @@
 				05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48D7F5D61EBC4046000D747B /* MyPath */ = {
+			isa = PBXGroup;
+			children = (
+				48D7F5D71EBC405D000D747B /* MyPath.storyboard */,
+				48D7F5D91EBC4070000D747B /* MyPathViewController.swift */,
+			);
+			name = MyPath;
 			sourceTree = "<group>";
 		};
 		9BEB127B1EB1FF1100772CF1 /* Main */ = {
@@ -294,6 +308,7 @@
 				484F4BF41EAA63A300754888 /* LaunchScreen.storyboard in Resources */,
 				484F4BF11EAA63A300754888 /* Assets.xcassets in Resources */,
 				48D7F5BE1EB2524C000D747B /* Login.storyboard in Resources */,
+				48D7F5D81EBC405D000D747B /* MyPath.storyboard in Resources */,
 				48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */,
 				484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */,
 				288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */,
@@ -378,6 +393,7 @@
 				484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */,
 				484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */,
 				48D7F5CE1EBB18F6000D747B /* ForgetPasswordViewController.swift in Sources */,
+				48D7F5DA1EBC4070000D747B /* MyPathViewController.swift in Sources */,
 				484F4C021EAB680100754888 /* CounterView.swift in Sources */,
 				288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */,
 				48D7F5C01EB2F198000D747B /* AccountViewController.swift in Sources */,

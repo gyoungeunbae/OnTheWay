@@ -17,6 +17,7 @@ target 'OnTheWayMain' do
 
   pod 'Alamofire'
   pod 'ObjectMapper'
+  pod 'Mapbox-iOS-SDK', '~> 3.5'
 
 end
 

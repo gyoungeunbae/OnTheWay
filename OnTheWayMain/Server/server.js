@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/ontheway');
+mongoose.connect('mongodb://localhost:27017/test');
 
 
 
