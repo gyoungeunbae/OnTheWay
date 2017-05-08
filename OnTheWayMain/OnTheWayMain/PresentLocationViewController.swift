@@ -7,42 +7,36 @@
 //
 
 import UIKit
-import GoogleMaps
-import CoreLocation
-
-class PresentLocationViewController: UIViewController, CLLocationManagerDelegate {
-
-    @IBOutlet weak var myView: UIView!
-    
-    let locationManager = CLLocationManager()
-    
+import Mapbox
+class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+  
+    @IBOutlet weak var mapView: MGLMapView!
+    let userLocation = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        //myView = GMSMapView()
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
+        mapView.userTrackingMode = .follow
+        guard let testLatitude = userLocation.location?.coordinate.latitude
+            else {
+                return
+        }
+        guard let testLongitude = userLocation.location?.coordinate.longitude
+            else {
+                return
+        }
+        print("****\(testLatitude)")
+        print("****\(testLongitude)")
+    }
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PresentLocationTableViewCell
+        cell.userName.text = "park"
+        cell.userPicture.image = #imageLiteral(resourceName: "park")
+        cell.howmanySteps.text = "9999"
+        return (cell)
+    }
     
-    }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.showCurrentLocationOnMap()
-        self.locationManager.stopUpdatingLocation()
-        
-    }
-    func showCurrentLocationOnMap() {
-        let camera = GMSCameraPosition.camera(withLatitude: (self.locationManager.location?.coordinate.latitude)!, longitude: (self.locationManager.location?.coordinate.longitude)!, zoom: 14)
-        let mapView = GMSMapView.map(withFrame: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.myView.frame.size.width, height: self.myView.frame.size.height)) , camera: camera)
-        
-        mapView.settings.myLocationButton = true
-        mapView.isMyLocationEnabled = true
-        
-        let marker = GMSMarker()
-        marker.position=camera.target
-        marker.snippet = "Current loaction"
-        marker.appearAnimation =  GMSMarkerAnimation.pop
-        marker.map = mapView
-        self.myView?.addSubview(mapView)
-    }
-
+    
+    
 }
