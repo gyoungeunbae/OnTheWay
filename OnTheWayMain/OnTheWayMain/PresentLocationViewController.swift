@@ -7,31 +7,36 @@
 //
 
 import UIKit
-import GoogleMaps
-class PresentLocationViewController: UIViewController {
-
-    @IBOutlet weak var viewMap: GMSMapView!
+import Mapbox
+class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+  
+    @IBOutlet weak var mapView: MGLMapView!
+    let userLocation = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let camera: GMSCameraPosition = GMSCameraPosition.camera(withLatitude: 48.857165, longitude: 2.354613, zoom: 8.0)
-        viewMap.camera = camera
-        // Do any additional setup after loading the view.
+        mapView.userTrackingMode = .follow
+        guard let testLatitude = userLocation.location?.coordinate.latitude
+            else {
+                return
+        }
+        guard let testLongitude = userLocation.location?.coordinate.longitude
+            else {
+                return
+        }
+        print("****\(testLatitude)")
+        print("****\(testLongitude)")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PresentLocationTableViewCell
+        cell.userName.text = "park"
+        cell.userPicture.image = #imageLiteral(resourceName: "park")
+        cell.howmanySteps.text = "9999"
+        return (cell)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }
