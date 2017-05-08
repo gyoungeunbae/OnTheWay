@@ -272,7 +272,7 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NZC4Q7J74G;
+						DevelopmentTeam = QLAGA64KZQ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
@@ -525,15 +525,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.smith;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -545,14 +544,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.smith;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

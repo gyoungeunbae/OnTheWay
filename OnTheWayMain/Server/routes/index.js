@@ -61,16 +61,6 @@ router.route('/user/email').post(function(req, res) {
     });
 });
 
-// router.route('/user/:email')
-//     //특정 포스트 불러오기 메소드
-//     .get(function(req, res) {
-//         User.findById(req.params.email, function(err, user) {
-//             if (err) {
-//                 return res.send(err)
-//             }
-//             console.log("1111")
-//             return res.send({ "password": user.password })
-//         })
-//     })
+
 
 module.exports = router;

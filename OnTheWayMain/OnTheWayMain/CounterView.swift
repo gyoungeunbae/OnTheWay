@@ -66,19 +66,20 @@ import UIKit
         let outlineEndAngle = anglePerMin * CGFloat(stepOfWalked) + startAngle
         
         //경로 지정
-        var outlinePath = UIBezierPath(arcCenter: center,
-                                       radius: bounds.width/2 - 2.5,
-                                       startAngle: startAngle,
-                                       endAngle: outlineEndAngle,
-                                       clockwise: true)
-        
+        var outlinePath = UIBezierPath(arcCenter: center, radius: bounds.width/2 - 2.5, startAngle: startAngle, endAngle: outlineEndAngle, clockwise: true)
         
         
         //경로 닫기
-        //outlinePath.close()
+        outlinePath.addArc(withCenter: center, radius: bounds.width/2 - arcWidth + 2.5, startAngle: outlineEndAngle, endAngle: startAngle , clockwise: false)
+        
+        
+        
+        
         //그리기
         outlineColor.setStroke()
         outlinePath.lineWidth = 6.0
+        UIColor.green.setFill()
         outlinePath.stroke()
+        outlinePath.fill()
     }
 }
