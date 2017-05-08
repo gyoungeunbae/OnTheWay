@@ -15,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Alamofire (~> 4.4)
   - FBSDKLoginKit
   - Mapbox-iOS-SDK (~> 3.5)
   - ObjectMapper
@@ -27,6 +28,10 @@ SPEC CHECKSUMS:
   Mapbox-iOS-SDK: 742c77226b2f1e881844319d23d9f1aa2fb042bb
   ObjectMapper: '042708195cc46c20871cbcbec0453826398273fd'
 
+<<<<<<< HEAD
 PODFILE CHECKSUM: 1c74b14298747573be7f06a50ca40d8549c16013
+=======
+PODFILE CHECKSUM: 1a2df4f812d4918de1afba0e19deed85eb229e6c
+>>>>>>> origin/develop
 
 COCOAPODS: 1.2.1

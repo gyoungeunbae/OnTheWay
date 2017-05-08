@@ -1,6 +1,7 @@
 import UIKit
 import HealthKit
 class MainViewController: UIViewController {
+
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var sundayImageView: RoundImageView!
@@ -14,10 +15,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var walkRecordLabel: UILabel!
     
     
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                    
         //건강데이터 요청
         
         requestHealthKitAuthorization()
@@ -35,6 +36,7 @@ private extension MainViewController {
     func requestHealthKitAuthorization() {
         
         let dataTypesToRead = NSSet(objects: HealthKitManager.sharedInstance.stepsCount as Any)
+     
         HealthKitManager.sharedInstance.healthStore?.requestAuthorization(toShare: nil, read: dataTypesToRead as? Set<HKObjectType>, completion: { [unowned self] (success, error) in
             if success {
                 
@@ -55,6 +57,9 @@ private extension MainViewController {
     //오늘 걸음수 데이터 요청
     func todayStepQuery() { // this function gives you all of the steps the user has taken since the beginning of the current day.
         
+        
+      
+        
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
         let date = NSDate()
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
@@ -64,19 +69,24 @@ private extension MainViewController {
         let predicate = HKQuery.predicateForSamples(withStart: newDate, end: NSDate() as Date)
         
         
-        
         // The actual HealthKit Query which will fetch all of the steps and add them up for us.
+        
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, results, error in
             var steps: Int = 0
+            
             
             if (results?.count)! > 0
             {
                 for result in results as! [HKQuantitySample]
                 {
-                    steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                    if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
+                        steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                        //print(result)
+                    }
+                    
                 }
+                
             }
-            //print(steps)
             let ratioOfSuccess: Double = Double(steps) / Double(self.counterView.stepOfGoal)
             DispatchQueue.main.async {
                 self.walkRecordLabel.text = "\(steps)"
@@ -112,8 +122,10 @@ private extension MainViewController {
             if (results?.count)! > 0 {
                 
                 for result in results as! [HKQuantitySample] {
-                    
-                    steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                    if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
+                        steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                        //print(result)
+                    }
                     
                 }
             }
