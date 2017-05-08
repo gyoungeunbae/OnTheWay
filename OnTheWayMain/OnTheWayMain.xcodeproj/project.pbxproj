@@ -27,6 +27,7 @@
 		48D7F5D01EBC36F9000D747B /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5CF1EBC36F9000D747B /* Mapbox.framework */; };
 		48D7F5D11EBC36F9000D747B /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5CF1EBC36F9000D747B /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		80A0B8A420E8DDAC9156F120 /* Pods_OnTheWayMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */; };
+		9B5246941EC03234007B2F28 /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5246931EC03234007B2F28 /* HealthData.swift */; };
 		9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */; };
 		9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */; };
 		9B86D7961EB1E41B009FCAA6 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B86D7951EB1E41B009FCAA6 /* Register.storyboard */; };
@@ -73,6 +74,7 @@
 		48D7F5CD1EBB18F6000D747B /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		48D7F5CF1EBC36F9000D747B /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		8A997F240127FC08BC32C6C2 /* Pods-OnTheWayMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheWayMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheWayMain/Pods-OnTheWayMain.debug.xcconfig"; sourceTree = "<group>"; };
+		9B5246931EC03234007B2F28 /* HealthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
 		9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegiserManager.swift; sourceTree = "<group>"; };
 		9B86D7951EB1E41B009FCAA6 /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		484F4BE81EAA63A300754888 /* OnTheWayMain */ = {
 			isa = PBXGroup;
 			children = (
+				9B5246921EC0321A007B2F28 /* HealthDataView */,
 				9BEB12C41EB6DCC000772CF1 /* network */,
 				288B4D101EB49E5400F4B80F /* PresentLocation */,
 				9BEB127F1EB1FF1A00772CF1 /* Calender */,
@@ -162,6 +165,14 @@
 				05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B5246921EC0321A007B2F28 /* HealthDataView */ = {
+			isa = PBXGroup;
+			children = (
+				9B5246931EC03234007B2F28 /* HealthData.swift */,
+			);
+			name = HealthDataView;
 			sourceTree = "<group>";
 		};
 		9BEB127B1EB1FF1100772CF1 /* Main */ = {
@@ -329,7 +340,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B294453DF46CF4F7A79D6895 /* [CP] Embed Pods Frameworks */ = {
@@ -375,6 +386,7 @@
 				9BEB12C61EB6DCFB00772CF1 /* ServerManager.swift in Sources */,
 				9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */,
 				9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */,
+				9B5246941EC03234007B2F28 /* HealthData.swift in Sources */,
 				484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */,
 				484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */,
 				48D7F5CE1EBB18F6000D747B /* ForgetPasswordViewController.swift in Sources */,
