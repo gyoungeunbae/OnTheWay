@@ -27,7 +27,7 @@
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.8980392157" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
-                                    <action selector="RegisterBnt:" destination="HQ6-mx-d4y" eventType="touchUpInside" id="3Kk-Q5-Gj7"/>
+                                    <action selector="RegisterButton:" destination="HQ6-mx-d4y" eventType="touchUpInside" id="Cdr-MB-5ET"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FkN-Vu-xmJ">
@@ -59,14 +59,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yl0-vy-iD8">
-                                <rect key="frame" x="58" y="338" width="162" height="21"/>
+                                <rect key="frame" x="58" y="338" width="128" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNO-Iy-1XS">
-                                <rect key="frame" x="58" y="478" width="162" height="21"/>
+                                <rect key="frame" x="58" y="478" width="258" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -87,7 +87,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkN-rV-lcV">
-                                <rect key="frame" x="78" y="411" width="77" height="21"/>
+                                <rect key="frame" x="78" y="411" width="238" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -98,12 +98,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="뒤로가기"/>
                                 <connections>
-                                    <action selector="backBnt:" destination="HQ6-mx-d4y" eventType="touchUpInside" id="Z9n-MP-13o"/>
+                                    <action selector="backButton:" destination="HQ6-mx-d4y" eventType="touchUpInside" id="VnQ-If-5pm"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.34901960784313724" green="0.34901960784313724" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-
                     </view>
                     <navigationItem key="navigationItem" id="edA-pa-d42"/>
                     <connections>
