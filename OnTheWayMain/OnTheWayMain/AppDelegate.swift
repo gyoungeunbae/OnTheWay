@@ -14,12 +14,20 @@ import GoogleMaps
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var serverManager = ServerManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.statusBarStyle = .lightContent
         GMSServices.provideAPIKey("AIzaSyCU_Rpk2zgfGUaiJ9KvJpjnMf2jI0AFaHQ")
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        //세션 유지
+        
+        serverManager.getSession { (user) in
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+            self.window?.rootViewController?.present(mainVC, animated: true, completion: nil)
+            print(user)
+        }
         
         return true
     }

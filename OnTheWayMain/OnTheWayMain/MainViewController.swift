@@ -1,7 +1,13 @@
 import UIKit
 import HealthKit
 class MainViewController: UIViewController {
+    var serverManager = ServerManager()
 
+    @IBAction func logoutButton(_ sender: Any) {
+        serverManager.logout()
+        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
+    }
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var sundayImageView: RoundImageView!
@@ -56,9 +62,6 @@ private extension MainViewController {
     
     //오늘 걸음수 데이터 요청
     func todayStepQuery() { // this function gives you all of the steps the user has taken since the beginning of the current day.
-        
-        
-      
         
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
         let date = NSDate()

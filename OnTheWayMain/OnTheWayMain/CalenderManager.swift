@@ -37,6 +37,10 @@ class CalenderManager {
         return weekArr
     }
     
+    func getKoreanStr(todayDate: Date) -> String {
+        myDateFormatter.dateFormat = "yyyy년 MM월 dd일 EEEE"
+        return myDateFormatter.string(from: todayDate)
+    }
     
 }
 

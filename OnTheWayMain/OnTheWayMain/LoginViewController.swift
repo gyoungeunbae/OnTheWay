@@ -25,6 +25,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         self.emailTextField.delegate = self
         self.pwdTextField.delegate = self
         self.emailTextField.becomeFirstResponder()
@@ -41,6 +43,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if ((FBSDKAccessToken.current()) != nil) {
             self.present(accountVC, animated: false, completion: nil)
         }
+        
+        
    
     }
     
