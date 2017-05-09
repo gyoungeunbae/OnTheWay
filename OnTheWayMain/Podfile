@@ -16,7 +16,7 @@ target 'OnTheWayMain' do
 
   pod 'Alamofire'
   pod 'ObjectMapper'
-
+  pod 'SwiftLint'
 end
 
 

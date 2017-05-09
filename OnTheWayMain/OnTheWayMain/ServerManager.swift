@@ -57,9 +57,7 @@ class ServerManager{
     }
     
     
-    
     func findPasswordByEmail(email: String, callback: @escaping (_ password: String) -> Void) {
-        
         var password = String()
         
         let url = URL(string: "http://localhost:8080/ontheway/user/email")
@@ -75,6 +73,7 @@ class ServerManager{
                     callback(password)
                 }
             }
+            
             if response.error != nil {
                 print(response.error)
             }
