@@ -11,17 +11,11 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
 
-
 class LoginViewController: UIViewController, UITextFieldDelegate {
-    
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var pwdTextField: UITextField!
-    var pushServerLogin = ServerManager()
-    
-    
-//    @IBOutlet weak var emailTextField: UITextField!
-//    @IBOutlet weak var passwordTextField: UITextField!
+    var serverManager = ServerManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,36 +25,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
-        
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let accountVC = storyboard.instantiateViewController(withIdentifier: "accountVC")
         
-        //최근 로그인 된 상태이면 accountView 뿌려주기
         if ((FBSDKAccessToken.current()) != nil) {
             self.present(accountVC, animated: false, completion: nil)
         }
-   
     }
-    
-
-        
-//    @IBAction func loginWithEmail(_ sender: Any) {
-//        guard let email = emailTextField.text, !email.isEmpty else { return }
-//        guard let password = passwordTextField.text, !password.isEmpty else { return }
-//        
-//        PassportService.requestLogin(email: email, password: password, completion: { idString in
-//            print("11111111111111")
-//            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
-//            self.present(mainVC, animated: false, completion: nil)
-//        })
-//        
-//    }
-
-        
-          
 
     func keyboardUP(notification: Notification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
@@ -80,8 +52,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         pwdTextField.endEditing(true)
     }
     
-    @IBAction func registerBnt(_ sender: Any) {
-        
+    @IBAction func registerButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Register", bundle: nil)
         let registerVC = storyboard.instantiateViewController(withIdentifier: "registerVC")
         
@@ -89,9 +60,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     }
     
-
     //페이스북 로그인 버튼
-    @IBAction func loginWithFacebook(_ sender: Any) {
+    @IBAction func loginWithFacebookButton(_ sender: Any) {
         let readPermissions = ["public_profile"]
         let loginManager = FBSDKLoginManager()
         loginManager.logIn(withReadPermissions: readPermissions, from: self) { (result, error) in
@@ -116,14 +86,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
-    @IBAction func loginBnt(_ sender: Any) {
+    @IBAction func loginButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
         let alert = UIAlertController(title: "Alert", message: "이메일이나 비밀번호를 확인해주세요", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
 
-        pushServerLogin.loginReq(email: emailTextField.text!, password: pwdTextField.text!) { (isUser) in
+        serverManager.loginReq(email: emailTextField.text!, password: pwdTextField.text!) { (isUser) in
             if isUser == true {
                 self.present(mainVC, animated: true, completion: nil)
             } else {

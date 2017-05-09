@@ -28,6 +28,7 @@
 		48D7F5D01EBC36F9000D747B /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5CF1EBC36F9000D747B /* Mapbox.framework */; };
 		48D7F5D11EBC36F9000D747B /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5CF1EBC36F9000D747B /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		80A0B8A420E8DDAC9156F120 /* Pods_OnTheWayMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */; };
+		9B5246941EC03234007B2F28 /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5246931EC03234007B2F28 /* HealthData.swift */; };
 		9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */; };
 		9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */; };
 		9B86D7961EB1E41B009FCAA6 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B86D7951EB1E41B009FCAA6 /* Register.storyboard */; };
@@ -75,6 +76,7 @@
 		48D7F5CD1EBB18F6000D747B /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		48D7F5CF1EBC36F9000D747B /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		8A997F240127FC08BC32C6C2 /* Pods-OnTheWayMain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheWayMain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheWayMain/Pods-OnTheWayMain.debug.xcconfig"; sourceTree = "<group>"; };
+		9B5246931EC03234007B2F28 /* HealthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
 		9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegiserManager.swift; sourceTree = "<group>"; };
 		9B86D7951EB1E41B009FCAA6 /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		484F4BE81EAA63A300754888 /* OnTheWayMain */ = {
 			isa = PBXGroup;
 			children = (
+				9B5246921EC0321A007B2F28 /* HealthDataView */,
 				9BEB12C41EB6DCC000772CF1 /* network */,
 				288B4D101EB49E5400F4B80F /* PresentLocation */,
 				9BEB127F1EB1FF1A00772CF1 /* Calender */,
@@ -165,6 +168,14 @@
 				05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9B5246921EC0321A007B2F28 /* HealthDataView */ = {
+			isa = PBXGroup;
+			children = (
+				9B5246931EC03234007B2F28 /* HealthData.swift */,
+			);
+			name = HealthDataView;
 			sourceTree = "<group>";
 		};
 		9BEB127B1EB1FF1100772CF1 /* Main */ = {
@@ -261,7 +272,7 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NZC4Q7J74G;
+						DevelopmentTeam = QLAGA64KZQ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
@@ -318,7 +329,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework/strip-frameworks.sh\"";
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework/strip-frameworks.sh\"\n";
 		};
 		4B34573732E71C21D21856F3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -362,7 +373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnTheWayMain/Pods-OnTheWayMain-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnTheWayMain/Pods-OnTheWayMain-resources.sh\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -379,6 +390,7 @@
 				9BEB12C61EB6DCFB00772CF1 /* ServerManager.swift in Sources */,
 				9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */,
 				9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */,
+				9B5246941EC03234007B2F28 /* HealthData.swift in Sources */,
 				484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */,
 				484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */,
 				48D7F5CE1EBB18F6000D747B /* ForgetPasswordViewController.swift in Sources */,
@@ -513,15 +525,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.smith;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -533,14 +544,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.smith;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -18,13 +18,7 @@ class ForgetPasswordViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
     //이메일 입력했을 때 데이터베이스의 비밀번호 요청
     @IBAction func submitEmailButton(_ sender: Any) {
         
