@@ -16,7 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: { maxAge: 1000 * 60 * 1 }
 }))
 app.use(passport.initialize());
 app.use(passport.session());

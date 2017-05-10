@@ -57,9 +57,7 @@ class ServerManager{
     }
     
     
-    
     func findPasswordByEmail(email: String, callback: @escaping (_ password: String) -> Void) {
-        
         var password = String()
         
         let url = URL(string: "http://localhost:8080/ontheway/user/email")
@@ -75,6 +73,7 @@ class ServerManager{
                     callback(password)
                 }
             }
+            
             if response.error != nil {
                 print(response.error)
             }
@@ -88,27 +87,6 @@ class ServerManager{
 
     }
     
-//    func getSession(completion: @escaping(User) -> Void) {
-//        print("aaa")
-//        let urlString = "http://localhost:8080/ontheway/user/login"
-//        
-//        Alamofire.request(urlString)
-//            .validate(statusCode: 200..<400)
-//            .responseJSON { response in
-//                print("response = \(response)")
-//                if let json = response.result.value as? [String:String] {
-//                    var user = User()
-//                    print("ccc")
-//                    user.email = json["email"] as! String
-//                    user.password = json["password"] as! String
-//                    user.username = json["username"] as! String
-//                    completion(user)
-//                    
-//                } else {
-//                    print("no server connection.")
-//                }
-//        }
-//    }
 
     
     func getSession(completion: @escaping(User) -> Void) {
@@ -120,7 +98,7 @@ class ServerManager{
             .responseJSON { response in
                 print("response = \(response)")
                 var user = User()
-                if let json = response.result.value as? [String:String]{
+                if let json = response.result.value as? [String:Any]{
                     print("JSON: \(json)")
                     user = User(email: json["email"] as! String, password: json["password"] as! String, username: json["username"] as! String)
                     completion(user)

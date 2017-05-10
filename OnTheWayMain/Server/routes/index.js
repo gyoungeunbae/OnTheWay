@@ -78,6 +78,16 @@ router.route('/user/login').post(function(req, res, next) {
 //세션 가져오기
 router.route('/user/login').get(function(req, res) {
     console.log("req.user =", req.user)
+    // if(req.user) {
+    //     User.findById(req.user.id, function(err, user) {
+    //         if(err) throw err
+    //         console.log("there is a user in session")
+    //         res.json({ message: 1, user: req.user})
+    //     })
+    // } else {
+    //      console.log("there is no user in session")
+    //     res.json({ message: 0 })
+    // }
     if (!req.user) {
       console.log("there is no user in session")
       return res.sendStatus(401)
@@ -110,6 +120,7 @@ router.route('/user/email').post(function(req, res) {
     });
 });
 
+
 passport.serializeUser(function(user, done) {
   console.log('passport session save :', user.id)
   done(null, user.id);
@@ -122,6 +133,7 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
+
 
 
 

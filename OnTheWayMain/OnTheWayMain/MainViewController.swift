@@ -19,19 +19,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var saturdayImageView: RoundImageView!
     @IBOutlet weak var counterView: CounterView!
     @IBOutlet weak var walkRecordLabel: UILabel!
-    
-    
         
     override func viewDidLoad() {
         super.viewDidLoad()
-                    
         //건강데이터 요청
         
         requestHealthKitAuthorization()
         let imageViews = [sundayImageView, mondayImageView, tuesdayImageView, wednesdayImageView, thursdayImageView, fridayImageView, saturdayImageView]
         for i in 0..<imageViews.count {
             imageViews[i]?.setRounded()
-            
         }
     }
     
@@ -53,7 +49,6 @@ private extension MainViewController {
                 
                 self.todayStepQuery()
                 
-                
             } else {
                 print(error.debugDescription)
             }
@@ -63,6 +58,7 @@ private extension MainViewController {
     //오늘 걸음수 데이터 요청
     func todayStepQuery() { // this function gives you all of the steps the user has taken since the beginning of the current day.
         
+
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
         let date = NSDate()
         let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
@@ -118,6 +114,7 @@ private extension MainViewController {
         let weekArr = CalenderManager.sharedInstance.getWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
         
+        
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { query, results, error in
             
             var steps: Int = 0
@@ -127,11 +124,10 @@ private extension MainViewController {
                 for result in results as! [HKQuantitySample] {
                     if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
                         steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
-                        //print(result)
                     }
-                    
                 }
             }
+            
             let ratioOfSuccess: Double = Double(steps) / Double(self.counterView.stepOfGoal)
             
             DispatchQueue.main.async {

@@ -33,8 +33,44 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         let userTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getUserLocation), userInfo: nil, repeats: true)
         //userTimer.invalidate()
         
+        drawPolyline()
     }
     
+    func drawPolyline() {
+        
+        var coordinates: [CLLocationCoordinate2D] = []
+        let line = MGLPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
+        
+        DispatchQueue.global(qos: .background).async(execute: {
+            [unowned self] in
+            self.mapView.addAnnotation(line)
+            print(line)
+        })
+        
+    }
+    
+    
+    func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
+        // Set the alpha for all shape annotations to 1 (full opacity)
+        return 1
+    }
+    
+    func mapView(_ mapView: MGLMapView, lineWidthForPolylineAnnotation annotation: MGLPolyline) -> CGFloat {
+        // Set the line width for polyline annotations
+        return 2.0
+    }
+    
+    func mapView(_ mapView: MGLMapView, strokeColorForShapeAnnotation annotation: MGLShape) -> UIColor {
+        // Give our polyline a unique color by checking for its `title` property
+        if (annotation.title == "Crema to Council Crest" && annotation is MGLPolyline) {
+            // Mapbox cyan
+            return UIColor(red: 59/255, green:178/255, blue:208/255, alpha:1)
+        }
+        else
+        {
+            return .red
+        }
+    }
     
     
     // Or, if you’re using Swift 3 in Xcode 8.0, be sure to add an underscore before the method parameters:
@@ -49,29 +85,6 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         return nil
     }
     
-    
-    
-    func cameraAnimation() {
-        let coordinate = CLLocationCoordinate2D(latitude: 35.5494, longitude: 139.77765)
-        
-        let camera = MGLMapCamera(lookingAtCenter: coordinate, fromDistance: 5000, pitch: 40, heading: 90)
-        
-        mapView.fly(to: camera, completionHandler: nil)
-    }
-    
-    func setBound() {
-        // Set the map bounds to Portland, Oregon
-        let bounds = MGLCoordinateBounds(
-            sw: CLLocationCoordinate2D(latitude: 45.5087, longitude: -122.69),
-            ne: CLLocationCoordinate2D(latitude: 45.5245, longitude: -122.65))
-        
-        mapView.setVisibleCoordinateBounds(bounds, animated: false)
-    }
-    
-    func zoomLocation() {
-        let center = CLLocationCoordinate2D(latitude: 38.894368, longitude: -77.036487)
-        mapView.setCenter(center, zoomLevel: 15, animated: true)
-    }
     
     func getUserLocation() {
         
