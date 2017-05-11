@@ -10,6 +10,7 @@
 		288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */; };
 		288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */; };
 		28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */; };
+		482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */; };
 		484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4BE91EAA63A300754888 /* AppDelegate.swift */; };
 		484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BED1EAA63A300754888 /* Main.storyboard */; };
 		484F4BF11EAA63A300754888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BF01EAA63A300754888 /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationViewController.swift; sourceTree = "<group>"; };
 		288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PresentLocation.storyboard; sourceTree = "<group>"; };
 		28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationTableViewCell.swift; sourceTree = "<group>"; };
+		482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
 		484F4BE61EAA63A300754888 /* OnTheWayMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheWayMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		484F4BE91EAA63A300754888 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		484F4BEE1EAA63A300754888 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				48D7F5D71EBC405D000D747B /* MyPath.storyboard */,
 				48F5EC0D1EC06A2000101C6E /* UserLocation.swift */,
+				482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */,
 				48D7F5D91EBC4070000D747B /* MyPathViewController.swift */,
 			);
 			name = MyPath;
@@ -292,6 +295,9 @@
 						DevelopmentTeam = TM6U8P8E5J;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
@@ -408,6 +414,7 @@
 				28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */,
 				9BEB12811EB3284400772CF1 /* MainViewController.swift in Sources */,
 				9BEB12C61EB6DCFB00772CF1 /* ServerManager.swift in Sources */,
+				482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */,
 				9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */,
 				9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */,
 				48F5EC0E1EC06A2000101C6E /* UserLocation.swift in Sources */,

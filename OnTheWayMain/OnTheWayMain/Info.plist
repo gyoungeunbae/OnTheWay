@@ -49,14 +49,18 @@
 	</dict>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Read</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>yes</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>description haha</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>{human-readable reason for photo access}</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Login</string>
+	<string>MyPath</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

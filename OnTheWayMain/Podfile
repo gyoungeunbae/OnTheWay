@@ -12,7 +12,7 @@ target 'OnTheWayMain' do
   platform :ios, '10.0'
   use_frameworks!
   pod 'Alamofire', '~> 4.4'
-
+  pod 'PageMenu'
   use_frameworks!
   pod 'RealmSwift'
   pod 'ObjectMapper'

@@ -10,8 +10,9 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.22.0):
     - FBSDKCoreKit
-  - Mapbox-iOS-SDK (3.5.3)
+  - Mapbox-iOS-SDK (3.5.4)
   - ObjectMapper (2.2.6)
+  - PageMenu (2.0.0)
   - Realm (2.7.0):
     - Realm/Headers (= 2.7.0)
   - Realm/Headers (2.7.0)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Mapbox-iOS-SDK (~> 3.5)
   - ObjectMapper
+  - PageMenu
   - RealmSwift
   - SwiftLint
 
@@ -32,12 +34,13 @@ SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: c693bad19feb225469eeff14452ba364522ee48b
   FBSDKLoginKit: 1fa529fc622d7b32ebeaffbecd377180833c6d30
-  Mapbox-iOS-SDK: 742c77226b2f1e881844319d23d9f1aa2fb042bb
+  Mapbox-iOS-SDK: 81197829dcf4c4ed9a593b7a95462881b5f1309a
   ObjectMapper: '042708195cc46c20871cbcbec0453826398273fd'
+  PageMenu: 9c38fd7e0d9ef4b1408320f55bb907bbc0e538dc
   Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
   RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
   SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
 
-PODFILE CHECKSUM: 6a6be2f4342624d6f8cbd04369c9dad8f83a0be6
+PODFILE CHECKSUM: '069fce419a99790d6a00b4df8d3527d57abe0675'
 
 COCOAPODS: 1.2.1
