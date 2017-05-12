@@ -10,16 +10,15 @@
 import UIKit
 import Mapbox
 import RealmSwift
-import PageMenu
 
-class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDelegate, CAPSPageMenuDelegate {
+
+class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDelegate {
     var calenderManager = CalenderManager()
     var items = List<Location>()
     var realm: Realm!
     var locationList = LocationList()
-    
-    var pageMenu : CAPSPageMenu?
     var locations = [MGLPointAnnotation]()
+    var today = String()
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -47,51 +46,38 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
         mapView.userTrackingMode = .follow
         
         mapView.delegate = self
-        pageMenu!.delegate = self
         
-        var controllerArray : [UIViewController] = []
-        var dailyVC : UIViewController = UIViewController(nibName: "nib", bundle: nil)
-        dailyVC.title = "title"
-        controllerArray.append(dailyVC)
-        
-        var parameters: [CAPSPageMenuOption] = [
-            .menuItemSeparatorWidth(4.3),
-            .useMenuLikeSegmentedControl(true),
-            .menuItemSeparatorPercentageHeight(0.1)
-        ]
-        
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height), pageMenuOptions: parameters)
-        self.view.addSubview(pageMenu!.view)
     }
-    
-    func willMoveToPage(controller: UIViewController, index: Int){}
-    
-    func didMoveToPage(controller: UIViewController, index: Int){}
     
     func drawPolyline() {
         //오늘 날짜의 좌표를 realm에서 가져오기
         let realm = try! Realm()
-        let today = calenderManager.getKoreanStr(todayDate: Date())
         let results = realm.objects(Location.self).filter("date == '\(today)'")
         print(results)
         
         //가져온 좌표를 배열에 넣기
         var coordinates = [CLLocationCoordinate2D]()
-        for index in 0..<results.count {
-            var coordinate = CLLocationCoordinate2D()
-            coordinate.latitude = results[index].latitude
-            coordinate.longitude = results[index].longtitude
-            coordinates.append(coordinate)
-        }
         
-        let line = MGLPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
-    
-        //선 그리기
-        DispatchQueue.global(qos: .background).async(execute: {
-            [unowned self] in
-            self.mapView.addAnnotation(line)
-            print(line)
-        })
+        if results != nil {
+            for index in 0..<results.count {
+                var coordinate = CLLocationCoordinate2D()
+                coordinate.latitude = results[index].latitude
+                coordinate.longitude = results[index].longtitude
+                coordinates.append(coordinate)
+            }
+            
+            let line = MGLPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
+            
+            //선 그리기
+            DispatchQueue.global(qos: .background).async(execute: {
+                [unowned self] in
+                self.mapView.addAnnotation(line)
+                print(line)
+            })
+
+        } else {
+            print("results error")
+        }
         
     }
     
@@ -162,8 +148,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
         try! realm?.commitWrite()
         
         if UIApplication.shared.applicationState == .active {
-            //mapView.showAnnotations(self.locations, animated: true)
-            //mapView.addAnnotation(point)
+            
             self.drawPolyline()
             print("그리기")
         } else {
