@@ -41,7 +41,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoibnVlb2xhIiwiYSI6ImNqMmFxNzAxYzAwOGozM283c3FrMHllanAifQ.I0ZohHKMT8jP7wL5g2OZCw</string>
+	<string>pk.eyJ1Ijoic2FtY2hvbiIsImEiOiJjajJiYzFrNXkwMGx2MzRudnNkbHptMTN5In0.aenVwqUxhFT1-bwk48svNg</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -49,10 +49,14 @@
 	</dict>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Read</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>yes</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>description haha</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>{human-readable reason for photo access}</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

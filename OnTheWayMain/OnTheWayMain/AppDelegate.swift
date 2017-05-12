@@ -13,11 +13,20 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var serverManager = ServerManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.statusBarStyle = .lightContent
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        //세션 유지
+        
+        serverManager.getSession { (user) in
+            print(user)
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+            self.window?.rootViewController?.present(mainVC, animated: true, completion: nil)
+            print(user)
+        }
         
         return true
     }
@@ -40,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //FBSDKAppEvents.activateApp()
     }
     
+        
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.

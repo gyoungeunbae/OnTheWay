@@ -24,7 +24,7 @@ class CalenderManager {
         return beginningOfWeek
     }
     
-    //이번주 일요일부터 오늘까지의 Date를 배열에 넣기
+    //이번주 일요일부터 토요일까지의 Date를 배열에 넣기
     func getWeekArr() -> [Date] {
         let sunDate = getSunday(myDate: myDate)
         let startOfDate = myCalender.startOfDay(for: sunDate)
@@ -37,6 +37,20 @@ class CalenderManager {
         return weekArr
     }
     
+    func getKoreanStr(todayDate: Date) -> String {
+        myDateFormatter.dateFormat = "yyyyMMdd"
+        return myDateFormatter.string(from: todayDate)
+    }
+    
+    func getWeekArrStr() -> [String] {
+        var weekArr = getWeekArr()
+        var temp = [String]()
+        for index in 0..<weekArr.count {
+            var str = getKoreanStr(todayDate: weekArr[index])
+            temp.append(str)
+        }
+        return temp
+    }
     
 }
 
