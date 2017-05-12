@@ -7,6 +7,7 @@ class MainViewController: UIViewController {
         serverManager.logout()
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
+        self.present(loginVC, animated: false, completion: nil)
     }
     
     @IBOutlet weak var messageLabel: UILabel!
