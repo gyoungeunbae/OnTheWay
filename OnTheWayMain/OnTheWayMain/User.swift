@@ -1,17 +1,16 @@
-import ObjectMapper
+//
+//  User.swift
+//  OnTheWayMain
+//
+//  Created by junwoo on 2017. 5. 8..
+//  Copyright © 2017년 junwoo. All rights reserved.
+//
 
-struct User: Mappable {
+import Foundation
+
+
+struct User {
     var email: String!
     var password: String!
     var username: String!
-    
-    init?(map: Map) {
-    }
-    
-    mutating func mapping(map: Map) {
-        self.email <- map["email"]
-        self.password <- map["password"]
-        self.username <- map["username"]
-    }
-    
 }
