@@ -2,6 +2,7 @@ import UIKit
 import HealthKit
 class MainViewController: UIViewController {
     var serverManager = ServerManager()
+    var calenderManager = CalenderManager()
 
     @IBAction func logoutButton(_ sender: Any) {
         serverManager.logout()
@@ -10,25 +11,35 @@ class MainViewController: UIViewController {
         self.present(loginVC, animated: false, completion: nil)
     }
     
+    @IBOutlet weak var firstDayLabel: UILabel!
+    @IBOutlet weak var secondDayLabel: UILabel!
+    @IBOutlet weak var thirdDayLabel: UILabel!
+    @IBOutlet weak var fourthDayLabel: UILabel!
+    @IBOutlet weak var fifthDayLabel: UILabel!
+    @IBOutlet weak var sixthDayLabel: UILabel!
+    @IBOutlet weak var seventhDayLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var sundayImageView: RoundImageView!
-    @IBOutlet weak var mondayImageView: RoundImageView!
-    @IBOutlet weak var tuesdayImageView: RoundImageView!
-    @IBOutlet weak var wednesdayImageView: RoundImageView!
-    @IBOutlet weak var thursdayImageView: RoundImageView!
-    @IBOutlet weak var fridayImageView: RoundImageView!
-    @IBOutlet weak var saturdayImageView: RoundImageView!
+    @IBOutlet weak var firstImageView: RoundImageView!
+    @IBOutlet weak var secondImageView: RoundImageView!
+    @IBOutlet weak var thirdImageView: RoundImageView!
+    @IBOutlet weak var fourthImageView: RoundImageView!
+    @IBOutlet weak var fifthImageView: RoundImageView!
+    @IBOutlet weak var sixthImageView: RoundImageView!
+    @IBOutlet weak var seventhImageView: RoundImageView!
     @IBOutlet weak var counterView: CounterView!
     @IBOutlet weak var walkRecordLabel: UILabel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        //건강데이터 요청
-        
+        let simpleWeekStr = calenderManager.getSimpleWeekArrStr()
         requestHealthKitAuthorization()
-        let imageViews = [sundayImageView, mondayImageView, tuesdayImageView, wednesdayImageView, thursdayImageView, fridayImageView, saturdayImageView]
+        let imageViews = [firstImageView, secondImageView, thirdImageView, fourthImageView, fifthImageView, sixthImageView, seventhImageView]
         for i in 0..<imageViews.count {
             imageViews[i]?.setRounded()
+        }
+        let weekLabels = [firstDayLabel, secondDayLabel, thirdDayLabel, fourthDayLabel, fifthDayLabel, sixthDayLabel, seventhDayLabel]
+        for i in 0..<weekLabels.count {
+            weekLabels[i]?.text = simpleWeekStr[i]
         }
     }
     
@@ -45,7 +56,6 @@ private extension MainViewController {
                 
                 for i in 0...6 {
                     self.dailyStepQuery(indexOfDay: i)
-                    
                 }
                 
                 self.todayStepQuery()
@@ -111,8 +121,8 @@ private extension MainViewController {
     func dailyStepQuery(indexOfDay: Int) { // this function gives you all of the steps the user has taken since the beginning of the current day.
         
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
-        let imageViews = [sundayImageView, mondayImageView, tuesdayImageView, wednesdayImageView, thursdayImageView, fridayImageView, saturdayImageView]
-        let weekArr = CalenderManager.sharedInstance.getWeekArr()
+        let imageViews = [firstImageView, secondImageView, thirdImageView, fourthImageView, fifthImageView, sixthImageView, seventhImageView]
+        let weekArr = CalenderManager.sharedInstance.getLastWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
         
         

@@ -12,13 +12,6 @@ import UIKit
 //IBDesignable은 코어그래픽을 스토리보드에서 실시간으로 프리뷰 가능하게 한다
 @IBDesignable class CounterView: UIView {
     
-    class var sharedInstance: CounterView {
-        struct Singleton {
-            static let instance = CounterView()
-        }
-        return Singleton.instance
-    }
-    
     let stepOfGoal = 10000
     let π:CGFloat = CGFloat(M_PI)
     
@@ -38,8 +31,8 @@ import UIKit
         let arcWidth: CGFloat = 60
         
         // 시작각도, 마침각도
-        let startAngle: CGFloat = 3 * π / 4
-        let endAngle: CGFloat = π / 4
+        let startAngle: CGFloat = 3 * π / 2
+        let endAngle: CGFloat = 7 * π / 2
         
         // 회전경로 지정
         var path = UIBezierPath(arcCenter: center,
@@ -57,7 +50,7 @@ import UIKit
         //Draw the outline
         
         //사용할 각도
-        let angleDifference: CGFloat = 2 * π - startAngle + endAngle
+        let angleDifference: CGFloat = 2 * π
         
         //한 걸음당 각도
         let anglePerMin = angleDifference / CGFloat(stepOfGoal)

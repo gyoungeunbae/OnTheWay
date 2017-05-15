@@ -37,16 +37,51 @@ class CalenderManager {
         return weekArr
     }
     
+    //일주일 전 Date 구하기
+    func getLastweekDate(myDate: Date) -> Date {
+        let oneWeek = TimeInterval(60*60*24*6)
+        let lastDate = Date(timeInterval: -oneWeek, since: Date())
+        return Calendar.current.startOfDay(for: lastDate)
+    }
+    
+    //일주일전부터 오늘까지 Date를 배열에 넣기
+    func getLastWeekArr() -> [Date] {
+        let lastDate = getLastweekDate(myDate: myDate)
+        let startOfDate = myCalender.startOfDay(for: lastDate)
+        var weekArr = [Date]()
+        for index in 0...6 {
+            var weekDate = startOfDate.addingTimeInterval(TimeInterval(60*60*24*index))
+            weekArr.append(weekDate)
+        }
+        return weekArr
+    }
+    
+    
     func getKoreanStr(todayDate: Date) -> String {
         myDateFormatter.dateFormat = "yyyyMMdd"
         return myDateFormatter.string(from: todayDate)
     }
     
+    func getSimpleStr(todayDate: Date) -> String {
+        myDateFormatter.dateFormat = "dd일"
+        return myDateFormatter.string(from: todayDate)
+    }
+    
     func getWeekArrStr() -> [String] {
-        var weekArr = getWeekArr()
+        var weekArr = getLastWeekArr()
         var temp = [String]()
         for index in 0..<weekArr.count {
             var str = getKoreanStr(todayDate: weekArr[index])
+            temp.append(str)
+        }
+        return temp
+    }
+    
+    func getSimpleWeekArrStr() -> [String] {
+        var weekArr = getLastWeekArr()
+        var temp = [String]()
+        for index in 0..<weekArr.count {
+            var str = getSimpleStr(todayDate: weekArr[index])
             temp.append(str)
         }
         return temp

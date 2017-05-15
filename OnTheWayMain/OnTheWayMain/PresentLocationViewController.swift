@@ -14,6 +14,7 @@ class PresentLocationViewController: UIViewController, CLLocationManagerDelegate
     let userLocation = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+                
         mapView.userTrackingMode = .follow
         guard let testLatitude = userLocation.location?.coordinate.latitude
             else {

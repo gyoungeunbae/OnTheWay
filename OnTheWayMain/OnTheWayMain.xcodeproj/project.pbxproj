@@ -11,6 +11,8 @@
 		288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */; };
 		28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */; };
 		482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */; };
+		482FBE181EC700C500DE72AC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 482FBE171EC700C500DE72AC /* Setting.storyboard */; };
+		482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE3F1EC964D100DE72AC /* SettingViewController.swift */; };
 		484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4BE91EAA63A300754888 /* AppDelegate.swift */; };
 		484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BED1EAA63A300754888 /* Main.storyboard */; };
 		484F4BF11EAA63A300754888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BF01EAA63A300754888 /* Assets.xcassets */; };
@@ -61,6 +63,8 @@
 		288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PresentLocation.storyboard; sourceTree = "<group>"; };
 		28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationTableViewCell.swift; sourceTree = "<group>"; };
 		482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
+		482FBE171EC700C500DE72AC /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		482FBE3F1EC964D100DE72AC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		484F4BE61EAA63A300754888 /* OnTheWayMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheWayMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		484F4BE91EAA63A300754888 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		484F4BEE1EAA63A300754888 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,6 +132,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		482FBE161EC700AD00DE72AC /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				482FBE171EC700C500DE72AC /* Setting.storyboard */,
+				482FBE3F1EC964D100DE72AC /* SettingViewController.swift */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
 		484F4BDD1EAA63A300754888 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +163,7 @@
 		484F4BE81EAA63A300754888 /* OnTheWayMain */ = {
 			isa = PBXGroup;
 			children = (
+				482FBE161EC700AD00DE72AC /* Setting */,
 				48D7F5D61EBC4046000D747B /* MyPath */,
 				9B5246921EC0321A007B2F28 /* HealthDataView */,
 				9BEB12C41EB6DCC000772CF1 /* network */,
@@ -336,6 +350,7 @@
 				48D7F5BE1EB2524C000D747B /* Login.storyboard in Resources */,
 				48D7F5D81EBC405D000D747B /* MyPath.storyboard in Resources */,
 				48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */,
+				482FBE181EC700C500DE72AC /* Setting.storyboard in Resources */,
 				484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */,
 				288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */,
 				9B86D7961EB1E41B009FCAA6 /* Register.storyboard in Resources */,
@@ -425,6 +440,7 @@
 				48F5EC0C1EC06A0C00101C6E /* User.swift in Sources */,
 				48D7F5DA1EBC4070000D747B /* MyPathViewController.swift in Sources */,
 				484F4C021EAB680100754888 /* CounterView.swift in Sources */,
+				482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */,
 				288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */,
 				48D7F5C01EB2F198000D747B /* AccountViewController.swift in Sources */,
 				484F4C111EAE188C00754888 /* CalenderManager.swift in Sources */,

@@ -17,19 +17,20 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var controllerArray : [MyPathViewController] = []
-        var weekDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-        var weekArrStr = calenderManager.getWeekArrStr()
-        let storyboard = UIStoryboard(name: "MyPath", bundle: nil)
-        let sunPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let monPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let tuePathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let wedPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let thuPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let friPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let satPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        var storyboard = UIStoryboard(name: "MyPath", bundle: nil)
         
-        controllerArray = [sunPathVC, monPathVC, tuePathVC, wedPathVC, thuPathVC, friPathVC, satPathVC]
+        var controllerArray : [MyPathViewController] = []
+        var weekDay = calenderManager.getSimpleWeekArrStr()
+        var weekArrStr = calenderManager.getWeekArrStr()
+        let firstPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        let secondPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        let thirdPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        let fourthPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        let fifthPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        let sixthPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        let seventhPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        
+        controllerArray = [firstPathVC, secondPathVC, thirdPathVC, fourthPathVC, fifthPathVC, sixthPathVC, seventhPathVC]
         for index in 0..<controllerArray.count {
             controllerArray[index].title = weekDay[index]
             controllerArray[index].today = weekArrStr[index]
