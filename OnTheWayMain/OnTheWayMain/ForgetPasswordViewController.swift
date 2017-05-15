@@ -18,13 +18,13 @@ class ForgetPasswordViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+
     //이메일 입력했을 때 데이터베이스의 비밀번호 요청
     @IBAction func submitEmailButton(_ sender: Any) {
-        
+
         if (self.emailTextField.text != nil) {
             serverManager.findPasswordByEmail(email: self.emailTextField.text!) { (password) in
-                
+
                 if (self.emailTextField.text == nil) {
                     self.passwordTextField.text = "이메일을 입력하세요"
                 } else {
@@ -32,7 +32,7 @@ class ForgetPasswordViewController: UIViewController {
                 }
             }
         }
-        
+
     }
 
     //뒤로가기 버튼
@@ -40,7 +40,7 @@ class ForgetPasswordViewController: UIViewController {
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
         //         self.present(loginVC, animated: true, completion: nil)
-        
+
         self.dismiss(animated: true, completion: {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)

@@ -12,7 +12,7 @@ import RealmSwift
 class LocationList: Object {
     dynamic var email = ""
     let items = List<Location>()
-    
+
 //    override static func primaryKey() -> String? {
 //        return "email"
 //    }
