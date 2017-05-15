@@ -21,5 +21,5 @@ class LocationList: Object {
 class Location: Object {
     dynamic var date = String()
     dynamic var latitude = Double()
-    dynamic var longtitude = Double()
+    dynamic var longtitude = Double() 
 }

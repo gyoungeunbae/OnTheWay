@@ -163,11 +163,8 @@
 		484F4BE81EAA63A300754888 /* OnTheWayMain */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				288188A31EC1B2E400876BB6 /* SharePhotoView */,
-=======
 				48D7F5D61EBC4046000D747B /* MyPath */,
->>>>>>> develop
 				9B5246921EC0321A007B2F28 /* HealthDataView */,
 				9BEB12C41EB6DCC000772CF1 /* network */,
 				288B4D101EB49E5400F4B80F /* PresentLocation */,
@@ -309,11 +306,8 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
-<<<<<<< HEAD
 						DevelopmentTeam = NZC4Q7J74G;
-=======
 						DevelopmentTeam = TM6U8P8E5J;
->>>>>>> develop
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -578,23 +572,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-<<<<<<< HEAD
+
 				DEVELOPMENT_TEAM = NZC4Q7J74G;
-=======
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = TM6U8P8E5J;
->>>>>>> develop
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.thom;
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kraa;
->>>>>>> develop
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -607,23 +596,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-<<<<<<< HEAD
+
 				DEVELOPMENT_TEAM = NZC4Q7J74G;
-=======
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = TM6U8P8E5J;
->>>>>>> develop
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-<<<<<<< HEAD
+
 				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.thom;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kraa;
->>>>>>> develop
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
