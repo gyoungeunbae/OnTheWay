@@ -15,7 +15,7 @@ class ServerManager{
         
         var isUser = Bool()
         
-        let url = URL(string: "http://localhost:8000/ontheway/user/register")
+        let url = URL(string: "http://localhost:8080/ontheway/user/register")
         
         
         let parameters: Parameters = [
@@ -39,7 +39,7 @@ class ServerManager{
         
         var isUser = Bool()
         
-        let url = URL(string: "http://localhost:8000/ontheway/user/login")
+        let url = URL(string: "http://localhost:8080/ontheway/user/login")
         
         let parameters: Parameters = [
             "email" : email,
@@ -80,8 +80,33 @@ class ServerManager{
             
         }
     }
+    
+    func logout() {
+        let urlString = "http://localhost:8080/ontheway/user/logout"
+        Alamofire.request(urlString)
 
+    }
+    
 
     
+    func getSession(completion: @escaping(User) -> Void) {
+        print("aaa")
+        let urlString = "http://localhost:8080/ontheway/user/login"
+        
+        Alamofire.request(urlString)
+            .validate(statusCode: 200..<400)
+            .responseJSON { response in
+                print("response = \(response)")
+                var user = User()
+                if let json = response.result.value as? [String:Any]{
+                    print("JSON: \(json)")
+                    user = User(email: json["email"] as! String, password: json["password"] as! String, username: json["username"] as! String)
+                    completion(user)
+                } else {
+                    print("no server connection.")
+                }
+        }
+    }
+
     
 }

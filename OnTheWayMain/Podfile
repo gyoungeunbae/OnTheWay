@@ -7,16 +7,15 @@ target 'OnTheWayMain' do
   # Pods for OnTheWayMain
   pod 'Mapbox-iOS-SDK', '~> 3.5'
   pod 'FBSDKLoginKit'
-
-  
+  pod 'SwiftLint'
   source 'https://github.com/CocoaPods/Specs.git'
   platform :ios, '10.0'
   use_frameworks!
   pod 'Alamofire', '~> 4.4'
-
-  pod 'Alamofire'
+  pod 'PageMenu'
+  use_frameworks!
+  pod 'RealmSwift'
   pod 'ObjectMapper'
-  pod 'SwiftLint'
 end
 
 
