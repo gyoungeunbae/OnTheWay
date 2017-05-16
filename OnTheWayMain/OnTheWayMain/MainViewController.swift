@@ -27,6 +27,7 @@ class MainViewController: UIViewController {
         let simpleWeekStr = calenderManager.getSimpleWeekArrStr()
         requestHealthKitAuthorization()
         let imageViews = [firstImageView, secondImageView, thirdImageView, fourthImageView, fifthImageView, sixthImageView, seventhImageView]
+
         for i in 0..<imageViews.count {
             imageViews[i]?.setRounded()
         }
@@ -107,6 +108,7 @@ private extension MainViewController {
 
     //이번주 일주일 걸음수 요청
     func dailyStepQuery(indexOfDay: Int) { // this function gives you all of the steps the user has taken since the beginning of the current day.
+
 
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
         let imageViews = [firstImageView, secondImageView, thirdImageView, fourthImageView, fifthImageView, sixthImageView, seventhImageView]

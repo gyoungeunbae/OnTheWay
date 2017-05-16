@@ -22,6 +22,7 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
         var controllerArray: [MyPathViewController] = []
         var weekDay = calenderManager.getSimpleWeekArrStr()
         var weekArrStr = calenderManager.getWeekArrStr()
+
         let firstPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
         let secondPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
         let thirdPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
@@ -42,10 +43,10 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
             .menuItemSeparatorPercentageHeight(0.1)
         ]
 
+
         pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height), pageMenuOptions: parameters)
         self.view.addSubview(pageMenu!.view)
 
-        // Do any additional setup after loading the view.
     }
 
 }
