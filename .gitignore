@@ -138,6 +138,11 @@ fastlane/test_output
 
 ## Build generated
 
+# OS generated files #
+.DS_Store
+.DS_Store?
+
+
 ## Various settings
 
 ## Other
