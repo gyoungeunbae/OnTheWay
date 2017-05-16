@@ -24,7 +24,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var settingTableView: UITableView!
 
     // Data model: These strings will be the data for the table view cells
-    var settings: [String:[String:String]] = ["profile": ["username": "samchon", "image": "photo"], "dailyGoal": ["dailyStep": "10000"], "notification": ["notification": "On"]]
+    var settings: [String:[String:String]] = ["profile": ["username": "samchon", "image": "photoLibrary"], "dailyGoal": ["dailyStep": "10000"], "notification": ["notification": "On"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,10 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         settingTableView.delegate = self
         settingTableView.dataSource = self
         imagePicker.delegate = self
+        
+        serverManager.getSession { (user) in
+            self.settings["profile"]?.updateValue(user.username, forKey: "username")
+        }
 
     }
 

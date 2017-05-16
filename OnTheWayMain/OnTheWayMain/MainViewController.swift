@@ -4,13 +4,6 @@ class MainViewController: UIViewController {
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
 
-    @IBAction func logoutButton(_ sender: Any) {
-        serverManager.logout()
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
-        self.present(loginVC, animated: false, completion: nil)
-    }
-
     @IBOutlet weak var firstDayLabel: UILabel!
     @IBOutlet weak var secondDayLabel: UILabel!
     @IBOutlet weak var thirdDayLabel: UILabel!
