@@ -24,7 +24,6 @@ class ServerManager {
         ]
 
         Alamofire.request(url!, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
-            print(response)
             if let res = response.result.value as? [String : Any] {
                 if let value = res["message"] as? Bool {
                     isUser = value
@@ -73,7 +72,7 @@ class ServerManager {
             }
 
             if response.error != nil {
-                print(response.error)
+                
             }
 
         }
@@ -86,16 +85,14 @@ class ServerManager {
     }
 
     func getSession(completion: @escaping(User) -> Void) {
-        print("aaa")
+       
         let urlString = "http://localhost:8080/ontheway/user/login"
 
         Alamofire.request(urlString)
             .validate(statusCode: 200..<400)
             .responseJSON { response in
-                print("response = \(response)")
                 var user = User()
                 if let json = response.result.value as? [String:Any] {
-                    print("JSON: \(json)")
                     user = User(email: json["email"] as! String, password: json["password"] as! String, username: json["username"] as! String, image: json["image"] as! String)
                     completion(user)
                 } else {

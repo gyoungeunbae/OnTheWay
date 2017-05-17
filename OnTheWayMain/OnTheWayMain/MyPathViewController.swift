@@ -40,7 +40,6 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //showing userlocation
         mapView.userTrackingMode = .follow
 
         mapView.delegate = self
