@@ -68,9 +68,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let loginManager = FBSDKLoginManager()
         loginManager.logIn(withReadPermissions: readPermissions, from: self) { (result, error) in
             if ((error) != nil) {
-                print("login failed with error: \(String(describing: error))")
+                
             } else if (result?.isCancelled)! {
-                print("login cancelled")
+                
             } else {
                 //present the account view controller
                 let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)

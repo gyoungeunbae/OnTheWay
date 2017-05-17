@@ -1,16 +1,8 @@
-//
-//  HealthKitManager.swift
-//  OnTheWayMain
-//
-//  Created by junwoo on 2017. 4. 23..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
-
 import Foundation
 import HealthKit
 
 class HealthKitManager {
-
+    
     //single ton
     class var sharedInstance: HealthKitManager {
         struct Singleton {

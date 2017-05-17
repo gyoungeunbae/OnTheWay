@@ -2,7 +2,7 @@ import UIKit
 
 class PieView: UIView {
     
-    var values: Array<CGFloat> = [20,30,40,50]
+    var values: Array<CGFloat> = [10,10,10,10,10,10,10]
     var colors: Array<CGColor> = [UIColor.red.cgColor,UIColor.orange.cgColor,UIColor.yellow.cgColor,UIColor.green.cgColor,UIColor.blue.cgColor,UIColor.gray.cgColor,UIColor.purple.cgColor]
     
     
@@ -56,8 +56,4 @@ class PieView: UIView {
         
     }
     
-    func setValue(valueArr: Array<CGFloat>){
-        values = valueArr
-    }
-    
-}
+   }

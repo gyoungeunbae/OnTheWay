@@ -96,8 +96,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //The Okay action will change the title that is typed in.
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-                print(firstRowEditAction.textFields?.first?.text)
-                print(detail)
+                
                 self.settings["notification"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "notification")
                 //Do some other stuff that you want to do
                 tableView.reloadData()
@@ -126,8 +125,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //The Okay action will change the title that is typed in.
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-                print(firstRowEditAction.textFields?.first?.text)
-                print(detail)
+                
                 self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
                 //Do some other stuff that you want to do
                 tableView.reloadData()
@@ -157,8 +155,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //The Okay action will change the title that is typed in.
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-                print(firstRowEditAction.textFields?.first?.text)
-                print(detail)
+                
                 self.settings["profile"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "username")
                 //Do some other stuff that you want to do
                 tableView.reloadData()

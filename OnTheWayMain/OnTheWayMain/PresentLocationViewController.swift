@@ -24,8 +24,8 @@ class PresentLocationViewController: UIViewController, CLLocationManagerDelegate
             else {
                 return
         }
-        print("****\(testLatitude)")
-        print("****\(testLongitude)")
+        
+
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

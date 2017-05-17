@@ -36,6 +36,9 @@
                             <constraint firstItem="KKj-Kb-mHT" firstAttribute="centerX" secondItem="R7f-V2-zVS" secondAttribute="centerX" id="ipK-KG-vsn"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="PieView" destination="KKj-Kb-mHT" id="Iwz-Fm-0h3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QAC-39-Cs6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
