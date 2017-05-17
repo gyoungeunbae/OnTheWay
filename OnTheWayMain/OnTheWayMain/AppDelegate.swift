@@ -8,24 +8,34 @@
 
 import UIKit
 import FBSDKLoginKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var serverManager = ServerManager()
-
+    
+    var userSettingManager = UserSettingManager.sharedInstance
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.statusBarStyle = .lightContent
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         //세션 유지
 
         serverManager.getSession { (user) in
-            print(user)
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
             self.window?.rootViewController?.present(mainVC, animated: true, completion: nil)
-            print(user)
+            UserManager.sharedInstance.updateUser(user)
+            print("session is \(user)")
+            
+            //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
+            let realm = try! Realm()
+            let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
+            if results.count != 0 {
+                self.userSettingManager.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
+            }
         }
 
         return true

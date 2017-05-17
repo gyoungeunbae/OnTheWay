@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var serverManager = ServerManager()
     let imagePicker = UIImagePickerController()
+    
+    var userSettingManager = UserSettingManager.sharedInstance
+    var userSetting = SettingList()
+    var items = [Setting]()
+    var realm: Realm!
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -28,15 +35,40 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(drawAndSave), name: Notification.Name("changed"), object: nil)
+        
         // This view controller itself will provide the delegate methods and row data for the table view.
         settingTableView.delegate = self
         settingTableView.dataSource = self
         imagePicker.delegate = self
         
-        serverManager.getSession { (user) in
-            self.settings["profile"]?.updateValue(user.username, forKey: "username")
+        //로그인한 유저의 username 가져오기
+        var existingUser = UserManager.sharedInstance.getUser()
+        print(existingUser)
+        if existingUser != nil {
+            settings["profile"]?.updateValue(existingUser.username, forKey: "username")
         }
+        //로그인한 유저의 setting 정보 가져오기
+        var existingUserSetting = UserSettingManager.sharedInstance.getUserSetting()
+        if existingUserSetting != nil {
+            settings["dailyGoal"]?.updateValue((existingUserSetting.items.last?.dailyGoal)!, forKey: "dailyStep")
+            settings["notification"]?.updateValue((existingUserSetting.items.last?.notification)!, forKey: "notification")
+        }
+        
+    }
+    
+    func drawAndSave(_ notification: Notification) {
+        settingTableView.reloadData()
+        
+        let realm = try? Realm() // Create realm pointing to default file
+        realm?.beginWrite()
+        var setting = Setting()
+        setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
+        setting.notification = (settings["notification"]?["notification"]!)!
+        userSetting.items.append(setting)
+        realm?.add(setting)
+        realm?.add(userSetting)
+        try! realm?.commitWrite()
 
     }
 
@@ -82,31 +114,17 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if title == "notification" {
             
-            //The first row is selected and here the user can change the string in an alert sheet.
-            let firstRowEditAction = UIAlertController(title: "Edit Title", message: "Please edit the title", preferredStyle: .alert)
-            firstRowEditAction.addTextField(configurationHandler: { (newTitle) -> Void in
-                newTitle.text = detail
-            })
-            
-            //The cancel action will do nothing.
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+            if detail == "On" {
+                self.settings["notification"]?.updateValue("Off", forKey: "notification")
                 
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
-            })
-            
-            //The Okay action will change the title that is typed in.
-            let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-                print(firstRowEditAction.textFields?.first?.text)
-                print(detail)
-                self.settings["notification"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "notification")
-                //Do some other stuff that you want to do
-                tableView.reloadData()
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
-            })
-            
-            firstRowEditAction.addAction(okayAction)
-            firstRowEditAction.addAction(cancelAction)
-            self.present(firstRowEditAction, animated: true, completion: nil)
+                
+            }
+            if detail == "Off" {
+                self.settings["notification"]?.updateValue("On", forKey: "notification")
+                
+                
+            }
+            NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
             
         }
         
@@ -126,12 +144,13 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //The Okay action will change the title that is typed in.
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-                print(firstRowEditAction.textFields?.first?.text)
-                print(detail)
+                
                 self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
                 //Do some other stuff that you want to do
-                tableView.reloadData()
+                
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
+                
+                NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
             })
             
             firstRowEditAction.addAction(okayAction)
@@ -157,12 +176,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //The Okay action will change the title that is typed in.
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-                print(firstRowEditAction.textFields?.first?.text)
-                print(detail)
+                
                 self.settings["profile"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "username")
                 //Do some other stuff that you want to do
-                tableView.reloadData()
+                
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
+                NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
             })
             
             firstRowEditAction.addAction(okayAction)
@@ -186,15 +205,19 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profileImageView?.contentMode = .scaleAspectFit
             profileImageView?.image = pickedImage
+//            serverManager.uploadImage(pickedImage: pickedImage, userId: singletonUser.id) { user in
+//                print("name = \(user.username)")
+//            }
+                
         }
         
         dismiss(animated: true, completion: nil)
+        
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-
-
     
+
 }
