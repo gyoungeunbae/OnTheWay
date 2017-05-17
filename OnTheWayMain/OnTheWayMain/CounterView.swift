@@ -17,7 +17,9 @@ import UIKit
 
     @IBInspectable var stepOfWalked: Int = 0
     @IBInspectable var outlineColor: UIColor = UIColor.blue
+
     @IBInspectable var counterColor: UIColor = UIColor.yellow
+
 
     override func draw(_ rect: CGRect) {
         //realm에 저장되어있는 목표가 있으면 불러오기
@@ -51,8 +53,6 @@ import UIKit
         counterColor.setStroke()
         path.stroke()
 
-        //Draw the outline
-
         //사용할 각도
         let angleDifference: CGFloat = 2 * π
 
@@ -64,6 +64,7 @@ import UIKit
 
         //경로 지정
         var outlinePath = UIBezierPath(arcCenter: center, radius: bounds.width/2 - 2.5, startAngle: startAngle, endAngle: outlineEndAngle, clockwise: true)
+
 
         //경로 닫기
         outlinePath.addArc(withCenter: center, radius: bounds.width/2 - arcWidth + 2.5, startAngle: outlineEndAngle, endAngle: startAngle, clockwise: false)

@@ -29,7 +29,6 @@ class RegisterManager {
             }
 
         } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
             returnValue = false
         }
         return  returnValue
@@ -68,7 +67,6 @@ class RegisterManager {
             }
 
         } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
             checkPwd = 0
         }
 

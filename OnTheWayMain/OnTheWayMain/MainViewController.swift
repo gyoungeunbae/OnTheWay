@@ -27,6 +27,7 @@ class MainViewController: UIViewController {
         let simpleWeekStr = calenderManager.getSimpleWeekArrStr()
         requestHealthKitAuthorization()
         let imageViews = [firstImageView, secondImageView, thirdImageView, fourthImageView, fifthImageView, sixthImageView, seventhImageView]
+
         for i in 0..<imageViews.count {
             imageViews[i]?.setRounded()
         }
@@ -54,13 +55,12 @@ private extension MainViewController {
                 self.todayStepQuery()
 
             } else {
-                print(error.debugDescription)
             }
         })
     }
 
     //오늘 걸음수 데이터 요청
-    func todayStepQuery() { // this function gives you all of the steps the user has taken since the beginning of the current day.
+    func todayStepQuery() { 
 
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
         let date = NSDate()
@@ -70,8 +70,6 @@ private extension MainViewController {
         //오늘
         let predicate = HKQuery.predicateForSamples(withStart: newDate, end: NSDate() as Date)
 
-        // The actual HealthKit Query which will fetch all of the steps and add them up for us.
-
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { _, results, _ in
             var steps: Int = 0
 
@@ -79,7 +77,7 @@ private extension MainViewController {
                 for result in results as! [HKQuantitySample] {
                     if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
                         steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
-                        //print(result)
+                        
                     }
 
                 }
@@ -107,6 +105,7 @@ private extension MainViewController {
 
     //이번주 일주일 걸음수 요청
     func dailyStepQuery(indexOfDay: Int) { // this function gives you all of the steps the user has taken since the beginning of the current day.
+
 
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
         let imageViews = [firstImageView, secondImageView, thirdImageView, fourthImageView, fifthImageView, sixthImageView, seventhImageView]
