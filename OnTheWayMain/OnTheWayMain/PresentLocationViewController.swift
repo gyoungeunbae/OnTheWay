@@ -9,11 +9,12 @@
 import UIKit
 import Mapbox
 class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
-  
+
     @IBOutlet weak var mapView: MGLMapView!
     let userLocation = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+
         mapView.userTrackingMode = .follow
         guard let testLatitude = userLocation.location?.coordinate.latitude
             else {
@@ -23,12 +24,14 @@ class PresentLocationViewController: UIViewController, CLLocationManagerDelegate
             else {
                 return
         }
-        print("****\(testLatitude)")
-        print("****\(testLongitude)")
+        
+
     }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PresentLocationTableViewCell
         cell.userName.text = "park"
@@ -36,7 +39,5 @@ class PresentLocationViewController: UIViewController, CLLocationManagerDelegate
         cell.howmanySteps.text = "9999"
         return (cell)
     }
-    
-    
-    
+
 }

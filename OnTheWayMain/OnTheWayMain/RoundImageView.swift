@@ -15,13 +15,13 @@ class RoundImageView: UIImageView {
         }
         return Singleton.instance
     }
-    
+
     //요일 이미지뷰 원모양으로
     func setRounded() {
         let radius = self.frame.width / 2
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
-        
+
     }
 
 }
