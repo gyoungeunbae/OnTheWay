@@ -11,7 +11,12 @@ class HealthDataViewController: UIViewController {
     @IBOutlet weak var secondDayLabel: UILabel!
     @IBOutlet weak var firstDayLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var graphView: GraphView!
+    @IBOutlet weak var pieChartView: PieChartView!
     var dayLabelArray: Array<UILabel> = []
+    var isGraphViewShowing = false
+    let options = UIViewAnimationOptions.transitionFlipFromLeft.union(.showHideTransitionViews)
     
     
     
@@ -78,8 +83,10 @@ private extension HealthDataViewController {
                
                 
                 self.PieView.values[indexOfDay] = CGFloat(steps)
+                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
                 self.dayLabelArray[indexOfDay].text! = getSimpleDay
                 self.PieView.setNeedsDisplay()
+                self.graphView.setNeedsDisplay()
             }
             
            
@@ -89,6 +96,15 @@ private extension HealthDataViewController {
         }
         
         HealthKitManager.sharedInstance.healthStore?.execute(query)
+    }
+   
+    @IBAction func pieChartViewTap(gesture:UITapGestureRecognizer?) {
+        if(isGraphViewShowing) {
+            UIView.transition(from: graphView, to: pieChartView, duration: 1.0, options: options, completion: nil)
+        } else {
+            UIView.transition(from: pieChartView, to: graphView, duration: 1.0, options: options, completion: nil)
+        }
+        isGraphViewShowing = !isGraphViewShowing
     }
     
 }
