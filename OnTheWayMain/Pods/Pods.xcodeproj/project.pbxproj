@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
 		00769B190D2C39FCAA09DC0004A5EA76 /* FBSDKGraphRequestDataAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = BA76AE80CDF7584220CC872811139033 /* FBSDKGraphRequestDataAttachment.m */; };
 		034F4F061EE00447F6D8EC6EB23F0BEA /* FBSDKAccessTokenCache.h in Headers */ = {isa = PBXBuildFile; fileRef = DD5ECD49AF88FE4D20CDA2067C85B9EC /* FBSDKAccessTokenCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		03674AF1F02ABBDF3871B6D5116CC362 /* BFCancellationTokenRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 654252E2AF8388FFA94C0ED1498F0F38 /* BFCancellationTokenRegistration.m */; };
@@ -296,7 +295,7 @@
 		FE9DB5BAFC083D19C098460F7423A3BD /* FBSDKIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3324ECB588E44C8688DFE065C817E2CD /* FBSDKIcon.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FF1E5EF4FFD54A47703415D417399CD7 /* URLTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D2311034935ACACE8BAF96663E8D7F /* URLTransform.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FF8EE0A88D978F442B93D9983EE466D1 /* FBSDKTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B2668DDFE1DF12E99225BE1C8A9E614 /* FBSDKTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-=======
+
 		00769B190D2C39FCAA09DC0004A5EA76 /* FBSDKGraphRequestDataAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 002BE0A19472D58D247B4B6A17BA104F /* FBSDKGraphRequestDataAttachment.m */; };
 		020A27F5AA54E5C87B35C225C8A5DA72 /* thread_safe_reference.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD9C682A4D61E1AF6ABB0CF3151256DD /* thread_safe_reference.cpp */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"2.7.0\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
 		02D74E9C7A5591929B1372F95A7E4ADE /* RLMArray_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = ED9BFECFC4737A6E9F10086EC8FE3FE4 /* RLMArray_Private.h */; };
@@ -804,7 +803,6 @@
 		FF1E5EF4FFD54A47703415D417399CD7 /* URLTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BF7F7DC449FE96C4EB709EE3D7E60 /* URLTransform.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FF8EE0A88D978F442B93D9983EE466D1 /* FBSDKTooltipView.h in Headers */ = {isa = PBXBuildFile; fileRef = 82F885945F6D85D722F3FEB5CE29B2D0 /* FBSDKTooltipView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FFAAC491287E5E0B50D6B07E9121E35D /* RLMPredicateUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A8332C75049EEE92FDFC96DEF9BD7 /* RLMPredicateUtil.mm */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"2.7.0\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
->>>>>>> develop
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -971,7 +969,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
+
 		0121F6CE14C4275548CC251FA6EA9665 /* BFTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFTask.m; path = Bolts/Common/BFTask.m; sourceTree = "<group>"; };
 		02B0B3DB9A118839377988D64ED90C9D /* FBSDKLoginError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginError.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginError.h; sourceTree = "<group>"; };
 		02D232FB5DA4F4D61B3A4FA56B9DDBC8 /* FBSDKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKError.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKError.h; sourceTree = "<group>"; };
@@ -1290,7 +1288,7 @@
 		FC1349D072D51D42E28897EA6C3A5198 /* Pods-OnTheWayMain-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OnTheWayMain-frameworks.sh"; sourceTree = "<group>"; };
 		FC2E019719C8C4849D6A0F884EDA035F /* BFCancellationTokenRegistration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFCancellationTokenRegistration.h; path = Bolts/Common/BFCancellationTokenRegistration.h; sourceTree = "<group>"; };
 		FFE90B1767EAAB44EB5D66B42677F3A6 /* FBSDKConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKConstants.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKConstants.h; sourceTree = "<group>"; };
-=======
+
 		001A4E178F4BF01AC5FE3DB9708DA3E9 /* FBSDKLoginTooltipView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginTooltipView.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginTooltipView.h; sourceTree = "<group>"; };
 		002BE0A19472D58D247B4B6A17BA104F /* FBSDKGraphRequestDataAttachment.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGraphRequestDataAttachment.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKGraphRequestDataAttachment.m; sourceTree = "<group>"; };
 		00D49B625E7A52FCA29A977AFB862F4E /* RLMSyncSessionRefreshHandle.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RLMSyncSessionRefreshHandle.mm; path = Realm/RLMSyncSessionRefreshHandle.mm; sourceTree = "<group>"; };
@@ -1788,7 +1786,7 @@
 		FDB21D4B4EB6DDF70565835AB80BFFAB /* FBSDKLoginUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginUtility.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginUtility.h; sourceTree = "<group>"; };
 		FF8EE000983D171B03422916F4239ADE /* FBSDKInternalUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKInternalUtility.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKInternalUtility.m; sourceTree = "<group>"; };
 		FFBE2BCBB6D52A90246C30736D7160E8 /* RLMSyncManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMSyncManager.h; path = include/RLMSyncManager.h; sourceTree = "<group>"; };
->>>>>>> develop
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1872,7 +1870,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< HEAD
 		03563454E40C948DAF8CDC566D4AA0B1 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
@@ -1968,7 +1965,7 @@
 				E91CE4B05CC4CB9231DF458BFCD961B2 /* Bolts-prefix.pch */,
 				1931CFB8767718697DB607C8CFCAA1CE /* Bolts-umbrella.h */,
 				192335CC12471ACE752B5D25E8E21952 /* Info.plist */,
-=======
+
 		04C5AD678F6ABE4A8EE19119BF062CEB /* SwiftLint */ = {
 			isa = PBXGroup;
 			children = (
@@ -2156,13 +2153,13 @@
 				82F885945F6D85D722F3FEB5CE29B2D0 /* FBSDKTooltipView.h */,
 				0F85D83FD74500F2584D663E96099625 /* FBSDKTooltipView.m */,
 				571B2592568FA9850BA9355F8800407E /* Support Files */,
->>>>>>> develop
+
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Bolts";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
+
 		567172DFD62F6F0836A66EB034044007 /* ObjectMapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -2207,7 +2204,7 @@
 				C019B0D29994A5B4452D5E4981908F98 /* SwiftLint */,
 			);
 			name = Pods;
-=======
+
 		571B2592568FA9850BA9355F8800407E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2234,7 +2231,7 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Alamofire";
->>>>>>> develop
+
 			sourceTree = "<group>";
 		};
 		7B9099F0EB1A02AC08DDC0FC0B70801B /* Targets Support Files */ = {
@@ -2249,15 +2246,15 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-<<<<<<< HEAD
+
 				3E17F431F99A4A139854034B2234AA30 /* Frameworks */,
 				7611BB4F0B9A2E0CD3AD1C437D0A5E13 /* Pods */,
 				7FEA0D4A1FF6BE8EB035772204E4CCAC /* Products */,
-=======
+
 				9AD505FF557777F31F955270643A20F3 /* Frameworks */,
 				3D6B2801B97A405E7DFDAF5A5D69E5CB /* Pods */,
 				9B2B9F36C1392F469C3C9620DCE26AA8 /* Products */,
->>>>>>> develop
+
 				7B9099F0EB1A02AC08DDC0FC0B70801B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -2271,12 +2268,12 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
+
 		83F815891321C50CA3ABC200AEF1F46C /* Mapbox-iOS-SDK */ = {
 			isa = PBXGroup;
 			children = (
 				E1C28E1204B393F09C3BEDEF86711CD0 /* Frameworks */,
-=======
+
 		938885522CB435D1E60742523E8E102E /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2307,14 +2304,14 @@
 				C8EC73F8D3B85B56A1EA386D99FD3AEB /* FBSDKCoreKit.framework */,
 				3CC4082EA03689D2CEF74F9EB734A8EE /* Realm.framework */,
 				8ECB3EE3606D9B79552B81AD654C2B6B /* iOS */,
->>>>>>> develop
+
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
+
 		A5E36D7660437161442D7E5CD19D6AA5 /* iOS */ = {
-=======
+
 		9B2B9F36C1392F469C3C9620DCE26AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2332,7 +2329,7 @@
 			sourceTree = "<group>";
 		};
 		9D4257B5B9AF827302C0A8B9C8CB89A9 /* PageMenu */ = {
->>>>>>> develop
+
 			isa = PBXGroup;
 			children = (
 				727780D150BB6363E0C2E656E654BCF1 /* CAPSPageMenu.swift */,
@@ -2386,7 +2383,6 @@
 			name = Headers;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		C019B0D29994A5B4452D5E4981908F98 /* SwiftLint */ = {
 			isa = PBXGroup;
 			children = (
@@ -2427,7 +2423,7 @@
 				FB09E1195F84199495D79B7DDA3EBABC /* FBSDKCoreKit-prefix.pch */,
 				369ED37D1CE5A6FC93F87BDDCD9ED7FB /* FBSDKCoreKit-umbrella.h */,
 				ED1DAADAFFE73CDE1DF5A2DA6B56F75E /* Info.plist */,
-=======
+
 		A3B400479F83A5614604ADA73165B04A /* Mapbox-iOS-SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2640,13 +2636,12 @@
 				7F7B741D522BBA900BA85E6FAC690760 /* FBSDKWebDialogView.m */,
 				3E5294FBF84B80E8578AB9EF0B731C80 /* Resources */,
 				23EEE4BCB1111B2C1CFC8177613B9F19 /* Support Files */,
->>>>>>> develop
+
 			);
 			name = "Support Files";
 			path = "../Target Support Files/FBSDKCoreKit";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		D0451ACA77E82C83584522C2AA36ECD9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2659,7 +2654,7 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ObjectMapper";
-=======
+
 		B6BE1F2A19BDEEE6417CE16F774E2F7E /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
@@ -2684,7 +2679,7 @@
 			);
 			name = Alamofire;
 			path = Alamofire;
->>>>>>> develop
+
 			sourceTree = "<group>";
 		};
 		D1BEC4E4F4271D3557CB9041D7229D39 /* Pods-OnTheWayMain */ = {
@@ -2705,7 +2700,7 @@
 			path = "Target Support Files/Pods-OnTheWayMain";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
+
 		D366BE3634BD8BFAFC017EDA98BA25AA /* AppLinks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2945,7 +2940,7 @@
 				30685173980F46376DF2CEF1BBC6D1C7 /* FacebookSDKStrings.bundle */,
 			);
 			name = Resources;
-=======
+
 		D958A0F8FAA9EE7C8252BC8632ED1EF0 /* ObjectMapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -3093,7 +3088,8 @@
 				C80FFB054ADCACFBB65EE28E0334688C /* Mapbox.framework */,
 			);
 			name = Frameworks;
->>>>>>> develop
+
+
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3938,14 +3934,14 @@
 			target = BEF7E6E85DB5CDE5D7A18F4F2EB8494B /* FBSDKCoreKit */;
 			targetProxy = FFC11814CD4A0167722C986CE02596E5 /* PBXContainerItemProxy */;
 		};
-<<<<<<< HEAD
+
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0ADFF76C3611F2FEF4AB2CEB82A512A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4882B411B53293D7568FB766A46ABF73 /* FBSDKCoreKit.xcconfig */;
-=======
+
 		D443FC816CD3421FA9CE73868B5E874B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Realm;
@@ -4076,7 +4072,7 @@
 		0ADFF76C3611F2FEF4AB2CEB82A512A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 07EF9923B5ADB0DD201762CF787F05D5 /* FBSDKCoreKit.xcconfig */;
->>>>>>> develop
+
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4109,11 +4105,10 @@
 		};
 		17E40DD7CF7E6E58929B42CDDE7B80E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
+
 			baseConfigurationReference = 994986365337BD1BA8981EC4C6DF5125 /* FBSDKLoginKit.xcconfig */;
-=======
+
 			baseConfigurationReference = EBF9351FE34376C3605C5EE330E1D5F8 /* FBSDKLoginKit.xcconfig */;
->>>>>>> develop
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4288,11 +4283,9 @@
 		};
 		5EFD03D4BA8D4DFEAC6B3C5C75B8F259 /* Release */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
 			baseConfigurationReference = 130733136A91FDF684D1539C21891455 /* ObjectMapper.xcconfig */;
-=======
+
 			baseConfigurationReference = 2D1F741D501E1F0CF5B4C6360428BC5A /* ObjectMapper.xcconfig */;
->>>>>>> develop
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4407,11 +4400,8 @@
 		};
 		7D072D0D174F12EAACC1862DA756E67A /* Release */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
-			baseConfigurationReference = 0508CE9B36C54C545437A2550EF41749 /* Alamofire.xcconfig */;
-=======
+
 			baseConfigurationReference = FA7905C6576F919DB785484BDD4CD28A /* Alamofire.xcconfig */;
->>>>>>> develop
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4445,11 +4435,7 @@
 		};
 		BBA6AF037EBA4F8A90B3C6EF4D4B7F53 /* Debug */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
-			baseConfigurationReference = 130733136A91FDF684D1539C21891455 /* ObjectMapper.xcconfig */;
-=======
 			baseConfigurationReference = 2D1F741D501E1F0CF5B4C6360428BC5A /* ObjectMapper.xcconfig */;
->>>>>>> develop
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4528,11 +4514,9 @@
 		};
 		C377786C3DC7BF410FB4812348B11ECF /* Release */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
-			baseConfigurationReference = 4882B411B53293D7568FB766A46ABF73 /* FBSDKCoreKit.xcconfig */;
-=======
+
 			baseConfigurationReference = 07EF9923B5ADB0DD201762CF787F05D5 /* FBSDKCoreKit.xcconfig */;
->>>>>>> develop
+
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4565,11 +4549,8 @@
 		};
 		C9660A42FEDD040185578ADA021EC8E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
-			baseConfigurationReference = 0508CE9B36C54C545437A2550EF41749 /* Alamofire.xcconfig */;
-=======
+
 			baseConfigurationReference = FA7905C6576F919DB785484BDD4CD28A /* Alamofire.xcconfig */;
->>>>>>> develop
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4604,11 +4585,8 @@
 		};
 		CF14676D2CECCEEAB659919CB32AEB49 /* Debug */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
-			baseConfigurationReference = 8E63A5A3AF8B60339AAE1B6683D48052 /* Bolts.xcconfig */;
-=======
+
 			baseConfigurationReference = 6A95DDEEA53002BD68D2D6034B2A933F /* Bolts.xcconfig */;
->>>>>>> develop
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4641,11 +4619,8 @@
 		};
 		DEE97AC1900DF8905DC1575BF850DD9B /* Release */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
-			baseConfigurationReference = 8E63A5A3AF8B60339AAE1B6683D48052 /* Bolts.xcconfig */;
-=======
+
 			baseConfigurationReference = 6A95DDEEA53002BD68D2D6034B2A933F /* Bolts.xcconfig */;
->>>>>>> develop
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4678,11 +4653,7 @@
 		};
 		E63795995B8BE325327A6ACDA1D9A331 /* Release */ = {
 			isa = XCBuildConfiguration;
-<<<<<<< HEAD
-			baseConfigurationReference = 994986365337BD1BA8981EC4C6DF5125 /* FBSDKLoginKit.xcconfig */;
-=======
 			baseConfigurationReference = EBF9351FE34376C3605C5EE330E1D5F8 /* FBSDKLoginKit.xcconfig */;
->>>>>>> develop
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

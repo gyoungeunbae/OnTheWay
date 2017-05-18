@@ -181,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				288188A31EC1B2E400876BB6 /* SharePhotoView */,
-
 				482FBE161EC700AD00DE72AC /* Setting */,
 				48D7F5D61EBC4046000D747B /* MyPath */,
 				9B5246921EC0321A007B2F28 /* HealthDataView */,
@@ -328,8 +327,6 @@
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = NZC4Q7J74G;
-						DevelopmentTeam = TM6U8P8E5J;
-						DevelopmentTeam = QLAGA64KZQ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -459,7 +456,6 @@
 				9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */,
 				9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */,
 				48F5EC0E1EC06A2000101C6E /* UserLocation.swift in Sources */,
-				9B5246941EC03234007B2F28 /* HealthData.swift in Sources */,
 				288188A51EC1B32900876BB6 /* SharePhotoViewController.swift in Sources */,
 				484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */,
 				484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */,
@@ -599,18 +595,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QLAGA64KZQ;
+				DEVELOPMENT_TEAM = NZC4Q7J74G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.thom;
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kraa;
 				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kraa.lee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -624,10 +616,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
-
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QLAGA64KZQ;
+				DEVELOPMENT_TEAM = NZC4Q7J74G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
