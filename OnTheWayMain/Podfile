@@ -13,4 +13,5 @@ target 'OnTheWayMain' do
   pod 'PageMenu'
   pod 'RealmSwift'
   pod 'ObjectMapper'
+  pod 'Kingfisher', '~> 3.0'
 end

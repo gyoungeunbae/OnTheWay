@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import RealmSwift
+import Kingfisher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,10 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //세션 유지
 
         serverManager.getSession { (user) in
-            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
-            self.window?.rootViewController?.present(mainVC, animated: true, completion: nil)
-            UserManager.sharedInstance.updateUser(user)
+            
+            UserManager.sharedInstance.addUser(user)
             print("session is \(user)")
             
             //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
@@ -36,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if results.count != 0 {
                 self.userSettingManager.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
             }
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+            self.window?.rootViewController?.present(mainVC, animated: true, completion: nil)
         }
 
         return true

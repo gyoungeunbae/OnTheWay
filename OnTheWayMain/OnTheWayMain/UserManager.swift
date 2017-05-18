@@ -11,16 +11,16 @@ import Foundation
 struct UserManager {
     //싱글톤
     static var sharedInstance = UserManager()
-    private var user = User()
+    private var users = [User]()
     
     //로그인시 내 정보 넣기
-    mutating func updateUser(_ newUser: User) {
-        self.user = newUser
+    mutating func addUser(_ newUser: User) {
+        self.users.append(newUser)
     }
     
     //내정보 가져오기
-    func getUser() -> User {
-        return self.user
+    func getUser() -> [User] {
+        return self.users
     }
     
 }

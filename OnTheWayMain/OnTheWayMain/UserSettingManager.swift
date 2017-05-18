@@ -16,8 +16,10 @@ struct UserSettingManager {
     
     func updateUserSetting(user: User, dailyGoal: String, notification: String) {
         self.settingList.email = user.email
-        self.settingList.items.last?.dailyGoal = dailyGoal
-        self.settingList.items.last?.notification = notification
+        var setting = Setting()
+        setting.dailyGoal = dailyGoal
+        setting.notification = notification
+        self.settingList.items.append(setting)
     }
     
     //내정보 가져오기

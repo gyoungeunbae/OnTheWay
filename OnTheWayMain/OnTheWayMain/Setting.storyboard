@@ -12,7 +12,7 @@
         <!--Setting View Controller-->
         <scene sceneID="93p-1E-Oqs">
             <objects>
-                <viewController id="GJF-QU-Brm" customClass="SettingViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingVC" id="GJF-QU-Brm" customClass="SettingViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="anG-TY-AnX"/>
                         <viewControllerLayoutGuide type="bottom" id="pWo-79-d4W"/>

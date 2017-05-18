@@ -13,9 +13,7 @@ import RealmSwift
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var serverManager = ServerManager()
     let imagePicker = UIImagePickerController()
-    
-    var userSettingManager = UserSettingManager.sharedInstance
-    var userSetting = SettingList()
+    var settingList = SettingList()
     var items = [Setting]()
     var realm: Realm!
     
@@ -35,6 +33,8 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("setting from realm is \(UserSettingManager.sharedInstance.getUserSetting())")
         NotificationCenter.default.addObserver(self, selector: #selector(drawAndSave), name: Notification.Name("changed"), object: nil)
         
         // This view controller itself will provide the delegate methods and row data for the table view.
@@ -43,14 +43,22 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         imagePicker.delegate = self
         
         //로그인한 유저의 username 가져오기
-        var existingUser = UserManager.sharedInstance.getUser()
-        print(existingUser)
-        if existingUser != nil {
+        var existingUser = UserManager.sharedInstance.getUser()[0]
+        
+        if existingUser.id != nil {
+            //let userId = existingUser.id
+            //print("userid = \(userId)")
             settings["profile"]?.updateValue(existingUser.username, forKey: "username")
+            //let remoteImageURL = URL(string: "http://localhost:8080/ontheway/image/\(userId!)")!
+            
+//            serverManager.downloadImage(imageURL: remoteImageURL) { (imageData) in
+//                print("imageData = \(imageData)")
+//            }
+            profileImageView.setImage(with: existingUser.image)
         }
         //로그인한 유저의 setting 정보 가져오기
         var existingUserSetting = UserSettingManager.sharedInstance.getUserSetting()
-        if existingUserSetting != nil {
+        if existingUserSetting.items.count != 0 {
             settings["dailyGoal"]?.updateValue((existingUserSetting.items.last?.dailyGoal)!, forKey: "dailyStep")
             settings["notification"]?.updateValue((existingUserSetting.items.last?.notification)!, forKey: "notification")
         }
@@ -65,10 +73,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         var setting = Setting()
         setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
         setting.notification = (settings["notification"]?["notification"]!)!
-        userSetting.items.append(setting)
+        settingList.items.append(setting)
+        settingList.email = UserManager.sharedInstance.getUser()[0].email
         realm?.add(setting)
-        realm?.add(userSetting)
+        realm?.add(settingList)
         try! realm?.commitWrite()
+        print("save setting into realm")
 
     }
 
@@ -139,7 +149,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             //The cancel action will do nothing.
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
                 
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+                //self.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             
             //The Okay action will change the title that is typed in.
@@ -148,7 +158,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
                 //Do some other stuff that you want to do
                 
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+                //self.presentingViewController?.dismiss(animated: true, completion: nil)
                 
                 NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
             })
@@ -171,7 +181,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             //The cancel action will do nothing.
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
                 
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+                //self.presentingViewController?.dismiss(animated: true, completion: nil)
             })
             
             //The Okay action will change the title that is typed in.
@@ -180,7 +190,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.settings["profile"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "username")
                 //Do some other stuff that you want to do
                 
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+                //self.presentingViewController?.dismiss(animated: true, completion: nil)
                 NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
             })
             
@@ -205,10 +215,10 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profileImageView?.contentMode = .scaleAspectFit
             profileImageView?.image = pickedImage
-//            serverManager.uploadImage(pickedImage: pickedImage, userId: singletonUser.id) { user in
-//                print("name = \(user.username)")
-//            }
-                
+            serverManager.uploadImage(pickedImage: pickedImage, userId: UserManager.sharedInstance.getUser()[0].id) { user in
+                print("user is \(user)")
+            }
+            
         }
         
         dismiss(animated: true, completion: nil)
@@ -221,3 +231,4 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
 
 }
+

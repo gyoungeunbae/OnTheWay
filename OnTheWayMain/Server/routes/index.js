@@ -5,6 +5,7 @@ var User = require('../model/user'); //user폴더를 import함
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
+var path = require('path')
 
 passport.serializeUser(function(user, done) {
   console.log('passport session save :', user.id)
@@ -46,34 +47,43 @@ router.route('/user/:id').put(function(req, res) {
         
         User.findById(req.params.id, function(req, result) {
             console.log("update success")
-            return res.json({"user" : result })
+            return res.send(result)
         })
     })
 })
 
 
-//이미지 업로드 메소드
+//이미지 업로드
 router.route('/upload')
     .post(upload.single('image'), function(req, res){
+        console.log(req.file)
         if (req.file) {
             // 이미지id
             console.log("upload success")
             return res.json({"ok": req.file.filename})
-        }
+        } 
         res.sendStatus(404)
+        
 })
 
-router.route('/user/:id')
-    //특정 유저 불러오기 메소드
-    .get(function(req, res) {
-        User.findById(req.params.id, function(err, user) {
-            if (err) {
-                return res.send(err)
-            }
-            return res.send({ "user": user })
-        })
-})
 
+//이미지 다운로드
+// router.route('/image/:id')
+//     .get(function(req, res) {
+//         User.findById(req.params.id, function(err, user) {
+//             if (err) {
+//                 return res.send(err)
+//             } else {
+//                 var imageId = user.image
+//                 return res.send({ "imageId" : imageId})
+//             }
+//             //return res.send({ "user": user })
+//         })
+// })
+
+
+
+//회원가입
 router.route('/register')
   .post(function(req, res) {
     // 중복 유저 검사
@@ -130,6 +140,7 @@ passport.use('local-login', new LocalStrategy({
   }
 ));
 
+//로그인
 router.route('/login').post(function(req, res, next) {
     passport.authenticate('local-login', function(err, user, info) {
     if(err) return res.status(500).json(err);
@@ -145,7 +156,7 @@ router.route('/login').post(function(req, res, next) {
 
 
 
-//세션 가져오기
+//세션
 router.route('/session').get(function(req, res) { 
     if (!req.user) {
       console.log("there is no user in session")
@@ -160,12 +171,14 @@ router.route('/session').get(function(req, res) {
     }
 });
 
+//로그아웃
 router.route('/logout').get(function(req, res) {
     req.logout();
     res.redirect('/user/login');
     console.log('logout')
 });
 
+//이메일로 비번 찾기
 router.route('/email').post(function(req, res) {
     User.find({email: req.body.email}, function(err, user) {
         if (err) {

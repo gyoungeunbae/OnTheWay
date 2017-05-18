@@ -1,9 +1,19 @@
 import UIKit
 import HealthKit
+import RealmSwift
+
+
 class MainViewController: UIViewController {
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
+    
 
+    @IBAction func gotosetting(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Setting", bundle: nil)
+        let settingVC = storyboard.instantiateViewController(withIdentifier: "settingVC")
+        self.present(settingVC, animated: true, completion: nil)
+    }
+    
     @IBOutlet weak var firstDayLabel: UILabel!
     @IBOutlet weak var secondDayLabel: UILabel!
     @IBOutlet weak var thirdDayLabel: UILabel!
@@ -35,9 +45,35 @@ class MainViewController: UIViewController {
         for i in 0..<weekLabels.count {
             weekLabels[i]?.text = simpleWeekStr[i]
         }
-    }
+        
+        //로그인 사용자의 정보 가져오기
+        serverManager.getSession { (user) in
+            UserManager.sharedInstance.addUser(user)
+            
+            //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
+            let realm = try! Realm()
+            
+            let results = realm.objects(SettingList.self).filter("email == '\(user.email!)'")
 
+            if results.count != 0 {
+                let dailyGoal = results.last?.items.last?.dailyGoal
+                let notification = results.last?.items.last?.notification
+                print(dailyGoal)
+                UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: dailyGoal!, notification: notification!)
+                print(UserSettingManager.sharedInstance.getUserSetting())
+            }
+            
+        }
+        
+    }
+    
+    
 }
+    
+
+
+
 private extension MainViewController {
 
     //건강데이터 요청 메소드
