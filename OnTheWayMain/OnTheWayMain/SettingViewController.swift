@@ -9,13 +9,13 @@
 import UIKit
 import RealmSwift
 
-
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var serverManager = ServerManager()
     let imagePicker = UIImagePickerController()
     var settingList = SettingList()
     var items = [Setting]()
     var realm: Realm!
+    
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -56,6 +56,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
 //            }
             profileImageView.setImage(with: existingUser.image)
         }
+        
         //로그인한 유저의 setting 정보 가져오기
         var existingUserSetting = UserSettingManager.sharedInstance.getUserSetting()
         if existingUserSetting.items.count != 0 {
@@ -126,15 +127,14 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             if detail == "On" {
                 self.settings["notification"]?.updateValue("Off", forKey: "notification")
-                
+                NotificationCenter.default.post(name: Notification.Name("notificationOff"), object: nil)
                 
             }
             if detail == "Off" {
                 self.settings["notification"]?.updateValue("On", forKey: "notification")
-                
-                
+                NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
             }
-            NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("notificationOn"), object: nil)
             
         }
         
