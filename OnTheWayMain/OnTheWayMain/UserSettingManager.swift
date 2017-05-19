@@ -27,4 +27,8 @@ struct UserSettingManager {
         return self.settingList
     }
     
+    mutating func removeSetting() {
+        self.settingList.items.removeAll()
+    }
+    
 }

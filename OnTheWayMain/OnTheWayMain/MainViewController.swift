@@ -7,13 +7,6 @@ class MainViewController: UIViewController {
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
     
-
-    @IBAction func gotosetting(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Setting", bundle: nil)
-        let settingVC = storyboard.instantiateViewController(withIdentifier: "settingVC")
-        self.present(settingVC, animated: true, completion: nil)
-    }
-    
     @IBOutlet weak var firstDayLabel: UILabel!
     @IBOutlet weak var secondDayLabel: UILabel!
     @IBOutlet weak var thirdDayLabel: UILabel!

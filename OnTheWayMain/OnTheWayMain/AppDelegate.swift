@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
+                print("granted")
                 self.scheduleNotification()
             } else {
                 print("notification reject")
@@ -50,9 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if results.count != 0 {
                 self.userSettingManager.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
             }
-            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
-            self.window?.rootViewController?.present(mainVC, animated: true, completion: nil)
+            let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+            self.window?.rootViewController?.present(tabBarVC, animated: true, completion: nil)
         }
 
         return true

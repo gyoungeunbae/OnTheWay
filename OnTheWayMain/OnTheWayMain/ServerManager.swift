@@ -145,16 +145,28 @@ class ServerManager {
         })
     }
     
-//    func downloadImage(imageURL:URL, completion: @escaping (Data) -> Void) {
-//        Alamofire.request(imageURL).responseData{ (response) in
-//            if response.error == nil {
-//                print(response.result)
-//                completion(response.data!)
-//            } else {
-//                print("response error")
-//            }
-//        }
-//    }
+    func profileUpdate(userId: String, username: String, password: String, completion: @escaping (User) -> Void) {
+        
+        let body: [String : Any] = [
+            "username": "\(username)",
+            "password": "\(password)"
+        ]
+        
+        // Fetch Request
+        Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                var user = User()
+                if let json = response.result.value as? [String:Any] {
+                    
+                    user = User(id: json["_id"] as! String, email: json["email"] as! String, password: json["password"] as! String, username: json["username"] as! String, image: json["image"] as! String)
+                    
+                    completion(user)
+                } else {
+                    print("no server connection.")
+                }
+        }
+    }
     
-    
+
 }

@@ -67,22 +67,6 @@ router.route('/upload')
 })
 
 
-//이미지 다운로드
-// router.route('/image/:id')
-//     .get(function(req, res) {
-//         User.findById(req.params.id, function(err, user) {
-//             if (err) {
-//                 return res.send(err)
-//             } else {
-//                 var imageId = user.image
-//                 return res.send({ "imageId" : imageId})
-//             }
-//             //return res.send({ "user": user })
-//         })
-// })
-
-
-
 //회원가입
 router.route('/register')
   .post(function(req, res) {

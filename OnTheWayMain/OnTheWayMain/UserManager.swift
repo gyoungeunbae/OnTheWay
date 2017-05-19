@@ -23,4 +23,11 @@ struct UserManager {
         return self.users
     }
     
+    mutating func removeUser() {
+        self.users.removeAll()
+    }
+    
+    mutating func updateUsername(username: String) {
+        self.users[0].updateUsername(username: username)
+    }
 }

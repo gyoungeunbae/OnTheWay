@@ -24,17 +24,19 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
         self.present(loginVC, animated: false, completion: nil)
+        UserManager.sharedInstance.removeUser()
+        UserSettingManager.sharedInstance.removeSetting()
     }
     
     @IBOutlet weak var settingTableView: UITableView!
 
     // Data model: These strings will be the data for the table view cells
-    var settings: [String:[String:String]] = ["profile": ["username": "samchon", "image": "photoLibrary"], "dailyGoal": ["dailyStep": "10000"], "notification": ["notification": "On"]]
+    var settings: [String:[String:String]] = ["profile": ["username": "name", "image": "choose photo"], "dailyGoal": ["dailyStep": "10000"], "notification": ["notification": "On"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("setting from realm is \(UserSettingManager.sharedInstance.getUserSetting())")
+        //print("setting from realm is \(UserSettingManager.sharedInstance.getUserSetting())")
         NotificationCenter.default.addObserver(self, selector: #selector(drawAndSave), name: Notification.Name("changed"), object: nil)
         
         // This view controller itself will provide the delegate methods and row data for the table view.
@@ -44,16 +46,10 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //로그인한 유저의 username 가져오기
         var existingUser = UserManager.sharedInstance.getUser()[0]
-        
+        print("existingUser = \(existingUser)")
         if existingUser.id != nil {
-            //let userId = existingUser.id
-            //print("userid = \(userId)")
-            settings["profile"]?.updateValue(existingUser.username, forKey: "username")
-            //let remoteImageURL = URL(string: "http://localhost:8080/ontheway/image/\(userId!)")!
             
-//            serverManager.downloadImage(imageURL: remoteImageURL) { (imageData) in
-//                print("imageData = \(imageData)")
-//            }
+            settings["profile"]?.updateValue(existingUser.username, forKey: "username")
             profileImageView.setImage(with: existingUser.image)
         }
         
@@ -132,9 +128,11 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             if detail == "Off" {
                 self.settings["notification"]?.updateValue("On", forKey: "notification")
-                NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("notificationOn"), object: nil)
+
             }
-            NotificationCenter.default.post(name: Notification.Name("notificationOn"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
+
             
         }
         
@@ -190,8 +188,13 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.settings["profile"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "username")
                 //Do some other stuff that you want to do
                 
-                //self.presentingViewController?.dismiss(animated: true, completion: nil)
+                let user = UserManager.sharedInstance.getUser()
+                self.serverManager.profileUpdate(userId: user[0].id, username: (firstRowEditAction.textFields?.first?.text)!, password: user[0].password) { (user) in
+                    print("username updated")
+                }
+                UserManager.sharedInstance.updateUsername(username: (firstRowEditAction.textFields?.first?.text)!)
                 NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
+                
             })
             
             firstRowEditAction.addAction(okayAction)
