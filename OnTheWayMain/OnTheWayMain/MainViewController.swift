@@ -136,7 +136,7 @@ private extension MainViewController {
                 case 0.5..<1.0:
                     imageViews[indexOfDay]?.backgroundColor = UIColor.white
                 default:
-                    imageViews[indexOfDay]?.backgroundColor = UIColor.green
+                    imageViews[indexOfDay]?.backgroundColor = UIColor.init(red: 27.0/255.0, green:235.0/255.0, blue: 141.0/255.0, alpha: 1.0)
                 }
             }
         }
