@@ -3,7 +3,7 @@ import UIKit
 class PieView: UIView {
     
     var values: Array<CGFloat> = [10,10,10,10,10,10,10]
-    var colors: Array<CGColor> = [UIColor.red.cgColor,UIColor.orange.cgColor,UIColor.yellow.cgColor,UIColor.green.cgColor,UIColor.blue.cgColor,UIColor.gray.cgColor,UIColor.purple.cgColor]
+    var colors: Array<CGColor> = [UIColor.red.cgColor,UIColor.orange.cgColor,UIColor.yellow.cgColor,UIColor.green.cgColor,UIColor.blue.cgColor,UIColor.brown.cgColor,UIColor.purple.cgColor]
     
     
     var count: CGFloat = 0.0

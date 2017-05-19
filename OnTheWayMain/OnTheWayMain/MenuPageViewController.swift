@@ -1,10 +1,3 @@
-//
-//  MenuPageViewController.swift
-//  OnTheWayMain
-//
-//  Created by junwoo on 2017. 5. 11..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
 
 import UIKit
 import PageMenu
