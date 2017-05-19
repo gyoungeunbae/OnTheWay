@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qa1-Ox-E4F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dRM-Qe-jyq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--Menu Page View Controller-->
         <scene sceneID="fnv-ii-ke4">
             <objects>
-                <viewController storyboardIdentifier="menuPageVC" id="qa1-Ox-E4F" customClass="MenuPageViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="menuPageVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qa1-Ox-E4F" customClass="MenuPageViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E0q-7w-xmW"/>
                         <viewControllerLayoutGuide type="bottom" id="Rid-2o-tqK"/>
@@ -22,10 +22,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="path" selectedImage="path_filled" id="3N1-PG-eMP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAw-yZ-NCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-955" y="134"/>
+            <point key="canvasLocation" x="-16.800000000000001" y="133.5832083958021"/>
         </scene>
         <!--My Path View Controller-->
         <scene sceneID="fbE-xH-K72">
@@ -69,6 +70,9 @@
                                 <state key="normal" title="Share">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="jGa-Ad-SUH" kind="show" id="X4J-7Z-4La"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,7 +83,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ey-H7-HRe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10.4" y="151.57421289355324"/>
+            <point key="canvasLocation" x="740" y="134"/>
+        </scene>
+        <!--sharephotoVC-->
+        <scene sceneID="deh-Vr-bvN">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="sharephotoVC" storyboardName="SharePhoto" referencedIdentifier="sharephotoVC" id="jGa-Ad-SUH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PEJ-8A-XCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1240" y="524"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="IAK-10-3YK">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="dRM-Qe-jyq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="pXt-ZL-MDD">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="qa1-Ox-E4F" kind="relationship" relationship="viewControllers" id="CjM-Sa-t84"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DZ4-Vv-lAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-956" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="path" width="25" height="25"/>
+        <image name="path_filled" width="25" height="25"/>
+    </resources>
 </document>

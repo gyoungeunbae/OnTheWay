@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		283AFBD51EC57D6E00621133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 283AFBD41EC57D6E00621133 /* Assets.xcassets */; };
+		288188A51EC1B32900876BB6 /* SharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */; };
+		288188A71EC1B35500876BB6 /* SharePhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288188A61EC1B35500876BB6 /* SharePhoto.storyboard */; };
+		288A65FD1ECE961500B4CC5E /* connect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288A65FB1ECE961500B4CC5E /* connect.storyboard */; };
 		288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */; };
 		288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */; };
 		28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */; };
@@ -15,7 +19,6 @@
 		482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE3F1EC964D100DE72AC /* SettingViewController.swift */; };
 		484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4BE91EAA63A300754888 /* AppDelegate.swift */; };
 		484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BED1EAA63A300754888 /* Main.storyboard */; };
-		484F4BF11EAA63A300754888 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BF01EAA63A300754888 /* Assets.xcassets */; };
 		484F4BF41EAA63A300754888 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BF21EAA63A300754888 /* LaunchScreen.storyboard */; };
 		484F4BFE1EAA6D3900754888 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484F4BFD1EAA6D3900754888 /* HealthKit.framework */; };
 		484F4C021EAB680100754888 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C011EAB680100754888 /* CounterView.swift */; };
@@ -63,6 +66,10 @@
 
 /* Begin PBXFileReference section */
 		05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheWayMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		283AFBD41EC57D6E00621133 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePhotoViewController.swift; sourceTree = "<group>"; };
+		288188A61EC1B35500876BB6 /* SharePhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SharePhoto.storyboard; sourceTree = "<group>"; };
+		288A65FC1ECE961500B4CC5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/connect.storyboard; sourceTree = "<group>"; };
 		288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationViewController.swift; sourceTree = "<group>"; };
 		288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PresentLocation.storyboard; sourceTree = "<group>"; };
 		28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,7 +79,6 @@
 		484F4BE61EAA63A300754888 /* OnTheWayMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheWayMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		484F4BE91EAA63A300754888 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		484F4BEE1EAA63A300754888 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		484F4BF01EAA63A300754888 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		484F4BF31EAA63A300754888 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		484F4BF51EAA63A300754888 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		484F4BFB1EAA6D3900754888 /* OnTheWayMain.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OnTheWayMain.entitlements; sourceTree = "<group>"; };
@@ -121,6 +127,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		288188A31EC1B2E400876BB6 /* SharePhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */,
+				288188A61EC1B35500876BB6 /* SharePhoto.storyboard */,
+			);
+			name = SharePhotoView;
+			sourceTree = "<group>";
+		};
 		288B4D101EB49E5400F4B80F /* PresentLocation */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +186,7 @@
 		484F4BE81EAA63A300754888 /* OnTheWayMain */ = {
 			isa = PBXGroup;
 			children = (
+				288188A31EC1B2E400876BB6 /* SharePhotoView */,
 				482FBE161EC700AD00DE72AC /* Setting */,
 				48D7F5D61EBC4046000D747B /* MyPath */,
 				9B5246921EC0321A007B2F28 /* HealthDataView */,
@@ -183,7 +199,7 @@
 				9BEB127B1EB1FF1100772CF1 /* Main */,
 				484F4BFB1EAA6D3900754888 /* OnTheWayMain.entitlements */,
 				484F4BE91EAA63A300754888 /* AppDelegate.swift */,
-				484F4BF01EAA63A300754888 /* Assets.xcassets */,
+				283AFBD41EC57D6E00621133 /* Assets.xcassets */,
 				484F4BF21EAA63A300754888 /* LaunchScreen.storyboard */,
 				484F4BF51EAA63A300754888 /* Info.plist */,
 			);
@@ -230,6 +246,7 @@
 				484F4C0D1EADBC7000754888 /* RoundImageView.swift */,
 				484F4C011EAB680100754888 /* CounterView.swift */,
 				484F4BED1EAA63A300754888 /* Main.storyboard */,
+				288A65FB1ECE961500B4CC5E /* connect.storyboard */,
 				9BEB12801EB3284400772CF1 /* MainViewController.swift */,
 			);
 			name = Main;
@@ -318,7 +335,7 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = QLAGA64KZQ;
+						DevelopmentTeam = NZC4Q7J74G;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -358,14 +375,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				484F4BF41EAA63A300754888 /* LaunchScreen.storyboard in Resources */,
-				484F4BF11EAA63A300754888 /* Assets.xcassets in Resources */,
+				288188A71EC1B35500876BB6 /* SharePhoto.storyboard in Resources */,
 				48D7F5BE1EB2524C000D747B /* Login.storyboard in Resources */,
+				288A65FD1ECE961500B4CC5E /* connect.storyboard in Resources */,
 				9B3B07E01EC9B2EC00BA3CFB /* HealthData.storyboard in Resources */,
 				48D7F5D81EBC405D000D747B /* MyPath.storyboard in Resources */,
 				48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */,
 				482FBE181EC700C500DE72AC /* Setting.storyboard in Resources */,
 				484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */,
 				288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */,
+				283AFBD51EC57D6E00621133 /* Assets.xcassets in Resources */,
 				9B86D7961EB1E41B009FCAA6 /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +468,7 @@
 				9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */,
 				9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */,
 				48F5EC0E1EC06A2000101C6E /* UserLocation.swift in Sources */,
+				288188A51EC1B32900876BB6 /* SharePhotoViewController.swift in Sources */,
 				484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */,
 				484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */,
 				48D7F5CE1EBB18F6000D747B /* ForgetPasswordViewController.swift in Sources */,
@@ -467,6 +487,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		288A65FB1ECE961500B4CC5E /* connect.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				288A65FC1ECE961500B4CC5E /* Base */,
+			);
+			name = connect.storyboard;
+			sourceTree = "<group>";
+		};
 		484F4BED1EAA63A300754888 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -588,7 +616,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QLAGA64KZQ;
+				DEVELOPMENT_TEAM = NZC4Q7J74G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -609,14 +637,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = QLAGA64KZQ;
+				DEVELOPMENT_TEAM = NZC4Q7J74G;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kraa.lee;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.thom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
