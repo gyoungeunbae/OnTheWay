@@ -12,12 +12,7 @@ class GraphView: UIView {
     var count: CGFloat = 0.0
     var graphValues: Array<CGFloat> = [10,40,20,40,30,50,60]
     var colors: Array<CGColor> = [UIColor.red.cgColor,UIColor.orange.cgColor,UIColor.yellow.cgColor,UIColor.green.cgColor,UIColor.blue.cgColor,UIColor.gray.cgColor,UIColor.purple.cgColor]
-    
-    
-    
-    
-    
-    
+   
     
     override func draw(_ rect: CGRect) {
         var x = 40
@@ -45,7 +40,6 @@ class GraphView: UIView {
         for value in graphValues {
             
             let rectangle = CGRect(x: x ,y: 398,width: 25,height: Int(-value * 0.01))
-            print(x)
             
             context?.addRect(rectangle)
             

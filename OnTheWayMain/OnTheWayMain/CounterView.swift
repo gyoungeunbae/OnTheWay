@@ -30,7 +30,7 @@ import UIKit
         let radius: CGFloat = max(bounds.width, bounds.height)
 
         // 두께
-        let arcWidth: CGFloat = 60
+        let arcWidth: CGFloat = 8
 
         // 시작각도, 마침각도
         let startAngle: CGFloat = 3 * π / 2
