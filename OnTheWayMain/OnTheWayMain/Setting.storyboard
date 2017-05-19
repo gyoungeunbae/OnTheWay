@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GJF-QU-Brm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IF7-ws-LXs">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--Setting View Controller-->
         <scene sceneID="93p-1E-Oqs">
             <objects>
-                <viewController id="GJF-QU-Brm" customClass="SettingViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GJF-QU-Brm" customClass="SettingViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="anG-TY-AnX"/>
                         <viewControllerLayoutGuide type="bottom" id="pWo-79-d4W"/>
@@ -68,6 +68,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="setting" selectedImage="setting_filled" id="SUK-0C-Hod"/>
                     <connections>
                         <outlet property="profileImageView" destination="37M-bb-aiI" id="k9I-ak-iFR"/>
                         <outlet property="settingTableView" destination="lmo-qr-l6p" id="KdQ-ny-R64"/>
@@ -75,10 +76,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzh-w4-ECB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1068" y="-75.112443778110944"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="qXw-Xd-5kg">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="IF7-ws-LXs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="PLi-HW-kl1">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="GJF-QU-Brm" kind="relationship" relationship="viewControllers" id="OoY-Dm-5dQ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b3E-0m-H90" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="128.80000000000001" y="-75.112443778110944"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon_profile-empty" width="100" height="100"/>
+        <image name="setting" width="25" height="25"/>
+        <image name="setting_filled" width="25" height="25"/>
     </resources>
 </document>
