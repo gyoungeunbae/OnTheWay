@@ -4,6 +4,23 @@ import HealthKit
 class HealthDataViewController: UIViewController {
     @IBOutlet weak var PieView: PieView!
     
+    @IBOutlet weak var sixthDayLabel: UILabel!
+    @IBOutlet weak var fifthDayLabel: UILabel!
+    @IBOutlet weak var fourthDayLabel: UILabel!
+    @IBOutlet weak var thirdDayLabel: UILabel!
+    @IBOutlet weak var secondDayLabel: UILabel!
+    @IBOutlet weak var firstDayLabel: UILabel!
+    @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var graphView: GraphView!
+    @IBOutlet weak var pieChartView: PieChartView!
+    var dayLabelArray: Array<UILabel> = []
+    var isGraphViewShowing = false
+    let options = UIViewAnimationOptions.transitionFlipFromLeft.union(.showHideTransitionViews)
+    
+    
+    
+    
     var valueArr = [CGFloat]()
     var count = 0
     override func viewDidLoad() {
@@ -24,6 +41,8 @@ private extension HealthDataViewController {
     //건강데이터 요청 메소드
     func requestHealthKitAuthorization() {
         self.count = 0
+        dayLabelArray = [self.sixthDayLabel, self.fifthDayLabel, self.fourthDayLabel, self.thirdDayLabel, self.secondDayLabel, self.firstDayLabel, self.todayLabel]
+
         let dataTypesToRead = NSSet(objects: HealthKitManager.sharedInstance.stepsCount as Any)
         
         HealthKitManager.sharedInstance.healthStore?.requestAuthorization(toShare: nil, read: dataTypesToRead as? Set<HKObjectType>, completion: { [unowned self] (success, error) in
@@ -42,6 +61,8 @@ private extension HealthDataViewController {
         
         let weekArr = CalenderManager.sharedInstance.getLastWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
+        let getSimpleDay = CalenderManager.sharedInstance.getSimpleStr(todayDate: weekArr[indexOfDay])
+        
         
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { _, results, _ in
             
@@ -55,11 +76,17 @@ private extension HealthDataViewController {
                     }
                 }
             }
+            print("\(indexOfDay) = \(steps)")
+            
             
             DispatchQueue.main.async {
-                self.PieView.values[self.count] = CGFloat(steps)
-                self.count += 1
+               
+                
+                self.PieView.values[indexOfDay] = CGFloat(steps)
+                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
+                self.dayLabelArray[indexOfDay].text! = getSimpleDay
                 self.PieView.setNeedsDisplay()
+                self.graphView.setNeedsDisplay()
             }
             
            
@@ -69,6 +96,15 @@ private extension HealthDataViewController {
         }
         
         HealthKitManager.sharedInstance.healthStore?.execute(query)
+    }
+   
+    @IBAction func pieChartViewTap(gesture:UITapGestureRecognizer?) {
+        if(isGraphViewShowing) {
+            UIView.transition(from: graphView, to: pieChartView, duration: 1.0, options: options, completion: nil)
+        } else {
+            UIView.transition(from: pieChartView, to: graphView, duration: 1.0, options: options, completion: nil)
+        }
+        isGraphViewShowing = !isGraphViewShowing
     }
     
 }
