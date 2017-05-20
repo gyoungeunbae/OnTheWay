@@ -6,6 +6,20 @@ import RealmSwift
 class MainViewController: UIViewController {
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
+    // 메인 스크롤뷰
+    var mainScrollView = UIScrollView()
+
+    // 메인 스크롤뷰에 추가할 서브 스크롤뷰
+    var subScrollview_0 = UIScrollView()
+    var subScrollview_1 = UIScrollView()
+    var subScrollview_2 = UIScrollView()
+    
+    // 서브 스크롤뷰에 추가할 뷰
+    var subListView_0 = CounterView()
+    var subListView_1 = CounterView()
+    var subListView_2 = CounterView()
+    
+    
     
     @IBOutlet weak var firstDayLabel: UILabel!
     @IBOutlet weak var secondDayLabel: UILabel!
@@ -22,7 +36,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var fifthImageView: RoundImageView!
     @IBOutlet weak var sixthImageView: RoundImageView!
     @IBOutlet weak var seventhImageView: RoundImageView!
-    @IBOutlet weak var counterView: CounterView!
     @IBOutlet weak var walkRecordLabel: UILabel!
 
     override func viewDidLoad() {
@@ -63,9 +76,6 @@ class MainViewController: UIViewController {
     
     
 }
-    
-
-
 
 private extension MainViewController {
 

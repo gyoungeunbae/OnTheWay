@@ -20,7 +20,6 @@ import UIKit
 
     @IBInspectable var counterColor: UIColor = UIColor.yellow
 
-
     override func draw(_ rect: CGRect) {
         //realm에 저장되어있는 목표가 있으면 불러오기
         let userGoal = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
@@ -35,7 +34,7 @@ import UIKit
         let radius: CGFloat = max(bounds.width, bounds.height)
 
         // 두께
-        let arcWidth: CGFloat = 60
+        let arcWidth: CGFloat = 8
 
         // 시작각도, 마침각도
         let startAngle: CGFloat = 3 * π / 2
@@ -64,7 +63,6 @@ import UIKit
 
         //경로 지정
         var outlinePath = UIBezierPath(arcCenter: center, radius: bounds.width/2 - 2.5, startAngle: startAngle, endAngle: outlineEndAngle, clockwise: true)
-
 
         //경로 닫기
         outlinePath.addArc(withCenter: center, radius: bounds.width/2 - arcWidth + 2.5, startAngle: outlineEndAngle, endAngle: startAngle, clockwise: false)
