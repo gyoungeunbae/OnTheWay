@@ -9,8 +9,14 @@
 import Foundation
 
 struct User {
+    
+    var id: String!
     var email: String!
     var password: String!
     var username: String!
     var image: String!
+    
+    mutating func updateUsername(username: String) {
+        self.username = username
+    }
 }

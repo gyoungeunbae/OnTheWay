@@ -10,12 +10,14 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
+import RealmSwift
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var pwdTextField: UITextField!
     var serverManager = ServerManager()
+    var settingList = SettingList()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +29,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let accountVC = storyboard.instantiateViewController(withIdentifier: "accountVC")
+        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+        
 
         if ((FBSDKAccessToken.current()) != nil) {
-            self.present(accountVC, animated: false, completion: nil)
+            self.present(tabBarVC, animated: false, completion: nil)
+            getFacebookUserInfo()
         }
 
     }
@@ -73,9 +77,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
             } else {
                 //present the account view controller
-                let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-                let accountVC = storyboard.instantiateViewController(withIdentifier: "accountVC")
-                self.present(accountVC, animated: false, completion: nil)
+                let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+                let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+                self.present(tabBarVC, animated: false, completion: nil)
+                self.getFacebookUserInfo()
+                
             }
         }
     }
@@ -89,14 +95,40 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func loginButton(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
         let alert = UIAlertController(title: "Alert", message: "이메일이나 비밀번호를 확인해주세요", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
 
         serverManager.loginReq(email: emailTextField.text!, password: pwdTextField.text!) { (isUser) in
             if isUser == true {
-                self.present(mainVC, animated: true, completion: nil)
+                self.present(tabBarVC, animated: true, completion: nil)
+                self.serverManager.getSession { (user) in
+                    
+                    UserManager.sharedInstance.addUser(user)
+                    print("session is \(user)")
+                    
+                    //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
+                    let realm = try! Realm()
+                    let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
+                    if results.count != 0 {
+                        UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
+                    } else {
+                        let realm = try! Realm()
+                        realm.beginWrite()
+                        var setting = Setting()
+                        setting.dailyGoal = "10000"
+                        setting.notification = "On"
+                        self.settingList.items.append(setting)
+                        self.settingList.email = user.email
+                        realm.add(setting)
+                        realm.add(self.settingList)
+                        try! realm.commitWrite()
+                        print("save setting into realm")
+                    }
+                    
+                }
+
             } else {
                 self.present(alert, animated: true, completion: nil)
             }
@@ -109,6 +141,64 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let forgetPasswordVC = storyboard.instantiateViewController(withIdentifier: "forgetPasswordVC")
         self.present(forgetPasswordVC, animated: false, completion: nil)
 
+    }
+    
+    
+    
+    func getFacebookUserInfo() {
+        
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "email, name"])
+            .start(completionHandler:  { (connection, result, error) in
+                guard let result = result as? NSDictionary,
+                    let email = result["email"] as? String,
+                    let username = result["name"] as? String else {
+                        return
+                }
+                
+                self.serverManager.registerReq(email: email, password: "password", username: username, callback: { (isUser) in
+                    if isUser == true {
+                        print("already existing facebook user")
+                    } else {
+                        print("new facebook user")
+                    }
+                })
+                
+                self.serverManager.loginReq(email: email, password: "password") { (isUser) in
+                    if isUser == true {
+                        print("facebook user login success")
+                    } else {
+                        print("facebook user login fail")
+                    }
+                }
+                
+                self.serverManager.getSession { (user) in
+                    
+                    UserManager.sharedInstance.addUser(user)
+                    print("session is \(user)")
+                    
+                    //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
+                    let realm = try! Realm()
+                    let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
+                    if results.count != 0 {
+                        UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
+                    } else {
+                        let realm = try! Realm()
+                        realm.beginWrite()
+                        var setting = Setting()
+                        setting.dailyGoal = "10000"
+                        setting.notification = "On"
+                        self.settingList.items.append(setting)
+                        self.settingList.email = email
+                        realm.add(setting)
+                        realm.add(self.settingList)
+                        try! realm.commitWrite()
+                        print("save setting into realm")
+                    }
+                    
+                }
+
+        })
+        
     }
 
 }

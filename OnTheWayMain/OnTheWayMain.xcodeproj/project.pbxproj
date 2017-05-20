@@ -17,6 +17,10 @@
 		482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */; };
 		482FBE181EC700C500DE72AC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 482FBE171EC700C500DE72AC /* Setting.storyboard */; };
 		482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE3F1EC964D100DE72AC /* SettingViewController.swift */; };
+		482FBE441ECAADAA00DE72AC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE431ECAADAA00DE72AC /* UserManager.swift */; };
+		482FBE461ECAF0E300DE72AC /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE451ECAF0E300DE72AC /* UserSetting.swift */; };
+		482FBE481ECAF69200DE72AC /* UserSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE471ECAF69200DE72AC /* UserSettingManager.swift */; };
+		482FBE4A1ECDAFE900DE72AC /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE491ECDAFE900DE72AC /* ImageView.swift */; };
 		484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4BE91EAA63A300754888 /* AppDelegate.swift */; };
 		484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BED1EAA63A300754888 /* Main.storyboard */; };
 		484F4BF41EAA63A300754888 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BF21EAA63A300754888 /* LaunchScreen.storyboard */; };
@@ -29,7 +33,6 @@
 		48D7F5BB1EB2237B000D747B /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5B91EB2237B000D747B /* AccountKit.framework */; };
 		48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48D7F5BA1EB2237B000D747B /* AccountKitStrings.bundle */; };
 		48D7F5BE1EB2524C000D747B /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D7F5BD1EB2524C000D747B /* Login.storyboard */; };
-		48D7F5C01EB2F198000D747B /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5BF1EB2F198000D747B /* AccountViewController.swift */; };
 		48D7F5CE1EBB18F6000D747B /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5CD1EBB18F6000D747B /* ForgetPasswordViewController.swift */; };
 		48D7F5D01EBC36F9000D747B /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5CF1EBC36F9000D747B /* Mapbox.framework */; };
 		48D7F5D11EBC36F9000D747B /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5CF1EBC36F9000D747B /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -76,6 +79,10 @@
 		482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
 		482FBE171EC700C500DE72AC /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		482FBE3F1EC964D100DE72AC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		482FBE431ECAADAA00DE72AC /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		482FBE451ECAF0E300DE72AC /* UserSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
+		482FBE471ECAF69200DE72AC /* UserSettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingManager.swift; sourceTree = "<group>"; };
+		482FBE491ECDAFE900DE72AC /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		484F4BE61EAA63A300754888 /* OnTheWayMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheWayMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		484F4BE91EAA63A300754888 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		484F4BEE1EAA63A300754888 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,7 +98,6 @@
 		48D7F5B91EB2237B000D747B /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
 		48D7F5BA1EB2237B000D747B /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AccountKitStrings.bundle; sourceTree = "<group>"; };
 		48D7F5BD1EB2524C000D747B /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		48D7F5BF1EB2F198000D747B /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		48D7F5CD1EBB18F6000D747B /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		48D7F5CF1EBC36F9000D747B /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		48D7F5D71EBC405D000D747B /* MyPath.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPath.storyboard; sourceTree = "<group>"; };
@@ -159,7 +165,10 @@
 			isa = PBXGroup;
 			children = (
 				482FBE171EC700C500DE72AC /* Setting.storyboard */,
+				482FBE491ECDAFE900DE72AC /* ImageView.swift */,
 				482FBE3F1EC964D100DE72AC /* SettingViewController.swift */,
+				482FBE451ECAF0E300DE72AC /* UserSetting.swift */,
+				482FBE471ECAF69200DE72AC /* UserSettingManager.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -257,7 +266,6 @@
 			children = (
 				48D7F5B41EB222B3000D747B /* LoginViewController.swift */,
 				48D7F5CD1EBB18F6000D747B /* ForgetPasswordViewController.swift */,
-				48D7F5BF1EB2F198000D747B /* AccountViewController.swift */,
 				48D7F5BD1EB2524C000D747B /* Login.storyboard */,
 			);
 			name = Login;
@@ -294,6 +302,7 @@
 			children = (
 				9BEB12C51EB6DCFB00772CF1 /* ServerManager.swift */,
 				48F5EC0B1EC06A0C00101C6E /* User.swift */,
+				482FBE431ECAADAA00DE72AC /* UserManager.swift */,
 			);
 			name = network;
 			sourceTree = "<group>";
@@ -335,7 +344,7 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NZC4Q7J74G;
+						DevelopmentTeam = TM6U8P8E5J;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -457,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				482FBE4A1ECDAFE900DE72AC /* ImageView.swift in Sources */,
 				484F4C0E1EADBC7000754888 /* RoundImageView.swift in Sources */,
 				28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */,
 				9BEB12811EB3284400772CF1 /* MainViewController.swift in Sources */,
@@ -468,6 +478,7 @@
 				9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */,
 				9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */,
 				48F5EC0E1EC06A2000101C6E /* UserLocation.swift in Sources */,
+				482FBE441ECAADAA00DE72AC /* UserManager.swift in Sources */,
 				288188A51EC1B32900876BB6 /* SharePhotoViewController.swift in Sources */,
 				484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */,
 				484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */,
@@ -477,8 +488,9 @@
 				9B3B07E21EC9B30F00BA3CFB /* PieView.swift in Sources */,
 				484F4C021EAB680100754888 /* CounterView.swift in Sources */,
 				482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */,
+				482FBE481ECAF69200DE72AC /* UserSettingManager.swift in Sources */,
+				482FBE461ECAF0E300DE72AC /* UserSetting.swift in Sources */,
 				288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */,
-				48D7F5C01EB2F198000D747B /* AccountViewController.swift in Sources */,
 				484F4C111EAE188C00754888 /* CalenderManager.swift in Sources */,
 				48D7F5B51EB222B3000D747B /* LoginViewController.swift in Sources */,
 			);
@@ -616,14 +628,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+				DEVELOPMENT_TEAM = TM6U8P8E5J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kraa.lee;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -637,14 +649,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+				DEVELOPMENT_TEAM = TM6U8P8E5J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr.thom;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
