@@ -47,6 +47,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>OnTheWay camera</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Read</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -60,7 +62,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Login</string>
+	<string>SharePhoto</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

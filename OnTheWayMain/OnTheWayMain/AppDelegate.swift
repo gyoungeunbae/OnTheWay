@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.statusBarStyle = .lightContent
-        
+        UINavigationBar.appearance().barTintColor = UIColor.clear
+        UINavigationBar.appearance().tintColor = UIColor.white
+
         NotificationCenter.default.addObserver(self, selector: #selector(scheduleNotification), name: Notification.Name("notificationOn"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(removeNotification), name: Notification.Name("notificationOff"), object: nil)
         
@@ -88,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(theError.localizedDescription)
             }
         }
+    
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
