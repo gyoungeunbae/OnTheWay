@@ -1,12 +1,74 @@
 var express = require('express')
 var router = express.Router();
-
+var multer = require('multer')
 var User = require('../model/user'); //user폴더를 import함 
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
-var session = require('express-session')
+var session = require('express-session');
+var path = require('path')
 
-router.route('/user/register')
+passport.serializeUser(function(user, done) {
+  console.log('passport session save :', user.id)
+  done(null, user.id);
+});
+
+//session에서 id로 user 찾아서  
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    console.log('passport session get id:', id)
+    console.log('eeee')
+    done(err, user);
+  });
+});
+
+
+
+//업로드 이미지파일 이름과 저장소 지정
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
+    cb(null, __dirname +'/../uploads')
+  },
+  filename: function (req, file, cb) {
+      // cb 콜백함수를 통해 전송된 파일 이름 설정
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+})
+var upload = multer({ storage: storage })
+
+
+router.route('/user/:id').put(function(req, res) {
+    //id로 유저 찾아서 업데이트
+    User.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
+        if (err) {
+            console.log("update fail")
+            return res.send(err)
+        }
+        
+        User.findById(req.params.id, function(req, result) {
+            console.log("update success")
+            return res.send(result)
+        })
+    })
+})
+
+
+//이미지 업로드
+router.route('/upload')
+    .post(upload.single('image'), function(req, res){
+        console.log(req.file)
+        if (req.file) {
+            // 이미지id
+            console.log("upload success")
+            return res.json({"ok": req.file.filename})
+        } 
+        res.sendStatus(404)
+        
+})
+
+
+//회원가입
+router.route('/register')
   .post(function(req, res) {
     // 중복 유저 검사
     User.find({email: req.body.email}, function(err, user) {
@@ -24,6 +86,7 @@ router.route('/user/register')
             newUser.email = req.body.email;
             newUser.password = req.body.password;
             newUser.username = req.body.username;
+            newUser.image = "image";
       
             newUser.save(function(err) {
                 if (err) {
@@ -61,13 +124,15 @@ passport.use('local-login', new LocalStrategy({
   }
 ));
 
-router.route('/user/login').post(function(req, res, next) {
+//로그인
+router.route('/login').post(function(req, res, next) {
     passport.authenticate('local-login', function(err, user, info) {
     if(err) return res.status(500).json(err);
     if(!user) return res.status(401).json(info.message)
     req.login(user, function(err) {
       if (err) { return next(err); }
       //return res.json(user);
+      console.log("login success")
       return res.send({ message : 1})
     })
   })(req, res, next);
@@ -75,36 +140,30 @@ router.route('/user/login').post(function(req, res, next) {
 
 
 
-//세션 가져오기
-router.route('/user/login').get(function(req, res) {
-    console.log("req.user =", req.user)
-    // if(req.user) {
-    //     User.findById(req.user.id, function(err, user) {
-    //         if(err) throw err
-    //         console.log("there is a user in session")
-    //         res.json({ message: 1, user: req.user})
-    //     })
-    // } else {
-    //      console.log("there is no user in session")
-    //     res.json({ message: 0 })
-    // }
+//세션
+router.route('/session').get(function(req, res) { 
     if (!req.user) {
       console.log("there is no user in session")
       return res.sendStatus(401)
     }
-    else {
+    if(req.user) {
+    console.log('bbbbbb')
+
       console.log("there is a user in session")
+      console.log(req.user);
       res.json(req.user);
     }
 });
 
-router.route('/user/logout').get(function(req, res) {
+//로그아웃
+router.route('/logout').get(function(req, res) {
     req.logout();
-  res.redirect('/login');
-  console.log('logout')
+    res.redirect('/user/login');
+    console.log('logout')
 });
 
-router.route('/user/email').post(function(req, res) {
+//이메일로 비번 찾기
+router.route('/email').post(function(req, res) {
     User.find({email: req.body.email}, function(err, user) {
         if (err) {
             return res.send(err)
@@ -118,20 +177,6 @@ router.route('/user/email').post(function(req, res) {
             
         } 
     });
-});
-
-
-passport.serializeUser(function(user, done) {
-  console.log('passport session save :', user.id)
-  done(null, user.id);
-});
-
-//session에서 id로 user 찾아서  
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    console.log('passport session get id:', id)
-    done(err, user);
-  });
 });
 
 
