@@ -28,15 +28,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
-        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
-        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
         
-
-        if ((FBSDKAccessToken.current()) != nil) {
-            self.present(tabBarVC, animated: false, completion: nil)
-            getFacebookUserInfo()
+        serverManager.getSession { (user) in
+            
+            UserManager.sharedInstance.addUser(user)
+            print("session is \(user)")
+            
+            //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
+            let realm = try! Realm()
+            let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
+            if results.count != 0 {
+                UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
+            }
+            let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+            self.present(tabBarVC, animated: true, completion: nil)
         }
+
+//        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+//        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+//        if ((FBSDKAccessToken.current()) != nil) {
+//            self.present(tabBarVC, animated: false, completion: nil)
+//            getFacebookUserInfo()
+//        }
 
     }
 
@@ -70,13 +84,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginWithFacebookButton(_ sender: Any) {
         let readPermissions = ["public_profile"]
         let loginManager = FBSDKLoginManager()
+        
         loginManager.logIn(withReadPermissions: readPermissions, from: self) { (result, error) in
             if ((error) != nil) {
                 
             } else if (result?.isCancelled)! {
                 
             } else {
-                //present the account view controller
+                //로그인 성공시 탭바로 들어가서 페이스북 정보 가져오기
                 let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
                 let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
                 self.present(tabBarVC, animated: false, completion: nil)
@@ -99,7 +114,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
         let alert = UIAlertController(title: "Alert", message: "이메일이나 비밀번호를 확인해주세요", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-
+        
         serverManager.loginReq(email: emailTextField.text!, password: pwdTextField.text!) { (isUser) in
             if isUser == true {
                 self.present(tabBarVC, animated: true, completion: nil)
@@ -113,6 +128,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
                     if results.count != 0 {
                         UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
+                        print("realm results = \(results)")
                     } else {
                         let realm = try! Realm()
                         realm.beginWrite()
@@ -147,6 +163,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func getFacebookUserInfo() {
         
+        //페이스북에서 이메일, 이름 가져오기
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "email, name"])
             .start(completionHandler:  { (connection, result, error) in
                 guard let result = result as? NSDictionary,
@@ -155,6 +172,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         return
                 }
                 
+                //앱에 회원가입여부 확인해서 없으면 가입시키기
                 self.serverManager.registerReq(email: email, password: "password", username: username, callback: { (isUser) in
                     if isUser == true {
                         print("already existing facebook user")
@@ -163,6 +181,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                 })
                 
+                //세션 로그인
                 self.serverManager.loginReq(email: email, password: "password") { (isUser) in
                     if isUser == true {
                         print("facebook user login success")
