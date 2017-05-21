@@ -243,7 +243,6 @@
 				9B3B07DF1EC9B2EC00BA3CFB /* HealthData.storyboard */,
 				9B3B07E11EC9B30F00BA3CFB /* PieView.swift */,
 				9B3B07E31EC9B32400BA3CFB /* HealthDataViewController.swift */,
-				9B3E707F1ECD839E00C0C58E /* GraphView.swift */,
 				9B3E70811ECD950800C0C58E /* PieChartView.swift */,
 			);
 			name = HealthDataView;
@@ -252,6 +251,7 @@
 		9BEB127B1EB1FF1100772CF1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9B3E707F1ECD839E00C0C58E /* GraphView.swift */,
 				484F4C0D1EADBC7000754888 /* RoundImageView.swift */,
 				484F4C011EAB680100754888 /* CounterView.swift */,
 				484F4BED1EAA63A300754888 /* Main.storyboard */,
@@ -635,7 +635,7 @@
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr;
+				PRODUCT_BUNDLE_IDENTIFIER = "codesquad.kr-lee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -656,7 +656,7 @@
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.kr;
+				PRODUCT_BUNDLE_IDENTIFIER = "codesquad.kr-lee";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

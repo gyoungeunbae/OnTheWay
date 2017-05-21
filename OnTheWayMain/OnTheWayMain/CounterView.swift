@@ -1,10 +1,3 @@
-//
-//  Draw2D.swift
-//  OnTheWayMain
-//
-//  Created by junwoo on 2017. 4. 22..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
 
 import UIKit
 
@@ -16,7 +9,7 @@ import UIKit
     let π: CGFloat = CGFloat.pi
 
     @IBInspectable var stepOfWalked: Int = 0
-    @IBInspectable var outlineColor: UIColor = UIColor.blue
+    @IBInspectable var outlineColor: UIColor = UIColor.green
 
     @IBInspectable var counterColor: UIColor = UIColor.yellow
 
@@ -31,7 +24,7 @@ import UIKit
         let center = CGPoint(x:bounds.width/2, y: bounds.height/2)
 
         // 반지름
-        let radius: CGFloat = max(bounds.width, bounds.height)
+        let radius: CGFloat = max(bounds.width * 0.8, bounds.height * 0.8)
 
         // 두께
         let arcWidth: CGFloat = 8
@@ -62,14 +55,14 @@ import UIKit
         let outlineEndAngle = anglePerMin * CGFloat(stepOfWalked) + startAngle
 
         //경로 지정
-        var outlinePath = UIBezierPath(arcCenter: center, radius: bounds.width/2 - 2.5, startAngle: startAngle, endAngle: outlineEndAngle, clockwise: true)
+        var outlinePath = UIBezierPath(arcCenter: center, radius: (bounds.width/2 - 2.5) * 0.8, startAngle: startAngle, endAngle: outlineEndAngle, clockwise: true)
 
         //경로 닫기
-        outlinePath.addArc(withCenter: center, radius: bounds.width/2 - arcWidth + 2.5, startAngle: outlineEndAngle, endAngle: startAngle, clockwise: false)
+        outlinePath.addArc(withCenter: center, radius: (bounds.width/2 - arcWidth + 2.5) * 0.8 , startAngle: outlineEndAngle, endAngle: startAngle, clockwise: false)
 
         //그리기
         outlineColor.setStroke()
-        outlinePath.lineWidth = 6.0
+        outlinePath.lineWidth = 7.0
         UIColor.green.setFill()
         outlinePath.stroke()
         outlinePath.fill()
