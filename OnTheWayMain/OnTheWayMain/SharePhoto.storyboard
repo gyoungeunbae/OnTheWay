@@ -32,15 +32,20 @@
                                     <action selector="takePhoto:" destination="m2A-kv-XUl" eventType="touchUpInside" id="QgN-F5-lat"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tf5-TA-dh3">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tf5-TA-dh3">
                                 <rect key="frame" x="62" y="208" width="250" height="250"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="H6a-cA-v6R"/>
+                                    <constraint firstAttribute="height" constant="250" id="vT3-Y5-d5n"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Dho-q2-7bX" firstAttribute="top" secondItem="xCz-y5-Jbv" secondAttribute="bottom" constant="40" id="EdB-Rb-Rjx"/>
+                            <constraint firstItem="Tf5-TA-dh3" firstAttribute="centerX" secondItem="GuE-uE-esK" secondAttribute="centerX" id="Qh3-GL-Gj4"/>
+                            <constraint firstItem="Tf5-TA-dh3" firstAttribute="centerY" secondItem="GuE-uE-esK" secondAttribute="centerY" id="Zf0-YE-ZYv"/>
                             <constraint firstItem="xCz-y5-Jbv" firstAttribute="centerX" secondItem="GuE-uE-esK" secondAttribute="centerX" id="noi-92-CJ2"/>
                         </constraints>
                     </view>
@@ -52,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDM-uA-xkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896.79999999999995" y="82.3088455772114"/>
+            <point key="canvasLocation" x="572" y="110"/>
         </scene>
         <!--Share Photo Pre View Controller-->
         <scene sceneID="UJs-J5-5Z4">
@@ -66,20 +71,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5R4-HF-uBQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5R4-HF-uBQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kb-Hh-gwr">
+                                <rect key="frame" x="167.5" y="597" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Inx-3Q-yxB"/>
+                                    <constraint firstAttribute="height" constant="40" id="Umv-gm-8KJ"/>
+                                </constraints>
+                                <state key="normal" image="save"/>
+                                <connections>
+                                    <action selector="savaImage:" destination="O2A-cO-d8m" eventType="touchUpInside" id="UlE-64-5yA"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2D8-Bk-8oO">
+                                <rect key="frame" x="62" y="208" width="250" height="250"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="knD-Sv-Kpp"/>
+                                    <constraint firstAttribute="width" constant="250" id="zF7-uR-31u"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2D8-Bk-8oO" firstAttribute="centerX" secondItem="5R4-HF-uBQ" secondAttribute="centerX" id="BMK-Ke-f6Y"/>
+                            <constraint firstAttribute="trailing" secondItem="5R4-HF-uBQ" secondAttribute="trailing" id="FwJ-lX-1UE"/>
+                            <constraint firstAttribute="bottom" secondItem="0kb-Hh-gwr" secondAttribute="bottom" constant="30" id="NMP-rp-Aae"/>
+                            <constraint firstItem="5R4-HF-uBQ" firstAttribute="leading" secondItem="f8N-7J-2na" secondAttribute="leading" id="Va1-1p-7HY"/>
+                            <constraint firstItem="UuZ-zU-Czk" firstAttribute="top" secondItem="5R4-HF-uBQ" secondAttribute="bottom" id="cgp-ng-S9W"/>
+                            <constraint firstItem="5R4-HF-uBQ" firstAttribute="top" secondItem="f8N-7J-2na" secondAttribute="top" id="duy-Hc-c0s"/>
+                            <constraint firstItem="0kb-Hh-gwr" firstAttribute="centerX" secondItem="5R4-HF-uBQ" secondAttribute="centerX" id="fNZ-vC-wu4"/>
+                            <constraint firstItem="2D8-Bk-8oO" firstAttribute="centerY" secondItem="5R4-HF-uBQ" secondAttribute="centerY" id="u91-Wh-FIs"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="5R4-HF-uBQ" id="qfA-IS-nzc"/>
+                        <outlet property="square" destination="2D8-Bk-8oO" id="MhM-3A-paY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFU-Bk-HK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581.5999999999999" y="81.409295352323838"/>
+            <point key="canvasLocation" x="1274" y="110"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MqV-li-a6y">
@@ -101,6 +135,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="save" width="50" height="50"/>
         <image name="takephoto" width="50" height="50"/>
     </resources>
 </document>

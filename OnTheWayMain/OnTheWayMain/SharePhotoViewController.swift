@@ -24,7 +24,7 @@ class SharePhotoViewController: UIViewController {
         super.viewDidLoad()
         initializeCapturreSession()
         self.square.layer.borderWidth = 1
-      //  self.square.layer.borderColor = UIColor.white as! CGColor
+        self.square.layer.borderColor = UIColor.white.cgColor
         cameraView.addSubview(square)
           // Do any additional setup after loading the view.
     }
