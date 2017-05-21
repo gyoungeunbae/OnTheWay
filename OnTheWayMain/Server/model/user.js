@@ -5,7 +5,8 @@ var postSchema = new Schema({
     email: String,
     password: String,
     username: String,
-    image: String
+    image: String,
+    coordinates: { type: [Number], index: '2dsphere'}
 });
 
 postSchema.methods.validPassword = function( pwd ) {
