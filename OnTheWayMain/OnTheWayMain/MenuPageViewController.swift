@@ -36,9 +36,10 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
             .menuItemSeparatorPercentageHeight(0.1)
         ]
 
-
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height), pageMenuOptions: parameters)
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0.0, y: 20.0, width: self.view.frame.width, height: self.view.frame.height), pageMenuOptions: parameters)
         self.view.addSubview(pageMenu!.view)
+        //startingPage 설정해주기
+        pageMenu?.moveToPage(6)
 
     }
 
