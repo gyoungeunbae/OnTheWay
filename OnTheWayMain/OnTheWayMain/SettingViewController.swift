@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FBSDKLoginKit
 
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var serverManager = ServerManager()
@@ -21,6 +22,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func logoutButton(_ sender: Any) {
         serverManager.logout()
+        print("logout")
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
         self.present(loginVC, animated: false, completion: nil)

@@ -24,12 +24,7 @@ class ForgetPasswordViewController: UIViewController {
 
         if (self.emailTextField.text != nil) {
             serverManager.findPasswordByEmail(email: self.emailTextField.text!) { (password) in
-
-                if (self.emailTextField.text == nil) {
-                    self.passwordTextField.text = "이메일을 입력하세요"
-                } else {
-                    self.passwordTextField.text = password
-                }
+                self.passwordTextField.text = password
             }
         }
 

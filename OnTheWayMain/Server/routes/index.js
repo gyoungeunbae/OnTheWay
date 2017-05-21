@@ -158,7 +158,7 @@ router.route('/session').get(function(req, res) {
 //로그아웃
 router.route('/logout').get(function(req, res) {
     req.logout();
-    res.redirect('/user/login');
+    res.redirect('/login');
     console.log('logout')
 });
 
@@ -166,16 +166,15 @@ router.route('/logout').get(function(req, res) {
 router.route('/email').post(function(req, res) {
     User.find({email: req.body.email}, function(err, user) {
         if (err) {
-            return res.send(err)
-        }
-        if (!user) {
-            console.log("no user")
-            return res.send({ message: 'no user'});
+            return res.send({ message: 'error'});
+            print("error")
         }
         if (user.length == 1) {
             return res.json({ 'password': user[0].password})
-            
-        } 
+        } else {
+            console.log("not vaild email")
+            return res.send({message: 'not valid email'});
+        }
     });
 });
 
