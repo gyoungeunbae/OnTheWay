@@ -76,7 +76,7 @@ private extension HealthDataViewController {
                     }
                 }
             }
-            print("\(indexOfDay) = \(steps)")
+            
             
             
             DispatchQueue.main.async {

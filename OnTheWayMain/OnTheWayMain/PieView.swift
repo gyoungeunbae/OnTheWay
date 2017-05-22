@@ -23,7 +23,6 @@ class PieView: UIView {
         
         let context = UIGraphicsGetCurrentContext()
         
-        
         var startAngle = -CGFloat.pi * 0.5
         
         for x in values {
@@ -39,7 +38,7 @@ class PieView: UIView {
             context?.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
             
             context?.closePath()
-            context?.setLineWidth(3.0)
+            context?.setLineWidth(1.0)
             
             let strokePath = context?.path?.copy()
             
@@ -47,7 +46,8 @@ class PieView: UIView {
             countColor += 1
             
             context?.fillPath()
-            
+        
+            context?.setStrokeColor(UIColor.white.cgColor)
             context?.addPath(strokePath!)
             context?.strokePath()
             startAngle = endAngle
