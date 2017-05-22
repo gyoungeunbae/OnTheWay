@@ -28,22 +28,12 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
 
     @IBOutlet weak var mapView: MGLMapView!
 
-    @IBAction func enableSwitch(_ sender: UISwitch) {
-        if sender.isOn {
-            locationManager.startUpdatingLocation()
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        } else {
-            locationManager.stopUpdatingLocation()
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         mapView.userTrackingMode = .follow
-
         mapView.delegate = self
-
+        locationManager.startUpdatingLocation()
     }
 
     func drawPolyline() {
@@ -69,6 +59,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
             DispatchQueue.global(qos: .background).async(execute: {
                 [unowned self] in
                 self.mapView.addAnnotation(line)
+                print("draw path")
             })
 
         } else {
@@ -140,6 +131,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
                     realm?.add(location)
                     realm?.add(locationList)
                     try! realm?.commitWrite()
+                    self.drawPolyline()
 
                 }
             } else {
@@ -163,13 +155,17 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
             }
 
         }
-
-        if UIApplication.shared.applicationState == .active {
-            self.drawPolyline()
+        
+        if UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .active {
+            locationManager.startUpdatingLocation()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            print("location manager effective")
         } else {
             print("App is backgrounded. New location is \(locations.last)")
         }
 
-    }
 
+    }
+    
+    
 }

@@ -12,20 +12,13 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
 
         var storyboard = UIStoryboard(name: "MyPath", bundle: nil)
 
-        var controllerArray: [MyPathViewController] = []
+        var controllerArray = [MyPathViewController]()
         var weekDay = calenderManager.getSimpleWeekArrStr()
         var weekArrStr = calenderManager.getWeekArrStr()
 
-        let firstPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let secondPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let thirdPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let fourthPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let fifthPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let sixthPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-        let seventhPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
-
-        controllerArray = [firstPathVC, secondPathVC, thirdPathVC, fourthPathVC, fifthPathVC, sixthPathVC, seventhPathVC]
-        for index in 0..<controllerArray.count {
+        for index in 0...6 {
+            controllerArray.append(MyPathViewController())
+            controllerArray[index] = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
             controllerArray[index].title = weekDay[index]
             controllerArray[index].today = weekArrStr[index]
         }

@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userSettingManager = UserSettingManager.sharedInstance
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         UIApplication.shared.statusBarStyle = .lightContent
         
         NotificationCenter.default.addObserver(self, selector: #selector(scheduleNotification), name: Notification.Name("notificationOn"), object: nil)
@@ -116,5 +117,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return handled
     }
+
 
 }
