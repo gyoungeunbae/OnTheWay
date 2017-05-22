@@ -26,19 +26,14 @@ class MainViewController: UIViewController {
     // 뷰 전체 높이 길이
     let screenHeight = UIScreen.main.bounds.size.height
     
-    // 서브 스크롤뷰 갯수
-    let count = 7
-    
-    
-    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         requestHealthKitAuthorization()
+        
+        
         
         for _ in 0...6 {
             subScrollViewArray.append(UIScrollView())
@@ -51,7 +46,6 @@ class MainViewController: UIViewController {
             
         mainScrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight / 2 )
     
-        
         for i in 0...6 {
             subScrollViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 0 ,width: screenWidth ,height: screenHeight / 2)
         }
@@ -63,10 +57,11 @@ class MainViewController: UIViewController {
             dailyCounterViewArray[i].backgroundColor = UIColor.white
             dailyCounterViewArray[i].addSubview(dailyCounterViewTextArray[i])
             
+            
         }
 
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
-        
+        mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
         
         self.view.addSubview(mainScrollView)
@@ -77,7 +72,7 @@ class MainViewController: UIViewController {
             UserManager.sharedInstance.addUser(user)
             
             //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
-            print(Realm.Configuration.defaultConfiguration.fileURL!)
+            
             let realm = try! Realm()
             
             let results = realm.objects(SettingList.self).filter("email == '\(user.email!)'")
@@ -85,8 +80,9 @@ class MainViewController: UIViewController {
             if results.count != 0 {
                 let dailyGoal = results.last?.items.last?.dailyGoal
                 let notification = results.last?.items.last?.notification
+        
                 UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: dailyGoal!, notification: notification!)
-                print(UserSettingManager.sharedInstance.getUserSetting())
+    
             }
         }
     }
@@ -111,10 +107,9 @@ private extension MainViewController {
         })
     }
     //이번주 일주일 걸음수 요청
-    func dailyStepQuery(indexOfDay: Int) { // this function gives you all of the steps the user has taken since the beginning of the current day.
+    func dailyStepQuery(indexOfDay: Int) {
 
-
-        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
+        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
         let weekArr = CalenderManager.sharedInstance.getLastWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
 
@@ -130,15 +125,17 @@ private extension MainViewController {
             }
             
             DispatchQueue.main.async {
-                CalenderManager.sharedInstance.weekDic.updateValue(steps, forKey: indexOfDay)
+                
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.graphView.graphValues[indexOfDay] = CGFloat(steps)
                 
                 self.dailyCounterViewTextArray[indexOfDay].frame = CGRect(x: self.dailyCounterViewArray[indexOfDay].center.x - 20 ,y: self.dailyCounterViewArray[indexOfDay].center.y - 10 ,width: 200 ,height: 25)
-                
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
+                self.dailyCounterViewTextArray[indexOfDay].font = self.dailyCounterViewTextArray[indexOfDay].font.withSize(30)
+                
                 self.graphView.setNeedsDisplay()
                 self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
+                
             }
         }
 

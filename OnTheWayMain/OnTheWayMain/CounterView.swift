@@ -39,7 +39,6 @@ import UIKit
                                 startAngle: startAngle,
                                 endAngle: endAngle,
                                 clockwise: true)
-
         // 그리기
         path.lineWidth = arcWidth
         counterColor.setStroke()
