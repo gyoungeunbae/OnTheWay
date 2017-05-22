@@ -126,9 +126,10 @@ private extension MainViewController {
             
             DispatchQueue.main.async {
                 
+                
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.graphView.graphValues[indexOfDay] = CGFloat(steps)
-                
+                StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
                 self.dailyCounterViewTextArray[indexOfDay].frame = CGRect(x: self.dailyCounterViewArray[indexOfDay].center.x - 20 ,y: self.dailyCounterViewArray[indexOfDay].center.y - 10 ,width: 200 ,height: 25)
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
                 self.dailyCounterViewTextArray[indexOfDay].font = self.dailyCounterViewTextArray[indexOfDay].font.withSize(30)
