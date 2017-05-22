@@ -344,7 +344,7 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NZC4Q7J74G;
+						DevelopmentTeam = QLAGA64KZQ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -468,7 +468,6 @@
 			files = (
 				482FBE4A1ECDAFE900DE72AC /* ImageView.swift in Sources */,
 				288A65FF1ED0291E00B4CC5E /* SharePhotoPreViewController.swift in Sources */,
-				484F4C0E1EADBC7000754888 /* RoundImageView.swift in Sources */,
 				28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */,
 				9BEB12811EB3284400772CF1 /* MainViewController.swift in Sources */,
 				9B3E70801ECD839E00C0C58E /* GraphView.swift in Sources */,
@@ -629,14 +628,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.tho;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.lee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -650,14 +649,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.tho;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.lee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

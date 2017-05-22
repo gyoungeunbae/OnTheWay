@@ -111,7 +111,8 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //모두를 불러와서 체크하는 것 보다는 하나만 불러와서 비교를 안하는 것이 낫다 . 
+        
+        //모두를 불러와서 체크하는 것 보다는 하나만 불러와서 비교를 안하는 것이 낫다
         if today == calenderManager.getKoreanStr(todayDate: Date()) {
             guard let testLatitude: Double = locationManager.location?.coordinate.latitude
                 else {
