@@ -129,9 +129,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func backButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: {
-        })
-        // 앱델리게이트로 이동 시켜라 
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func RegisterButton(_ sender: Any) {

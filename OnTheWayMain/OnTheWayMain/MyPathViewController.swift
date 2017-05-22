@@ -25,27 +25,18 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.delegate = self
         manager.requestAlwaysAuthorization()
+        manager.distanceFilter = 5.0
         return manager
     }()
 
     @IBOutlet weak var mapView: MGLMapView!
 
-    @IBAction func enableSwitch(_ sender: UISwitch) {
-        if sender.isOn {
-            locationManager.startUpdatingLocation()
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        } else {
-            locationManager.stopUpdatingLocation()
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         mapView.userTrackingMode = .follow
-
         mapView.delegate = self
-
+        locationManager.startUpdatingLocation()
     }
 
     func drawPolyline() {
@@ -71,6 +62,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
             DispatchQueue.global(qos: .background).async(execute: {
                 [unowned self] in
                 self.mapView.addAnnotation(line)
+                print("draw path")
             })
 
         } else {
@@ -111,68 +103,47 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //모두를 불러와서 체크하는 것 보다는 하나만 불러와서 비교를 안하는 것이 낫다 . 
-        if today == calenderManager.getKoreanStr(todayDate: Date()) {
-            guard let testLatitude: Double = locationManager.location?.coordinate.latitude
-                else {
-                    return
-            }
-            guard let testLongitude: Double = locationManager.location?.coordinate.longitude
-                else {
-                    return
-            }
-            if locationList.items.count != 0 {
-                var lastLat: Double = (locationList.items.last?.latitude)!
-                var latDiff: Double = abs(lastLat - testLatitude)
-                var lastLong: Double = (locationList.items.last?.longtitude)!
-                var longDiff: Double = abs(lastLong - testLongitude)
-                //print("lat = \(latDiff), long = \(longDiff)")
-
-                if latDiff > 0.00005 || longDiff > 0.00005 {
-                    print("save realm due to diff")
-                    let point = MGLPointAnnotation()
-                    point.coordinate = CLLocationCoordinate2D(latitude: testLatitude, longitude: testLongitude)
-                    let realm = try? Realm() // Create realm pointing to default file
-                    realm?.beginWrite()
-                    var location = Location()
-                    location.latitude = testLatitude
-                    location.date = calenderManager.getKoreanStr(todayDate: Date())
-                    location.longtitude = testLongitude
-                    locationList.email = "testemail"
-                    locationList.items.append(location)
-                    realm?.add(location)
-                    realm?.add(locationList)
-                    try! realm?.commitWrite()
-
-                }
-            } else {
-                print("save realm due to no data")
-                let point = MGLPointAnnotation()
-                point.coordinate = CLLocationCoordinate2D(latitude: testLatitude, longitude: testLongitude)
-                //mapView.addAnnotation(point)
-
-                let realm = try? Realm() // Create realm pointing to default file
-                realm?.beginWrite()
-                var location = Location()
-                location.latitude = testLatitude
-                location.date = calenderManager.getKoreanStr(todayDate: Date())
-                location.longtitude = testLongitude
-                locationList.email = "testemail"
-                locationList.items.append(location)
-                realm?.add(location)
-                realm?.add(locationList)
-                try! realm?.commitWrite()
-
-            }
-
+        
+        guard let testLatitude: Double = locationManager.location?.coordinate.latitude
+            else {
+                return
         }
-
-        if UIApplication.shared.applicationState == .active {
-            self.drawPolyline()
+        guard let testLongitude: Double = locationManager.location?.coordinate.longitude
+            else {
+                return
+        }
+        
+        let point = MGLPointAnnotation()
+        point.coordinate = CLLocationCoordinate2D(latitude: testLatitude, longitude: testLongitude)
+        
+        let realm = try? Realm() // Create realm pointing to default file
+        realm?.beginWrite()
+        var location = Location()
+        location.latitude = testLatitude
+        location.date = calenderManager.getKoreanStr(todayDate: Date())
+        location.longtitude = testLongitude
+        if UserManager.sharedInstance.getUser().count != 0 {
+            locationList.email = UserManager.sharedInstance.getUser()[0].email
+        } else {
+            locationList.email = "testemail"
+        }
+        
+        locationList.items.append(location)
+        realm?.add(location)
+        realm?.add(locationList)
+        try! realm?.commitWrite()
+        self.drawPolyline()
+        
+        if UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .active {
+            locationManager.startUpdatingLocation()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            print("location manager effective")
         } else {
             print("App is backgrounded. New location is \(locations.last)")
         }
 
-    }
 
+    }
+    
+    
 }

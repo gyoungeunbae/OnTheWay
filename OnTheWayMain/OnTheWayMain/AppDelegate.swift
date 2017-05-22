@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userSettingManager = UserSettingManager.sharedInstance
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().barTintColor = UIColor.clear
         UINavigationBar.appearance().tintColor = UIColor.white
@@ -121,5 +122,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return handled
     }
+
 
 }

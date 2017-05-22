@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import FBSDKLoginKit
+import UserNotifications
 
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var serverManager = ServerManager()
@@ -33,11 +34,24 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var settingTableView: UITableView!
 
     // Data model: These strings will be the data for the table view cells
+    
     var settings: [String:[String:String]] = ["profile": ["username": "name", "image": "choose photo"], "dailyGoal": ["dailyStep": "10000"], "notification": ["notification": "On"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { (setting) in
+            if(setting.authorizationStatus == .authorized)
+            {
+                self.settings["notification"]?.updateValue("On", forKey: "notification")
+            }
+            else
+            {
+                self.settings["notification"]?.updateValue("Off", forKey: "notification")
+            }
+        }
+
         //print("setting from realm is \(UserSettingManager.sharedInstance.getUserSetting())")
         NotificationCenter.default.addObserver(self, selector: #selector(drawAndSave), name: Notification.Name("changed"), object: nil)
         
@@ -47,17 +61,15 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         imagePicker.delegate = self
         
         //로그인한 유저의 username 가져오기
-        var existingUser = UserManager.sharedInstance.getUser()[0]
-        print("existingUser = \(existingUser)")
-        if existingUser.id != nil {
-            
+        if UserManager.sharedInstance.getUser().count != 0 {
+            let existingUser = UserManager.sharedInstance.getUser()[0]
             settings["profile"]?.updateValue(existingUser.username, forKey: "username")
             profileImageView.setImage(with: existingUser.image)
         }
         
         //로그인한 유저의 setting 정보 가져오기
-        var existingUserSetting = UserSettingManager.sharedInstance.getUserSetting()
-        if existingUserSetting.items.count != 0 {
+        if UserSettingManager.sharedInstance.getUserSetting().items.count != 0 {
+            let existingUserSetting = UserSettingManager.sharedInstance.getUserSetting()
             settings["dailyGoal"]?.updateValue((existingUserSetting.items.last?.dailyGoal)!, forKey: "dailyStep")
             settings["notification"]?.updateValue((existingUserSetting.items.last?.notification)!, forKey: "notification")
         }
