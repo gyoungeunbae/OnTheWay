@@ -61,8 +61,9 @@ import UIKit
 
         //그리기
         outlineColor.setStroke()
-        outlinePath.lineWidth = 7.0
-        UIColor.green.setFill()
+
+        outlinePath.lineWidth = 6.0
+        UIColor.init(red: 27.0/255.0, green: 235.0/255.0, blue: 141.0/255.0, alpha: 1.0).setFill()
         outlinePath.stroke()
         outlinePath.fill()
     }
