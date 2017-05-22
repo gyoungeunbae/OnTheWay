@@ -129,15 +129,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func backButton(_ sender: Any) {
-        //
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
-
-        self.dismiss(animated: true, completion: {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)
-        })
-        // 앱델리게이트로 이동 시켜라 
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func RegisterButton(_ sender: Any) {

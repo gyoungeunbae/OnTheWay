@@ -32,12 +32,6 @@ class ForgetPasswordViewController: UIViewController {
 
     //뒤로가기 버튼
     @IBAction func backButton(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
-
-        self.dismiss(animated: true, completion: {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)
-        })
+        dismiss(animated: true, completion: nil)
     }
 }
