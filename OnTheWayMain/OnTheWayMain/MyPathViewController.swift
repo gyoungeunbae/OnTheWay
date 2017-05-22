@@ -18,6 +18,8 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
     var locations = [MGLPointAnnotation]()
     var today = String() //외부에서 값을 넣는것이 좋지 않다 . 
 
+   
+    
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest

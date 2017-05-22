@@ -10,69 +10,80 @@ import UIKit
 import AVFoundation
 
 class SharePhotoViewController: UIViewController {
-    @IBOutlet weak var appTitle: UILabel!
     @IBOutlet var cameraView: UIView!
-    var captureSession = AVCaptureSession()
-
-    @IBOutlet weak var kmLabel: UILabel!
-    @IBOutlet weak var kmIcon: UIImageView!
     
-    @IBOutlet weak var stepsLabel: UILabel!
+    @IBOutlet weak var square: UIView!
     
-    @IBOutlet weak var walkingMan: UIImageView!
-    
-    @IBOutlet weak var takephotoButton: UIButton!
-    var sessionOutput = AVCapturePhotoOutput()
+    var session = AVCaptureSession()
+    var camera : AVCaptureDevice?
+    var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
+    var cameraCaptureOutput = AVCapturePhotoOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        initializeCapturreSession()
+        self.square.layer.borderWidth = 1
+        self.square.layer.borderColor = UIColor.white.cgColor
+        cameraView.addSubview(square)
+          // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func displayCapturPhoto(capturePhoto: UIImage) {
+        let sharePhotoPreViewController = storyboard?.instantiateViewController(withIdentifier: "SharePhotoPreVC")as! SharePhotoPreViewController
+        sharePhotoPreViewController.capturedImage = capturePhoto
+        navigationController?.pushViewController(sharePhotoPreViewController, animated: true)
+    }
+    
+    @IBAction func takePhoto(_ sender: Any) {
+        takePicture()
+    }
+    
+    func initializeCapturreSession() {
+        session.sessionPreset = AVCaptureSessionPresetHigh
+        camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        do {
+        let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
+        cameraCaptureOutput = AVCapturePhotoOutput()
+            
+        session.addInput(cameraCaptureInput)
+        session.addOutput(cameraCaptureOutput)
+        } catch {
+            print(error.localizedDescription)
+        }
+        cameraPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
+        cameraPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        cameraPreviewLayer?.frame = view.bounds
+        cameraPreviewLayer?.connection.videoOrientation = AVCaptureVideoOrientation.portrait
         
-        let deviceSession = AVCaptureDeviceDiscoverySession(deviceTypes: [.builtInDualCamera,.builtInTelephotoCamera,.builtInWideAngleCamera], mediaType: AVMediaTypeVideo, position: .unspecified)
-        for device in (deviceSession?.devices)! {
-            if device.position == AVCaptureDevicePosition.back {
-                do{
-                    let input = try AVCaptureDeviceInput(device: device)
+        view.layer.insertSublayer(cameraPreviewLayer!, at: 0)
+        
+        session.startRunning()
+        
+    }
+    func takePicture() {
+        let settings = AVCapturePhotoSettings()
+        settings.flashMode = .off
+        cameraCaptureOutput.capturePhoto(with: settings, delegate: self)
+        
+    }
+}
+
+
+extension SharePhotoViewController : AVCapturePhotoCaptureDelegate {
+    
+    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        
+        if let unwrappedError = error {
+            print(unwrappedError.localizedDescription)
+        } else {
+            
+            if let sampleBuffer = photoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewPhotoSampleBuffer) {
+                
+                if let finalImage = UIImage(data: dataImage) {
                     
-                    if captureSession.canAddInput(input) {
-                        captureSession.addInput(input)
-                        if captureSession.canAddOutput(sessionOutput) {
-                            captureSession.addOutput(sessionOutput)
-                            
-                            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                            previewLayer.connection.videoOrientation = .portrait
-                            
-                            cameraView.layer.addSublayer(previewLayer)
-                            cameraView.addSubview(takephotoButton)
-                            cameraView.addSubview(appTitle)
-                            cameraView.addSubview(walkingMan)
-                            cameraView.addSubview(stepsLabel)
-                            cameraView.addSubview(kmIcon)
-                            cameraView.addSubview(kmLabel)
-                            
-                            
-                            previewLayer.position = CGPoint (x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
-                            previewLayer.bounds = cameraView.frame
-                            
-                            captureSession.startRunning()
-                        }
-                    }
-                }catch let avError {
-                    print(avError)
+                    displayCapturPhoto(capturePhoto: finalImage)
                 }
             }
         }
     }
-    
-    @IBAction func takePhoto(_ sender: Any) {
-        
-    }
-
-   
 }

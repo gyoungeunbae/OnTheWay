@@ -79,8 +79,8 @@
         <!--sharephotoVC-->
         <scene sceneID="deh-Vr-bvN">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="sharephotoVC" storyboardName="SharePhoto" referencedIdentifier="sharephotoVC" id="jGa-Ad-SUH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PEJ-8A-XCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="sharephotoVC" storyboardName="SharePhoto" referencedIdentifier="sharephotoVC" id="jGa-Ad-SUH" sceneMemberID="viewController"/>
             </objects>
             <point key="canvasLocation" x="1240" y="524"/>
         </scene>

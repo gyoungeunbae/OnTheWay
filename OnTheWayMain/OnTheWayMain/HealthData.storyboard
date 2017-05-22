@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="BO4-00-E73"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="R7f-V2-zVS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kRe-Qn-GVC" userLabel="Container View">
-                                <rect key="frame" x="0.0" y="53" width="414" height="630"/>
+                                <rect key="frame" x="0.0" y="29" width="414" height="630"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahE-cP-BsT" userLabel="Graphic View" customClass="GraphView" customModule="OnTheWayMain" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
@@ -172,7 +172,9 @@
                             <constraint firstItem="kRe-Qn-GVC" firstAttribute="centerY" secondItem="R7f-V2-zVS" secondAttribute="centerY" id="qgc-rK-Gwz"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="health" selectedImage="health_filled" id="7AD-1v-VSt"/>
+                    <tabBarItem key="tabBarItem" title="" image="health" selectedImage="health_filled" id="7AD-1v-VSt">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="PieView" destination="KKj-Kb-mHT" id="Iwz-Fm-0h3"/>
                         <outlet property="containerView" destination="kRe-Qn-GVC" id="RWL-mk-ZVz"/>
@@ -201,9 +203,12 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="U6o-t2-re9" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="3iL-bh-J4D">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" selectionIndicatorImage="health_filled" id="3iL-bh-J4D">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="4Q9-9t-TNg" kind="relationship" relationship="viewControllers" id="uIG-vd-Ct6"/>

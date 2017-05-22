@@ -11,6 +11,7 @@
 		288188A51EC1B32900876BB6 /* SharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */; };
 		288188A71EC1B35500876BB6 /* SharePhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288188A61EC1B35500876BB6 /* SharePhoto.storyboard */; };
 		288A65FD1ECE961500B4CC5E /* connect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288A65FB1ECE961500B4CC5E /* connect.storyboard */; };
+		288A65FF1ED0291E00B4CC5E /* SharePhotoPreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288A65FE1ED0291E00B4CC5E /* SharePhotoPreViewController.swift */; };
 		288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */; };
 		288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */; };
 		28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */; };
@@ -27,7 +28,6 @@
 		484F4BFE1EAA6D3900754888 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484F4BFD1EAA6D3900754888 /* HealthKit.framework */; };
 		484F4C021EAB680100754888 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C011EAB680100754888 /* CounterView.swift */; };
 		484F4C0C1EACE50700754888 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C0B1EACE50700754888 /* HealthKitManager.swift */; };
-		484F4C0E1EADBC7000754888 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C0D1EADBC7000754888 /* RoundImageView.swift */; };
 		484F4C111EAE188C00754888 /* CalenderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C101EAE188C00754888 /* CalenderManager.swift */; };
 		48D7F5B51EB222B3000D747B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5B41EB222B3000D747B /* LoginViewController.swift */; };
 		48D7F5BB1EB2237B000D747B /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5B91EB2237B000D747B /* AccountKit.framework */; };
@@ -73,6 +73,7 @@
 		288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePhotoViewController.swift; sourceTree = "<group>"; };
 		288188A61EC1B35500876BB6 /* SharePhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SharePhoto.storyboard; sourceTree = "<group>"; };
 		288A65FC1ECE961500B4CC5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/connect.storyboard; sourceTree = "<group>"; };
+		288A65FE1ED0291E00B4CC5E /* SharePhotoPreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePhotoPreViewController.swift; sourceTree = "<group>"; };
 		288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationViewController.swift; sourceTree = "<group>"; };
 		288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PresentLocation.storyboard; sourceTree = "<group>"; };
 		28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		484F4BFD1EAA6D3900754888 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		484F4C011EAB680100754888 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		484F4C0B1EACE50700754888 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
-		484F4C0D1EADBC7000754888 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		484F4C101EAE188C00754888 /* CalenderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderManager.swift; sourceTree = "<group>"; };
 		48D7F5B41EB222B3000D747B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48D7F5B91EB2237B000D747B /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
@@ -137,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */,
+				288A65FE1ED0291E00B4CC5E /* SharePhotoPreViewController.swift */,
 				288188A61EC1B35500876BB6 /* SharePhoto.storyboard */,
 			);
 			name = SharePhotoView;
@@ -252,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				9B3E707F1ECD839E00C0C58E /* GraphView.swift */,
-				484F4C0D1EADBC7000754888 /* RoundImageView.swift */,
 				484F4C011EAB680100754888 /* CounterView.swift */,
 				484F4BED1EAA63A300754888 /* Main.storyboard */,
 				288A65FB1ECE961500B4CC5E /* connect.storyboard */,
@@ -467,7 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				482FBE4A1ECDAFE900DE72AC /* ImageView.swift in Sources */,
-				484F4C0E1EADBC7000754888 /* RoundImageView.swift in Sources */,
+				288A65FF1ED0291E00B4CC5E /* SharePhotoPreViewController.swift in Sources */,
 				28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */,
 				9BEB12811EB3284400772CF1 /* MainViewController.swift in Sources */,
 				9B3E70801ECD839E00C0C58E /* GraphView.swift in Sources */,

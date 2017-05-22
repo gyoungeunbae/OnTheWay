@@ -33,5 +33,6 @@ class ForgetPasswordViewController: UIViewController {
     //뒤로가기 버튼
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+
     }
 }
