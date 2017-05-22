@@ -4,41 +4,74 @@ import RealmSwift
 
 
 class MainViewController: UIViewController {
+    
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var walkRecordLabel: UILabel!
+    
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
     
-    @IBOutlet weak var firstDayLabel: UILabel!
-    @IBOutlet weak var secondDayLabel: UILabel!
-    @IBOutlet weak var thirdDayLabel: UILabel!
-    @IBOutlet weak var fourthDayLabel: UILabel!
-    @IBOutlet weak var fifthDayLabel: UILabel!
-    @IBOutlet weak var sixthDayLabel: UILabel!
-    @IBOutlet weak var seventhDayLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var firstImageView: RoundImageView!
-    @IBOutlet weak var secondImageView: RoundImageView!
-    @IBOutlet weak var thirdImageView: RoundImageView!
-    @IBOutlet weak var fourthImageView: RoundImageView!
-    @IBOutlet weak var fifthImageView: RoundImageView!
-    @IBOutlet weak var sixthImageView: RoundImageView!
-    @IBOutlet weak var seventhImageView: RoundImageView!
-    @IBOutlet weak var counterView: CounterView!
-    @IBOutlet weak var walkRecordLabel: UILabel!
-
+    var graphView = GraphView()
+    
+    // 메인 스크롤뷰
+    var mainScrollView = UIScrollView()
+    // 메인 스크롤뷰에 추가할 서브 스크롤뷰
+    var subScrollViewArray = [UIScrollView]()
+    // 서브 스크롤뷰에 추가할 뷰
+    var dailyCounterViewArray = [CounterView]()
+    // 카운터 뷰에 추가할 텍스트 
+    var dailyCounterViewTextArray = [UILabel]()
+    // 뷰 전체 폭 길이
+    let screenWidth = UIScreen.main.bounds.size.width
+    // 뷰 전체 높이 길이
+    let screenHeight = UIScreen.main.bounds.size.height
+    
+    // 서브 스크롤뷰 갯수
+    let count = 7
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let simpleWeekStr = calenderManager.getSimpleWeekArrStr()
+        
+        
+        
         requestHealthKitAuthorization()
-        let imageViews = [firstImageView, secondImageView, thirdImageView, fourthImageView, fifthImageView, sixthImageView, seventhImageView]
-
-        for i in 0..<imageViews.count {
-            imageViews[i]?.setRounded()
-        }
-        let weekLabels = [firstDayLabel, secondDayLabel, thirdDayLabel, fourthDayLabel, fifthDayLabel, sixthDayLabel, seventhDayLabel]
-        for i in 0..<weekLabels.count {
-            weekLabels[i]?.text = simpleWeekStr[i]
+        
+        for _ in 0...6 {
+            subScrollViewArray.append(UIScrollView())
+            dailyCounterViewArray.append(CounterView())
+            dailyCounterViewTextArray.append(UILabel())
         }
         
+        graphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 , width: self.view.frame.width, height: self.view.frame.height / 2)
+        graphView.backgroundColor = UIColor.blue
+            
+        mainScrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight / 2 )
+    
+        
+        for i in 0...6 {
+            subScrollViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 0 ,width: screenWidth ,height: screenHeight / 2)
+        }
+        
+        for i in 0...6{
+            dailyCounterViewArray[i].frame = CGRect(x:0, y: 0, width:screenWidth, height:screenHeight/2 )
+            subScrollViewArray[i].addSubview(dailyCounterViewArray[i])
+            mainScrollView.addSubview(subScrollViewArray[i])
+            dailyCounterViewArray[i].backgroundColor = UIColor.white
+            dailyCounterViewArray[i].addSubview(dailyCounterViewTextArray[i])
+            
+        }
+
+        mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
+        
+        mainScrollView.isPagingEnabled = true
+        
+        self.view.addSubview(mainScrollView)
+        
+        self.view.addSubview(graphView)
         //로그인 사용자의 정보 가져오기
         serverManager.getSession { (user) in
             UserManager.sharedInstance.addUser(user)
@@ -52,20 +85,12 @@ class MainViewController: UIViewController {
             if results.count != 0 {
                 let dailyGoal = results.last?.items.last?.dailyGoal
                 let notification = results.last?.items.last?.notification
-                print(dailyGoal)
                 UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: dailyGoal!, notification: notification!)
                 print(UserSettingManager.sharedInstance.getUserSetting())
             }
-            
         }
-        
     }
-    
-    
 }
-    
-
-
 
 private extension MainViewController {
 
@@ -81,92 +106,39 @@ private extension MainViewController {
                     self.dailyStepQuery(indexOfDay: i)
                 }
 
-                self.todayStepQuery()
-
             } else {
             }
         })
     }
-
-    //오늘 걸음수 데이터 요청
-    func todayStepQuery() { 
-
-        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
-        let date = NSDate()
-        let cal = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        let newDate = cal.startOfDay(for: date as Date)
-
-        //오늘
-        let predicate = HKQuery.predicateForSamples(withStart: newDate, end: NSDate() as Date)
-
-        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { _, results, _ in
-            var steps: Int = 0
-
-            if (results?.count)! > 0 {
-                for result in results as! [HKQuantitySample] {
-                    if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
-                        steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
-                        
-                    }
-
-                }
-
-            }
-            let ratioOfSuccess: Double = Double(steps) / Double(self.counterView.stepOfGoal)
-            DispatchQueue.main.async {
-                self.walkRecordLabel.text = "\(steps)"
-                self.counterView.stepOfWalked = steps
-                self.counterView.setNeedsDisplay()
-
-                switch ratioOfSuccess {
-                case 0..<0.5:
-                    self.messageLabel.text = "운동 부족입니다!"
-                case 0.5..<1.0:
-                    self.messageLabel.text = "거의 다 왔어요!"
-                default:
-                    self.messageLabel.text = "축하합니다!"
-                }
-            }
-        }
-
-        HealthKitManager.sharedInstance.healthStore?.execute(query)
-    }
-
     //이번주 일주일 걸음수 요청
     func dailyStepQuery(indexOfDay: Int) { // this function gives you all of the steps the user has taken since the beginning of the current day.
 
 
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) // The type of data we are requesting
-        let imageViews = [firstImageView, secondImageView, thirdImageView, fourthImageView, fifthImageView, sixthImageView, seventhImageView]
         let weekArr = CalenderManager.sharedInstance.getLastWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
 
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { _, results, _ in
-
             var steps: Int = 0
 
             if (results?.count)! > 0 {
-
                 for result in results as! [HKQuantitySample] {
                     if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
                         steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
                     }
                 }
             }
-
-            let ratioOfSuccess: Double = Double(steps) / Double(self.counterView.stepOfGoal)
-
+            
             DispatchQueue.main.async {
                 CalenderManager.sharedInstance.weekDic.updateValue(steps, forKey: indexOfDay)
-
-                switch ratioOfSuccess {
-                case 0..<0.5:
-                    imageViews[indexOfDay]?.backgroundColor = UIColor.black
-                case 0.5..<1.0:
-                    imageViews[indexOfDay]?.backgroundColor = UIColor.white
-                default:
-                    imageViews[indexOfDay]?.backgroundColor = UIColor.green
-                }
+                self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
+                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
+                
+                self.dailyCounterViewTextArray[indexOfDay].frame = CGRect(x: self.dailyCounterViewArray[indexOfDay].center.x - 20 ,y: self.dailyCounterViewArray[indexOfDay].center.y - 10 ,width: 200 ,height: 25)
+                
+                self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
+                self.graphView.setNeedsDisplay()
+                self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
             }
         }
 

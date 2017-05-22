@@ -19,6 +19,7 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
         for index in 0...6 {
             controllerArray.append(MyPathViewController())
             controllerArray[index] = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+
             controllerArray[index].title = weekDay[index]
             controllerArray[index].today = weekArrStr[index]
         }

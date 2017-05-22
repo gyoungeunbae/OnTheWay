@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.scheduleNotification()
             } else {
                 print("notification reject")
+                
             }
         }
         

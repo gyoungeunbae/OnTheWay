@@ -16,7 +16,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
     var realm: Realm!
     var locationList = LocationList()
     var locations = [MGLPointAnnotation]()
-    var today = String()
+    var today = String() //외부에서 값을 넣는것이 좋지 않다 . 
 
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -100,6 +100,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //모두를 불러와서 체크하는 것 보다는 하나만 불러와서 비교를 안하는 것이 낫다 . 
         if today == calenderManager.getKoreanStr(todayDate: Date()) {
             guard let testLatitude: Double = locationManager.location?.coordinate.latitude
                 else {
