@@ -24,12 +24,7 @@ class ForgetPasswordViewController: UIViewController {
 
         if (self.emailTextField.text != nil) {
             serverManager.findPasswordByEmail(email: self.emailTextField.text!) { (password) in
-
-                if (self.emailTextField.text == nil) {
-                    self.passwordTextField.text = "이메일을 입력하세요"
-                } else {
-                    self.passwordTextField.text = password
-                }
+                self.passwordTextField.text = password
             }
         }
 
@@ -37,12 +32,7 @@ class ForgetPasswordViewController: UIViewController {
 
     //뒤로가기 버튼
     @IBAction func backButton(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
-
         self.dismiss(animated: true, completion: {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)
         })
     }
 }

@@ -1,26 +1,14 @@
-//
-//  GraphView.swift
-//  OnTheWayMain
-//
-//  Created by lee on 2017. 5. 18..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
+
 
 import UIKit
 
 class GraphView: UIView {
     var count: CGFloat = 0.0
-    var graphValues: Array<CGFloat> = [10,40,20,40,30,50,60]
+    var graphValues: Array<CGFloat> = [8000,8000,8000,8000,8000,8000,8000]
     var colors: Array<CGColor> = [UIColor.red.cgColor,UIColor.orange.cgColor,UIColor.yellow.cgColor,UIColor.green.cgColor,UIColor.blue.cgColor,UIColor.gray.cgColor,UIColor.purple.cgColor]
     
-    
-    
-    
-    
-    
-    
     override func draw(_ rect: CGRect) {
-        var x = 40
+        var x = 30
         
         let context = UIGraphicsGetCurrentContext()
         
@@ -32,21 +20,20 @@ class GraphView: UIView {
         
         context?.setStrokeColor(color!)
         
-        context?.move(to: CGPoint(x: 0, y: 400))
+        context?.move(to: CGPoint(x: 0, y: bounds.size.height * 0.8))
         
-        context?.addLine(to: CGPoint(x: 400, y: 400))
+        context?.addLine(to: CGPoint(x: bounds.size.width, y: bounds.size.height * 0.8))
         
         context?.strokePath()
-        
         
         context?.setLineWidth(4.0)
         context?.setStrokeColor(UIColor.black.cgColor)
         
         for value in graphValues {
-            
-            let rectangle = CGRect(x: x ,y: 398,width: 25,height: Int(-value * 0.01))
+
+            let rectangle = CGRect(x: x ,y: Int(bounds.size.height * 0.8),width: 25,height: Int(-value * 0.01))
             print(x)
-            
+
             context?.addRect(rectangle)
             
             context?.strokePath()
@@ -57,5 +44,4 @@ class GraphView: UIView {
             x += 50
         }
     }
-    
 }

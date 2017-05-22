@@ -79,8 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         var dateComponents = DateComponents()
-        dateComponents.hour = 14
-        dateComponents.minute = 37
+        dateComponents.hour = 08
+        dateComponents.minute = 00
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         

@@ -15,7 +15,7 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
         var controllerArray: [MyPathViewController] = []
         var weekDay = calenderManager.getSimpleWeekArrStr()
         var weekArrStr = calenderManager.getWeekArrStr()
-
+//
         let firstPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
         let secondPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
         let thirdPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
@@ -25,6 +25,8 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
         let seventhPathVC: MyPathViewController = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
 
         controllerArray = [firstPathVC, secondPathVC, thirdPathVC, fourthPathVC, fifthPathVC, sixthPathVC, seventhPathVC]
+        
+        //포문 안으로 중복 되니까
         for index in 0..<controllerArray.count {
             controllerArray[index].title = weekDay[index]
             controllerArray[index].today = weekArrStr[index]
@@ -36,9 +38,10 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
             .menuItemSeparatorPercentageHeight(0.1)
         ]
 
-
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height), pageMenuOptions: parameters)
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0.0, y: 20.0, width: self.view.frame.width, height: self.view.frame.height), pageMenuOptions: parameters)
         self.view.addSubview(pageMenu!.view)
+        //startingPage 설정해주기
+        pageMenu?.moveToPage(6)
 
     }
 

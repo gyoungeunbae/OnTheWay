@@ -68,11 +68,15 @@ class ServerManager {
                 if let value = res["password"] as? String {
                     password = value
                     callback(password)
+                } else {
+                    print(res["message"])
+                    password = res["message"] as! String
+                    callback(password)
                 }
             }
-
+            
             if response.error != nil {
-                
+                print("error")
             }
 
         }

@@ -28,6 +28,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
+        
+        self.dismiss(animated: true, completion: {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)
+        })
+
+        
         self.emailTextField.delegate = self
         self.confirmPwdTextFiled.delegate = self
         self.userNameTextFiled.delegate = self
@@ -119,13 +129,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func backButton(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
-
         self.dismiss(animated: true, completion: {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)
         })
+        // 앱델리게이트로 이동 시켜라 
     }
 
     @IBAction func RegisterButton(_ sender: Any) {
