@@ -9,7 +9,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var walkRecordLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
-
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
         
@@ -48,7 +47,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         print(weeklyStepsDic)
-    
+
+        
         for _ in 0...6 {
             dailyCounterViewArray.append(CounterView())
             dailyCounterViewTextArray.append(UILabel())
@@ -81,12 +81,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
-
-        mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
-        
-
-        
-        
+        self.goal.text = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
         self.view.addSubview(mainScrollView)
 
         
@@ -114,13 +109,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
             }
         }
-        
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let width: CGFloat = self.mainScrollView.frame.size.width
-        let page: Int = Int(self.mainScrollView.contentOffset.x / width)
-
         
     }
     
