@@ -9,9 +9,10 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var walkRecordLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
+
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
-    
+        
     var graphView = GraphView()
     
     // 메인 스크롤뷰
@@ -24,13 +25,30 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     let screenWidth = UIScreen.main.bounds.size.width
     // 뷰 전체 높이 길이
     let screenHeight = UIScreen.main.bounds.size.height
+    let weeklyStepsDic = StepManager.sharedInstance.getWeeklyStepsDic()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        requestHealthKitAuthorization()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(draw), name: Notification.Name("goalChanged"), object: nil)
 
+        DispatchQueue.main.async {
+            
+            for indexOfDay in self.weeklyStepsDic.keys {
+                let steps:Int = self.weeklyStepsDic[indexOfDay]!
+                self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
+                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
+                StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
+                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
+                self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
+                self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
+                
+                self.graphView.setNeedsDisplay()
+                self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
+                
+            }
+        }
+        print(weeklyStepsDic)
+    
         for _ in 0...6 {
             dailyCounterViewArray.append(CounterView())
             dailyCounterViewTextArray.append(UILabel())
@@ -63,8 +81,14 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
+
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
         
+
+        
+        
+        self.view.addSubview(mainScrollView)
+
         
     
         self.view.addSubview(mainScrollView)
@@ -99,56 +123,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
 
         
     }
-}
-
-private extension MainViewController {
-
-    //건강데이터 요청 메소드
-    func requestHealthKitAuthorization() {
-
-        let dataTypesToRead = NSSet(objects: HealthKitManager.sharedInstance.stepsCount as Any)
-
-        HealthKitManager.sharedInstance.healthStore?.requestAuthorization(toShare: nil, read: dataTypesToRead as? Set<HKObjectType>, completion: { [unowned self] (success, error) in
-            if success {
-
-                for i in 0...6 {
-                    self.dailyStepQuery(indexOfDay: i)
-                }
-
-            }
-        })
-    }
-    //이번주 일주일 걸음수 요청
-    func dailyStepQuery(indexOfDay: Int) {
-
-        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
-        let weekArr = CalenderManager.sharedInstance.getLastWeekArr()
-        let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
-
-        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { _, results, _ in
-            var steps: Int = 0
-
-            if (results?.count)! > 0 {
-                for result in results as! [HKQuantitySample] {
-                    if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
-                        steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
-                    }
-                }
-            }
-            
-            DispatchQueue.main.async {
-                
-                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
-                self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
-                self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
-                
-                self.graphView.setNeedsDisplay()
-                self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
-            }
+    
+    func draw() {
+        for counterView in self.dailyCounterViewArray {
+            counterView.setNeedsDisplay()
         }
-
-        HealthKitManager.sharedInstance.healthStore?.execute(query)
-
+        
     }
-
 }
+

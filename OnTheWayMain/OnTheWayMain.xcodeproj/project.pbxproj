@@ -22,6 +22,7 @@
 		482FBE461ECAF0E300DE72AC /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE451ECAF0E300DE72AC /* UserSetting.swift */; };
 		482FBE481ECAF69200DE72AC /* UserSettingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE471ECAF69200DE72AC /* UserSettingManager.swift */; };
 		482FBE4A1ECDAFE900DE72AC /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE491ECDAFE900DE72AC /* ImageView.swift */; };
+		48366F511ED3006800BEC453 /* StepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48366F501ED3006800BEC453 /* StepManager.swift */; };
 		484F4BEA1EAA63A300754888 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4BE91EAA63A300754888 /* AppDelegate.swift */; };
 		484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BED1EAA63A300754888 /* Main.storyboard */; };
 		484F4BF41EAA63A300754888 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484F4BF21EAA63A300754888 /* LaunchScreen.storyboard */; };
@@ -84,6 +85,7 @@
 		482FBE451ECAF0E300DE72AC /* UserSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		482FBE471ECAF69200DE72AC /* UserSettingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingManager.swift; sourceTree = "<group>"; };
 		482FBE491ECDAFE900DE72AC /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		48366F501ED3006800BEC453 /* StepManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepManager.swift; sourceTree = "<group>"; };
 		484F4BE61EAA63A300754888 /* OnTheWayMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheWayMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		484F4BE91EAA63A300754888 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		484F4BEE1EAA63A300754888 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				484F4C0B1EACE50700754888 /* HealthKitManager.swift */,
+				48366F501ED3006800BEC453 /* StepManager.swift */,
 			);
 			name = HealthKit;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */,
 				9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */,
 				9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */,
+				48366F511ED3006800BEC453 /* StepManager.swift in Sources */,
 				48F5EC0E1EC06A2000101C6E /* UserLocation.swift in Sources */,
 				482FBE441ECAADAA00DE72AC /* UserManager.swift in Sources */,
 				288188A51EC1B32900876BB6 /* SharePhotoViewController.swift in Sources */,
