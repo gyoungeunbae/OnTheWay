@@ -18,7 +18,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     var items = [Setting]()
     var realm: Realm!
     
-    
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBAction func logoutButton(_ sender: Any) {
@@ -39,7 +38,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { (setting) in
             if(setting.authorizationStatus == .authorized)
@@ -52,10 +50,10 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
 
-        //print("setting from realm is \(UserSettingManager.sharedInstance.getUserSetting())")
-        NotificationCenter.default.addObserver(self, selector: #selector(drawAndSave), name: Notification.Name("changed"), object: nil)
         
-        // This view controller itself will provide the delegate methods and row data for the table view.
+        NotificationCenter.default.addObserver(self, selector: #selector(drawAndSave), name: Notification.Name("settingChanged"), object: nil)
+        
+        
         settingTableView.delegate = self
         settingTableView.dataSource = self
         imagePicker.delegate = self
@@ -76,9 +74,9 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    //설정 변경될때마다 tableView 다시 뿌리고 realm에 저장
     func drawAndSave(_ notification: Notification) {
         settingTableView.reloadData()
-        
         let realm = try? Realm() // Create realm pointing to default file
         realm?.beginWrite()
         var setting = Setting()
@@ -90,7 +88,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         realm?.add(settingList)
         try! realm?.commitWrite()
         print("save setting into realm")
-
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,14 +100,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         return categoryValues.count
     }
 
-    // create a cell for each table view row
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        // create a new cell if needed or reuse an old one
         let cell: UITableViewCell = self.settingTableView.dequeueReusableCell(withIdentifier: "MyCell") as UITableViewCell!
 
         let categoryValue = Array(settings.values)[indexPath.section]
-        // set the text from the data model
 
         let title = Array(categoryValue.keys)[indexPath.row]
 
@@ -145,7 +141,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 NotificationCenter.default.post(name: Notification.Name("notificationOn"), object: nil)
 
             }
-            NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name("settingChanged"), object: nil)
 
             
         }
@@ -168,11 +164,11 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
                 
                 self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
-                //Do some other stuff that you want to do
-                
-                //self.presentingViewController?.dismiss(animated: true, completion: nil)
-                
-                NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
+                print("user = \(UserManager.sharedInstance.getUser())")
+                UserSettingManager.sharedInstance.updateUserSetting(user: UserManager.sharedInstance.getUser()[0], dailyGoal: (firstRowEditAction.textFields?.first?.text)!, notification: (self.settings["notification"]?["notification"])!)
+                print("setting = \(UserSettingManager.sharedInstance.getUserSetting())" )
+                NotificationCenter.default.post(name: Notification.Name("settingChanged"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("goalChanged"), object: nil)
             })
             
             firstRowEditAction.addAction(okayAction)
@@ -207,7 +203,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                     print("username updated")
                 }
                 UserManager.sharedInstance.updateUsername(username: (firstRowEditAction.textFields?.first?.text)!)
-                NotificationCenter.default.post(name: Notification.Name("changed"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("settingChanged"), object: nil)
                 
             })
             

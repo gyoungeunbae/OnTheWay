@@ -120,6 +120,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.present(tabBarVC, animated: true, completion: nil)
                 self.serverManager.getSession { (user) in
                     
+                    //UserManager에 넣기
                     UserManager.sharedInstance.addUser(user)
                     print("session is \(user)")
                     
@@ -127,6 +128,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let realm = try! Realm()
                     let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
                     if results.count != 0 {
+                        //UserSettingManager에 넣기
                         UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
                         print("realm results = \(results)")
                     } else {
@@ -192,6 +194,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 self.serverManager.getSession { (user) in
                     
+                    //UserManager에 넣기
                     UserManager.sharedInstance.addUser(user)
                     print("session is \(user)")
                     
@@ -199,6 +202,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let realm = try! Realm()
                     let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
                     if results.count != 0 {
+                        //UserSettingManager에 넣기
                         UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
                     } else {
                         let realm = try! Realm()

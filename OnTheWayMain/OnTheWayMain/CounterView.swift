@@ -5,7 +5,18 @@ import UIKit
 //IBDesignable은 코어그래픽을 스토리보드에서 실시간으로 프리뷰 가능하게 한다
 @IBDesignable class CounterView: UIView {
 
-    var stepOfGoal = 10000
+    private lazy var stepOfGoal: Int = {
+        var goal = Int()
+        if UserSettingManager.sharedInstance.getUserSetting().items.count != 0 {
+            let userGoal = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
+            goal = Int(userGoal!)!
+        } else {
+            goal = 10000
+        }
+        print("goal is = \(goal)")
+        return goal
+    }()
+    
     let π: CGFloat = CGFloat.pi
 
     @IBInspectable var stepOfWalked: Int = 0
@@ -14,11 +25,6 @@ import UIKit
     @IBInspectable var counterColor: UIColor = UIColor.yellow
 
     override func draw(_ rect: CGRect) {
-        //realm에 저장되어있는 목표가 있으면 불러오기
-        let userGoal = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
-        if userGoal != nil {
-            stepOfGoal = Int(userGoal!)!
-        }
 
         // 원의 중심
         let center = CGPoint(x:bounds.width/2, y: bounds.height/2)
@@ -67,4 +73,6 @@ import UIKit
         outlinePath.stroke()
         outlinePath.fill()
     }
+    
+    
 }
