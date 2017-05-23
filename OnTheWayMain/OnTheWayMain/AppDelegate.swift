@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import RealmSwift
 import Kingfisher
 import UserNotifications
+import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var serverManager = ServerManager()
     
-    var userSettingManager = UserSettingManager.sharedInstance
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //걸음수 요청
+        requestHealthKitAuthorization()
         
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().barTintColor = UIColor.clear
@@ -31,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let center = UNUserNotificationCenter.current()
         
+        //notification 승인 요청
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
                 print("granted")
@@ -47,15 +50,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         serverManager.getSession { (user) in
             
+            //UserManager에 넣기
             UserManager.sharedInstance.addUser(user)
-            print("session is \(user)")
             
             //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
             let realm = try! Realm()
-            let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
+            let email = user.email!
+            let results = realm.objects(SettingList.self).filter("email == '\(email)'")
             if results.count != 0 {
-                self.userSettingManager.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
-            }
+                //UserSettingManager 에 넣기
+                UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
+                print("setting into usersettingmanager")
+                
+            } 
             let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
             let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
             self.window?.rootViewController?.present(tabBarVC, animated: true, completion: nil)
@@ -64,14 +71,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    
+    //건강데이터 요청 메소드
+    func requestHealthKitAuthorization() {
+        
+        let dataTypesToRead = NSSet(objects: HealthKitManager.sharedInstance.stepsCount as Any)
+        
+        HealthKitManager.sharedInstance.healthStore?.requestAuthorization(toShare: nil, read: dataTypesToRead as? Set<HKObjectType>, completion: { [unowned self] (success, error) in
+            if success {
+                
+                for i in 0...6 {
+                    self.dailyStepQuery(indexOfDay: i)
+                }
+                
+            } else {
+                print("healthkit request fail")
+            }
+        })
+    }
+    
+    //이번주 일주일 걸음수 요청
+    func dailyStepQuery(indexOfDay: Int) {
+        
+        let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
+        let weekArr = CalenderManager.sharedInstance.getLastWeekArr()
+        let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
+        
+        let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { _, results, _ in
+            var steps: Int = 0
+            
+            if (results?.count)! > 0 {
+                for result in results as! [HKQuantitySample] {
+                    if (result.sourceRevision.source.name.range(of: "Watch") == nil) {
+                        steps += Int(result.quantity.doubleValue(for: HKUnit.count()))
+                    }
+                }
+            }
+            
+            StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
+        }
+        
+        HealthKitManager.sharedInstance.healthStore?.execute(query)
+        
+    }
+
+    
     func removeNotification() {
-        print("notification Off")
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
     }
     
     func scheduleNotification() {
-        print("notification On")
         let center = UNUserNotificationCenter.current()
         
         let content = UNMutableNotificationContent()
