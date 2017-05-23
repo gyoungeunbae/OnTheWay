@@ -18,7 +18,7 @@ struct StepManager {
         weeklySteps.updateValue(steps, forKey: indexOfDay)
     }
     
-    func getWeeklyStepsArr() -> [Int:Int] {
+    func getWeeklyStepsDic() -> [Int:Int] {
         return weeklySteps
     }
 }
