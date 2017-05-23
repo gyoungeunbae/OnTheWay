@@ -1,12 +1,4 @@
-//
-//  RegiserManager.swift
-//  OnTheWayMain
-//
-//  Created by lee on 2017. 4. 26..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
-
-import Foundation
+    import Foundation
 
 class RegisterManager {
 
@@ -28,49 +20,48 @@ class RegisterManager {
                 returnValue = false
             }
 
-        } catch let error as NSError {
+        } catch _ as NSError {
             returnValue = false
         }
         return  returnValue
     }
 
     //패스워드 강도 체크하는 함수
-    func isValidPwd(pwdString: String) -> Int {
+    func isValidPassword(passwordString: String) -> Int {
+        let strongPassword = "(?=.+[!A-Z])(?=.+[0-9])[a-z.-_]{8,12}"
+        let normalPassword = "(?=.+[A-Z]|.+[0-9])[a-z.-_]{8,12}"
+        let weakPassword = "[a-z.-_.+[0-9]]{8,12}"
 
-        let strongPwd = "(?=.+[!A-Z])(?=.+[0-9])[a-z.-_]{8,12}"
-        let normalPwd = "(?=.+[A-Z]|.+[0-9])[a-z.-_]{8,12}"
-        let weakPwd = "[a-z.-_.+[0-9]]{8,12}"
-
-        var checkPwd = 0
+        var checkPassword = 0
 
         do {
-            let regexStrong = try NSRegularExpression(pattern: strongPwd)
-            let regexNormal = try NSRegularExpression(pattern: normalPwd)
-            let regexWeak = try NSRegularExpression(pattern: weakPwd)
+            let regexStrong = try NSRegularExpression(pattern: strongPassword)
+            let regexNormal = try NSRegularExpression(pattern: normalPassword)
+            let regexWeak = try NSRegularExpression(pattern: weakPassword)
 
-            let nsString = pwdString as NSString
+            let nsString = passwordString as NSString
 
-            let resultsStrong = regexStrong.matches(in: pwdString, range: NSRange(location: 0, length: nsString.length))
+            let resultsStrong = regexStrong.matches(in: passwordString, range: NSRange(location: 0, length: nsString.length))
 
-            let resultsNormal = regexNormal.matches(in: pwdString, range: NSRange(location: 0, length: nsString.length))
+            let resultsNormal = regexNormal.matches(in: passwordString, range: NSRange(location: 0, length: nsString.length))
 
-            let resultsWeak = regexWeak.matches(in: pwdString, range: NSRange(location: 0, length: nsString.length))
+            let resultsWeak = regexWeak.matches(in: passwordString, range: NSRange(location: 0, length: nsString.length))
 
             if(resultsStrong.count != 0) {
-                checkPwd = 1
+                checkPassword = 1
             } else if(resultsNormal.count != 0) {
-                checkPwd = 2
+                checkPassword = 2
             } else if(resultsWeak.count != 0) {
-                checkPwd = 3
-            } else if(pwdString.characters.count < 7) {
-                checkPwd = 4
+                checkPassword = 3
+            } else if(passwordString.characters.count < 7) {
+                checkPassword = 4
             }
 
         } catch let error as NSError {
-            checkPwd = 0
+            checkPassword = 0
         }
 
-        return  checkPwd
+        return  checkPassword
     }
 
 // 정규식표현 참고

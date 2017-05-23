@@ -1,11 +1,3 @@
-//
-//  PresentLocationViewController.swift
-//  OnTheWayMain
-//
-//  Created by nueola on 4/29/17.
-//  Copyright © 2017 junwoo. All rights reserved.
-//
-
 import UIKit
 import Mapbox
 class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {

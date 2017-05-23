@@ -36,23 +36,15 @@ class GraphView: UIView {
             
             context?.strokePath()
             
-            context?.setFillColor(UIColor.red.cgColor)
-            context?.fill(rectangle)
+            if (graphValues[index] >= 10000) {
+                context?.setFillColor(UIColor.green.cgColor)
+                context?.fill(rectangle)
+            } else {
+                context?.setFillColor(UIColor.yellow.cgColor)
+                context?.fill(rectangle)
+
+            }
             
         }
-    }
-    
-    func changeColor(value: Int){
-        let x = 30
-        let context = UIGraphicsGetCurrentContext()
-        
-        let rectangle = CGRect(x: x + (50 * value) ,y: Int(bounds.size.height * 0.8),width: 25,height: Int(-graphValues[value] * 0.01))
-        
-        context?.addRect(rectangle)
-        
-        context?.strokePath()
-        
-        context?.setFillColor(UIColor.black.cgColor)
-        context?.fill(rectangle)
     }
 }

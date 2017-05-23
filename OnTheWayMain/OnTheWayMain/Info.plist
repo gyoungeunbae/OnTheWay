@@ -52,7 +52,7 @@
 	<key>NSHealthShareUsageDescription</key>
 	<string>Read</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>description haha</string>
+	<string>follow your location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>{human-readable reason for photo access}</string>
 	<key>UIBackgroundModes</key>

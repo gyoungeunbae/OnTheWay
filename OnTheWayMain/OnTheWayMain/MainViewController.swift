@@ -7,6 +7,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var walkRecordLabel: UILabel!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
@@ -15,9 +16,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     // 메인 스크롤뷰
     var mainScrollView = UIScrollView()
-    // 메인 스크롤뷰에 추가할 서브 스크롤뷰
-    var subScrollViewArray = [UIScrollView]()
-    // 서브 스크롤뷰에 추가할 뷰
+    // 메인 스크롤뷰에 추가할 뷰
     var dailyCounterViewArray = [CounterView]()
     // 카운터 뷰에 추가할 텍스트 
     var dailyCounterViewTextArray = [UILabel]()
@@ -26,48 +25,51 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     // 뷰 전체 높이 길이
     let screenHeight = UIScreen.main.bounds.size.height
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         requestHealthKitAuthorization()
         
-        
-        
+
         for _ in 0...6 {
-            subScrollViewArray.append(UIScrollView())
             dailyCounterViewArray.append(CounterView())
             dailyCounterViewTextArray.append(UILabel())
         }
         
+        mainScrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight / 2)
+        
         graphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 , width: self.view.frame.width, height: self.view.frame.height / 2)
-        graphView.backgroundColor = UIColor.blue
-            
-        mainScrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight / 2 )
+        graphView.backgroundColor = UIColor.clear
     
         for i in 0...6 {
-            subScrollViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 0 ,width: screenWidth ,height: screenHeight / 2)
+            dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 0 ,width: screenWidth ,height: screenHeight / 2)
+            dailyCounterViewArray[i].backgroundColor = UIColor.clear
+        }
+        
+        for i in 0...6 {
+            dailyCounterViewTextArray[i].frame = CGRect(x: screenWidth / 2 - 30 , y: 0, width:screenWidth, height:screenHeight/2 )
+
+            dailyCounterViewTextArray[i].font = dailyCounterViewTextArray[i].font.withSize(30)
         }
         
         for i in 0...6{
-            dailyCounterViewArray[i].frame = CGRect(x:0, y: 0, width:screenWidth, height:screenHeight/2 )
-            subScrollViewArray[i].addSubview(dailyCounterViewArray[i])
-            mainScrollView.addSubview(subScrollViewArray[i])
-            dailyCounterViewArray[i].backgroundColor = UIColor.clear
             dailyCounterViewArray[i].addSubview(dailyCounterViewTextArray[i])
-            
-            
         }
-
+    
+        for i in 0...6{
+            mainScrollView.addSubview(dailyCounterViewArray[i])
+        }
+        
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
+        
+        
     
         self.view.addSubview(mainScrollView)
-        
         self.view.addSubview(graphView)
+        
         self.mainScrollView.delegate = self
         
         //로그인 사용자의 정보 가져오기
@@ -90,11 +92,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         }
         
     }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width: CGFloat = self.mainScrollView.frame.size.width
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
-//        self.graphView.changeColor(value: page)
-//        self.graphView.setNeedsDisplay()
+
         
     }
 }
@@ -136,12 +138,10 @@ private extension MainViewController {
             
             DispatchQueue.main.async {
                 
+                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
-                //self.graphView.graphValues[indexOfDay] = CGFloat(steps)
-                
-                self.dailyCounterViewTextArray[indexOfDay].frame = CGRect(x: self.dailyCounterViewArray[indexOfDay].center.x - 20 ,y: self.dailyCounterViewArray[indexOfDay].center.y - 10 ,width: 200 ,height: 25)
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
-                self.dailyCounterViewTextArray[indexOfDay].font = self.dailyCounterViewTextArray[indexOfDay].font.withSize(30)
+                
                 self.graphView.setNeedsDisplay()
                 self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
             }
