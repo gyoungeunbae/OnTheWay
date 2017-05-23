@@ -1,11 +1,3 @@
-//
-//  RegisterViewController.swift
-//  OnTheWayMain
-//
-//  Created by lee on 2017. 4. 26..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//ster
-
 import UIKit
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
@@ -16,28 +8,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var confirmPwdLabel: UILabel!
     @IBOutlet weak var pwdStrengthLabel: UILabel!
-
     //TextField모음
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var confirmPwdTextFiled: UITextField!
     @IBOutlet weak var userNameTextFiled: UITextField!
     @IBOutlet weak var pwdTextFiled: UITextField!
 
+    
     var register = RegisterManager()
     var serverManager = ServerManager()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
-        
-        self.dismiss(animated: true, completion: {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController!.present(loginVC, animated: true, completion: nil)
-        })
-
-        
+       
         self.emailTextField.delegate = self
         self.confirmPwdTextFiled.delegate = self
         self.userNameTextFiled.delegate = self
@@ -46,6 +29,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
         //키보드 올라 올라가고 내려갈 때 상태 확인
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
@@ -73,26 +57,41 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     //TextField에서 리턴키를 눌렀을 때의 액션
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
 
+        
+        
         if(textField.isEqual(self.userNameTextFiled)) {
+            
             self.emailTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
+            
         } else if(textField.isEqual(self.emailTextField)) {
+            
             if((emailTextField.text?.characters.count)! < 1 || register.isValidEmailAddress(emailAddressString: emailTextField.text!) == false) {
                 emailLabel.text = "이메일을 적어주세요"
+                
             } else {
+                
                 emailLabel.text = ""
             }
             self.pwdTextFiled.becomeFirstResponder()
+            
         } else if(textField.isEqual(self.pwdTextFiled)) {
+            
             self.checkPwdStrength()
             self.confirmPwdTextFiled.becomeFirstResponder()
+            
         } else if(textField.isEqual(self.confirmPwdTextFiled)) {
+            
             if((confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == false) {
                 confirmPwdLabel.text = "불일치"
+                
             } else {
+                
                 confirmPwdLabel.text = ""
+                
             }
             if((userNameTextFiled.text?.characters.count)! > 0 && register.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
                 self.present(mainVC, animated: true, completion: nil)
@@ -104,7 +103,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     //패스워드 강도 체크
     func checkPwdStrength() {
-        let checkedValue = register.isValidPwd(pwdString: pwdTextFiled.text!)
+        let checkedValue = register.isValidPassword(passwordString: pwdTextFiled.text!)
         switch(checkedValue) {
         case 1:
             pwdStrengthLabel.text = "강함"

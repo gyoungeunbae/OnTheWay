@@ -5,7 +5,6 @@ import UIKit
 class GraphView: UIView {
     var count: CGFloat = 0.0
     var graphValues: Array<CGFloat> = [8000,8000,8000,8000,8000,8000,8000]
-    var colors: Array<CGColor> = [UIColor.red.cgColor,UIColor.orange.cgColor,UIColor.yellow.cgColor,UIColor.green.cgColor,UIColor.blue.cgColor,UIColor.gray.cgColor,UIColor.purple.cgColor]
     
     override func draw(_ rect: CGRect) {
         var x = 30
@@ -29,19 +28,23 @@ class GraphView: UIView {
         context?.setLineWidth(4.0)
         context?.setStrokeColor(UIColor.black.cgColor)
         
-        for value in graphValues {
+        for index in 0...6 {
 
-            let rectangle = CGRect(x: x ,y: Int(bounds.size.height * 0.8),width: 25,height: Int(-value * 0.01))
-            print(x)
+            let rectangle = CGRect(x: x + (50 * index) ,y: Int(bounds.size.height * 0.8),width: 25,height: Int(-graphValues[index] * 0.01))
 
             context?.addRect(rectangle)
             
             context?.strokePath()
             
-            context?.setFillColor(UIColor.red.cgColor)
-            context?.fill(rectangle)
+            if (graphValues[index] >= 10000) {
+                context?.setFillColor(UIColor.green.cgColor)
+                context?.fill(rectangle)
+            } else {
+                context?.setFillColor(UIColor.yellow.cgColor)
+                context?.fill(rectangle)
+
+            }
             
-            x += 50
         }
     }
 }
