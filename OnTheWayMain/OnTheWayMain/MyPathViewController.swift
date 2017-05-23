@@ -107,6 +107,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
         guard let testLatitude: Double = locationManager.location?.coordinate.latitude
             else {
                 return
+
         }
         guard let testLongitude: Double = locationManager.location?.coordinate.longitude
             else {
