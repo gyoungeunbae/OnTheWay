@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dRM-Qe-jyq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dRM-Qe-jyq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -62,7 +62,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="jGa-Ad-SUH" kind="show" id="X4J-7Z-4La"/>
+                                    <segue destination="uCE-6h-K4s" kind="show" id="dR8-Fy-YQ9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -76,13 +76,15 @@
             </objects>
             <point key="canvasLocation" x="740" y="133.5832083958021"/>
         </scene>
-        <!--sharephotoVC-->
-        <scene sceneID="deh-Vr-bvN">
+        <!--sharenaviVC-->
+        <scene sceneID="3xI-cG-jNs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PEJ-8A-XCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardIdentifier="sharephotoVC" storyboardName="SharePhoto" referencedIdentifier="sharephotoVC" id="jGa-Ad-SUH" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="sharenaviVC" storyboardName="SharePhoto" referencedIdentifier="sharenaviVC" id="uCE-6h-K4s" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="56j-eP-u5b"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFm-gQ-RDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1240" y="524"/>
+            <point key="canvasLocation" x="1311" y="467"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="IAK-10-3YK">
