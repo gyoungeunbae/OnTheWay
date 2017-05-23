@@ -8,7 +8,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var walkRecordLabel: UILabel!
     
-    @IBOutlet weak var goal: UILabel!
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
         
@@ -79,7 +78,6 @@ class MainViewController: UIViewController {
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
-        self.goal.text = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
         self.view.addSubview(mainScrollView)
         
         self.view.addSubview(graphView)

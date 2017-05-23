@@ -12,12 +12,19 @@ import RealmSwift
 import Kingfisher
 import UserNotifications
 import HealthKit
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     var serverManager = ServerManager()
+    var locationManager = CLLocationManager()
+    var backgroundUpdateTask: UIBackgroundTaskIdentifier!
+    var bgtimer = Timer()
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    var current_time = NSDate().timeIntervalSince1970
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -151,8 +158,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        self.doBackgroundTask()
+    }
+    
+    func doBackgroundTask() {
+        
+        DispatchQueue.main.async {
+            
+            self.beginBackgroundUpdateTask()
+            
+            self.StartupdateLocation()
+            
+            self.bgtimer = Timer.scheduledTimer(timeInterval: 1*60, target: self, selector: #selector(AppDelegate.bgtimer(_:)), userInfo: nil, repeats: true)
+            RunLoop.current.add(self.bgtimer, forMode: RunLoopMode.defaultRunLoopMode)
+            RunLoop.current.run()
+            
+            self.endBackgroundUpdateTask()
+            
+        }  
+    }
+    
+    func beginBackgroundUpdateTask() {
+        self.backgroundUpdateTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+            self.endBackgroundUpdateTask()
+        })
+    }
+    
+    func endBackgroundUpdateTask() {
+        UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
+        self.backgroundUpdateTask = UIBackgroundTaskInvalid
+    }
+    
+    func StartupdateLocation() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.requestAlwaysAuthorization()
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while requesting new coordinates")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        
+        self.latitude = locValue.latitude
+        self.longitude = locValue.longitude
+        
+        print("New Coordinates: ")
+        print(self.latitude)
+        print(self.longitude)
+    }
+    
+    func bgtimer(_ timer:Timer!){
+        self.updateLocation()
+    }
+    
+    func updateLocation() {
+        self.locationManager.startUpdatingLocation()
+        self.locationManager.stopUpdatingLocation()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
