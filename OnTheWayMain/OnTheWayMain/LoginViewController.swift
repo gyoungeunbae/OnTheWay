@@ -45,13 +45,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.present(tabBarVC, animated: true, completion: nil)
         }
 
-//        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
-//        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
-//        if ((FBSDKAccessToken.current()) != nil) {
-//            self.present(tabBarVC, animated: false, completion: nil)
-//            getFacebookUserInfo()
-//        }
-
     }
 
     func keyboardUP(notification: Notification) {

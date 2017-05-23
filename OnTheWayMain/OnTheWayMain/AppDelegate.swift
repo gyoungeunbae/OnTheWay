@@ -168,7 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             self.beginBackgroundUpdateTask()
             
             self.StartupdateLocation()
-            
+
             self.bgtimer = Timer.scheduledTimer(timeInterval: 1*60, target: self, selector: #selector(AppDelegate.bgtimer(_:)), userInfo: nil, repeats: true)
             RunLoop.current.add(self.bgtimer, forMode: RunLoopMode.defaultRunLoopMode)
             RunLoop.current.run()
@@ -217,6 +217,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func bgtimer(_ timer:Timer!){
         self.updateLocation()
+        if UIApplication.shared.backgroundTimeRemaining < 60 {
+            locationManager.stopUpdatingLocation()
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func updateLocation() {
