@@ -12,19 +12,14 @@ import RealmSwift
 import Kingfisher
 import UserNotifications
 import HealthKit
-import CoreLocation
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var serverManager = ServerManager()
-    var locationManager = CLLocationManager()
-    var backgroundUpdateTask: UIBackgroundTaskIdentifier!
-    var bgtimer = Timer()
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
-    var current_time = NSDate().timeIntervalSince1970
+    var calenderManager = CalenderManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -102,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func dailyStepQuery(indexOfDay: Int) {
         
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
-        let weekArr = CalenderManager.sharedInstance.getLastWeekArr()
+        let weekArr = calenderManager.getLastWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
         
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { _, results, _ in
@@ -158,75 +153,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        self.doBackgroundTask()
-    }
-    
-    func doBackgroundTask() {
         
-        DispatchQueue.main.async {
-            
-            self.beginBackgroundUpdateTask()
-            
-            self.StartupdateLocation()
-
-            self.bgtimer = Timer.scheduledTimer(timeInterval: 1*60, target: self, selector: #selector(AppDelegate.bgtimer(_:)), userInfo: nil, repeats: true)
-            RunLoop.current.add(self.bgtimer, forMode: RunLoopMode.defaultRunLoopMode)
-            RunLoop.current.run()
-            
-            self.endBackgroundUpdateTask()
-            
-        }  
     }
     
-    func beginBackgroundUpdateTask() {
-        self.backgroundUpdateTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
-            self.endBackgroundUpdateTask()
-        })
-    }
     
-    func endBackgroundUpdateTask() {
-        UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
-        self.backgroundUpdateTask = UIBackgroundTaskInvalid
-    }
-    
-    func StartupdateLocation() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.requestAlwaysAuthorization()
-        locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.startUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error while requesting new coordinates")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        
-        self.latitude = locValue.latitude
-        self.longitude = locValue.longitude
-        
-        print("New Coordinates: ")
-        print(self.latitude)
-        print(self.longitude)
-    }
-    
-    func bgtimer(_ timer:Timer!){
-        self.updateLocation()
-        if UIApplication.shared.backgroundTimeRemaining < 60 {
-            locationManager.stopUpdatingLocation()
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    func updateLocation() {
-        self.locationManager.startUpdatingLocation()
-        self.locationManager.stopUpdatingLocation()
-    }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.

@@ -9,15 +9,6 @@
 import Foundation
 import RealmSwift
 
-class LocationList: Object {
-    dynamic var email = ""
-    var items = List<Location>()
-
-//    override static func primaryKey() -> String? {
-//        return "email"
-//    }
-}
-
 class Location: Object {
     dynamic var date = String()
     dynamic var latitude = Double()
