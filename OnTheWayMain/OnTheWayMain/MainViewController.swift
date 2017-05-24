@@ -122,6 +122,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    //settingView에서 목표걸음수 변경시 counterView 다시 그려주기
     func draw() {
         for counterView in self.dailyCounterViewArray {
             counterView.setNeedsDisplay()

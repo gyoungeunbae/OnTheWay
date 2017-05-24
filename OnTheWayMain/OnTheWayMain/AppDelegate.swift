@@ -21,7 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
     
+    
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        print(UIApplication.shared.backgroundRefreshStatus == .available)
         
         //걸음수 요청
         requestHealthKitAuthorization()
@@ -163,8 +167,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        //FBSDKAppEvents.activateApp()
+        
     }
+    
+    
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -176,6 +182,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return handled
     }
-
+    
+        
 
 }

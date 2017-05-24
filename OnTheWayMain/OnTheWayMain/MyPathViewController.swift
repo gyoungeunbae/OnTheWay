@@ -9,29 +9,31 @@
 import UIKit
 import Mapbox
 import RealmSwift
+import CoreLocation
+import CoreMotion
 
 class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDelegate {
     var calenderManager = CalenderManager()
     var realm: Realm!
     var locations = [MGLPointAnnotation]()
+    var motionActivityManager = CMMotionActivityManager()
     var today = String()
-    
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.delegate = self
-        manager.requestAlwaysAuthorization()
+        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         manager.distanceFilter = 5.0
+        manager.delegate = self
         return manager
     }()
+    
     
     @IBOutlet weak var mapView: MGLMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.startUpdatingLocation()
         mapView.userTrackingMode = .follow
         mapView.delegate = self
-        locationManager.startUpdatingLocation()
     }
     
     func drawPolyline() {
@@ -42,17 +44,14 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
         
         //가져온 좌표를 배열에 넣기
         var coordinates = [CLLocationCoordinate2D]()
-        
         if results.count != 0 {
             print("today = \(self.today)")
-            print("result is not nil")
             for index in 0..<results.count {
                 var coordinate = CLLocationCoordinate2D()
                 coordinate.latitude = results[index].latitude
                 coordinate.longitude = results[index].longtitude
                 coordinates.append(coordinate)
             }
-            
             let line = MGLPolyline(coordinates: &coordinates, count: UInt(coordinates.count))
             
             //선 그리기
@@ -99,8 +98,8 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
         return nil
     }
     
+    //location manager에서 정보 받기
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         guard let testLatitude: Double = locationManager.location?.coordinate.latitude
             else {
                 return
@@ -109,30 +108,39 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
             else {
                 return
         }
-        
-        //let point = MGLPointAnnotation()
-        //point.coordinate = CLLocationCoordinate2D(latitude: testLatitude, longitude: testLongitude)
-        
-        let realm = try? Realm() // Create realm pointing to default file
-        realm?.beginWrite()
-        var location = Location()
-        location.latitude = testLatitude
-        location.date = calenderManager.getKoreanStr(todayDate: Date())
-        location.longtitude = testLongitude
-        
-        realm?.add(location)
-        try! realm?.commitWrite()
-        self.drawPolyline()
-        
-        if UIApplication.shared.applicationState == .background || UIApplication.shared.applicationState == .active {
-            locationManager.startUpdatingLocation()
-            print("location manager effective")
-        } else {
-            print("App is backgrounded. New location is \(locations.last)")
+        print("check location at \(Date())")
+
+        if CMMotionActivityManager.isActivityAvailable() {
+            motionActivityManager.startActivityUpdates(to: OperationQueue.current!, withHandler: { activityData in
+                if activityData!.walking == true || activityData!.running == true {
+                    print("save location to realm at \(Date())")
+                    
+                    let realm = try? Realm() // Create realm pointing to default file
+                    realm?.beginWrite()
+                    let location = Location()
+                    location.latitude = testLatitude
+                    location.longtitude = testLongitude
+                    location.date = self.calenderManager.getKoreanStr(todayDate: Date())
+                    
+                    realm?.add(location)
+                    try! realm?.commitWrite()
+                    
+                    if UIApplication.shared.applicationState == .active {
+                        print("app is active")
+                        self.drawPolyline()
+                    } else {
+                        print("app is not active")
+                    }
+
+                
+                }
+            })
         }
-        
-        
+
     }
-    
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("locationmanager error")
+    }
     
 }
