@@ -209,7 +209,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             serverManager.registerReq(email: email!, password: password!, username: username!, callback: { (isUser) in
                 
                 if isUser == true {
-                    
+
+                    let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+                    let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+
                     self.present(tabBarVC, animated: true, completion: nil)
                     
                 } else {

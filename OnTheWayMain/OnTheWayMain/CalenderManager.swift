@@ -1,12 +1,6 @@
 import Foundation
 
-class CalenderManager {
-    class var sharedInstance: CalenderManager {
-        struct Singleton {
-            static let instance = CalenderManager()
-        }
-        return Singleton.instance
-    }
+struct CalenderManager {
 
     var myCalender = Calendar.current   //그레고리안 달력
     var myDate = Date() //현재 날짜
