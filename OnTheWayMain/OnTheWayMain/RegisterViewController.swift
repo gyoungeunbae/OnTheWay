@@ -1,7 +1,6 @@
 import UIKit
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
-   
     
     @IBOutlet weak var passwordColorLabel: UILabel!
 

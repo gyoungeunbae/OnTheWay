@@ -87,7 +87,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.isPagingEnabled = true
 
 
-
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
         
 
@@ -123,7 +122,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         let width: CGFloat = self.mainScrollView.frame.size.width
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
     }
-    
 
     func draw() {
         for counterView in self.dailyCounterViewArray {

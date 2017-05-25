@@ -13,28 +13,32 @@ import CoreLocation
 import CoreMotion
 
 class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationManagerDelegate {
+    
+    @IBOutlet weak var mapView: MGLMapView!
+    
     var calenderManager = CalenderManager()
     var realm: Realm!
     var motionActivityManager = CMMotionActivityManager()
     var today = String()
     
     @IBAction func traceButton(_ sender: UISwitch) {
+        
         if sender.isOn {
             locationManager.startUpdatingLocation()
+            
         } else {
             locationManager.stopUpdatingLocation()
         }
-        
     }
+    
+    
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         manager.delegate = self
         manager.requestAlwaysAuthorization()
         return manager
     }()
-    
-    @IBOutlet weak var mapView: MGLMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,8 +67,6 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
                 self.mapView.addAnnotations(pointAnnotations)
                 print("draw")
             })
-            
-            
         }
     }
     
@@ -105,6 +107,8 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
 //        return nil
 //    }
     
+    
+    
     //location manager에서 정보 받기
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -112,6 +116,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
             else {
                 return
         }
+        
         guard let testLongitude: Double = locationManager.location?.coordinate.longitude
             else {
                 return
@@ -130,6 +135,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
                     locationRealm.date = self.calenderManager.getKoreanStr(todayDate: Date())
                     realm?.add(locationRealm)
                     try! realm?.commitWrite()
+                    
                     print("save into realm")
                     
                     if UIApplication.shared.applicationState == .active {
