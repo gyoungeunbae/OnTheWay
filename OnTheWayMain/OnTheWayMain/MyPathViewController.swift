@@ -150,4 +150,5 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
         print("locationmanager error")
     }
 
+
 }

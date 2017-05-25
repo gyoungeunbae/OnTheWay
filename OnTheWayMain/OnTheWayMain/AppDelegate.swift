@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
         //걸음수 요청
         requestHealthKitAuthorization()
-        
+      
+    
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().barTintColor = UIColor.clear
         UINavigationBar.appearance().tintColor = UIColor.white
@@ -51,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         UITabBar.appearance().tintColor = UIColor.black
-
+        
         //세션 유지
 
         serverManager.getSession { (user) in
@@ -121,8 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         HealthKitManager.sharedInstance.healthStore?.execute(query)
         
     }
-
-    
+ 
     func removeNotification() {
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
@@ -150,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
     
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

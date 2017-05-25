@@ -51,7 +51,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         }
         
         print(weeklyStepsDic)
-    
+
+        
         for _ in 0...6 {
             dailyCounterViewArray.append(CounterView())
             dailyCounterViewTextArray.append(UILabel())
@@ -86,6 +87,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.isPagingEnabled = true
 
 
+
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
         
 
@@ -117,12 +119,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+<<<<<<< HEAD
+=======
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width: CGFloat = self.mainScrollView.frame.size.width
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
     }
     
 
+>>>>>>> develop
     func draw() {
         for counterView in self.dailyCounterViewArray {
             counterView.setNeedsDisplay()

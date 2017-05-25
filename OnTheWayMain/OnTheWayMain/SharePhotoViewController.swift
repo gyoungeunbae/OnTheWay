@@ -19,21 +19,32 @@ class SharePhotoViewController: UIViewController {
     var cameraPreviewLayer : AVCaptureVideoPreviewLayer?
     var cameraCaptureOutput = AVCapturePhotoOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeCapturreSession()
         self.square.layer.borderWidth = 1
         self.square.layer.borderColor = UIColor.white.cgColor
         cameraView.addSubview(square)
-          // Do any additional setup after loading the view.
+        
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80))
+        self.view.addSubview(navBar);
+        let navItem = UINavigationItem(title: "");
+        let backItem = UIBarButtonItem(title: "< Back", style: .plain, target: self, action: #selector(backAction))
+        navItem.leftBarButtonItem = backItem
+        navBar.setItems([navItem], animated: false);
+        
     }
+    func backAction(){
+        navigationController?.popViewController(animated: true)
+    }
+    
     func displayCapturPhoto(capturePhoto: UIImage) {
         let sharePhotoPreViewController = storyboard?.instantiateViewController(withIdentifier: "SharePhotoPreVC")as! SharePhotoPreViewController
         sharePhotoPreViewController.capturedImage = capturePhoto
-        navigationController?.pushViewController(sharePhotoPreViewController, animated: true)
+        self.present(sharePhotoPreViewController, animated: true)
     }
     
+
     @IBAction func takePhoto(_ sender: Any) {
         takePicture()
     }
@@ -60,6 +71,8 @@ class SharePhotoViewController: UIViewController {
         session.startRunning()
         
     }
+    
+        
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off
