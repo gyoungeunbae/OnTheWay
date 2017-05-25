@@ -14,7 +14,7 @@ class SharePhotoPreViewController: UIViewController {
     @IBOutlet weak var square: UIView!
     override public func viewDidLoad() {
         super.viewDidLoad()
-        capturedImage.
+ //       capturedImage.
         self.square.layer.borderWidth = 1.0
         self.square.layer.borderColor = UIColor.white.cgColor
         

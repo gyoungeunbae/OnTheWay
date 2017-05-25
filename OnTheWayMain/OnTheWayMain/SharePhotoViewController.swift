@@ -30,12 +30,17 @@ class SharePhotoViewController: UIViewController {
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "");
         let backItem = UIBarButtonItem(title: "< Back", style: .plain, target: self, action: #selector(backAction))
+        let galleryItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(gotoLibrary))
         navItem.leftBarButtonItem = backItem
+        navItem.rightBarButtonItem = galleryItem
         navBar.setItems([navItem], animated: false);
-        
+    }
+    func gotoLibrary() {
+    
     }
     func backAction(){
-        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     func displayCapturPhoto(capturePhoto: UIImage) {

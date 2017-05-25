@@ -119,15 +119,12 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-<<<<<<< HEAD
-=======
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width: CGFloat = self.mainScrollView.frame.size.width
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
     }
     
 
->>>>>>> develop
     func draw() {
         for counterView in self.dailyCounterViewArray {
             counterView.setNeedsDisplay()
