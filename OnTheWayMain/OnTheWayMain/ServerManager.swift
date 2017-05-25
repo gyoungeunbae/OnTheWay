@@ -194,5 +194,28 @@ struct ServerManager {
     
     }*/
     
+    func coordinatesUpdate(userId: String, latitude: Double, longitude: Double) {
+        
+        let body: [String : Any] = [
+            "coordinates": [
+                "\(longitude)",
+                "\(latitude)"
+            ]
+        ]
+
+        
+        // Fetch Request
+        Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                if (response.result.error == nil) {
+                    debugPrint("HTTP Response Body: \(response.data)")
+                }
+                else {
+                    debugPrint("HTTP Request failed: \(response.result.error)")
+                }
+        }
+    
+    }
 
 }

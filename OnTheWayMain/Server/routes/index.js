@@ -88,6 +88,7 @@ router.route('/register')
             newUser.password = req.body.password;
             newUser.username = req.body.username;
             newUser.image = "image";
+            newUser.coordinates = [1, -1];
       
             newUser.save(function(err) {
                 if (err) {
