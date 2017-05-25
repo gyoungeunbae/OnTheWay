@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="v3d-TL-axB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="m2A-kv-XUl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -40,13 +40,25 @@
                                     <constraint firstAttribute="height" constant="250" id="vT3-Y5-d5n"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ONTHEWAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkL-hk-5T6">
+                                <rect key="frame" x="62" y="183" width="250" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="mk1-fL-7Z6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="SkL-hk-5T6" firstAttribute="centerX" secondItem="GuE-uE-esK" secondAttribute="centerX" id="0c7-62-KAF"/>
                             <constraint firstItem="Dho-q2-7bX" firstAttribute="top" secondItem="xCz-y5-Jbv" secondAttribute="bottom" constant="40" id="EdB-Rb-Rjx"/>
+                            <constraint firstItem="SkL-hk-5T6" firstAttribute="bottom" secondItem="Tf5-TA-dh3" secondAttribute="top" id="Iof-oN-yEA"/>
                             <constraint firstItem="Tf5-TA-dh3" firstAttribute="centerX" secondItem="GuE-uE-esK" secondAttribute="centerX" id="Qh3-GL-Gj4"/>
                             <constraint firstItem="Tf5-TA-dh3" firstAttribute="centerY" secondItem="GuE-uE-esK" secondAttribute="centerY" id="Zf0-YE-ZYv"/>
                             <constraint firstItem="xCz-y5-Jbv" firstAttribute="centerX" secondItem="GuE-uE-esK" secondAttribute="centerX" id="noi-92-CJ2"/>
+                            <constraint firstItem="SkL-hk-5T6" firstAttribute="width" secondItem="Tf5-TA-dh3" secondAttribute="width" id="obA-Js-Ivv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="p4M-m6-gM8"/>
@@ -57,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDM-uA-xkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="572" y="110"/>
+            <point key="canvasLocation" x="2450.4000000000001" y="109.29535232383809"/>
         </scene>
         <!--Share Photo Pre View Controller-->
         <scene sceneID="UJs-J5-5Z4">
@@ -113,25 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFU-Bk-HK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="110"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="MqV-li-a6y">
-            <objects>
-                <navigationController storyboardIdentifier="sharenaviVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="v3d-TL-axB" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0ZM-PV-ujR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="m2A-kv-XUl" kind="relationship" relationship="rootViewController" id="bf1-bj-KNP"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oAx-lN-e4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-118" y="111"/>
+            <point key="canvasLocation" x="3151.1999999999998" y="109.29535232383809"/>
         </scene>
     </scenes>
     <resources>

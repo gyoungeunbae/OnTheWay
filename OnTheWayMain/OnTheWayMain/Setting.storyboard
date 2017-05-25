@@ -12,9 +12,7 @@
         <!--Setting View Controller-->
         <scene sceneID="93p-1E-Oqs">
             <objects>
-
                 <viewController storyboardIdentifier="settingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GJF-QU-Brm" customClass="SettingViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
-
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="anG-TY-AnX"/>
                         <viewControllerLayoutGuide type="bottom" id="pWo-79-d4W"/>
@@ -86,6 +84,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="IF7-ws-LXs" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="PLi-HW-kl1">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
