@@ -33,19 +33,23 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         DispatchQueue.main.async {
             
             for indexOfDay in self.weeklyStepsDic.keys {
+                
                 let steps:Int = self.weeklyStepsDic[indexOfDay]!
+                
+                StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
+                
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.graphView.graphValues[indexOfDay] = CGFloat(steps)
-                StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
+                
                 self.graphView.graphValues[indexOfDay] = CGFloat(steps)
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
                 
                 self.graphView.setNeedsDisplay()
                 self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
-                
             }
         }
+        
         print(weeklyStepsDic)
 
         
@@ -81,11 +85,14 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
-      //  self.goal.text = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
+
+
+
+        mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
+        
+
         self.view.addSubview(mainScrollView)
 
-        
-    
         self.view.addSubview(mainScrollView)
         self.view.addSubview(graphView)
         
@@ -112,6 +119,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+<<<<<<< HEAD
+=======
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let width: CGFloat = self.mainScrollView.frame.size.width
+        let page: Int = Int(self.mainScrollView.contentOffset.x / width)
+    }
+    
+
+>>>>>>> develop
     func draw() {
         for counterView in self.dailyCounterViewArray {
             counterView.setNeedsDisplay()

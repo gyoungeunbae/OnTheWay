@@ -43,6 +43,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editPasswordTextFieldAction:" destination="HQ6-mx-d4y" eventType="editingChanged" id="plR-VO-erY"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="st7-ss-EDn">
                                 <rect key="frame" x="58" y="440" width="258" height="30"/>
@@ -58,36 +61,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yl0-vy-iD8">
-                                <rect key="frame" x="58" y="338" width="128" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNO-Iy-1XS">
-                                <rect key="frame" x="58" y="478" width="258" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Zu-yA-CgF">
-                                <rect key="frame" x="58" y="268" width="162" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqj-do-GpT">
-                                <rect key="frame" x="58" y="411" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkN-rV-lcV">
-                                <rect key="frame" x="69" y="411" width="238" height="21"/>
+                                <rect key="frame" x="58" y="411" width="33" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -113,15 +88,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="edA-pa-d42"/>
                     <connections>
-                        <outlet property="checkPwdLabel" destination="rkN-rV-lcV" id="Cdi-7z-6ou"/>
-                        <outlet property="confirmPwdLabel" destination="bNO-Iy-1XS" id="PZR-1v-3ak"/>
-                        <outlet property="confirmPwdTextFiled" destination="st7-ss-EDn" id="dFW-Dl-Bmf"/>
-                        <outlet property="emailLabel" destination="Yl0-vy-iD8" id="6H2-Qn-Y2C"/>
+                        <outlet property="confirmPasswordTextFiled" destination="st7-ss-EDn" id="BMS-DL-vET"/>
                         <outlet property="emailTextField" destination="FkN-Vu-xmJ" id="JxG-Bx-8O9"/>
-                        <outlet property="pwdColorLabel" destination="gqj-do-GpT" id="Lak-Vf-x4w"/>
-                        <outlet property="pwdStrengthLabel" destination="rkN-rV-lcV" id="33z-1R-Es0"/>
-                        <outlet property="pwdTextFiled" destination="pF6-eV-ONg" id="gXW-5j-6Ww"/>
-                        <outlet property="userNameLabel" destination="5Zu-yA-CgF" id="wcJ-rS-kW4"/>
+                        <outlet property="passwordColorLabel" destination="gqj-do-GpT" id="X2c-73-zUo"/>
+                        <outlet property="passwordTextFiled" destination="pF6-eV-ONg" id="gpB-NQ-R72"/>
                         <outlet property="userNameTextFiled" destination="THK-aG-ccr" id="73J-IN-EFH"/>
                     </connections>
                 </viewController>

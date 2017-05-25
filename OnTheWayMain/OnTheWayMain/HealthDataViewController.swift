@@ -2,8 +2,8 @@ import UIKit
 import HealthKit
 
 class HealthDataViewController: UIViewController {
+    var calenderManager = CalenderManager()
     @IBOutlet weak var PieView: PieView!
-    
     @IBOutlet weak var sixthDayLabel: UILabel!
     @IBOutlet weak var fifthDayLabel: UILabel!
     @IBOutlet weak var fourthDayLabel: UILabel!
@@ -59,9 +59,9 @@ private extension HealthDataViewController {
         
         let type = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
         
-        let weekArr = CalenderManager.sharedInstance.getLastWeekArr()
+        let weekArr = calenderManager.getLastWeekArr()
         let predicate = HKQuery.predicateForSamples(withStart: weekArr[indexOfDay], end: weekArr[indexOfDay].addingTimeInterval(60*60*24) as Date)
-        let getSimpleDay = CalenderManager.sharedInstance.getSimpleStr(todayDate: weekArr[indexOfDay])
+        let getSimpleDay = calenderManager.getSimpleStr(todayDate: weekArr[indexOfDay])
         
         
         let query = HKSampleQuery(sampleType: type!, predicate: predicate, limit: 0, sortDescriptors: nil) { _, results, _ in

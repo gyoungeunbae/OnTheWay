@@ -53,6 +53,8 @@
 	<string>Read</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>follow your location</string>
+	<key>NSMotionUsageDescription</key>
+	<string>detect your motion type</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>{human-readable reason for photo access}</string>
 	<key>UIBackgroundModes</key>

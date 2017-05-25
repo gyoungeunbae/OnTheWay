@@ -173,6 +173,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+
                         <outlet property="backgroundImageView" destination="PJi-ah-yn6" id="Kc8-1V-aBQ"/>
 
                         <outlet property="messageLabel" destination="hgH-Pm-LPD" id="Hb7-if-gm8"/>
