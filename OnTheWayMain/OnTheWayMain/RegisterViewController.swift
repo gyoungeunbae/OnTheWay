@@ -1,10 +1,10 @@
 import UIKit
+import RealmSwift
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
    
     
     @IBOutlet weak var passwordColorLabel: UILabel!
-
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextFiled: UITextField!
     @IBOutlet weak var userNameTextFiled: UITextField!
@@ -12,6 +12,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     var register = RegisterManager()
     var serverManager = ServerManager()
+    var settingList = SettingList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -212,9 +213,29 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
                     let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
                     let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
-
                     self.present(tabBarVC, animated: true, completion: nil)
                     
+                    self.serverManager.loginReq(email: email!, password: password!) { (isUser) in
+                        if isUser == true {
+                            self.serverManager.getSession { (user) in
+            
+                            UserManager.sharedInstance.addUser(user)
+                            print("session is \(user)")
+        
+                            let realm = try! Realm()
+                            realm.beginWrite()
+                            var setting = Setting()
+                            setting.dailyGoal = "10000"
+                            setting.notification = "On"
+                            self.settingList.items.append(setting)
+                            self.settingList.email = user.email
+                            realm.add(setting)
+                            realm.add(self.settingList)
+                            try! realm.commitWrite()
+                            print("save setting into realm")
+                            }
+                        }
+                    }
                 } else {
                     
                     self.present(alert, animated: true, completion: nil)

@@ -23,11 +23,13 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func logoutButton(_ sender: Any) {
         serverManager.logout()
         print("logout")
+        
+        UserManager.sharedInstance.removeUser()
+        UserSettingManager.sharedInstance.removeSetting()
+        
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
         self.present(loginVC, animated: false, completion: nil)
-        UserManager.sharedInstance.removeUser()
-        UserSettingManager.sharedInstance.removeSetting()
     }
     
     @IBOutlet weak var settingTableView: UITableView!

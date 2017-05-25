@@ -170,23 +170,25 @@ struct ServerManager {
         }
     }
     
-    func coordinatesUpdate(userId: String, latitude: Double, longitude: Double ,completion: @escaping (User) -> Void) {
+    func coordinatesUpdate(userId: String, latitude: Double, longitude: Double) {
+        
         let body: [String : Any] = [
-            "coordinates": [latitude, longitude]
+            "coordinates": [
+                "\(longitude)",
+                "\(latitude)"
+            ]
         ]
+
         
         // Fetch Request
         Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
-                var user = User()
-                if let json = response.result.value as? [String:Any] {
-                    
-                    user = User(id: json["_id"] as! String, email: json["email"] as! String, password: json["password"] as! String, username: json["username"] as! String, image: json["image"] as! String)
-                    
-                    completion(user)
-                } else {
-                    print("no server connection.")
+                if (response.result.error == nil) {
+                    debugPrint("HTTP Response Body: \(response.data)")
+                }
+                else {
+                    debugPrint("HTTP Request failed: \(response.result.error)")
                 }
         }
     
