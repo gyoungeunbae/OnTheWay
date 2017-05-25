@@ -9,7 +9,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var walkRecordLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
     
-
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
         
@@ -50,6 +49,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
             }
         }
+        
         print(weeklyStepsDic)
     
         for _ in 0...6 {
@@ -85,11 +85,10 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
 
+
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
         
 
-        
-        
         self.view.addSubview(mainScrollView)
 
         self.view.addSubview(mainScrollView)
@@ -123,7 +122,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
     }
     
-    //체크필요
+
     func draw() {
         for counterView in self.dailyCounterViewArray {
             counterView.setNeedsDisplay()
