@@ -14,7 +14,7 @@ import UserNotifications
 import HealthKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
 
     var window: UIWindow?
     var serverManager = ServerManager()
