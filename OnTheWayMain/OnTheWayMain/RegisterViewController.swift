@@ -1,43 +1,39 @@
 import UIKit
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
-    //Label모음
-    @IBOutlet weak var pwdColorLabel: UILabel!
-    @IBOutlet weak var checkPwdLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var confirmPwdLabel: UILabel!
-    @IBOutlet weak var pwdStrengthLabel: UILabel!
-    //TextField모음
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var confirmPwdTextFiled: UITextField!
-    @IBOutlet weak var userNameTextFiled: UITextField!
-    @IBOutlet weak var pwdTextFiled: UITextField!
+   
+    
+    @IBOutlet weak var passwordColorLabel: UILabel!
 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextFiled: UITextField!
+    @IBOutlet weak var userNameTextFiled: UITextField!
+    @IBOutlet weak var passwordTextFiled: UITextField!
     
     var register = RegisterManager()
     var serverManager = ServerManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        self.emailTextField.delegate = self
-        self.confirmPwdTextFiled.delegate = self
-        self.userNameTextFiled.delegate = self
-        self.pwdTextFiled.delegate = self
-        self.userNameTextFiled.becomeFirstResponder() //텍스트필드에 포커스
-
-        //키보드 올라 올라가고 내려갈 때 상태 확인
+        
+        userNameTextFiled.delegate = self
+        emailTextField.delegate = self
+        confirmPasswordTextFiled.delegate = self
+        passwordTextFiled.delegate = self
+        
+        userNameTextFiled.becomeFirstResponder()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailTextField.endEditing(true)
-        confirmPwdTextFiled.endEditing(true)
+        confirmPasswordTextFiled.endEditing(true)
         userNameTextFiled.endEditing(true)
-        pwdTextFiled.endEditing(true)
+        passwordTextFiled.endEditing(true)
     }
 
     //키보드 올라오고 내려갈때 뷰 이동하는 func
@@ -54,148 +50,163 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    //TextField에서 리턴키를 눌렀을 때의 액션
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
-
+        let username = userNameTextFiled
+        let email = emailTextField
         
-        
-        if(textField.isEqual(self.userNameTextFiled)) {
-            
-            self.emailTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
-            
-        } else if(textField.isEqual(self.emailTextField)) {
-            
-            if((emailTextField.text?.characters.count)! < 1 || register.isValidEmailAddress(emailAddressString: emailTextField.text!) == false) {
-                emailLabel.text = "이메일을 적어주세요"
-                
-            } else {
-                
-                emailLabel.text = ""
-            }
-            self.pwdTextFiled.becomeFirstResponder()
-            
-        } else if(textField.isEqual(self.pwdTextFiled)) {
-            
-            self.checkPwdStrength()
-            self.confirmPwdTextFiled.becomeFirstResponder()
-            
-        } else if(textField.isEqual(self.confirmPwdTextFiled)) {
-            
-            if((confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == false) {
-                confirmPwdLabel.text = "불일치"
-                
-            } else {
-                
-                confirmPwdLabel.text = ""
-                
-            }
-            if((userNameTextFiled.text?.characters.count)! > 0 && register.isValidEmailAddress(emailAddressString: emailTextField.text!) == true && (confirmPwdTextFiled.text! as NSString).isEqual(to: pwdTextFiled.text!) == true && (pwdTextFiled.text?.characters.count)! > 7) {
-                self.present(mainVC, animated: true, completion: nil)
-            }
+        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
 
+        if(textField.isEqual(username)) {
+            
+            self.emailTextField.becomeFirstResponder()
+            
+        } else if(textField.isEqual(email)) {
+            
+            self.passwordTextFiled.becomeFirstResponder()
+            
+        } else if(textField.isEqual(self.passwordTextFiled)) {
+            
+            
+            self.confirmPasswordTextFiled.becomeFirstResponder()
+            
+        } else if(textField.isEqual(self.confirmPasswordTextFiled)) {
+            
+            if(checkRegisterCondition()) {
+                self.present(tabBarVC, animated: true, completion: nil)
+            }
         }
         return true
     }
-
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        if(textField.isEqual(userNameTextFiled)) {
+            
+            userNameTextFiled.text = ""
+            
+        } else if(textField.isEqual(emailTextField)) {
+            
+            emailTextField.text = ""
+            
+        } else if(textField.isEqual(passwordTextFiled)) {
+            
+            passwordTextFiled.text = ""
+            
+        } else if(textField.isEqual(confirmPasswordTextFiled)) {
+            
+            confirmPasswordTextFiled.text = ""
+        }
+        return true
+    }
+    
+    func checkRegisterCondition() -> Bool {
+        
+        let username = userNameTextFiled
+        let email = emailTextField
+        let password = passwordTextFiled
+        let confirmPassword = confirmPasswordTextFiled
+        
+        let checkValue = true
+        
+        if(!(register.checkLength((username?.text)!))) {
+            username?.placeholder = "유저네임을 입력하세요"
+            return false
+        }
+        
+        if(!(register.checkLength((email?.text)!))) {
+            email?.placeholder = "이메일을 입력하세요"
+            return false
+        }
+        
+        if(!(register.checkLength((password?.text)!))) {
+            password?.placeholder = "패스워드를 입력하세요 "
+            return false
+        }
+        
+        if(!(register.checkLength((confirmPassword?.text)!))) {
+            password?.placeholder = "패스워드를 입력하세요"
+            return false
+        }
+        
+        if(!(register.isValidEmailAddress((email?.text)!))) {
+            email?.text = ""
+            email?.placeholder = "이메일을 확인하세요"
+            return false
+        }
+        
+        if((password?.text?.characters.count)! < 8 || (password?.text?.characters.count)! > 12) {
+            password?.text = ""
+            password?.placeholder = "8자리 이상 12자리 이하"
+            return false
+        }
+        
+        if(!(confirmPassword?.text! as! NSString).isEqual(to: (password?.text)!)) {
+            confirmPassword?.text = ""
+            confirmPassword?.placeholder = "비밀번호가 다릅니다"
+            return false
+        }
+        
+        return checkValue
+    }
+    
+   
+    
     //패스워드 강도 체크
-    func checkPwdStrength() {
-        let checkedValue = register.isValidPassword(passwordString: pwdTextFiled.text!)
+    func checkPasswordStrength() {
+        let checkedValue = register.isValidPassword(passwordTextFiled.text!)
         switch(checkedValue) {
         case 1:
-            pwdStrengthLabel.text = "강함"
-            pwdColorLabel.backgroundColor = UIColor.green
-
+            passwordColorLabel.backgroundColor = UIColor.green
         case 2:
-            pwdStrengthLabel.text = "보통"
-            pwdColorLabel.backgroundColor = UIColor.yellow
-
+            passwordColorLabel.backgroundColor = UIColor.yellow
         case 3:
-            pwdStrengthLabel.text = "약함"
-            pwdColorLabel.backgroundColor = UIColor.red
-
-        case 4:
-            pwdStrengthLabel.text = "8자리 이상 비밀번호"
-            pwdColorLabel.backgroundColor = UIColor.red
-
+            passwordColorLabel.backgroundColor = UIColor.red
         default:
-            pwdStrengthLabel.text = ""
-            pwdColorLabel.backgroundColor = UIColor.white
+            passwordColorLabel.backgroundColor = UIColor.white
         }
     }
-
+    
+    @IBAction func editPasswordTextFieldAction(_ sender: Any) {
+        checkPasswordStrength()
+    }
+    
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-
+    
     @IBAction func RegisterButton(_ sender: Any) {
 
-        var username = userNameTextFiled.text
-        var email = emailTextField.text
-        var password = pwdTextFiled.text
-        var confirmPassword = confirmPwdTextFiled.text
-
-        if((username?.characters.count)! < 1 ) {
-            userNameLabel.text = "이름을 적어주세요"
-        } else {
-            userNameLabel.text = ""
-        }
-
-        if((email?.characters.count)! < 1 || register.isValidEmailAddress(emailAddressString: email!) == false) {
-            emailLabel.text = "이메일을 적어주세요"
-        } else {
-            emailLabel.text = ""
-        }
-
-        if((confirmPassword! as NSString).isEqual(to: password!) == false) {
-            confirmPwdLabel.text = "불일치"
-        } else {
-            confirmPwdLabel.text = ""
-        }
-
-        if((username?.characters.count)! > 0 && register.isValidEmailAddress(emailAddressString: email!) == true && (confirmPassword! as NSString).isEqual(to: password!) == true && (password?.characters.count)! > 7) {
-        }
-
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "mainVC")
+        let username = userNameTextFiled.text
+        let email = emailTextField.text
+        let password = passwordTextFiled.text
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+        
         let alert = UIAlertController(title: "Alert", message: "이미 가입된 이메일 입니다.", preferredStyle: UIAlertControllerStyle.alert)
-
+        
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
 
-        if((username?.characters.count)! < 1 ) {
-            userNameLabel.text = "이름을 적어주세요"
-        } else {
-            userNameLabel.text = ""
-        }
-
-        if((email?.characters.count)! < 1 || register.isValidEmailAddress(emailAddressString: email!) == false) {
-            emailLabel.text = "이메일을 적어주세요"
-        } else {
-            emailLabel.text = ""
-        }
-
-        if((confirmPassword! as NSString).isEqual(to: password!) == false) {
-            confirmPwdLabel.text = "불일치"
-        } else {
-            confirmPwdLabel.text = ""
-        }
-
-        if((username?.characters.count)! > 0 && register.isValidEmailAddress(emailAddressString: email!) == true && (confirmPassword! as NSString).isEqual(to: password!) == true && (password?.characters.count)! > 7) {
+        
+        
+       if(checkRegisterCondition()) {
+    
             serverManager.registerReq(email: email!, password: password!, username: username!, callback: { (isUser) in
-
+                
                 if isUser == true {
+
                     let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
                     let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+
                     self.present(tabBarVC, animated: true, completion: nil)
                     
                 } else {
+                    
                     self.present(alert, animated: true, completion: nil)
                 }
             })
         }
-
     }
 }

@@ -33,17 +33,20 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         DispatchQueue.main.async {
             
             for indexOfDay in self.weeklyStepsDic.keys {
+                
                 let steps:Int = self.weeklyStepsDic[indexOfDay]!
+                
+                StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
+                
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.graphView.graphValues[indexOfDay] = CGFloat(steps)
-                StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
+                
                 self.graphView.graphValues[indexOfDay] = CGFloat(steps)
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
                 
                 self.graphView.setNeedsDisplay()
                 self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
-                
             }
         }
         
@@ -88,8 +91,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
 
         self.view.addSubview(mainScrollView)
 
-        
-    
         self.view.addSubview(mainScrollView)
         self.view.addSubview(graphView)
         
@@ -121,7 +122,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
     }
     
-    //settingView에서 목표걸음수 변경시 counterView 다시 그려주기
+
     func draw() {
         for counterView in self.dailyCounterViewArray {
             counterView.setNeedsDisplay()

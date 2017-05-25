@@ -27,7 +27,6 @@ class ForgetPasswordViewController: UIViewController {
                 self.passwordTextField.text = password
             }
         }
-
     }
 
     //뒤로가기 버튼
