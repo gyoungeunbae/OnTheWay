@@ -3,7 +3,7 @@
 class RegisterManager {
 
     //이메일 유효값 체크하는 함수
-    func isValidEmailAddress(emailAddressString: String) -> Bool {
+    func isValidEmailAddress(_ emailAddressString: String) -> Bool {
 
         var returnValue = true
 
@@ -27,7 +27,7 @@ class RegisterManager {
     }
 
     //패스워드 강도 체크하는 함수
-    func isValidPassword(passwordString: String) -> Int {
+    func isValidPassword(_ passwordString: String) -> Int {
         let strongPassword = "(?=.+[!A-Z])(?=.+[0-9])[a-z.-_]{8,12}"
         let normalPassword = "(?=.+[A-Z]|.+[0-9])[a-z.-_]{8,12}"
         let weakPassword = "[a-z.-_.+[0-9]]{8,12}"
@@ -63,8 +63,19 @@ class RegisterManager {
 
         return  checkPassword
     }
-
-// 정규식표현 참고
+    
+    func checkLength(_ string: String) -> Bool {
+        var checkLength: Bool
+        
+        if(string.characters.count > 0) {
+            checkLength = true
+        } else {
+            checkLength = false
+        }
+        return checkLength
+    }
+    
+   // 정규식표현 참고
 //    ^                         Start anchor
 //    (?=.*[A-Z].*[A-Z])        Ensure string has two uppercase letters.
 //    (?=.*[!@#$&*])            Ensure string has one special case letter.
