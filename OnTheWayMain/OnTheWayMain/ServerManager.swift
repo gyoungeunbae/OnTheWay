@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class ServerManager {
+struct ServerManager {
 
     func registerReq(email: String, password: String, username: String, callback: @escaping (_ isUser: Bool) -> Void) {
 
@@ -69,7 +69,6 @@ class ServerManager {
                     password = value
                     callback(password)
                 } else {
-                    print(res["message"])
                     password = res["message"] as! String
                     callback(password)
                 }
@@ -89,14 +88,13 @@ class ServerManager {
     }
 
     func getSession(completion: @escaping(User) -> Void) {
-        print("aaa")
+        
         let urlString = "http://localhost:8080/ontheway/session"
         Alamofire.request(urlString)
             .validate(statusCode: 200..<400)
             .responseJSON { response in
                 var user = User()
                 if let json = response.result.value as? [String:Any] {
-                    print("JSON: \(json)")
                     user = User(id: json["_id"] as! String, email: json["email"] as! String, password: json["password"] as! String, username: json["username"] as! String, image: json["image"] as! String)
                     completion(user)
                 } else {

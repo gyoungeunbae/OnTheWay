@@ -46,6 +46,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 
             }
         }
+        
         print(weeklyStepsDic)
     
         for _ in 0...6 {
@@ -118,8 +119,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width: CGFloat = self.mainScrollView.frame.size.width
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
-
-        
     }
     
     //settingView에서 목표걸음수 변경시 counterView 다시 그려주기

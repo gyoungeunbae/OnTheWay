@@ -9,8 +9,8 @@
 import Foundation
 import RealmSwift
 
-class Location: Object {
+class LocationRealm: Object {
     dynamic var date = String()
     dynamic var latitude = Double()
-    dynamic var longtitude = Double() 
+    dynamic var longtitude = Double()
 }
