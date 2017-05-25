@@ -59,22 +59,37 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
 
         if(textField.isEqual(username)) {
+            if(emailTextField.text == ""){
+                emailTextField.becomeFirstResponder()
+            }
+            if(checkRegisterCondition()) {
+                present(tabBarVC, animated: true, completion: nil)
+            }
             
-            self.emailTextField.becomeFirstResponder()
+
             
         } else if(textField.isEqual(email)) {
             
-            self.passwordTextFiled.becomeFirstResponder()
+            if(passwordTextFiled.text == ""){
+                passwordTextFiled.becomeFirstResponder()
+            }
+            if(checkRegisterCondition()) {
+                present(tabBarVC, animated: true, completion: nil)
+            }
             
-        } else if(textField.isEqual(self.passwordTextFiled)) {
+        } else if(textField.isEqual(passwordTextFiled)) {
             
+            if(confirmPasswordTextFiled.text == ""){
+                confirmPasswordTextFiled.becomeFirstResponder()
+            }
+            if(checkRegisterCondition()) {
+                present(tabBarVC, animated: true, completion: nil)
+            }
             
-            self.confirmPasswordTextFiled.becomeFirstResponder()
-            
-        } else if(textField.isEqual(self.confirmPasswordTextFiled)) {
+        } else if(textField.isEqual(confirmPasswordTextFiled)) {
             
             if(checkRegisterCondition()) {
-                self.present(tabBarVC, animated: true, completion: nil)
+                present(tabBarVC, animated: true, completion: nil)
             }
         }
         return true
@@ -151,8 +166,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return checkValue
     }
     
-   
-    
     //패스워드 강도 체크
     func checkPasswordStrength() {
         let checkedValue = register.isValidPassword(passwordTextFiled.text!)
@@ -164,7 +177,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         case 3:
             passwordColorLabel.backgroundColor = UIColor.red
         default:
-            passwordColorLabel.backgroundColor = UIColor.white
+            passwordColorLabel.backgroundColor = UIColor.clear
         }
     }
     
