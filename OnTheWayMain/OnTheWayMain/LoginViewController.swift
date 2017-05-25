@@ -201,7 +201,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     } else {
                         let realm = try! Realm()
                         realm.beginWrite()
-                        var setting = Setting()
+                        let setting = Setting()
                         setting.dailyGoal = "10000"
                         setting.notification = "On"
                         self.settingList.items.append(setting)

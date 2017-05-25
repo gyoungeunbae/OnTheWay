@@ -79,7 +79,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         settingTableView.reloadData()
         let realm = try? Realm() // Create realm pointing to default file
         realm?.beginWrite()
-        var setting = Setting()
+        let setting = Setting()
         setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
         setting.notification = (settings["notification"]?["notification"]!)!
         settingList.items.append(setting)
@@ -125,8 +125,8 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         //First check whether the right cell is being selected.
         
         let selectedIndexPath = tableView.indexPathForSelectedRow
-        var title = tableView.cellForRow(at: indexPath)?.textLabel?.text
-        var detail = tableView.cellForRow(at: indexPath)?.detailTextLabel?.text
+        let title = tableView.cellForRow(at: indexPath)?.textLabel?.text
+        let detail = tableView.cellForRow(at: indexPath)?.detailTextLabel?.text
         //If the selected row is not in the first section the method returns without doing anything.
         
         if title == "notification" {
