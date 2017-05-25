@@ -1,9 +1,11 @@
 import UIKit
 import Mapbox
 
-class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
 
+class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+    
     @IBOutlet weak var mapView: MGLMapView!
+
     var serverManager = ServerManager()
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -13,10 +15,17 @@ class PresentLocationViewController: UIViewController, CLLocationManagerDelegate
         return manager
     }()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         mapView.userTrackingMode = .follow
+        sendLocationToServer()
+
+    }
+    
+    //현재위치 좌표를 서버에 업데이트
+    func sendLocationToServer() {
         guard let testLatitude: Double = self.locationManager.location?.coordinate.latitude
             else {
                 return

@@ -81,6 +81,7 @@ struct ServerManager {
         }
     }
 
+    
     func logout() {
         let urlString = "http://localhost:8080/ontheway/logout"
         Alamofire.request(urlString)
@@ -147,6 +148,8 @@ struct ServerManager {
         })
     }
     
+    
+    
     func profileUpdate(userId: String, username: String, password: String, completion: @escaping (User) -> Void) {
         
         let body: [String : Any] = [
@@ -169,6 +172,27 @@ struct ServerManager {
                 }
         }
     }
+   /* func userCurrentLocation(userId: String,latitude: Double,longitude: Double,completion: @escaping (User) -> Void) {
+        var currentLocation:(Double,Double)
+        currentLocation = (latitude, longitude)
+        let body: [String : Any] = [
+            "coordinates": currentLocation
+        ]
+        Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                var user = User()
+                if let json = response.result.value as? [String:Any] {
+                    
+                    user = User(id: json["_id"] as! String, email: json["email"] as! String, password: json["password"] as! String, username: json["username"] as! String, image: json["image"] as! String, coordinates: json["coordinates"] as! (Double,Double))
+                    
+                    completion(user)
+                } else {
+                    print("no server connection.")
+                }
+        }
+    
+    }*/
     
     func coordinatesUpdate(userId: String, latitude: Double, longitude: Double) {
         

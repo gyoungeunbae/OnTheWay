@@ -112,5 +112,5 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
 
     }
 
-    
+
 }

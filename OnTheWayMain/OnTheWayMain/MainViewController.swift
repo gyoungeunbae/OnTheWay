@@ -51,7 +51,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         }
         
         print(weeklyStepsDic)
-    
+
+        
         for _ in 0...6 {
             dailyCounterViewArray.append(CounterView())
             dailyCounterViewTextArray.append(UILabel())
@@ -84,6 +85,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
+
 
 
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
