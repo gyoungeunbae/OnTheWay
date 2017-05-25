@@ -1,23 +1,29 @@
 import UIKit
 import Mapbox
-class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
 
+class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
+    
     @IBOutlet weak var mapView: MGLMapView!
     let userLocation = CLLocationManager()
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         mapView.userTrackingMode = .follow
-        guard let testLatitude = userLocation.location?.coordinate.latitude
-            else {
-                return
-        }
-        guard let testLongitude = userLocation.location?.coordinate.longitude
-            else {
-                return
-        }
+        let currentoordinate = getCoordinate()
         
+        print("***********")
+        print(currentoordinate.0)
+        print(currentoordinate.1)
 
+    }
+    public func getCoordinate()->(Double,Double) {
+        var userCoordinate : (latitude: Double,longitude: Double)
+    
+        userCoordinate.latitude = (userLocation.location?.coordinate.latitude)!
+        userCoordinate.longitude = (userLocation.location?.coordinate.longitude)!
+        return userCoordinate
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
