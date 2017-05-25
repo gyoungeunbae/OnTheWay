@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router();
 var multer = require('multer')
 var User = require('../model/user'); //user폴더를 import함 
+var userLocation = require('../model/userLocation');
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
@@ -35,7 +36,7 @@ var storage = multer.diskStorage({
   }
 })
 var upload = multer({ storage: storage })
-
+//userLocation
 
 router.route('/user/:id').put(function(req, res) {
     //id로 유저 찾아서 업데이트

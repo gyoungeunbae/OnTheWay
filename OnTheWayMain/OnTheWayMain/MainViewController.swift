@@ -81,7 +81,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
-        self.goal.text = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
+      //  self.goal.text = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
         self.view.addSubview(mainScrollView)
 
         

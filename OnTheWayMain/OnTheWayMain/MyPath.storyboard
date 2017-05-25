@@ -62,6 +62,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="presentPhotoshareView:" destination="hM3-r4-8cY" eventType="touchUpInside" id="osB-RI-7ga"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,14 +76,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ey-H7-HRe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="740" y="133.5832083958021"/>
-        </scene>
-        <!--sharenaviVC-->
-        <scene sceneID="deh-Vr-bvN">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SharePhoto" storyboardName="SharePhoto" referencedIdentifier="sharenaviVC" id="jGa-Ad-SUH" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PEJ-8A-XCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1311" y="467"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="IAK-10-3YK">

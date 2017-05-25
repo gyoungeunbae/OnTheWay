@@ -35,9 +35,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-<<<<<<< Updated upstream
-
-=======
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBC-v9-xLn" customClass="CounterView" customModule="OnTheWayMain" customModuleProvider="target">
                                 <rect key="frame" x="73" y="89" width="230" height="230"/>
                                 <subviews>
@@ -161,7 +158,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
->>>>>>> Stashed changes
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -177,12 +173,8 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-<<<<<<< Updated upstream
                         <outlet property="backgroundImageView" destination="PJi-ah-yn6" id="Kc8-1V-aBQ"/>
 
-=======
-                        <outlet property="goal" destination="HaX-sC-2nb" id="bfT-mR-fOQ"/>
->>>>>>> Stashed changes
                         <outlet property="messageLabel" destination="hgH-Pm-LPD" id="Hb7-if-gm8"/>
                     </connections>
                 </viewController>

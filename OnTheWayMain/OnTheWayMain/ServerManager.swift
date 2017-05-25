@@ -174,7 +174,7 @@ class ServerManager {
                 }
         }
     }
-    func userCurrentLocation(userId: String,latitude: Double,longitude: Double,completion: @escaping (User) -> Void) {
+   /* func userCurrentLocation(userId: String,latitude: Double,longitude: Double,completion: @escaping (User) -> Void) {
         var currentLocation:(Double,Double)
         currentLocation = (latitude, longitude)
         let body: [String : Any] = [
@@ -194,7 +194,7 @@ class ServerManager {
                 }
         }
     
-    }
+    }*/
     
 
 }

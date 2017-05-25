@@ -147,4 +147,8 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate, CLLocationMana
     }
     
     
+    @IBAction func presentPhotoshareView(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "SharePhoto", bundle: nil)
+
+    }
 }
