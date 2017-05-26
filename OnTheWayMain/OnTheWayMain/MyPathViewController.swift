@@ -9,8 +9,7 @@
 import UIKit
 import Mapbox
 import RealmSwift
-import CoreLocation
-import CoreMotion
+
 
 class MyPathViewController: UIViewController, MGLMapViewDelegate {
     var calenderManager = CalenderManager()
@@ -21,7 +20,8 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.delegate = self
+        mapView.delegate = self
+        mapView.setUserTrackingMode(.follow, animated: true)
         addPointsOnTheMap()
         NotificationCenter.default.addObserver(self, selector: #selector(addPointsOnTheMap), name: Notification.Name("locationDraw"), object: nil)
     }
@@ -62,8 +62,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
             var pointAnnotations = [MGLPointAnnotation]()
             for coordinate in results {
                 let point = MGLPointAnnotation()
-                point.coordinate.latitude = coordinate.latitude
-                point.coordinate.longitude = coordinate.longitude
+                point.coordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
                 pointAnnotations.append(point)
             }
             
@@ -76,16 +75,10 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         }
     }
     
-    @IBAction func zoomToUserLocation(_ sender: Any) {
-        mapView.setUserTrackingMode(.follow, animated: true)
-    }
-    
     //사용자 승인시 위치추적
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         mapView.showsUserLocation = (status == .authorizedAlways)
     }
-    
-    
     
 }
 

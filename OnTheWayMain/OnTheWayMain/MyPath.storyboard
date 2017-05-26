@@ -31,7 +31,7 @@
         <!--My Path View Controller-->
         <scene sceneID="fbE-xH-K72">
             <objects>
-                <viewController storyboardIdentifier="myPathVC" id="hM3-r4-8cY" customClass="MyPathViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myPathVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hM3-r4-8cY" customClass="MyPathViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cEd-n2-rwu"/>
                         <viewControllerLayoutGuide type="bottom" id="KgZ-zl-6JC"/>
@@ -43,16 +43,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="foS-ku-frZ" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="494"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hz-R7-MEF">
-                                        <rect key="frame" x="291" y="30" width="40" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Zoom"/>
-                                        <connections>
-                                            <action selector="zoomToUserLocation:" destination="hM3-r4-8cY" eventType="touchUpInside" id="Krg-Lm-NK8"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showsUserLocation" value="YES"/>

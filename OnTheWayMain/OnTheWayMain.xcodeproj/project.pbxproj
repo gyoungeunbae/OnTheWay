@@ -33,6 +33,7 @@
 		48D76CFE1ED887B500C66667 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D76CFD1ED887B500C66667 /* Friends.swift */; };
 		48D76D021ED891EC00C66667 /* FriendsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D76D011ED891EC00C66667 /* FriendsManager.swift */; };
 		48D76D041ED8AB4000C66667 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D76D031ED8AB4000C66667 /* CustomAnnotationView.swift */; };
+		48D76D081ED8C1E500C66667 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D76D071ED8C1E500C66667 /* LocationService.swift */; };
 		48D7F5B51EB222B3000D747B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5B41EB222B3000D747B /* LoginViewController.swift */; };
 		48D7F5BB1EB2237B000D747B /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5B91EB2237B000D747B /* AccountKit.framework */; };
 		48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48D7F5BA1EB2237B000D747B /* AccountKitStrings.bundle */; };
@@ -102,6 +103,7 @@
 		48D76CFD1ED887B500C66667 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		48D76D011ED891EC00C66667 /* FriendsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsManager.swift; sourceTree = "<group>"; };
 		48D76D031ED8AB4000C66667 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
+		48D76D071ED8C1E500C66667 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		48D7F5B41EB222B3000D747B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48D7F5B91EB2237B000D747B /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
 		48D7F5BA1EB2237B000D747B /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AccountKitStrings.bundle; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			children = (
 				9B3E707F1ECD839E00C0C58E /* GraphView.swift */,
 				484F4C011EAB680100754888 /* CounterView.swift */,
+				48D76D071ED8C1E500C66667 /* LocationService.swift */,
 				484F4BED1EAA63A300754888 /* Main.storyboard */,
 				288A65FB1ECE961500B4CC5E /* connect.storyboard */,
 				9BEB12801EB3284400772CF1 /* MainViewController.swift */,
@@ -504,6 +507,7 @@
 				9B3B07E21EC9B30F00BA3CFB /* PieView.swift in Sources */,
 				484F4C021EAB680100754888 /* CounterView.swift in Sources */,
 				482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */,
+				48D76D081ED8C1E500C66667 /* LocationService.swift in Sources */,
 				482FBE481ECAF69200DE72AC /* UserSettingManager.swift in Sources */,
 				482FBE461ECAF0E300DE72AC /* UserSetting.swift in Sources */,
 				288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */,

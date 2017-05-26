@@ -2,9 +2,8 @@ import UIKit
 import HealthKit
 import RealmSwift
 import CoreLocation
-import CoreMotion
 
-class MainViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate {
+class MainViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var walkRecordLabel: UILabel!
@@ -13,9 +12,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
     var graphView = GraphView()
-    var motionActivityManager = CMMotionActivityManager()
-    var locationManager = CLLocationManager()
-    let calendar = Calendar.current
     
     // 메인 스크롤뷰
     var mainScrollView = UIScrollView()
@@ -31,20 +27,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-        locationManager.delegate = self
-        
-        if CLLocationManager.authorizationStatus() == .notDetermined {
-            locationManager.requestAlwaysAuthorization()
-        } else if CLLocationManager.authorizationStatus() == .denied {
-            let alert = UIAlertController(title: "Alert", message: "Location services were previously denied. Please enable location services for this app in Settings.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        } else if CLLocationManager.authorizationStatus() == .authorizedAlways {
-            locationManager.startUpdatingLocation()
-        }
-        
+        LocationService.sharedInstance.startUpdatingLocation()
         NotificationCenter.default.addObserver(self, selector: #selector(draw), name: Notification.Name("goalChanged"), object: nil)
 
         DispatchQueue.main.async {
@@ -129,7 +112,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 let notification = results.last?.items.last?.notification
         
                 UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: dailyGoal!, notification: notification!)
-                self.sendLocationToServer()
+                LocationService.sharedInstance.sendLocationToServer()
             }
         }
         
@@ -148,77 +131,5 @@ class MainViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         
     }
     
-    //location manager에서 정보 받기
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let date = Date()
-        if calendar.component(.hour, from: date) == 12 && calendar.component(.minute, from: date) == 30 {
-            let ratioOfGoal:Double = Double(StepManager.sharedInstance.getWeeklyStepsDic()[6]!) / Double((UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal)!)!
-            switch ratioOfGoal {
-            case 0..<0.5:
-                NotificationCenter.default.post(name: Notification.Name("starter"), object: nil)
-            case 0.5..<0.9:
-                NotificationCenter.default.post(name: Notification.Name("almost"), object: nil)
-            default:
-                NotificationCenter.default.post(name: Notification.Name("done"), object: nil)
-            }
-        }
-        
-        if CMMotionActivityManager.isActivityAvailable() {
-            motionActivityManager.startActivityUpdates(to: OperationQueue.current!, withHandler: { activityData in
-                if activityData!.walking == true || activityData!.running == true {
-                    guard let testLatitude: Double = self.locationManager.location?.coordinate.latitude
-                        else {
-                            return
-                    }
-                    guard let testLongitude: Double = self.locationManager.location?.coordinate.longitude
-                        else {
-                            return
-                    }
-                    let realm = try? Realm()
-                    realm?.beginWrite()
-                    let locationRealm = LocationRealm()
-                    locationRealm.latitude = testLatitude
-                    locationRealm.longitude = testLongitude
-                    locationRealm.date = self.calenderManager.getKoreanStr(todayDate: Date())
-                    realm?.add(locationRealm)
-                    try! realm?.commitWrite()
-                    print("save into realm")
-                    
-                    if UIApplication.shared.applicationState == .active {
-                        print("app is active")
-                        NotificationCenter.default.post(name: Notification.Name("locationDraw"), object: nil)
-                        //self.sendLocationToServer()
-                    } else {
-                        print("app is not active")
-                    }
-                } else {
-                    print("not walking")
-                }
-            })
-        }
-        
-    }
-    
-    //현재위치 좌표를 서버에 업데이트
-    func sendLocationToServer() {
-        guard let testLatitude: Double = self.locationManager.location?.coordinate.latitude
-            else {
-                return
-        }
-        guard let testLongitude: Double = self.locationManager.location?.coordinate.longitude
-            else {
-                return
-        }
-        let user = UserManager.sharedInstance.getUser()
-        let steps = StepManager.sharedInstance.getWeeklyStepsDic()[6]
-        
-        serverManager.coordinatesUpdate(userId: user[0].id!, latitude: testLatitude, longitude: testLongitude, steps: steps!) { (friends) in
-            for friend in friends {
-                FriendsManager.sharedInstance.addFriends(friend)
-            }
-            print("coordinate update")
-        }
-    }
 }
 
