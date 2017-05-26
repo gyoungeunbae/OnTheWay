@@ -86,10 +86,10 @@
             <point key="canvasLocation" x="740" y="133.5832083958021"/>
         </scene>
         <!--sharephotoVC-->
-        <scene sceneID="Mah-fs-Snj">
+        <scene sceneID="deh-Vr-bvN">
             <objects>
-                <viewControllerPlaceholder storyboardName="SharePhoto" referencedIdentifier="sharephotoVC" id="DO1-uQ-KQ0" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fIf-Lv-flg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="SharePhoto" storyboardName="SharePhoto" referencedIdentifier="sharephotoVC" id="jGa-Ad-SUH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PEJ-8A-XCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1360" y="506"/>
         </scene>
