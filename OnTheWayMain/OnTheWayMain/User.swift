@@ -15,7 +15,7 @@ struct User {
     var password: String!
     var username: String!
     var image: String!
-    //var coordinates: (Double, Double)!
+    
     mutating func updateUsername(username: String) {
         self.username = username
     }

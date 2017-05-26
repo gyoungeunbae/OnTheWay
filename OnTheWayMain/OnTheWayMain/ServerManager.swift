@@ -172,47 +172,42 @@ struct ServerManager {
                 }
         }
     }
-   /* func userCurrentLocation(userId: String,latitude: Double,longitude: Double,completion: @escaping (User) -> Void) {
-        var currentLocation:(Double,Double)
-        currentLocation = (latitude, longitude)
-        let body: [String : Any] = [
-            "coordinates": currentLocation
-        ]
-        Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                var user = User()
-                if let json = response.result.value as? [String:Any] {
-                    
-                    user = User(id: json["_id"] as! String, email: json["email"] as! String, password: json["password"] as! String, username: json["username"] as! String, image: json["image"] as! String, coordinates: json["coordinates"] as! (Double,Double))
-                    
-                    completion(user)
-                } else {
-                    print("no server connection.")
-                }
-        }
-    
-    }*/
-    
-    func coordinatesUpdate(userId: String, latitude: Double, longitude: Double) {
+       
+    func coordinatesUpdate(userId: String, latitude: Double, longitude: Double, steps: Int, completion: @escaping ([Friends]) -> Void) {
         
         let body: [String : Any] = [
             "coordinates": [
                 "\(longitude)",
                 "\(latitude)"
-            ]
+            ],
+            "steps": steps
         ]
 
-        
         // Fetch Request
         Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
-                if (response.result.error == nil) {
-                    debugPrint("HTTP Response Body: \(response.data)")
+                if (response.result.error != nil) {
+                    debugPrint("HTTP Request failed: \(response.result.error)")
                 }
                 else {
-                    debugPrint("HTTP Request failed: \(response.result.error)")
+                    debugPrint("HTTP Response Body: \(response.data)")
+                    Alamofire.request("http://localhost:8080/ontheway/coordinates", method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil)
+                        .validate(statusCode: 200..<300)
+                        .responseJSON { response in
+                            var friends = Friends()
+                            var friendsArr = [Friends]()
+                            if let json = response.result.value as? [[String:Any]] {
+                                for friend in json {
+                                    friends = Friends(username: friend["username"] as! String, image: friend["image"] as! String, steps: friend["steps"] as! Int)
+                                    friendsArr.append(friends)
+                                }
+                                completion(friendsArr)
+                            } else {
+                                print("no server connection.")
+                            }
+
+                    }
                 }
         }
     

@@ -4,51 +4,34 @@ import Mapbox
 
 class PresentLocationViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var friendsTableView: UITableView!
     @IBOutlet weak var mapView: MGLMapView!
-
-    var serverManager = ServerManager()
-    private lazy var locationManager: CLLocationManager = {
-        let manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.delegate = self
-        manager.requestAlwaysAuthorization()
-        return manager
-    }()
-    
+    var sortedFriendsArr = [Friends]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         mapView.userTrackingMode = .follow
-        sendLocationToServer()
-
+        friendsTableView.delegate = self
+        friendsTableView.dataSource = self
+        sortedFriendsArr = FriendsManager.sharedInstance.getFriends().sorted{$0.steps > $1.steps}
+        print("table = \(sortedFriendsArr)")
     }
     
-    //현재위치 좌표를 서버에 업데이트
-    func sendLocationToServer() {
-        guard let testLatitude: Double = self.locationManager.location?.coordinate.latitude
-            else {
-                return
-        }
-        guard let testLongitude: Double = self.locationManager.location?.coordinate.longitude
-            else {
-                return
-        }
-        let user = UserManager.sharedInstance.getUser()
-        print("id = \(user[0].id!)")
-        
-        serverManager.coordinatesUpdate(userId: user[0].id!, latitude: testLatitude, longitude: testLongitude)
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return sortedFriendsArr.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PresentLocationTableViewCell
-        cell.userName.text = "park"
-        cell.userPicture.image = #imageLiteral(resourceName: "park")
-        cell.howmanySteps.text = "9999"
+        cell.userName.text = sortedFriendsArr[indexPath.row].username
+        if sortedFriendsArr[indexPath.row].image != "image" {
+            cell.userPicture.setImage(with: sortedFriendsArr[indexPath.row].image)
+        }
+        cell.howmanySteps.text = String(sortedFriendsArr[indexPath.row].steps)
         return (cell)
     }
 
