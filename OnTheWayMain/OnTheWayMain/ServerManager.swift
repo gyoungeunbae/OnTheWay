@@ -199,7 +199,7 @@ struct ServerManager {
                             var friendsArr = [Friends]()
                             if let json = response.result.value as? [[String:Any]] {
                                 for friend in json {
-                                    friends = Friends(username: friend["username"] as! String, image: friend["image"] as! String, steps: friend["steps"] as! Int)
+                                    friends = Friends(username: friend["username"] as! String, image: friend["image"] as! String, steps: friend["steps"] as! Int, coordinates: friend["coordinates"] as! [Double])
                                     friendsArr.append(friends)
                                 }
                                 completion(friendsArr)

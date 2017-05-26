@@ -13,4 +13,5 @@ struct Friends {
     var username: String!
     var image: String!
     var steps: Int!
+    var coordinates: [Double]!
 }

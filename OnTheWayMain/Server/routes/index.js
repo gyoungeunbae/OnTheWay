@@ -161,7 +161,7 @@ router.route('/session').get(function(req, res) {
 router.route('/logout').get(function(req, res) {
     req.session.destroy()
     req.logout();
-    res.redirect('/login');
+    res.redirect('/');
     console.log('logout')
 });
 

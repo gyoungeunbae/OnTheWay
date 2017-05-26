@@ -120,7 +120,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             UserManager.sharedInstance.addUser(user)
             
             //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
-            self.sendLocationToServer()
             let realm = try! Realm()
             
             let results = realm.objects(SettingList.self).filter("email == '\(user.email!)'")
@@ -130,7 +129,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 let notification = results.last?.items.last?.notification
         
                 UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: dailyGoal!, notification: notification!)
-    
+                self.sendLocationToServer()
             }
         }
         
@@ -189,7 +188,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     if UIApplication.shared.applicationState == .active {
                         print("app is active")
                         NotificationCenter.default.post(name: Notification.Name("locationDraw"), object: nil)
-                        self.sendLocationToServer()
+                        //self.sendLocationToServer()
                     } else {
                         print("app is not active")
                     }

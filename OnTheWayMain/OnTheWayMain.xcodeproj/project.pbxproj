@@ -32,6 +32,7 @@
 		484F4C111EAE188C00754888 /* CalenderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484F4C101EAE188C00754888 /* CalenderManager.swift */; };
 		48D76CFE1ED887B500C66667 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D76CFD1ED887B500C66667 /* Friends.swift */; };
 		48D76D021ED891EC00C66667 /* FriendsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D76D011ED891EC00C66667 /* FriendsManager.swift */; };
+		48D76D041ED8AB4000C66667 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D76D031ED8AB4000C66667 /* CustomAnnotationView.swift */; };
 		48D7F5B51EB222B3000D747B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5B41EB222B3000D747B /* LoginViewController.swift */; };
 		48D7F5BB1EB2237B000D747B /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D7F5B91EB2237B000D747B /* AccountKit.framework */; };
 		48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48D7F5BA1EB2237B000D747B /* AccountKitStrings.bundle */; };
@@ -100,6 +101,7 @@
 		484F4C101EAE188C00754888 /* CalenderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalenderManager.swift; sourceTree = "<group>"; };
 		48D76CFD1ED887B500C66667 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		48D76D011ED891EC00C66667 /* FriendsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsManager.swift; sourceTree = "<group>"; };
+		48D76D031ED8AB4000C66667 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		48D7F5B41EB222B3000D747B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		48D7F5B91EB2237B000D747B /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
 		48D7F5BA1EB2237B000D747B /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AccountKitStrings.bundle; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */,
+				48D76D031ED8AB4000C66667 /* CustomAnnotationView.swift */,
 				288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */,
 				48D76CFD1ED887B500C66667 /* Friends.swift */,
 				48D76D011ED891EC00C66667 /* FriendsManager.swift */,
@@ -480,6 +483,7 @@
 				28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */,
 				9BEB12811EB3284400772CF1 /* MainViewController.swift in Sources */,
 				9B3E70801ECD839E00C0C58E /* GraphView.swift in Sources */,
+				48D76D041ED8AB4000C66667 /* CustomAnnotationView.swift in Sources */,
 				9BEB12C61EB6DCFB00772CF1 /* ServerManager.swift in Sources */,
 				9B3E70821ECD950800C0C58E /* PieChartView.swift in Sources */,
 				48D76CFE1ED887B500C66667 /* Friends.swift in Sources */,
