@@ -138,8 +138,8 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             if detail == "On" {
                 self.settings["notification"]?.updateValue("Off", forKey: "notification")
                 NotificationCenter.default.post(name: Notification.Name("notificationOff"), object: nil)
-                
             }
+            
             if detail == "Off" {
                 self.settings["notification"]?.updateValue("On", forKey: "notification")
                 NotificationCenter.default.post(name: Notification.Name("notificationOn"), object: nil)
@@ -165,8 +165,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //The Okay action will change the title that is typed in.
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-                
-                self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
+            self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
                 print("user = \(UserManager.sharedInstance.getUser())")
                 UserSettingManager.sharedInstance.updateUserSetting(user: UserManager.sharedInstance.getUser()[0], dailyGoal: (firstRowEditAction.textFields?.first?.text)!, notification: (self.settings["notification"]?["notification"])!)
                 print("setting = \(UserSettingManager.sharedInstance.getUserSetting())" )
@@ -187,6 +186,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             let firstRowEditAction = UIAlertController(title: "Edit Title", message: "Please edit the title", preferredStyle: .alert)
             firstRowEditAction.addTextField(configurationHandler: { (newTitle) -> Void in
                 newTitle.text = detail
+                
             })
             
             //The cancel action will do nothing.
