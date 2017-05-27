@@ -25,6 +25,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func keyboardUP(notification: Notification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            self.view.frame.origin.y = 0
             self.view.frame.origin.y -= 80
         }
     }
