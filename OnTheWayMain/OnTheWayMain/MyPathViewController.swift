@@ -46,25 +46,23 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
     
     //realm에 저장된 데이터 가져와서 지도에 표시하기
     func addPointsOnTheMap() {
-        
         let realm = try! Realm()
         let results = realm.objects(LocationRealm.self).filter("date == '\(self.today)'")
-        
         if results.count != 0 {
             var pointAnnotations = [MGLPointAnnotation]()
-            for coordinate in results {
-                let point = MGLPointAnnotation()
-                point.coordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                pointAnnotations.append(point)
+            
+            DispatchQueue.main.async {
+                for coordinate in results {
+                    let point = MGLPointAnnotation()
+                    point.coordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                    pointAnnotations.append(point)
+                }
+                //선 그리기
+                self.mapView.addAnnotations(pointAnnotations)
             }
             
-            //선 그리기
-            DispatchQueue.global(qos: .background).async(execute: {
-                [unowned self] in
-                self.mapView.addAnnotations(pointAnnotations)
-                print("draw")
-            })
         }
+        
     }
     
     //사용자 승인시 위치추적

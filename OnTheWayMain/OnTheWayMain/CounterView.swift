@@ -5,23 +5,8 @@ import UIKit
 //IBDesignable은 코어그래픽을 스토리보드에서 실시간으로 프리뷰 가능하게 한다
 @IBDesignable class CounterView: UIView {
 
-<<<<<<< HEAD
-    private lazy var stepOfGoal: Int = {
-        var goal = Int()
-        if UserSettingManager.sharedInstance.getUserSetting().items.count != 0 {
-            let userGoal = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
-            goal = Int(userGoal!)!
-        } else {
-            goal = 10000
-        }
-        print("goal is = \(goal)")
-        return goal
-    }()
-    
-=======
 
     var stepOfGoal = 10000
->>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
     let π: CGFloat = CGFloat.pi
 
     @IBInspectable var stepOfWalked: Int = 0
