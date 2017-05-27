@@ -31,6 +31,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.locationManager = CLLocationManager()
         guard let locationManager = self.locationManager else {
             return
+            
         }
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -118,10 +119,12 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             else {
                 return
         }
+        
         guard let testLongitude: Double = LocationService.sharedInstance.locationManager?.location?.coordinate.longitude
             else {
                 return
         }
+        
         let user = UserManager.sharedInstance.getUser()
         let steps = StepManager.sharedInstance.getWeeklyStepsDic()[6]
         

@@ -2,7 +2,6 @@ import UIKit
 import RealmSwift
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
-   
     
     @IBOutlet weak var passwordColorLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!

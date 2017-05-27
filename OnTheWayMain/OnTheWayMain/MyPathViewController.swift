@@ -1,11 +1,3 @@
-//
-//  MyPathViewController.swift
-//  OnTheWayMain
-//
-//  Created by junwoo on 2017. 5. 5..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
-
 import UIKit
 import Mapbox
 import RealmSwift
@@ -47,7 +39,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         
         return annotationView
     }
-
+    
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
     }
@@ -79,4 +71,3 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
     }
     
 }
-
