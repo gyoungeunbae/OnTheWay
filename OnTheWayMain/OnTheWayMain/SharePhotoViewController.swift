@@ -41,10 +41,6 @@ class SharePhotoViewController: UIViewController {
         self.present(sharePhotoPreViewController, animated: true)
     }
     
-<<<<<<< HEAD
-
-=======
->>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
     @IBAction func takePhoto(_ sender: Any) {
         takePicture()
     }
