@@ -6,12 +6,11 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
 
     var pageMenu: CAPSPageMenu?
     var calenderManager = CalenderManager()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let storyboard = UIStoryboard(name: "MyPath", bundle: nil)
-
         var controllerArray = [MyPathViewController]()
         var weekDay = calenderManager.getSimpleWeekArrStr()
         var weekArrStr = calenderManager.getWeekArrStr()

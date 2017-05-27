@@ -81,19 +81,22 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //설정 변경될때마다 tableView 다시 뿌리고 realm에 저장
     func drawAndSave(_ notification: Notification) {
-        settingTableView.reloadData()
-        let realm = try? Realm() // Create realm pointing to default file
-        realm?.beginWrite()
-        let setting = Setting()
-        setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
-        setting.notification = (settings["notification"]?["notification"]!)!
-        settingList.items.append(setting)
-        settingList.email = UserManager.sharedInstance.getUser()[0].email
-        realm?.add(setting)
-        realm?.add(settingList)
-        try! realm?.commitWrite()
-        print("save setting into realm")
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        if UserManager.sharedInstance.getUser()[0].email != "email" {
+            settingTableView.reloadData()
+            let realm = try? Realm() // Create realm pointing to default file
+            realm?.beginWrite()
+            let setting = Setting()
+            setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
+            setting.notification = (settings["notification"]?["notification"]!)!
+            settingList.items.append(setting)
+            settingList.email = UserManager.sharedInstance.getUser()[0].email
+            realm?.add(setting)
+            realm?.add(settingList)
+            try! realm?.commitWrite()
+            print("save setting into realm")
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
+        }
+        
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -167,7 +170,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
                 
                 self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
-                print("user = \(UserManager.sharedInstance.getUser())")
                 UserSettingManager.sharedInstance.updateUserSetting(user: UserManager.sharedInstance.getUser()[0], dailyGoal: (firstRowEditAction.textFields?.first?.text)!, notification: (self.settings["notification"]?["notification"])!)
                 print("setting = \(UserSettingManager.sharedInstance.getUserSetting())" )
                 NotificationCenter.default.post(name: Notification.Name("settingChanged"), object: nil)

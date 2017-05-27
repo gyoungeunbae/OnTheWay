@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
         //걸음수 요청
         requestHealthKitAuthorization()
       
@@ -136,9 +135,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let center = UNUserNotificationCenter.current()
         
         let content = UNMutableNotificationContent()
-        content.title = "Don't be late Thomas!"
-        content.body = "smith is waiting for you!"
-        
+        content.title = "wake up!"
+        content.body = "early birds eat more worms!"
+        print("morning alarm scheduled")
         var dateComponents = DateComponents()
         dateComponents.hour = 08
         dateComponents.minute = 00
@@ -159,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let content = UNMutableNotificationContent()
         content.title = "still less than 50% of Goal"
         content.body = "you have to walk more"
-        
+        print("starter alarm scheduled")
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: "Starter", content: content, trigger: trigger)
         center.add(request) { (error : Error?) in
@@ -175,7 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let content = UNMutableNotificationContent()
         content.title = "Almost done!!"
         content.body = "cheer up baby"
-        
+        print("almost alarm scheduled")
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: "Almost", content: content, trigger: trigger)
         center.add(request) { (error : Error?) in
@@ -191,7 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let content = UNMutableNotificationContent()
         content.title = "You won the Goal!!"
         content.body = "congratulation!"
-        
+        print("done alarm scheduled")
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: "Done", content: content, trigger: trigger)
         center.add(request) { (error : Error?) in
@@ -203,8 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -214,7 +212,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -224,7 +222,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
