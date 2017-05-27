@@ -46,9 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if granted {
                 print("granted")
                 self.scheduleMorningNotification()
-                self.scheduleStarterNotification()
-                self.scheduleAlmostNotification()
-                self.scheduleDoneNotification()
             } else {
                 print("notification reject")
             }
