@@ -11,8 +11,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
-    var graphView = GraphView()
-   
+
+    var lineGraphView = LineGraphView()
+
+    
+
     // 메인 스크롤뷰
     var mainScrollView = UIScrollView()
     // 메인 스크롤뷰에 추가할 뷰
@@ -33,7 +36,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         let thisWeek = self.calenderManager.getLastWeekArr()
         
-        
         LocationService.sharedInstance.startUpdatingLocation()
         
         NotificationCenter.default.addObserver(self, selector: #selector(draw), name: Notification.Name("goalChanged"), object: nil)
@@ -41,15 +43,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         DispatchQueue.main.async {
             
             for indexOfDay in self.weeklyStepsDic.keys {
-                
+
                 let steps:Int = self.weeklyStepsDic[indexOfDay]!
                 
                 StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
                 
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
-                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
+                self.lineGraphView.graphValues[indexOfDay] = CGFloat(steps)
                 
-                self.graphView.graphValues[indexOfDay] = CGFloat(steps)
+                self.lineGraphView.graphValues[indexOfDay] = CGFloat(steps)
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
                 
@@ -65,7 +67,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 
                 self.draw()
                 
-                self.graphView.setNeedsDisplay()
+                self.lineGraphView.setNeedsDisplay()
                 self.dailyCounterViewArray[indexOfDay].setNeedsDisplay()
             }
         }
@@ -83,8 +85,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.frame = CGRect(x: 0, y: 50, width: screenWidth, height: screenHeight / 2)
         mainScrollView.backgroundColor = UIColor.clear
         
-        graphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 , width: self.view.frame.width, height: self.view.frame.height / 2)
-        graphView.backgroundColor = UIColor.clear
+        lineGraphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 80 , width: self.view.frame.width, height: self.view.frame.height / 2)
+        lineGraphView.backgroundColor = UIColor.clear
     
         for i in 0...6 {
             dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 50 ,width: screenWidth ,height: screenHeight / 2 - 50)
@@ -92,7 +94,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             if(i == 5 || i == 6){
                 dailyCounterViewDayTextArray[i].frame = CGRect(x: screenWidth * CGFloat(i)+(screenWidth/2 - 20) , y: 0, width: screenWidth, height: 50)
             } else {
-                dailyCounterViewDayTextArray[i].frame = CGRect(x: screenWidth * CGFloat(i) + 75, y: 0, width: screenWidth, height: 50)
+                dailyCounterViewDayTextArray[i].frame = CGRect(x: screenWidth * CGFloat(i)+(screenWidth/2 - 40) , y: 0, width: screenWidth, height: 50)
             }
             
             dailyCounterViewArray[i].backgroundColor = UIColor.clear
@@ -105,6 +107,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             dailyCounterViewTextArray[i].font = dailyCounterViewTextArray[i].font.withSize(30)
             
             goalTextArray[i].frame = CGRect(x: screenWidth / 2 - 35  ,y:centerY + 50  ,width: screenWidth ,height: 50)
+    
         }
         
         for i in 0...6{
@@ -123,7 +126,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
         
         self.view.addSubview(mainScrollView)
-        self.view.addSubview(graphView)
+        self.view.addSubview(lineGraphView)
         
         self.mainScrollView.delegate = self
         
