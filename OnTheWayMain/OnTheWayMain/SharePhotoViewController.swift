@@ -1,3 +1,10 @@
+//
+//  SharePhotoViewController.swift
+//  OnTheWayMain
+//
+//  Created by nueola on 5/9/17.
+//  Copyright © 2017 junwoo. All rights reserved.
+//
 
 import UIKit
 import AVFoundation
@@ -23,15 +30,6 @@ class SharePhotoViewController: UIViewController {
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "");
         let backItem = UIBarButtonItem(title: "< Back", style: .plain, target: self, action: #selector(backAction))
-<<<<<<< HEAD
-        navItem.leftBarButtonItem = backItem
-        navBar.setItems([navItem], animated: false);
-        
-    }
-    func backAction(){
-        navigationController?.dismiss(animated: true)
-    }
-=======
         let galleryItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(gotoLibrary))
         navItem.leftBarButtonItem = backItem
         navItem.rightBarButtonItem = galleryItem
@@ -44,7 +42,6 @@ class SharePhotoViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
         
     }
->>>>>>> dc19588ad5e15c5592fa1ba070616641cbb313b4
     
     func displayCapturPhoto(capturePhoto: UIImage) {
         let sharePhotoPreViewController = storyboard?.instantiateViewController(withIdentifier: "SharePhotoPreVC")as! SharePhotoPreViewController
@@ -52,11 +49,7 @@ class SharePhotoViewController: UIViewController {
         self.present(sharePhotoPreViewController, animated: true)
     }
     
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> dc19588ad5e15c5592fa1ba070616641cbb313b4
     @IBAction func takePhoto(_ sender: Any) {
         takePicture()
     }
@@ -65,11 +58,11 @@ class SharePhotoViewController: UIViewController {
         session.sessionPreset = AVCaptureSessionPresetHigh
         camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
-            let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
-            cameraCaptureOutput = AVCapturePhotoOutput()
+        let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
+        cameraCaptureOutput = AVCapturePhotoOutput()
             
-            session.addInput(cameraCaptureInput)
-            session.addOutput(cameraCaptureOutput)
+        session.addInput(cameraCaptureInput)
+        session.addOutput(cameraCaptureOutput)
         } catch {
             print(error.localizedDescription)
         }
@@ -84,11 +77,7 @@ class SharePhotoViewController: UIViewController {
         
     }
     
-<<<<<<< HEAD
-    
-=======
         
->>>>>>> dc19588ad5e15c5592fa1ba070616641cbb313b4
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off

@@ -37,7 +37,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             locationManager.requestAlwaysAuthorization()
         }
         
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10
         locationManager.delegate = self
     }
@@ -52,18 +52,11 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         self.locationManager?.stopUpdatingLocation()
     }
     
+    // CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        //매일 12시30분에 걸음수 체크해서 알림 팝업
         let date = Date()
         if calendar.component(.hour, from: date) == 12 && calendar.component(.minute, from: date) == 30 {
-            var ratioOfGoal = Double()
-            if UserSettingManager.sharedInstance.getUserSetting().items.count != 0 {
-                ratioOfGoal = Double(StepManager.sharedInstance.getWeeklyStepsDic()[6]!) / Double((UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal)!)!
-            } else {
-                ratioOfGoal = 0.5
-            }
-            
+            let ratioOfGoal:Double = Double(StepManager.sharedInstance.getWeeklyStepsDic()[6]!) / Double((UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal)!)!
             switch ratioOfGoal {
             case 0..<0.5:
                 NotificationCenter.default.post(name: Notification.Name("starter"), object: nil)
@@ -74,7 +67,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
             }
         }
         
-        //걷거나 뛸때에 좌표를 realm에 저장
         if CMMotionActivityManager.isActivityAvailable() {
             motionActivityManager.startActivityUpdates(to: OperationQueue.current!, withHandler: { activityData in
                 if activityData!.walking == true || activityData!.running == true {
