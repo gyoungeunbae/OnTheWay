@@ -119,6 +119,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    
+
     func draw() {
         for counterView in self.dailyCounterViewArray {
             counterView.setNeedsDisplay()

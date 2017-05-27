@@ -1,10 +1,3 @@
-//
-//  SharePhotoViewController.swift
-//  OnTheWayMain
-//
-//  Created by nueola on 5/9/17.
-//  Copyright © 2017 junwoo. All rights reserved.
-//
 
 import UIKit
 import AVFoundation
@@ -35,7 +28,7 @@ class SharePhotoViewController: UIViewController {
         
     }
     func backAction(){
-        navigationController?.popViewController(animated: true)
+        navigationController?.dismiss(animated: true)
     }
     
     func displayCapturPhoto(capturePhoto: UIImage) {
@@ -44,7 +37,7 @@ class SharePhotoViewController: UIViewController {
         self.present(sharePhotoPreViewController, animated: true)
     }
     
-
+    
     @IBAction func takePhoto(_ sender: Any) {
         takePicture()
     }
@@ -53,11 +46,11 @@ class SharePhotoViewController: UIViewController {
         session.sessionPreset = AVCaptureSessionPresetHigh
         camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
-        let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
-        cameraCaptureOutput = AVCapturePhotoOutput()
+            let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
+            cameraCaptureOutput = AVCapturePhotoOutput()
             
-        session.addInput(cameraCaptureInput)
-        session.addOutput(cameraCaptureOutput)
+            session.addInput(cameraCaptureInput)
+            session.addOutput(cameraCaptureOutput)
         } catch {
             print(error.localizedDescription)
         }
@@ -72,7 +65,6 @@ class SharePhotoViewController: UIViewController {
         
     }
     
-        
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off
