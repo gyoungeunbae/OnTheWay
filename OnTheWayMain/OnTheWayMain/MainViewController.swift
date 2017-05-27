@@ -152,6 +152,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         
+        //서버 연결 안되었을 때 임시로 유저 넣어놓기
+        if UserSettingManager.sharedInstance.getUserSetting().items.count == 0 && UserManager.sharedInstance.getUser().count == 0 {
+            let tempUser = User(id: "id", email: "email", password: "password", username: "username", image: "image")
+            UserSettingManager.sharedInstance.updateUserSetting(user: tempUser, dailyGoal: "10000", notification: "On")
+            UserManager.sharedInstance.addUser(tempUser)
+        }
+        
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -175,4 +182,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 }
+    
+
 

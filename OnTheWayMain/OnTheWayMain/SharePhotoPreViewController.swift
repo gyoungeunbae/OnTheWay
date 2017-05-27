@@ -1,14 +1,9 @@
-//
-//  SharePhotoPreViewController.swift
-//  OnTheWayMain
-//
-//  Created by nueola on 5/20/17.
-//  Copyright © 2017 junwoo. All rights reserved.
-//
 
 import UIKit
 import Foundation
+
 class SharePhotoPreViewController: UIViewController {
+    
     var capturedImage : UIImage?
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var square: UIView!
@@ -49,5 +44,5 @@ class SharePhotoPreViewController: UIViewController {
         
     }
     
-
+    
 }

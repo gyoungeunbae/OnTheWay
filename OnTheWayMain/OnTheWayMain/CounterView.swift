@@ -5,6 +5,7 @@ import UIKit
 //IBDesignable은 코어그래픽을 스토리보드에서 실시간으로 프리뷰 가능하게 한다
 @IBDesignable class CounterView: UIView {
 
+
     var stepOfGoal = 10000
     let π: CGFloat = CGFloat.pi
 
