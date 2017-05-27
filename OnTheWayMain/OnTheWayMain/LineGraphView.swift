@@ -13,27 +13,37 @@ class LineGraphView: UIView {
         
         
         
-        var circle = UIGraphicsGetCurrentContext()
-        
+        let circle = UIGraphicsGetCurrentContext()
+        let dotLineGoal = UIBezierPath()
+        let dotLineZero = UIBezierPath()
         
         
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let components: [CGFloat] = [0.0, 0.0, 0.0, 1.0]
         let color = CGColor(colorSpace: colorSpace, components: components)
         
-       
+        dotLineGoal.move(to: CGPoint(x: 10, y: (bounds.size.height * 0.5) - 100))
+        dotLineGoal.addLine(to: CGPoint(x:bounds.size.width - 10, y: (bounds.size.height * 0.5) - 100))
+        dotLineZero.move(to: CGPoint(x: 10, y: bounds.size.height * 0.5))
+        dotLineZero.addLine(to: CGPoint(x:bounds.size.width - 10, y: bounds.size.height * 0.5))
+        
+        
+        
+        let pattern: [CGFloat] = [5.0, 5.0]
+        dotLineGoal.setLineDash(pattern, count: 2, phase: 0.0)
+        UIColor.green.setStroke()
+        dotLineGoal.stroke()
+        dotLineZero.setLineDash(pattern, count: 2, phase: 0.0)
+        UIColor.white.setStroke()
+        dotLineZero.stroke()
+        
+        
         
         for index in 0...6 {
-            circle?.addArc(center: CGPoint(x: CGFloat(x + (50 * index)), y: graphValues[index] * 0.01), radius: 10, startAngle: 3 * π / 2, endAngle: 7 * π / 2, clockwise: false)
-            circle?.setFillColor(UIColor.green.cgColor)
-            
-    
-            
-        
-            circle?.fillPath()
             
             point.append(CGPoint())
-            point[index] = CGPoint(x: CGFloat(x + (50 * index)), y: graphValues[index] * 0.01)
+            point[index] = CGPoint(x: CGFloat(x + (50 * index)), y: (bounds.size.height * 0.5)-(graphValues[index] * 0.01))
+            
         }
         
         for index in 0...5{
@@ -42,6 +52,8 @@ class LineGraphView: UIView {
             context?.setStrokeColor(UIColor.green.cgColor)
             context?.setLineWidth(3.0)
             
+            
+            
             context?.move(to: point[index])
             
             context?.addLine(to: point[index + 1])
@@ -49,6 +61,16 @@ class LineGraphView: UIView {
             context?.strokePath()
             
             context?.setLineWidth(4.0)
+        }
+        for index in 0...6 {
+            circle?.addArc(center: CGPoint(x: CGFloat(x + (50 * index)), y: (bounds.size.height * 0.5) - graphValues[index] * 0.01), radius: 10, startAngle: 3 * π / 2, endAngle: 7 * π / 2, clockwise: false)
+            if(graphValues[index] >= 10000){
+                circle?.setFillColor(UIColor.green.cgColor)
+            } else {
+                circle?.setFillColor(UIColor.yellow.cgColor)
+            }
+            
+            circle?.fillPath()
         }
     }
 }
