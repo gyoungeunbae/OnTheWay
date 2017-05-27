@@ -12,10 +12,7 @@ import RealmSwift
 class SettingList: Object {
     dynamic var email = ""
     var items = List<Setting>()
-    
-    //    override static func primaryKey() -> String? {
-    //        return "email"
-    //    }
+   
 }
 
 class Setting: Object {

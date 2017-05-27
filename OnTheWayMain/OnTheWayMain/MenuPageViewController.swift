@@ -10,7 +10,7 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var storyboard = UIStoryboard(name: "MyPath", bundle: nil)
+        let storyboard = UIStoryboard(name: "MyPath", bundle: nil)
 
         var controllerArray = [MyPathViewController]()
         var weekDay = calenderManager.getSimpleWeekArrStr()
@@ -23,7 +23,7 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
             controllerArray[index].today = weekArrStr[index]
         }
 
-        var parameters: [CAPSPageMenuOption] = [
+        let parameters: [CAPSPageMenuOption] = [
             .menuItemSeparatorWidth(4.3),
             .useMenuLikeSegmentedControl(true),
             .menuItemSeparatorPercentageHeight(0.1)

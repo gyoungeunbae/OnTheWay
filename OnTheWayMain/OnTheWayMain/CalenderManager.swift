@@ -22,7 +22,7 @@ struct CalenderManager {
         let startOfDate = myCalender.startOfDay(for: sunDate)
         var weekArr = [Date]()
         for index in 0...6 {
-            var weekDate = startOfDate.addingTimeInterval(TimeInterval(60*60*24*index))
+            let weekDate = startOfDate.addingTimeInterval(TimeInterval(60*60*24*index))
             weekArr.append(weekDate)
         }
 
@@ -42,7 +42,7 @@ struct CalenderManager {
         let startOfDate = myCalender.startOfDay(for: lastDate)
         var weekArr = [Date]()
         for index in 0...6 {
-            var weekDate = startOfDate.addingTimeInterval(TimeInterval(60*60*24*index))
+            let weekDate = startOfDate.addingTimeInterval(TimeInterval(60*60*24*index))
             weekArr.append(weekDate)
         }
         return weekArr
@@ -62,7 +62,7 @@ struct CalenderManager {
         var weekArr = getLastWeekArr()
         var temp = [String]()
         for index in 0..<weekArr.count {
-            var str = getKoreanStr(todayDate: weekArr[index])
+            let str = getKoreanStr(todayDate: weekArr[index])
             temp.append(str)
         }
         return temp
@@ -72,7 +72,7 @@ struct CalenderManager {
         var weekArr = getLastWeekArr()
         var temp = [String]()
         for index in 0..<weekArr.count {
-            var str = getSimpleStr(todayDate: weekArr[index])
+            let str = getSimpleStr(todayDate: weekArr[index])
             temp.append(str)
         }
         return temp
