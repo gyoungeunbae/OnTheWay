@@ -13,7 +13,6 @@ import UIKit
         } else {
             goal = 10000
         }
-        print("goal is = \(goal)")
         return goal
     }()
     
