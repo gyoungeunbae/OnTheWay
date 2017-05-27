@@ -1,7 +1,7 @@
 import UIKit
 import HealthKit
 import RealmSwift
-
+import CoreLocation
 
 class MainViewController: UIViewController, UIScrollViewDelegate {
     
@@ -11,7 +11,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
-        
     var graphView = GraphView()
     
     // 메인 스크롤뷰
@@ -28,6 +27,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LocationService.sharedInstance.startUpdatingLocation()
         NotificationCenter.default.addObserver(self, selector: #selector(draw), name: Notification.Name("goalChanged"), object: nil)
 
         DispatchQueue.main.async {
@@ -51,7 +51,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         }
         
         print(weeklyStepsDic)
-    
+
+        
         for _ in 0...6 {
             dailyCounterViewArray.append(CounterView())
             dailyCounterViewTextArray.append(UILabel())
@@ -86,6 +87,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.isPagingEnabled = true
 
 
+
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
         
 
@@ -101,7 +103,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             UserManager.sharedInstance.addUser(user)
             
             //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
-            
             let realm = try! Realm()
             
             let results = realm.objects(SettingList.self).filter("email == '\(user.email!)'")
@@ -111,7 +112,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 let notification = results.last?.items.last?.notification
         
                 UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: dailyGoal!, notification: notification!)
-    
+                LocationService.sharedInstance.sendLocationToServer()
             }
         }
         
@@ -129,5 +130,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         }
         
     }
+    
 }
 

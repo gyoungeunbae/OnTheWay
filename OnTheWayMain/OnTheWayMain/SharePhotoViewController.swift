@@ -23,6 +23,7 @@ class SharePhotoViewController: UIViewController {
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "");
         let backItem = UIBarButtonItem(title: "< Back", style: .plain, target: self, action: #selector(backAction))
+<<<<<<< HEAD
         navItem.leftBarButtonItem = backItem
         navBar.setItems([navItem], animated: false);
         
@@ -30,6 +31,20 @@ class SharePhotoViewController: UIViewController {
     func backAction(){
         navigationController?.dismiss(animated: true)
     }
+=======
+        let galleryItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(gotoLibrary))
+        navItem.leftBarButtonItem = backItem
+        navItem.rightBarButtonItem = galleryItem
+        navBar.setItems([navItem], animated: false);
+    }
+    func gotoLibrary() {
+    
+    }
+    func backAction(){
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+>>>>>>> dc19588ad5e15c5592fa1ba070616641cbb313b4
     
     func displayCapturPhoto(capturePhoto: UIImage) {
         let sharePhotoPreViewController = storyboard?.instantiateViewController(withIdentifier: "SharePhotoPreVC")as! SharePhotoPreViewController
@@ -37,7 +52,11 @@ class SharePhotoViewController: UIViewController {
         self.present(sharePhotoPreViewController, animated: true)
     }
     
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> dc19588ad5e15c5592fa1ba070616641cbb313b4
     @IBAction func takePhoto(_ sender: Any) {
         takePicture()
     }
@@ -65,7 +84,11 @@ class SharePhotoViewController: UIViewController {
         
     }
     
+<<<<<<< HEAD
     
+=======
+        
+>>>>>>> dc19588ad5e15c5592fa1ba070616641cbb313b4
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off

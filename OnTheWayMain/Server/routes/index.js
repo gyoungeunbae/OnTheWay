@@ -87,6 +87,8 @@ router.route('/register')
             newUser.password = req.body.password;
             newUser.username = req.body.username;
             newUser.image = "image";
+            newUser.coordinates = [0, 0];
+            newUser.steps = 0;
       
             newUser.save(function(err) {
                 if (err) {
@@ -157,8 +159,9 @@ router.route('/session').get(function(req, res) {
 
 //로그아웃
 router.route('/logout').get(function(req, res) {
+    req.session.destroy()
     req.logout();
-    res.redirect('/login');
+    res.redirect('/');
     console.log('logout')
 });
 
@@ -166,8 +169,8 @@ router.route('/logout').get(function(req, res) {
 router.route('/email').post(function(req, res) {
     User.find({email: req.body.email}, function(err, user) {
         if (err) {
+            console.log("error")
             return res.send({ message: 'error'});
-            print("error")
         }
         if (user.length == 1) {
             return res.json({ 'password': user[0].password})
@@ -178,7 +181,26 @@ router.route('/email').post(function(req, res) {
     });
 });
 
-
+//일정 범위 내 유저 가져오기
+router.route('/coordinates').post(function(req, res) {
+    User.find({ coordinates: {
+        $near: {
+        $geometry: {
+          type: 'Point',
+          coordinates: req.body.coordinates
+        },
+    $maxDistance: 1000
+    }}}).exec(function(err,users){
+            if (err) {
+                console.log("err")
+                res.send(500, 'Error #101: '+err);
+            } else {
+                console.log(users)
+                res.send(users);
+            } 
+        }); 
+    }
+);
 
 
 module.exports = router;

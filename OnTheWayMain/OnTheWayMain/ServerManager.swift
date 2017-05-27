@@ -81,6 +81,7 @@ struct ServerManager {
         }
     }
 
+    
     func logout() {
         let urlString = "http://localhost:8080/ontheway/logout"
         Alamofire.request(urlString)
@@ -147,6 +148,8 @@ struct ServerManager {
         })
     }
     
+    
+    
     func profileUpdate(userId: String, username: String, password: String, completion: @escaping (User) -> Void) {
         
         let body: [String : Any] = [
@@ -169,6 +172,45 @@ struct ServerManager {
                 }
         }
     }
+       
+    func coordinatesUpdate(userId: String, latitude: Double, longitude: Double, steps: Int, completion: @escaping ([Friends]) -> Void) {
+        
+        let body: [String : Any] = [
+            "coordinates": [
+                "\(longitude)",
+                "\(latitude)"
+            ],
+            "steps": steps
+        ]
+
+        // Fetch Request
+        Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
+            .validate(statusCode: 200..<300)
+            .responseJSON { response in
+                if (response.result.error != nil) {
+                    debugPrint("HTTP Request failed: \(response.result.error)")
+                }
+                else {
+                    debugPrint("HTTP Response Body: \(response.data)")
+                    Alamofire.request("http://localhost:8080/ontheway/coordinates", method: .post, parameters: body, encoding: JSONEncoding.default, headers: nil)
+                        .validate(statusCode: 200..<300)
+                        .responseJSON { response in
+                            var friends = Friends()
+                            var friendsArr = [Friends]()
+                            if let json = response.result.value as? [[String:Any]] {
+                                for friend in json {
+                                    friends = Friends(username: friend["username"] as! String, image: friend["image"] as! String, steps: friend["steps"] as! Int, coordinates: friend["coordinates"] as! [Double])
+                                    friendsArr.append(friends)
+                                }
+                                completion(friendsArr)
+                            } else {
+                                print("no server connection.")
+                            }
+
+                    }
+                }
+        }
     
+    }
 
 }

@@ -7,7 +7,7 @@ class GraphView: UIView {
     var graphValues: Array<CGFloat> = [8000,8000,8000,8000,8000,8000,8000]
     
     override func draw(_ rect: CGRect) {
-        var x = 30
+        let x = 30
         
         let context = UIGraphicsGetCurrentContext()
         

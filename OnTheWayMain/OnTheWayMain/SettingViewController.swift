@@ -20,25 +20,29 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var profileImageView: UIImageView!
     
+    //로그아웃 버튼 누르면 세션 로그아웃, UserManager, UserSettingManager 내용 삭제, 로그인뷰로 이동
     @IBAction func logoutButton(_ sender: Any) {
         serverManager.logout()
-        print("logout")
+        
+        UserManager.sharedInstance.removeUser()
+        UserSettingManager.sharedInstance.removeSetting()
+        FriendsManager.sharedInstance.removeFriends()
+        
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
         self.present(loginVC, animated: false, completion: nil)
-        UserManager.sharedInstance.removeUser()
-        UserSettingManager.sharedInstance.removeSetting()
     }
     
     @IBOutlet weak var settingTableView: UITableView!
-
-    // Data model: These strings will be the data for the table view cells
     
+    //설정메뉴
     var settings: [String:[String:String]] = ["profile": ["username": "name", "image": "choose photo"], "dailyGoal": ["dailyStep": "10000"], "notification": ["notification": "On"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let center = UNUserNotificationCenter.current()
+        
+        //푸쉬알림허용 상태 체크해서 세팅창에 표시해주기
         center.getNotificationSettings { (setting) in
             if(setting.authorizationStatus == .authorized)
             {
@@ -50,7 +54,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
 
-        
+        //세팅변경될때 감지
         NotificationCenter.default.addObserver(self, selector: #selector(drawAndSave), name: Notification.Name("settingChanged"), object: nil)
         
         
@@ -71,15 +75,16 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             settings["dailyGoal"]?.updateValue((existingUserSetting.items.last?.dailyGoal)!, forKey: "dailyStep")
             settings["notification"]?.updateValue((existingUserSetting.items.last?.notification)!, forKey: "notification")
         }
-        
     }
+    
+    
     
     //설정 변경될때마다 tableView 다시 뿌리고 realm에 저장
     func drawAndSave(_ notification: Notification) {
         settingTableView.reloadData()
         let realm = try? Realm() // Create realm pointing to default file
         realm?.beginWrite()
-        var setting = Setting()
+        let setting = Setting()
         setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
         setting.notification = (settings["notification"]?["notification"]!)!
         settingList.items.append(setting)
@@ -122,13 +127,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //First check whether the right cell is being selected.
         
         let selectedIndexPath = tableView.indexPathForSelectedRow
-        var title = tableView.cellForRow(at: indexPath)?.textLabel?.text
-        var detail = tableView.cellForRow(at: indexPath)?.detailTextLabel?.text
-        //If the selected row is not in the first section the method returns without doing anything.
+        let title = tableView.cellForRow(at: indexPath)?.textLabel?.text
+        let detail = tableView.cellForRow(at: indexPath)?.detailTextLabel?.text
         
+        //알림설정
         if title == "notification" {
             
             if detail == "On" {
@@ -142,10 +146,9 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             }
             NotificationCenter.default.post(name: Notification.Name("settingChanged"), object: nil)
-
-            
         }
         
+        //목표걸음 설정
         if title == "dailyStep" {
         
             //The first row is selected and here the user can change the string in an alert sheet.
@@ -177,7 +180,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         }
 
-        
+        //사용자이름 설정
         if title == "username" {
             
             //The first row is selected and here the user can change the string in an alert sheet.
@@ -213,15 +216,13 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
         }
         
+        //프로필사진 설정
         if title == "image" {
-            
+        
             imagePicker.allowsEditing = false
             imagePicker.sourceType = .photoLibrary
-            
             present(imagePicker, animated: true, completion: nil)
         }
-        
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -235,7 +236,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         dismiss(animated: true, completion: nil)
-        
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
