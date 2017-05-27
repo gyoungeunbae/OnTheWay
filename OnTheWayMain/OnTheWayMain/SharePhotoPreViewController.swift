@@ -9,6 +9,7 @@ class SharePhotoPreViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+ //       capturedImage.
         self.square.layer.borderWidth = 1.0
         self.square.layer.borderColor = UIColor.white.cgColor
         let image = drawCustomImage(size: self.view.bounds.size)
@@ -25,7 +26,8 @@ class SharePhotoPreViewController: UIViewController {
     }
     
     func backAction() {
-        self.dismiss(animated: true, completion: nil)
+
+      self.dismiss(animated: true, completion: nil)
     }
     func drawCustomImage(size: CGSize) -> UIImage? {
         // Setup our context
