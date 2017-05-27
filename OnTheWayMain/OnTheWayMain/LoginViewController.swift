@@ -84,40 +84,40 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: "Alert", message: "이메일이나 비밀번호를 확인해주세요", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
-        serverManager.loginReq(email: emailTextField.text!, password: pwdTextField.text!) { (isUser) in
-            if isUser == true {
-                self.serverManager.getSession { (user) in
-                    
-                    UserManager.sharedInstance.addUser(user)
-                    print("session is \(user)")
-                    
-                    //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
-                    let realm = try! Realm()
-                    let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
-                    if results.count != 0 {
-                        UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
-                        print("realm results = \(results)")
-                    } else {
-                        let realm = try! Realm()
-                        realm.beginWrite()
-                        var setting = Setting()
-                        setting.dailyGoal = "10000"
-                        setting.notification = "On"
-                        self.settingList.items.append(setting)
-                        self.settingList.email = user.email
-                        realm.add(setting)
-                        realm.add(self.settingList)
-                        try! realm.commitWrite()
-                        print("save setting into realm")
-                    }
-                    self.present(tabBarVC, animated: true)
-                }
-                
-            } else {
-                self.present(alert, animated: true)
-            }
-        }
-        
+//        serverManager.loginReq(email: emailTextField.text!, password: pwdTextField.text!) { (isUser) in
+//            if isUser == true {
+//                self.serverManager.getSession { (user) in
+//                    
+//                    UserManager.sharedInstance.addUser(user)
+//                    print("session is \(user)")
+//                    
+//                    //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
+//                    let realm = try! Realm()
+//                    let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
+//                    if results.count != 0 {
+//                        UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
+//                        print("realm results = \(results)")
+//                    } else {
+//                        let realm = try! Realm()
+//                        realm.beginWrite()
+//                        var setting = Setting()
+//                        setting.dailyGoal = "10000"
+//                        setting.notification = "On"
+//                        self.settingList.items.append(setting)
+//                        self.settingList.email = user.email
+//                        realm.add(setting)
+//                        realm.add(self.settingList)
+//                        try! realm.commitWrite()
+//                        print("save setting into realm")
+//                    }
+//                    self.present(tabBarVC, animated: true)
+//                }
+//                
+//            } else {
+//                self.present(alert, animated: true)
+//            }
+//        }
+        self.present(tabBarVC, animated: true)
     }
     
     //비밀번호 잊었을때 ForgetPassword View로 이동
