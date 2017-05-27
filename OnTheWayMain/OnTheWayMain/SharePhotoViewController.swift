@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 //  SharePhotoViewController.swift
 //  OnTheWayMain
@@ -6,9 +7,10 @@
 //  Copyright © 2017 junwoo. All rights reserved.
 //
 
+=======
+>>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
 import UIKit
 import AVFoundation
-
 class SharePhotoViewController: UIViewController {
     @IBOutlet var cameraView: UIView!
     
@@ -36,7 +38,7 @@ class SharePhotoViewController: UIViewController {
         navBar.setItems([navItem], animated: false);
     }
     func gotoLibrary() {
-    
+        
     }
     func backAction(){
         self.dismiss(animated: true, completion: nil)
@@ -49,7 +51,10 @@ class SharePhotoViewController: UIViewController {
         self.present(sharePhotoPreViewController, animated: true)
     }
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
     @IBAction func takePhoto(_ sender: Any) {
         takePicture()
     }
@@ -77,7 +82,11 @@ class SharePhotoViewController: UIViewController {
         
     }
     
+<<<<<<< HEAD
         
+=======
+    
+>>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off
@@ -85,8 +94,6 @@ class SharePhotoViewController: UIViewController {
         
     }
 }
-
-
 extension SharePhotoViewController : AVCapturePhotoCaptureDelegate {
     
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {

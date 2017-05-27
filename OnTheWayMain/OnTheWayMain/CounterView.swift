@@ -5,6 +5,7 @@ import UIKit
 //IBDesignable은 코어그래픽을 스토리보드에서 실시간으로 프리뷰 가능하게 한다
 @IBDesignable class CounterView: UIView {
 
+<<<<<<< HEAD
     private lazy var stepOfGoal: Int = {
         var goal = Int()
         if UserSettingManager.sharedInstance.getUserSetting().items.count != 0 {
@@ -17,12 +18,17 @@ import UIKit
         return goal
     }()
     
+=======
+
+    var stepOfGoal = 10000
+>>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
     let π: CGFloat = CGFloat.pi
 
     @IBInspectable var stepOfWalked: Int = 0
     @IBInspectable var outlineColor: UIColor = UIColor.green
 
     @IBInspectable var counterColor: UIColor = UIColor.yellow
+    
 
     override func draw(_ rect: CGRect) {
 
@@ -30,7 +36,7 @@ import UIKit
         let center = CGPoint(x:bounds.width/2, y: bounds.height/2)
 
         // 반지름
-        let radius: CGFloat = max(bounds.width * 0.8, bounds.height * 0.8)
+        let radius: CGFloat = max(bounds.width * 0.7, bounds.height * 0.7)
 
         // 두께
         let arcWidth: CGFloat = 8
@@ -60,10 +66,10 @@ import UIKit
         let outlineEndAngle = anglePerMin * CGFloat(stepOfWalked) + startAngle
 
         //경로 지정
-        let outlinePath = UIBezierPath(arcCenter: center, radius: (bounds.width/2 - 2.5) * 0.8, startAngle: startAngle, endAngle: outlineEndAngle, clockwise: true)
+        let outlinePath = UIBezierPath(arcCenter: center, radius: (bounds.width/2 - 2.5) * 0.7 - 1.5 , startAngle: startAngle, endAngle: outlineEndAngle, clockwise: true)
 
         //경로 닫기
-        outlinePath.addArc(withCenter: center, radius: (bounds.width/2 - arcWidth + 2.5) * 0.8 , startAngle: outlineEndAngle, endAngle: startAngle, clockwise: false)
+        outlinePath.addArc(withCenter: center, radius: (bounds.width/2 - arcWidth + 2.5) * 0.7 - 1.5 , startAngle: outlineEndAngle, endAngle: startAngle, clockwise: false)
 
         //그리기
         outlineColor.setStroke()
@@ -73,6 +79,11 @@ import UIKit
         outlinePath.stroke()
         outlinePath.fill()
     }
-    
+    func getGoal() -> Int{
+        return stepOfGoal
+    }
+    func setGoal(_ goal: Int) {
+        stepOfGoal = goal
+    }
     
 }
