@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-//
-//  SharePhotoViewController.swift
-//  OnTheWayMain
-//
-//  Created by nueola on 5/9/17.
-//  Copyright © 2017 junwoo. All rights reserved.
-//
 
-=======
->>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
 import UIKit
 import AVFoundation
 class SharePhotoViewController: UIViewController {
@@ -82,11 +72,6 @@ class SharePhotoViewController: UIViewController {
         
     }
     
-<<<<<<< HEAD
-        
-=======
-    
->>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off
