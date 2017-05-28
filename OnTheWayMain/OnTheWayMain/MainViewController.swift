@@ -44,8 +44,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             
             for indexOfDay in self.weeklyStepsDic.keys {
                 
-                //let steps:Int = self.weeklyStepsDic[indexOfDay]!
-                let steps:Int = 5000
+                let steps:Int = self.weeklyStepsDic[indexOfDay]!
+                //let steps:Int = 5000
                 
                 StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
                 

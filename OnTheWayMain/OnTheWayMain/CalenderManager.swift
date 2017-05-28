@@ -56,6 +56,11 @@ struct CalenderManager {
         myDateFormatter.dateFormat = "yyyy년 MM월 dd일"
         return myDateFormatter.string(from: todayDate)
     }
+    func getTodayString(todayDate: Date) -> String {
+        myDateFormatter.locale = Locale.init(identifier: "en_GB")
+        myDateFormatter.dateFormat = "MMMM d"
+        return myDateFormatter.string(from: todayDate)
+    }
 
 
     func getSimpleStr(todayDate: Date) -> String {
