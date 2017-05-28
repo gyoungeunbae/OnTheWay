@@ -29,6 +29,11 @@ struct CalenderManager {
         return weekArr
     }
 
+    func getTodayString(todayDate: Date) -> String {
+                myDateFormatter.locale = Locale.init(identifier: "en_GB")
+                myDateFormatter.dateFormat = "MMMM d"
+                return myDateFormatter.string(from: todayDate)
+            }
     //일주일 전 Date 구하기
     func getLastweekDate(myDate: Date) -> Date {
         let oneWeek = TimeInterval(60*60*24*6)
