@@ -72,6 +72,11 @@ struct CalenderManager {
         }
         return temp
     }
+    func getTodayString(todayDate: Date) -> String {
+               myDateFormatter.locale = Locale.init(identifier: "en_GB")
+               myDateFormatter.dateFormat = "MMMM d"
+               return myDateFormatter.string(from: todayDate)
+            }
 
     func getSimpleWeekArrStr() -> [String] {
         var weekArr = getLastWeekArr()

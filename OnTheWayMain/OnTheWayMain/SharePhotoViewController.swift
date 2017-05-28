@@ -1,4 +1,3 @@
-
 import UIKit
 import AVFoundation
 class SharePhotoViewController: UIViewController {
@@ -17,15 +16,16 @@ class SharePhotoViewController: UIViewController {
         self.square.layer.borderWidth = 1
         self.square.layer.borderColor = UIColor.white.cgColor
         cameraView.addSubview(square)
-        
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80))
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "");
+        
+        self.view.addSubview(navBar)
+        let navItem = UINavigationItem(title: "")
         let backItem = UIBarButtonItem(title: "< Back", style: .plain, target: self, action: #selector(backAction))
         let galleryItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(gotoLibrary))
         navItem.leftBarButtonItem = backItem
         navItem.rightBarButtonItem = galleryItem
-        navBar.setItems([navItem], animated: false);
+        navBar.setItems([navItem], animated: false)
+        
     }
     func gotoLibrary() {
         
@@ -49,11 +49,11 @@ class SharePhotoViewController: UIViewController {
         session.sessionPreset = AVCaptureSessionPresetHigh
         camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
-        let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
-        cameraCaptureOutput = AVCapturePhotoOutput()
+            let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
+            cameraCaptureOutput = AVCapturePhotoOutput()
             
-        session.addInput(cameraCaptureInput)
-        session.addOutput(cameraCaptureOutput)
+            session.addInput(cameraCaptureInput)
+            session.addOutput(cameraCaptureOutput)
         } catch {
             print(error.localizedDescription)
         }
@@ -92,4 +92,5 @@ extension SharePhotoViewController : AVCapturePhotoCaptureDelegate {
             }
         }
     }
+    
 }

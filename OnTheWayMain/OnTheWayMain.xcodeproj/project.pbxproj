@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		283AFBD51EC57D6E00621133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 283AFBD41EC57D6E00621133 /* Assets.xcassets */; };
 		288188A51EC1B32900876BB6 /* SharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */; };
-		288188A71EC1B35500876BB6 /* SharePhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288188A61EC1B35500876BB6 /* SharePhoto.storyboard */; };
 		288A65FD1ECE961500B4CC5E /* connect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288A65FB1ECE961500B4CC5E /* connect.storyboard */; };
 		288A65FF1ED0291E00B4CC5E /* SharePhotoPreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288A65FE1ED0291E00B4CC5E /* SharePhotoPreViewController.swift */; };
 		288B4D121EB49E8200F4B80F /* PresentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */; };
 		288B4D141EB4A0D000F4B80F /* PresentLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */; };
 		28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */; };
+		28FBF8341EDB5586000B668E /* SharePhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28FBF8331EDB5586000B668E /* SharePhoto.storyboard */; };
 		482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */; };
 		482FBE181EC700C500DE72AC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 482FBE171EC700C500DE72AC /* Setting.storyboard */; };
 		482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE3F1EC964D100DE72AC /* SettingViewController.swift */; };
@@ -76,12 +76,12 @@
 		05364ABBEAAD5775DDF42C35 /* Pods_OnTheWayMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheWayMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		283AFBD41EC57D6E00621133 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePhotoViewController.swift; sourceTree = "<group>"; };
-		288188A61EC1B35500876BB6 /* SharePhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SharePhoto.storyboard; sourceTree = "<group>"; };
 		288A65FC1ECE961500B4CC5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/connect.storyboard; sourceTree = "<group>"; };
 		288A65FE1ED0291E00B4CC5E /* SharePhotoPreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePhotoPreViewController.swift; sourceTree = "<group>"; };
 		288B4D111EB49E8200F4B80F /* PresentLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationViewController.swift; sourceTree = "<group>"; };
 		288B4D131EB4A0D000F4B80F /* PresentLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PresentLocation.storyboard; sourceTree = "<group>"; };
 		28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationTableViewCell.swift; sourceTree = "<group>"; };
+		28FBF8331EDB5586000B668E /* SharePhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SharePhoto.storyboard; sourceTree = "<group>"; };
 		482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
 		482FBE171EC700C500DE72AC /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		482FBE3F1EC964D100DE72AC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			children = (
 				288188A41EC1B32900876BB6 /* SharePhotoViewController.swift */,
 				288A65FE1ED0291E00B4CC5E /* SharePhotoPreViewController.swift */,
-				288188A61EC1B35500876BB6 /* SharePhoto.storyboard */,
+				28FBF8331EDB5586000B668E /* SharePhoto.storyboard */,
 			);
 			name = SharePhotoView;
 			sourceTree = "<group>";
@@ -399,11 +399,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				484F4BF41EAA63A300754888 /* LaunchScreen.storyboard in Resources */,
-				288188A71EC1B35500876BB6 /* SharePhoto.storyboard in Resources */,
 				48D7F5BE1EB2524C000D747B /* Login.storyboard in Resources */,
 				288A65FD1ECE961500B4CC5E /* connect.storyboard in Resources */,
 				9B3B07E01EC9B2EC00BA3CFB /* HealthData.storyboard in Resources */,
 				48D7F5D81EBC405D000D747B /* MyPath.storyboard in Resources */,
+				28FBF8341EDB5586000B668E /* SharePhoto.storyboard in Resources */,
 				48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */,
 				482FBE181EC700C500DE72AC /* Setting.storyboard in Resources */,
 				484F4BEF1EAA63A300754888 /* Main.storyboard in Resources */,
