@@ -1,5 +1,7 @@
 import UIKit
 import AVFoundation
+
+
 class SharePhotoViewController: UIViewController {
     @IBOutlet var cameraView: UIView!
     
@@ -16,7 +18,7 @@ class SharePhotoViewController: UIViewController {
         self.square.layer.borderWidth = 1
         self.square.layer.borderColor = UIColor.white.cgColor
         cameraView.addSubview(square)
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80))
+               let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80))
         
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "");
@@ -67,7 +69,6 @@ class SharePhotoViewController: UIViewController {
         session.startRunning()
         
     }
-    
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off
@@ -75,6 +76,7 @@ class SharePhotoViewController: UIViewController {
         
     }
 }
+
 extension SharePhotoViewController : AVCapturePhotoCaptureDelegate {
     
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
@@ -92,5 +94,4 @@ extension SharePhotoViewController : AVCapturePhotoCaptureDelegate {
             }
         }
     }
-    
 }
