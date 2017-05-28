@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-//
-//  SharePhotoViewController.swift
-//  OnTheWayMain
-//
-//  Created by nueola on 5/9/17.
-//  Copyright © 2017 junwoo. All rights reserved.
-//
 
-=======
->>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
+
 import UIKit
 import AVFoundation
+
+
 class SharePhotoViewController: UIViewController {
     @IBOutlet var cameraView: UIView!
     
@@ -51,10 +44,7 @@ class SharePhotoViewController: UIViewController {
         self.present(sharePhotoPreViewController, animated: true)
     }
     
-<<<<<<< HEAD
-
-=======
->>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
+    
     @IBAction func takePhoto(_ sender: Any) {
         takePicture()
     }
@@ -63,11 +53,11 @@ class SharePhotoViewController: UIViewController {
         session.sessionPreset = AVCaptureSessionPresetHigh
         camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
-        let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
-        cameraCaptureOutput = AVCapturePhotoOutput()
+            let cameraCaptureInput = try AVCaptureDeviceInput(device: camera!)
+            cameraCaptureOutput = AVCapturePhotoOutput()
             
-        session.addInput(cameraCaptureInput)
-        session.addOutput(cameraCaptureOutput)
+            session.addInput(cameraCaptureInput)
+            session.addOutput(cameraCaptureOutput)
         } catch {
             print(error.localizedDescription)
         }
@@ -81,12 +71,7 @@ class SharePhotoViewController: UIViewController {
         session.startRunning()
         
     }
-    
-<<<<<<< HEAD
-        
-=======
-    
->>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
+
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off
@@ -94,6 +79,7 @@ class SharePhotoViewController: UIViewController {
         
     }
 }
+
 extension SharePhotoViewController : AVCapturePhotoCaptureDelegate {
     
     func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {

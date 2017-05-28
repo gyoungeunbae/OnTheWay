@@ -1,10 +1,3 @@
-//
-//  SettingViewController.swift
-//  OnTheWayMain
-//
-//  Created by junwoo on 2017. 5. 15..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
 
 import UIKit
 import RealmSwift
@@ -81,47 +74,50 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //설정 변경될때마다 tableView 다시 뿌리고 realm에 저장
     func drawAndSave(_ notification: Notification) {
-        settingTableView.reloadData()
-        let realm = try? Realm() // Create realm pointing to default file
-        realm?.beginWrite()
-        let setting = Setting()
-        setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
-        setting.notification = (settings["notification"]?["notification"]!)!
-        settingList.items.append(setting)
-        settingList.email = UserManager.sharedInstance.getUser()[0].email
-        realm?.add(setting)
-        realm?.add(settingList)
-        try! realm?.commitWrite()
-        print("save setting into realm")
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        if UserManager.sharedInstance.getUser()[0].email != "email" {
+            settingTableView.reloadData()
+            let realm = try? Realm() // Create realm pointing to default file
+            realm?.beginWrite()
+            let setting = Setting()
+            setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
+            setting.notification = (settings["notification"]?["notification"]!)!
+            settingList.items.append(setting)
+            settingList.email = UserManager.sharedInstance.getUser()[0].email
+            realm?.add(setting)
+            realm?.add(settingList)
+            try! realm?.commitWrite()
+            print("save setting into realm")
+            print(Realm.Configuration.defaultConfiguration.fileURL!)
+        }
+        
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return settings.count
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let categoryValues = Array(settings.values)[section]
         return categoryValues.count
     }
-
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell: UITableViewCell = self.settingTableView.dequeueReusableCell(withIdentifier: "MyCell") as UITableViewCell!
-
+        
         let categoryValue = Array(settings.values)[indexPath.section]
-
+        
         let title = Array(categoryValue.keys)[indexPath.row]
-
+        
         cell.textLabel?.text = title
-
+        
         let detail = Array(categoryValue.values)[indexPath.row]
         cell.detailTextLabel?.text = "\(detail)"
-
+        
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Array(settings.keys)[section]
     }
@@ -138,19 +134,19 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             if detail == "On" {
                 self.settings["notification"]?.updateValue("Off", forKey: "notification")
                 NotificationCenter.default.post(name: Notification.Name("notificationOff"), object: nil)
+                
             }
-            
             if detail == "Off" {
                 self.settings["notification"]?.updateValue("On", forKey: "notification")
                 NotificationCenter.default.post(name: Notification.Name("notificationOn"), object: nil)
-
+                
             }
             NotificationCenter.default.post(name: Notification.Name("settingChanged"), object: nil)
         }
         
         //목표걸음 설정
         if title == "dailyStep" {
-        
+
             //The first row is selected and here the user can change the string in an alert sheet.
             let firstRowEditAction = UIAlertController(title: "Edit Title", message: "Please edit the title", preferredStyle: .alert)
             firstRowEditAction.addTextField(configurationHandler: { (newTitle) -> Void in
@@ -167,15 +163,10 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             //The Okay action will change the title that is typed in.
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
             self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
+
+
                 
-<<<<<<< HEAD
                 self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
-                print("user = \(UserManager.sharedInstance.getUser())")
-=======
-
-            self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
-
->>>>>>> d69437e8d6341e092636a43713e22092ae9f0397
                 UserSettingManager.sharedInstance.updateUserSetting(user: UserManager.sharedInstance.getUser()[0], dailyGoal: (firstRowEditAction.textFields?.first?.text)!, notification: (self.settings["notification"]?["notification"])!)
                 print("setting = \(UserSettingManager.sharedInstance.getUserSetting())" )
                 NotificationCenter.default.post(name: Notification.Name("settingChanged"), object: nil)
@@ -187,7 +178,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.present(firstRowEditAction, animated: true, completion: nil)
             
         }
-
         //사용자이름 설정
         if title == "username" {
             
@@ -195,7 +185,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             let firstRowEditAction = UIAlertController(title: "Edit Title", message: "Please edit the title", preferredStyle: .alert)
             firstRowEditAction.addTextField(configurationHandler: { (newTitle) -> Void in
                 newTitle.text = detail
-                
+
             })
             
             //The cancel action will do nothing.
@@ -222,12 +212,10 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             firstRowEditAction.addAction(okayAction)
             firstRowEditAction.addAction(cancelAction)
             self.present(firstRowEditAction, animated: true, completion: nil)
-                
         }
         
         //프로필사진 설정
         if title == "image" {
-        
             imagePicker.allowsEditing = false
             imagePicker.sourceType = .photoLibrary
             present(imagePicker, animated: true, completion: nil)
@@ -251,6 +239,5 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         dismiss(animated: true, completion: nil)
     }
     
-
+    
 }
-

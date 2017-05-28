@@ -1,10 +1,3 @@
-//
-//  LoginViewController.swift
-//  OnTheWayMain
-//
-//  Created by junwoo on 2017. 4. 27..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
 
 import UIKit
 import FBSDKCoreKit
@@ -13,40 +6,23 @@ import Alamofire
 import RealmSwift
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var pwdTextField: UITextField!
     var serverManager = ServerManager()
     var settingList = SettingList()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.emailTextField.delegate = self
         self.pwdTextField.delegate = self
         self.emailTextField.becomeFirstResponder()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardUP(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDown(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        //세션 있나 확인
-        serverManager.getSession { (user) in
-            
-            UserManager.sharedInstance.addUser(user)
-            print("session is \(user)")
-            
-            //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
-            let realm = try! Realm()
-            let results = realm.objects(SettingList.self).filter("email == '\(user.email)'")
-            if results.count != 0 {
-                UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
-            }
-            let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
-            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
-            self.present(tabBarVC, animated: true, completion: nil)
-        }
-
     }
+    
 
     func keyboardUP(notification: Notification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
@@ -54,7 +30,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.view.frame.origin.y -= 80
         }
     }
-
     func keyboardDown(notification: Notification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.view.frame.origin.y = 0
@@ -65,15 +40,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.endEditing(true)
         pwdTextField.endEditing(true)
     }
-
+    
     @IBAction func registerButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Register", bundle: nil)
         let registerVC = storyboard.instantiateViewController(withIdentifier: "registerVC")
-
+        
         self.present(registerVC, animated: true, completion: nil)
-
+        
     }
-
+    
     //페이스북 로그인 버튼
     @IBAction func loginWithFacebookButton(_ sender: Any) {
         let readPermissions = ["public_profile"]
@@ -88,21 +63,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 //로그인 성공시 탭바로 들어가서 페이스북 정보 가져오기
                 let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
                 let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
-                self.present(tabBarVC, animated: false, completion: nil)
+
+                self.present(tabBarVC, animated: true)
+
                 self.getFacebookUserInfo()
                 
             }
         }
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
 
         if(textField.isEqual(self.emailTextField)) {
             self.pwdTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
         }
         return true
     }
-
     @IBAction func loginButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
         let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
@@ -135,21 +112,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         try! realm.commitWrite()
                         print("save setting into realm")
                     }
-                    self.present(tabBarVC, animated: true, completion: nil)
+                    self.present(tabBarVC, animated: true)
                 }
-
+                
             } else {
-                self.present(alert, animated: true, completion: nil)
+                self.present(alert, animated: true)
             }
         }
-
+        
     }
-
+    
     //비밀번호 잊었을때 ForgetPassword View로 이동
     @IBAction func forgetPasswordButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let forgetPasswordVC = storyboard.instantiateViewController(withIdentifier: "forgetPasswordVC")
-        self.present(forgetPasswordVC, animated: false, completion: nil)
+        self.present(forgetPasswordVC, animated: true)
+        
 
     }
     
@@ -212,8 +190,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     
                 }
 
-        })
+                
+            })
         
     }
+    
 
 }
