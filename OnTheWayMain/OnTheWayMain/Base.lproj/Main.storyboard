@@ -21,37 +21,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="run" translatesAutoresizingMaskIntoConstraints="NO" id="PJi-ah-yn6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="run" translatesAutoresizingMaskIntoConstraints="NO" id="PJi-ah-yn6">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.040035057989623903" green="0.11008256270056015" blue="0.45687262055837563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes! Getting closer to the 60" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-Pm-LPD">
-                                <rect key="frame" x="41" y="389" width="309" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="309" id="7oe-7A-U3p"/>
-                                    <constraint firstAttribute="height" constant="29" id="M87-mj-Cuh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="PJi-ah-yn6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CA7-MC-5VQ"/>
-                            <constraint firstItem="hgH-Pm-LPD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="369" id="Guy-Ud-Wg0"/>
-                            <constraint firstItem="PJi-ah-yn6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fzF-Iu-qbV"/>
-                            <constraint firstAttribute="trailing" secondItem="PJi-ah-yn6" secondAttribute="trailing" id="lD6-Yn-DLa"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PJi-ah-yn6" secondAttribute="bottom" id="q2a-y8-Jwn"/>
-                            <constraint firstItem="hgH-Pm-LPD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="8" id="vUe-CE-Fmk"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="home" selectedImage="home_filled" id="Cjf-Pf-IGe"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="PJi-ah-yn6" id="Kc8-1V-aBQ"/>
-                        <outlet property="messageLabel" destination="hgH-Pm-LPD" id="Hb7-if-gm8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

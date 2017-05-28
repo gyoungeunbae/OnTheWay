@@ -3,10 +3,11 @@ import Foundation
 
 class SharePhotoPreViewController: UIViewController {
     
-    
-    
+
+   
+ 
     @IBOutlet weak var today: UILabel!
-    
+  
     @IBOutlet weak var sharePhototitle: UILabel!
     var capturedImage : UIImage?
     @IBOutlet weak var imageView: UIImageView!
@@ -16,7 +17,7 @@ class SharePhotoPreViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        //       capturedImage.
+ //       capturedImage.
         let calender = CalenderManager()
         self.square.layer.borderWidth = 1.0
         self.square.layer.borderColor = UIColor.white.cgColor
@@ -39,7 +40,6 @@ class SharePhotoPreViewController: UIViewController {
         imageView.image = capturedImage
         imageView.addSubview(square)
         imageView.addSubview(sharePhototitle)
-        
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80))
         self.view.addSubview(navBar);
@@ -72,6 +72,15 @@ class SharePhotoPreViewController: UIViewController {
     }
     
     
+}
+extension UIView {
+    func snapshot() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, UIScreen.main.scale)
+        self.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
 }
 extension UIView {
     func snapshot() -> UIImage {
