@@ -25,7 +25,6 @@ struct CalenderManager {
             let weekDate = startOfDate.addingTimeInterval(TimeInterval(60*60*24*index))
             weekArr.append(weekDate)
         }
-
         return weekArr
     }
 
@@ -46,6 +45,12 @@ struct CalenderManager {
             weekArr.append(weekDate)
         }
         return weekArr
+    }
+    func getDayArr(todayDate: Date) -> Int {
+        
+        var today = myCalender.dateComponents([.weekday], from: todayDate)
+        
+        return today.weekday!
     }
 
     func getKoreanStr(todayDate: Date) -> String {
