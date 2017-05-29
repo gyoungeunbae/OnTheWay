@@ -54,16 +54,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         let username = userNameTextFiled
         let email = emailTextField
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
-        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
 
         if(textField.isEqual(username)) {
             if(emailTextField.text == ""){
                 emailTextField.becomeFirstResponder()
             }
             if(checkRegisterCondition()) {
-                present(tabBarVC, animated: true, completion: nil)
+                NotificationCenter.default.post(name: Notification.Name("presentTabBarVC"), object: nil)
             }
             
 
@@ -74,7 +71,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 passwordTextFiled.becomeFirstResponder()
             }
             if(checkRegisterCondition()) {
-                present(tabBarVC, animated: true, completion: nil)
+                NotificationCenter.default.post(name: Notification.Name("presentTabBarVC"), object: nil)
             }
             
         } else if(textField.isEqual(passwordTextFiled)) {
@@ -83,13 +80,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 confirmPasswordTextFiled.becomeFirstResponder()
             }
             if(checkRegisterCondition()) {
-                present(tabBarVC, animated: true, completion: nil)
+                NotificationCenter.default.post(name: Notification.Name("presentTabBarVC"), object: nil)
             }
             
         } else if(textField.isEqual(confirmPasswordTextFiled)) {
             
             if(checkRegisterCondition()) {
-                present(tabBarVC, animated: true, completion: nil)
+                NotificationCenter.default.post(name: Notification.Name("presentTabBarVC"), object: nil)
             }
         }
         return true
@@ -209,10 +206,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             serverManager.registerReq(email: email!, password: password!, username: username!, callback: { (isUser) in
                 
                 if isUser == true {
-
-                    let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
-                    let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
-                    self.present(tabBarVC, animated: true, completion: nil)
+                    NotificationCenter.default.post(name: Notification.Name("presentTabBarVC"), object: nil)
                     
                     self.serverManager.loginReq(email: email!, password: password!) { (isUser) in
                         if isUser == true {

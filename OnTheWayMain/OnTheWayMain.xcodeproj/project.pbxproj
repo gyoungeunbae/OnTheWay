@@ -16,6 +16,7 @@
 		28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */; };
 		28FBF8361EDBFC60000B668E /* SharePhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28FBF8351EDBFC60000B668E /* SharePhoto.storyboard */; };
 		4814513F1EDB1FA40063D092 /* StaticMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4814513E1EDB1FA40063D092 /* StaticMapViewController.swift */; };
+		481451411EDC2AEA0063D092 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481451401EDC2AEA0063D092 /* LineGraphView.swift */; };
 		482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */; };
 		482FBE181EC700C500DE72AC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 482FBE171EC700C500DE72AC /* Setting.storyboard */; };
 		482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE3F1EC964D100DE72AC /* SettingViewController.swift */; };
@@ -85,6 +86,7 @@
 		28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationTableViewCell.swift; sourceTree = "<group>"; };
 		28FBF8351EDBFC60000B668E /* SharePhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SharePhoto.storyboard; sourceTree = "<group>"; };
 		4814513E1EDB1FA40063D092 /* StaticMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMapViewController.swift; sourceTree = "<group>"; };
+		481451401EDC2AEA0063D092 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphView.swift; sourceTree = "<group>"; };
 		482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
 		482FBE171EC700C500DE72AC /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		482FBE3F1EC964D100DE72AC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -271,7 +273,9 @@
 		9BEB127B1EB1FF1100772CF1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+
 				9B4E3A3C1EDC1BF0002321A4 /* LineGraphView.swift */,
+
 				484F4C011EAB680100754888 /* CounterView.swift */,
 				48D76D071ED8C1E500C66667 /* LocationService.swift */,
 				484F4BED1EAA63A300754888 /* Main.storyboard */,
@@ -365,7 +369,9 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
+
 						DevelopmentTeam = QLAGA64KZQ;
+
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -496,7 +502,9 @@
 				9BEB12C61EB6DCFB00772CF1 /* ServerManager.swift in Sources */,
 				9B3E70821ECD950800C0C58E /* PieChartView.swift in Sources */,
 				48D76CFE1ED887B500C66667 /* Friends.swift in Sources */,
+
 				9B4E3A3D1EDC1BF0002321A4 /* LineGraphView.swift in Sources */,
+
 				9B3B07E41EC9B32400BA3CFB /* HealthDataViewController.swift in Sources */,
 				48D76D021ED891EC00C66667 /* FriendsManager.swift in Sources */,
 				482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */,
@@ -656,14 +664,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+
 				DEVELOPMENT_TEAM = QLAGA64KZQ;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+
 				PRODUCT_BUNDLE_IDENTIFIER = codesquad.lee;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -677,7 +689,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+
 				DEVELOPMENT_TEAM = QLAGA64KZQ;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -685,6 +699,7 @@
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codesquad.lee;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
