@@ -81,11 +81,10 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         var coordinates = [CLLocationCoordinate2D]()
         if results.count != 0 {
             
-            for coordinate in results {
-                let point = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                coordinates.append(point)
-            }
-            
+        for coordinate in results {
+            let point = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            coordinates.append(point)
+        }
             
         }
         return coordinates
