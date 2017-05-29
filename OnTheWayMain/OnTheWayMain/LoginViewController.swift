@@ -1,3 +1,4 @@
+
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
@@ -5,7 +6,6 @@ import Alamofire
 import RealmSwift
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var pwdTextField: UITextField!
     var serverManager = ServerManager()
@@ -23,19 +23,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+
     func keyboardUP(notification: Notification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.view.frame.origin.y = 0
             self.view.frame.origin.y -= 80
         }
     }
-    
     func keyboardDown(notification: Notification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             self.view.frame.origin.y = 0
         }
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailTextField.endEditing(true)
         pwdTextField.endEditing(true)
@@ -61,6 +61,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             } else {
                 //로그인 성공시 탭바로 들어가서 페이스북 정보 가져오기
                 NotificationCenter.default.post(name: Notification.Name("presentTabBarVC"), object: nil)
+
                 self.getFacebookUserInfo()
             }
         }
@@ -68,12 +69,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
+
         if(textField.isEqual(self.emailTextField)) {
             self.pwdTextField.becomeFirstResponder() //다음 텍스트 필드로 포커스 이동
         }
         return true
     }
-    
     @IBAction func loginButton(_ sender: Any) {
         
         let alert = UIAlertController(title: "Alert", message: "이메일이나 비밀번호를 확인해주세요", preferredStyle: UIAlertControllerStyle.alert)
@@ -122,6 +123,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let forgetPasswordVC = storyboard.instantiateViewController(withIdentifier: "forgetPasswordVC")
         self.present(forgetPasswordVC, animated: true)
         
+
     }
     
     
@@ -182,9 +184,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                 }
+
                 
             })
         
     }
     
+
 }
