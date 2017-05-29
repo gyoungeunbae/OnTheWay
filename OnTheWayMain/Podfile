@@ -6,6 +6,7 @@ target 'OnTheWayMain' do
   use_frameworks!
   # Pods for OnTheWayMain
   pod 'Mapbox-iOS-SDK', '~> 3.5'
+  pod 'MapboxStatic.swift', '~> 0.8'
   pod 'FBSDKLoginKit'
   pod 'SwiftLint'
   #  source 'https://github.com/CocoaPods/Specs.git'
