@@ -3,6 +3,7 @@
 import UIKit
 
 class LineGraphView: UIView {
+    
     var count: CGFloat = 0.0
     var graphValues: Array<CGFloat> = [8000,8000,8000,8000,8000,8000,8000]
     let π: CGFloat = CGFloat.pi
@@ -10,18 +11,18 @@ class LineGraphView: UIView {
     var setDayDotLine = [UIBezierPath]()
     var goalValue: CGFloat = 100.0
     var goalRate: CGFloat = 0.01
-
     
+
     override func draw(_ rect: CGRect) {
         
         let circle = UIGraphicsGetCurrentContext()
         let dotLineGoal = UIBezierPath()
         let dotLineZero = UIBezierPath()
-        
        
         let pattern: [CGFloat] = [5.0, 5.0]
-        
         let valueGap = Int((bounds.size.width) / 7)
+       
+        
         
         for index in 0...6 {
             setDayDotLine.append(UIBezierPath())
@@ -30,8 +31,8 @@ class LineGraphView: UIView {
             setDayDotLine[index].setLineDash(pattern, count: 2, phase: 0.0)
             
             setDayDotLine[index].stroke()
+            
            
-
         }
         
         dotLineGoal.move(to: CGPoint(x: 10, y: (bounds.size.height * 0.5) - goalValue))
@@ -39,17 +40,12 @@ class LineGraphView: UIView {
         dotLineZero.move(to: CGPoint(x: 10, y: bounds.size.height * 0.5))
         dotLineZero.addLine(to: CGPoint(x:bounds.size.width - 10, y: bounds.size.height * 0.5))
         
-        
-        
-        
         dotLineGoal.setLineDash(pattern, count: 2, phase: 0.0)
         UIColor.green.setStroke()
         dotLineGoal.stroke()
         dotLineZero.setLineDash(pattern, count: 2, phase: 0.0)
         UIColor.white.setStroke()
         dotLineZero.stroke()
-        
-        
         
         for index in 0...6 {
             
@@ -63,8 +59,6 @@ class LineGraphView: UIView {
             
             context?.setStrokeColor(UIColor.green.cgColor)
             context?.setLineWidth(3.0)
-            
-            
             
             context?.move(to: point[index])
             
@@ -95,6 +89,6 @@ class LineGraphView: UIView {
     func setGoalRate(goal: CGFloat){
         goalRate = 1 / goalValue
     }
-    
+       
     
 }
