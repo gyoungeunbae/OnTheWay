@@ -11,9 +11,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
+
     var lineGraphView = LineGraphView()
     
     
+
     // 메인 스크롤뷰
     var mainScrollView = UIScrollView()
     // 메인 스크롤뷰에 추가할 뷰
@@ -46,7 +48,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             for indexOfDay in self.weeklyStepsDic.keys {
                 
                 let steps:Int = self.weeklyStepsDic[indexOfDay]!
-                //let steps:Int = 5000
                 let today = self.calenderManager.getDayArr(todayDate: thisWeek[indexOfDay])
                 
                 StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
@@ -157,8 +158,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.contentSize = CGSize(width: screenWidth * 7, height: screenHeight / 2)
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
-        
-        
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
         
         self.view.addSubview(mainScrollView)
