@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //걸음수 요청
-        requestHealthKitAuthorization()
-      
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().barTintColor = UIColor.clear
         UINavigationBar.appearance().tintColor = UIColor.white
@@ -54,24 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         UITabBar.appearance().tintColor = UIColor.black
         
-        //세션유지
-        serverManager.getSession { (user) in
-            
-            //UserManager에 넣기
-            UserManager.sharedInstance.addUser(user)
-            
-            //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
-            let realm = try! Realm()
-            let email = user.email!
-            let results = realm.objects(SettingList.self).filter("email == '\(email)'")
-            if results.count != 0 {
-                //UserSettingManager 에 넣기
-                UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
-                print("setting into usersettingmanager")
-            }
-            self.presentTabBarVC()
-        }
-
         return true
     }
     
@@ -177,12 +156,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        
+        LocationService.sharedInstance.startUpdatingLocation()
     }
     
     
@@ -192,13 +170,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        //걸음수 요청
+        requestHealthKitAuthorization()
+        LocationService.sharedInstance.startUpdatingLocation()
         
+        //세션유지
+        serverManager.getSession { (user) in
+            
+            //UserManager에 넣기
+            UserManager.sharedInstance.addUser(user)
+            
+            //로그인한 유저의 세팅을 realm에서 불러와서 넣어놓기
+            let realm = try! Realm()
+            let email = user.email!
+            let results = realm.objects(SettingList.self).filter("email == '\(email)'")
+            if results.count != 0 {
+                //UserSettingManager 에 넣기
+                UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
+                print("setting into usersettingmanager")
+            }
+            self.presentTabBarVC()
+        }
+        
+        //일주일 지난 데이터 지우기
+        let realm = try! Realm()
+        let pastResults = realm.objects(LocationRealm.self).filter("date == '\(calenderManager.getPastDateStr())'")
+        try! realm.write {
+            realm.delete(pastResults)
+        }
     }
     
     
 
     func applicationWillTerminate(_ application: UIApplication) {
         print("app will be suspended")
+        LocationService.sharedInstance.startUpdatingLocation()
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

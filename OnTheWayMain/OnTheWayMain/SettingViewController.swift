@@ -73,18 +73,34 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     func drawAndSave(_ notification: Notification) {
         if UserManager.sharedInstance.getUser()[0].email != "email" {
             settingTableView.reloadData()
-            let realm = try? Realm() // Create realm pointing to default file
-            realm?.beginWrite()
-            let setting = Setting()
-            setting.dailyGoal = (settings["dailyGoal"]?["dailyStep"]!)!
-            setting.notification = (settings["notification"]?["notification"]!)!
-            settingList.items.append(setting)
-            settingList.email = UserManager.sharedInstance.getUser()[0].email
-            realm?.add(setting)
-            realm?.add(settingList)
-            try! realm?.commitWrite()
-            print("save setting into realm")
-            print(Realm.Configuration.defaultConfiguration.fileURL!)
+            
+            DispatchQueue(label: "background").async {
+                autoreleasepool {
+                    
+                    let realm = try! Realm()
+                    if realm.objects(SettingList.self).filter("email == '\(UserManager.sharedInstance.getUser()[0].email!)'").last?.items.count != 0 {
+                        let userSettings = realm.objects(SettingList.self).filter("email == '\(UserManager.sharedInstance.getUser()[0].email!)'").last?.items.last
+                        try! realm.write {
+                            userSettings?.dailyGoal = (self.settings["dailyGoal"]?["dailyStep"]!)!
+                            userSettings?.notification = (self.settings["notification"]?["notification"]!)!
+                        }
+                    } else {
+                        realm.beginWrite()
+                        let setting = Setting()
+                        setting.dailyGoal = (self.settings["dailyGoal"]?["dailyStep"]!)!
+                        setting.notification = (self.settings["notification"]?["notification"]!)!
+                        self.settingList.items.append(setting)
+                        self.settingList.email = UserManager.sharedInstance.getUser()[0].email
+                        realm.add(setting)
+                        realm.add(self.settingList)
+                        try! realm.commitWrite()
+                        print("save setting into realm")
+                        
+                    }
+                    
+                }
+            }
+            
         }
         
     }

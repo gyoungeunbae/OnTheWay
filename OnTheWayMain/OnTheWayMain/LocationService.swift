@@ -56,7 +56,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     // CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let date = Date()
-        if calendar.component(.hour, from: date) == 16 && calendar.component(.minute, from: date) == 00 {
+        if calendar.component(.hour, from: date) == 13 && calendar.component(.minute, from: date) == 00 {
             NotificationCenter.default.post(name: Notification.Name("stepAlarm"), object: nil)
         }
         
