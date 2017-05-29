@@ -13,14 +13,14 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     var calenderManager = CalenderManager()
 
     var lineGraphView = LineGraphView()
-
+    
     
 
     // 메인 스크롤뷰
     var mainScrollView = UIScrollView()
     // 메인 스크롤뷰에 추가할 뷰
     var dailyCounterViewArray = [CounterView]()
-    // 카운터 뷰에 추가할 텍스트 
+    // 카운터 뷰에 추가할 텍스트
     var dailyCounterViewTextArray = [UILabel]()
     // 날짜 텍스트
     var dailyCounterViewDayTextArray = [UILabel]()
@@ -42,11 +42,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         LocationService.sharedInstance.startUpdatingLocation()
         
         NotificationCenter.default.addObserver(self, selector: #selector(draw), name: Notification.Name("goalChanged"), object: nil)
-
+        
         DispatchQueue.main.async {
             
             for indexOfDay in self.weeklyStepsDic.keys {
-
+                
                 let steps:Int = self.weeklyStepsDic[indexOfDay]!
                 let today = self.calenderManager.getDayArr(todayDate: thisWeek[indexOfDay])
                 
@@ -79,7 +79,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                     print("error")
                 }
                 
-
+                
                 
                 if(indexOfDay == 5){
                     self.dailyCounterViewDayTextArray[indexOfDay].text = "어제"
@@ -100,7 +100,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         }
         
         
-
+        
         
         for _ in 0...6 {
             dailyCounterViewArray.append(CounterView())
@@ -115,7 +115,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
         lineGraphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 80 , width: self.view.frame.width, height: self.view.frame.height / 2)
         lineGraphView.backgroundColor = UIColor.clear
-    
+        
         
         for i in 0...6 {
             dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 50 ,width: screenWidth ,height: screenHeight / 2 - 50)
@@ -146,9 +146,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         for i in 0...6{
             dailyCounterViewArray[i].addSubview(dailyCounterViewTextArray[i])
             dailyCounterViewArray[i].addSubview(goalTextArray[i])
-           
+            
         }
-    
+        
         for i in 0...6{
             mainScrollView.addSubview(dailyCounterViewArray[i])
             mainScrollView.addSubview(dailyCounterViewDayTextArray[i])
@@ -159,7 +159,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.showsHorizontalScrollIndicator = false
         mainScrollView.isPagingEnabled = true
         mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: true)
-
+        
         self.view.addSubview(mainScrollView)
         self.view.addSubview(lineGraphView)
         
@@ -173,11 +173,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             let realm = try! Realm()
             
             let results = realm.objects(SettingList.self).filter("email == '\(user.email!)'")
-
+            
             if results.count != 0 {
                 let dailyGoal = results.last?.items.last?.dailyGoal
                 let notification = results.last?.items.last?.notification
-        
+                
                 UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: dailyGoal!, notification: notification!)
                 LocationService.sharedInstance.sendLocationToServer()
             }
@@ -189,9 +189,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         let width: CGFloat = self.mainScrollView.frame.size.width
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
     }
-
+    
     func draw() {
-
+        
         for index in 0...6 {
             if UserSettingManager.sharedInstance.getUserSetting().items.count != 0 {
                 let userGoal = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
@@ -207,4 +207,3 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     }
     
 }
-
