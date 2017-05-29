@@ -103,9 +103,52 @@
             </objects>
             <point key="canvasLocation" x="-956" y="133.5832083958021"/>
         </scene>
+        <!--Static Map View Controller-->
+        <scene sceneID="feD-Gy-foY">
+            <objects>
+                <viewController storyboardIdentifier="staticVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QJd-GB-jZD" customClass="StaticMapViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xRI-7O-DOH"/>
+                        <viewControllerLayoutGuide type="bottom" id="mYJ-g1-GRU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p66-d1-Gzj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQR-wB-wPF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="494"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYO-Lp-Edq">
+                                <rect key="frame" x="128" y="516" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="DO1-uQ-KQ0" kind="show" id="JBg-dZ-arr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="jQR-wB-wPF" id="qir-y4-3da"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bpo-zT-vno" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1719" y="113"/>
+        </scene>
     </scenes>
     <resources>
         <image name="path" width="25" height="25"/>
         <image name="path_filled" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="JBg-dZ-arr"/>
+    </inferredMetricsTieBreakers>
 </document>

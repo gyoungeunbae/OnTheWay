@@ -10,19 +10,23 @@ class MenuPageViewController: UIViewController, CAPSPageMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let storyboard = UIStoryboard(name: "MyPath", bundle: nil)
-
-        var controllerArray = [MyPathViewController]()
+        let myPathStoryboard = UIStoryboard(name: "MyPath", bundle: nil)
+        var controllerArray = [UIViewController]()
         var weekDay = calenderManager.getSimpleWeekArrStr()
         var weekArrStr = calenderManager.getWeekArrStr()
 
-        for index in 0...6 {
-            controllerArray.append(MyPathViewController())
-            controllerArray[index] = storyboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        for index in 0...5 {
+            controllerArray.append(StaticMapViewController())
+            controllerArray[index] = myPathStoryboard.instantiateViewController(withIdentifier: "staticVC") as! StaticMapViewController
             controllerArray[index].title = weekDay[index]
-            controllerArray[index].today = weekArrStr[index]
+            controllerArray[index].accessibilityHint = weekArrStr[index]
         }
-
+        
+        controllerArray.append(MyPathViewController())
+        controllerArray[6] = myPathStoryboard.instantiateViewController(withIdentifier: "myPathVC") as! MyPathViewController
+        controllerArray[6].title = weekDay[6]
+        
+        
         let parameters: [CAPSPageMenuOption] = [
             .menuItemSeparatorWidth(4.3),
             .useMenuLikeSegmentedControl(true),
