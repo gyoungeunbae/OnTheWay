@@ -15,7 +15,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        today = calenderManager.getWeekArrStr()[5]
+        today = calenderManager.getWeekArrStr()[6]
         mapView.delegate = self
         mapView.setUserTrackingMode(.follow, animated: true)
         allCoordinates = addPointsOnTheMap()

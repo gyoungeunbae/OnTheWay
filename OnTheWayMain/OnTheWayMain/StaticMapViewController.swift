@@ -51,6 +51,19 @@ class StaticMapViewController: UIViewController {
                 
                 self?.mapView.image = image
             }
+        } else {
+            let options = SnapshotOptions(
+                styleURL: URL(string: "mapbox://styles/mapbox/dark-v9")!,
+                size: mapView.bounds.size)
+            
+            _ = Snapshot(options: options, accessToken: accessToken).image { [weak self] (image, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                self?.mapView.image = image
+            }
         }
         
         
