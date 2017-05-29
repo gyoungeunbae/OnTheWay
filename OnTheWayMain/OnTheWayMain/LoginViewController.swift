@@ -119,7 +119,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true)
             }
         }
-        
+       // self.present(tabBarVC, animated: true)
     }
     
     //비밀번호 잊었을때 ForgetPassword View로 이동

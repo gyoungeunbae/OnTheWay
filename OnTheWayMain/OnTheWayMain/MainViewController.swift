@@ -110,15 +110,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             dayTextArray.append(UILabel())
         }
         
-        mainScrollView.frame = CGRect(x: 0, y: 50, width: screenWidth, height: screenHeight / 2)
+        mainScrollView.frame = CGRect(x: 0, y: 30, width: screenWidth, height: screenHeight / 2)
         mainScrollView.backgroundColor = UIColor.clear
         
-        lineGraphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 80 , width: self.view.frame.width, height: self.view.frame.height / 2)
+        lineGraphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 110 , width: self.view.frame.width, height: self.view.frame.height / 2)
         lineGraphView.backgroundColor = UIColor.clear
         
         
         for i in 0...6 {
-            dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 50 ,width: screenWidth ,height: screenHeight / 2 - 50)
+            dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 30 ,width: screenWidth ,height: screenHeight / 2 - 50)
             
             if(i == 5 || i == 6){
                 dailyCounterViewDayTextArray[i].frame = CGRect(x: screenWidth * CGFloat(i)+(screenWidth/2 - 20) , y: 0, width: screenWidth, height: 50)
@@ -139,7 +139,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             
             goalTextArray[i].frame = CGRect(x: screenWidth / 2 - 35  ,y:centerY + 50  ,width: screenWidth ,height: 50)
             
-            dayTextArray[i].frame = CGRect(x: 23 + CGFloat(valueGap * i), y:screenHeight/2 + 55,width: 20 ,height: 20)
+            dayTextArray[i].frame = CGRect(x: 23 + CGFloat(valueGap * i), y:screenHeight/2 + 85,width: 20 ,height: 20)
             dayTextArray[i].textColor = UIColor.blue
         }
         
@@ -205,5 +205,4 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             self.dailyCounterViewArray[index].setNeedsDisplay()
         }
     }
-    
 }
