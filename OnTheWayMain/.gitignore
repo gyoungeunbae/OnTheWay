@@ -148,7 +148,7 @@ OnTheWayMain/Server/uploads/
 ## Various settings
 
 ## Other
-
+*.xcuerstate
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
