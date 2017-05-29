@@ -1,3 +1,4 @@
+
 import UIKit
 import RealmSwift
 import FBSDKLoginKit
@@ -29,7 +30,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //설정메뉴
     var settings: [String:[String:String]] = ["profile": ["username": "name", "image": "choose photo"], "dailyGoal": ["dailyStep": "10000"], "notification": ["notification": "On"]]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let center = UNUserNotificationCenter.current()
@@ -45,7 +46,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.settings["notification"]?.updateValue("Off", forKey: "notification")
             }
         }
-        
+
         //세팅변경될때 감지
         NotificationCenter.default.addObserver(self, selector: #selector(drawAndSave), name: Notification.Name("settingChanged"), object: nil)
         
@@ -145,14 +146,13 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //목표걸음 설정
         if title == "dailyStep" {
-            
+
             //The first row is selected and here the user can change the string in an alert sheet.
             let firstRowEditAction = UIAlertController(title: "Edit Title", message: "Please edit the title", preferredStyle: .alert)
             firstRowEditAction.addTextField(configurationHandler: { (newTitle) -> Void in
                 newTitle.text = detail
                 firstRowEditAction.textFields?.first?.keyboardType = UIKeyboardType.numberPad
             })
-            
             
             //The cancel action will do nothing.
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
@@ -162,6 +162,8 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             //The Okay action will change the title that is typed in.
             let okayAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
+            self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
+
                 
                 self.settings["dailyGoal"]?.updateValue((firstRowEditAction.textFields?.first?.text)!, forKey: "dailyStep")
                 UserSettingManager.sharedInstance.updateUserSetting(user: UserManager.sharedInstance.getUser()[0], dailyGoal: (firstRowEditAction.textFields?.first?.text)!, notification: (self.settings["notification"]?["notification"])!)
@@ -175,7 +177,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.present(firstRowEditAction, animated: true, completion: nil)
             
         }
-        
         //사용자이름 설정
         if title == "username" {
             
@@ -183,6 +184,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             let firstRowEditAction = UIAlertController(title: "Edit Title", message: "Please edit the title", preferredStyle: .alert)
             firstRowEditAction.addTextField(configurationHandler: { (newTitle) -> Void in
                 newTitle.text = detail
+
             })
             
             //The cancel action will do nothing.
@@ -209,12 +211,10 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             firstRowEditAction.addAction(okayAction)
             firstRowEditAction.addAction(cancelAction)
             self.present(firstRowEditAction, animated: true, completion: nil)
-            
         }
         
         //프로필사진 설정
         if title == "image" {
-            
             imagePicker.allowsEditing = false
             imagePicker.sourceType = .photoLibrary
             present(imagePicker, animated: true, completion: nil)
