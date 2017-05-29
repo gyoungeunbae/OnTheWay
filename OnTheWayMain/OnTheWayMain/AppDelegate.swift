@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
         //걸음수 요청
         requestHealthKitAuthorization()
       
@@ -35,9 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //알림설정 변경 감지
         NotificationCenter.default.addObserver(self, selector: #selector(scheduleMorningNotification), name: Notification.Name("notificationOn"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(removeNotification), name: Notification.Name("notificationOff"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(scheduleStarterNotification), name: Notification.Name("starter"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(scheduleAlmostNotification), name: Notification.Name("almost"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(scheduleDoneNotification), name: Notification.Name("done"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(scheduleStepNotification), name: Notification.Name("stepAlarm"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(presentTabBarVC), name: Notification.Name("presentTabBarVC"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(presentLoginVC), name: Notification.Name("presentLoginVC"), object: nil)
         
         let center = UNUserNotificationCenter.current()
         
@@ -69,15 +69,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserSettingManager.sharedInstance.updateUserSetting(user: user, dailyGoal: (results.last?.items.last?.dailyGoal)!, notification: (results.last?.items.last?.notification)!)
                 print("setting into usersettingmanager")
             }
-            let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
-            let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
-            self.window?.rootViewController?.present(tabBarVC, animated: true, completion: nil)
+            self.presentTabBarVC()
         }
 
         return true
     }
     
+    func presentTabBarVC() {
+        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
+        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+        self.window?.rootViewController = tabBarVC
+    }
     
+    func presentLoginVC() {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
+        self.window?.rootViewController = loginVC
+    }
     
     //건강데이터 요청 메소드
     func requestHealthKitAuthorization() {
@@ -151,11 +159,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     }
     
-    func scheduleStarterNotification() {
+    func scheduleStepNotification() {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
-        content.title = "still less than 50% of Goal"
-        content.body = "you have to walk more"
+        content.title = "the steps you walked today is"
+        content.body = "\(StepManager.sharedInstance.getWeeklyStepsDic()[6]!) steps"
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: "Starter", content: content, trigger: trigger)
@@ -167,37 +175,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func scheduleAlmostNotification() {
-        let center = UNUserNotificationCenter.current()
-        let content = UNMutableNotificationContent()
-        content.title = "Almost done!!"
-        content.body = "cheer up baby"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: "Almost", content: content, trigger: trigger)
-        center.add(request) { (error : Error?) in
-            if let theError = error {
-                print(theError.localizedDescription)
-            }
-        }
-        
-    }
-    
-    func scheduleDoneNotification() {
-        let center = UNUserNotificationCenter.current()
-        let content = UNMutableNotificationContent()
-        content.title = "You won the Goal!!"
-        content.body = "congratulation!"
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        let request = UNNotificationRequest(identifier: "Done", content: content, trigger: trigger)
-        center.add(request) { (error : Error?) in
-            if let theError = error {
-                print(theError.localizedDescription)
-            }
-        }
-        
-    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -221,7 +198,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        print("app will be suspended")
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {

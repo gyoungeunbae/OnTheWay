@@ -19,10 +19,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         UserManager.sharedInstance.removeUser()
         UserSettingManager.sharedInstance.removeSetting()
         FriendsManager.sharedInstance.removeFriends()
-        
-        let storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
-        self.present(loginVC, animated: false, completion: nil)
+        NotificationCenter.default.post(name: Notification.Name("presentLoginVC"), object: nil)
     }
     
     @IBOutlet weak var settingTableView: UITableView!

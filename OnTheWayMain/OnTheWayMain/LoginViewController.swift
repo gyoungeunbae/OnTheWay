@@ -42,9 +42,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func registerButton(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Register", bundle: nil)
+        let storyboard = UIStoryboard(name: "Register", bundle: nil)
         let registerVC = storyboard.instantiateViewController(withIdentifier: "registerVC")
-        
         self.present(registerVC, animated: true, completion: nil)
         
     }
@@ -61,11 +60,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
             } else {
                 //로그인 성공시 탭바로 들어가서 페이스북 정보 가져오기
-                let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
-                let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
-                self.present(tabBarVC, animated: true)
+                NotificationCenter.default.post(name: Notification.Name("presentTabBarVC"), object: nil)
                 self.getFacebookUserInfo()
-                
             }
         }
     }
@@ -79,8 +75,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginButton(_ sender: Any) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "connect", bundle: nil)
-        let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBarVC")
+        
         let alert = UIAlertController(title: "Alert", message: "이메일이나 비밀번호를 확인해주세요", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         
@@ -110,7 +105,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         try! realm.commitWrite()
                         print("save setting into realm")
                     }
-                    self.present(tabBarVC, animated: true)
+                    NotificationCenter.default.post(name: Notification.Name("presentTabBarVC"), object: nil)
+                    
                 }
                 
             } else {

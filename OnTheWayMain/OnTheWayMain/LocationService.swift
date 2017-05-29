@@ -56,16 +56,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     // CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let date = Date()
-        if calendar.component(.hour, from: date) == 12 && calendar.component(.minute, from: date) == 30 {
-            let ratioOfGoal:Double = Double(StepManager.sharedInstance.getWeeklyStepsDic()[6]!) / Double((UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal)!)!
-            switch ratioOfGoal {
-            case 0..<0.5:
-                NotificationCenter.default.post(name: Notification.Name("starter"), object: nil)
-            case 0.5..<0.9:
-                NotificationCenter.default.post(name: Notification.Name("almost"), object: nil)
-            default:
-                NotificationCenter.default.post(name: Notification.Name("done"), object: nil)
-            }
+        if calendar.component(.hour, from: date) == 16 && calendar.component(.minute, from: date) == 00 {
+            NotificationCenter.default.post(name: Notification.Name("stepAlarm"), object: nil)
         }
         
         if CMMotionActivityManager.isActivityAvailable() {
@@ -92,7 +84,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                     if UIApplication.shared.applicationState == .active {
                         print("app is active")
                         NotificationCenter.default.post(name: Notification.Name("locationDraw"), object: nil)
-                        //self.sendLocationToServer()
+                        
                     } else {
                         print("app is not active")
                     }
