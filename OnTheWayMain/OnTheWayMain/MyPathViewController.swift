@@ -22,6 +22,21 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(addPointsOnTheMap), name: Notification.Name("locationDraw"), object: nil)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        PointManager.sharedInstance.removeArr()
+        let realm = try! Realm()
+        let results = realm.objects(LocationRealm.self).filter("date == '\(self.today)'")
+        if results.count != 0 {
+            
+            for coordinate in results {
+                let coordiPoint = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                let cgPoint: CGPoint = mapView.convert(coordiPoint, toPointTo: mapView)
+                PointManager.sharedInstance.addTodayCGPoints(point: cgPoint)
+            }
+            
+        }
+    }
+    
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         addLayer(to: style)
         animatePolyline()
@@ -64,7 +79,7 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         
         currentIndex += 1
     }
-
+    
     func updatePolylineWithCoordinates(coordinates: [CLLocationCoordinate2D]) {
         var mutableCoordinates = coordinates
         
@@ -81,10 +96,10 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         var coordinates = [CLLocationCoordinate2D]()
         if results.count != 0 {
             
-        for coordinate in results {
-            let point = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            coordinates.append(point)
-        }
+            for coordinate in results {
+                let point = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                coordinates.append(point)
+            }
             
         }
         return coordinates

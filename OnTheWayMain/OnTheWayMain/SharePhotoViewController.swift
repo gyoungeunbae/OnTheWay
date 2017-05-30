@@ -1,6 +1,7 @@
 import UIKit
 import AVFoundation
-
+import RealmSwift
+import CoreLocation
 
 class SharePhotoViewController: UIViewController {
     @IBOutlet var cameraView: UIView!
@@ -13,7 +14,10 @@ class SharePhotoViewController: UIViewController {
     var cameraCaptureOutput = AVCapturePhotoOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> develop
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeCapturreSession()
@@ -31,9 +35,11 @@ class SharePhotoViewController: UIViewController {
         navBar.setItems([navItem], animated: false)
         
     }
+    
     func gotoLibrary() {
         
     }
+    
     func backAction(){
         self.dismiss(animated: true, completion: nil)
         
@@ -71,6 +77,8 @@ class SharePhotoViewController: UIViewController {
         session.startRunning()
         
     }
+    
+    
     func takePicture() {
         let settings = AVCapturePhotoSettings()
         settings.flashMode = .off

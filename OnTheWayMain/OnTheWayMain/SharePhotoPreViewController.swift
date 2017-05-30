@@ -3,11 +3,7 @@ import Foundation
 
 class SharePhotoPreViewController: UIViewController {
     
-
-   
- 
     @IBOutlet weak var today: UILabel!
-  
     @IBOutlet weak var sharePhototitle: UILabel!
     var capturedImage : UIImage?
     @IBOutlet weak var imageView: UIImageView!
@@ -17,7 +13,7 @@ class SharePhotoPreViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
- //       capturedImage.
+        //       capturedImage.
         let calender = CalenderManager()
         self.square.layer.borderWidth = 1.0
         self.square.layer.borderColor = UIColor.white.cgColor
@@ -31,7 +27,6 @@ class SharePhotoPreViewController: UIViewController {
             let getStep = steps
             self.steps.text = String(describing: getStep)
         }
-        
         
         
         today.text = calender.getTodayString(todayDate: (impDate))
@@ -82,4 +77,3 @@ extension UIView {
         return img!
     }
 }
-
