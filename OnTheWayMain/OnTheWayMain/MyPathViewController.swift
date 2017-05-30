@@ -6,8 +6,10 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
     var calenderManager = CalenderManager()
     var realm: Realm!
     var today = String()
-    var locations = [MGLPointAnnotation]()
+    var timer: Timer?
+    var polylineSource: MGLShapeSource?
     var currentIndex = 1
+    var allCoordinates: [CLLocationCoordinate2D]!
     
     @IBOutlet weak var mapView: MGLMapView!
     
@@ -16,7 +18,8 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         today = calenderManager.getWeekArrStr()[6]
         mapView.delegate = self
         mapView.setUserTrackingMode(.follow, animated: true)
-        NotificationCenter.default.addObserver(self, selector: #selector(drawPolyline), name: Notification.Name("locationDraw"), object: nil)
+        allCoordinates = addPointsOnTheMap()
+        NotificationCenter.default.addObserver(self, selector: #selector(addPointsOnTheMap), name: Notification.Name("locationDraw"), object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -34,62 +37,72 @@ class MyPathViewController: UIViewController, MGLMapViewDelegate {
         }
     }
     
-    func drawPolyline() {
-        //오늘 날짜의 좌표를 realm에서 가져오기
+    func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
+        addLayer(to: style)
+        animatePolyline()
+    }
+    
+    func addLayer(to style: MGLStyle) {
+        
+        let source = MGLShapeSource(identifier: "polyline", shape: nil, options: nil)
+        style.addSource(source)
+        polylineSource = source
+        
+        let layer = MGLLineStyleLayer(identifier: "polyline", source: source)
+        layer.lineJoin = MGLStyleValue(rawValue: NSValue(mglLineJoin: .round))
+        layer.lineCap = MGLStyleValue(rawValue: NSValue(mglLineCap: .round))
+        layer.lineColor = MGLStyleValue(rawValue: UIColor.red)
+        layer.lineWidth = MGLStyleFunction(interpolationMode: .exponential,
+                                           cameraStops: [14: MGLConstantStyleValue<NSNumber>(rawValue: 5),
+                                                         18: MGLConstantStyleValue<NSNumber>(rawValue: 20)],
+                                           options: [.defaultValue : MGLConstantStyleValue<NSNumber>(rawValue: 1.5)])
+        style.addLayer(layer)
+    }
+    
+    func animatePolyline() {
+        currentIndex = 1
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
+    }
+    
+    func tick() {
+        if currentIndex > allCoordinates.count {
+            timer?.invalidate()
+            timer = nil
+            return
+        }
+        
+        // Create a subarray of locations up to the current index.
+        let coordinates = Array(allCoordinates[0..<currentIndex])
+        
+        // Update our MGLShapeSource with the current locations.
+        updatePolylineWithCoordinates(coordinates: coordinates)
+        
+        currentIndex += 1
+    }
+    
+    func updatePolylineWithCoordinates(coordinates: [CLLocationCoordinate2D]) {
+        var mutableCoordinates = coordinates
+        
+        let polyline = MGLPolylineFeature(coordinates: &mutableCoordinates, count: UInt(mutableCoordinates.count))
+        
+        // Updating the MGLShapeSource’s shape will have the map redraw our polyline with the current coordinates.
+        polylineSource?.shape = polyline
+    }
+    
+    //realm에 저장된 데이터 가져와서 지도에 표시하기
+    func addPointsOnTheMap() -> [CLLocationCoordinate2D] {
         let realm = try! Realm()
         let results = realm.objects(LocationRealm.self).filter("date == '\(self.today)'")
-        
-        //가져온 좌표를 배열에 넣기
         var coordinates = [CLLocationCoordinate2D]()
-        
         if results.count != 0 {
-            var line = MGLPolyline()
-            for index in 0..<results.count {
-                var coordinate = CLLocationCoordinate2D()
-                coordinate.latitude = results[index].latitude
-                coordinate.longitude = results[index].longitude
-                coordinates.append(coordinate)
+            
+            for coordinate in results {
+                let point = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                coordinates.append(point)
             }
             
-            //선 그리기
-            DispatchQueue.global(qos: .background).async(execute: {
-                [unowned self] in
-                self.mapView.addAnnotation(line)
-            })
-            
-        } else {
-            print("result is nil")
         }
-        
-    }
-    
-    func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
-        // Set the alpha for all shape annotations to 1 (full opacity)
-        return 1
-    }
-    
-    func mapView(_ mapView: MGLMapView, lineWidthForPolylineAnnotation annotation: MGLPolyline) -> CGFloat {
-        // Set the line width for polyline annotations
-        return 2.0
-    }
-    
-    func mapView(_ mapView: MGLMapView, strokeColorForShapeAnnotation annotation: MGLShape) -> UIColor {
-        // Give our polyline a unique color by checking for its `title` property
-        if (annotation.title == "Crema to Council Crest" && annotation is MGLPolyline) {
-            return UIColor(red: 59/255, green:178/255, blue:208/255, alpha:1)
-        } else {
-            return .red
-        }
-    }
-    
-    // Or, if you’re using Swift 3 in Xcode 8.0, be sure to add an underscore before the method parameters:
-    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        return true
-    }
-    
-    // Return `nil` here to use the default marker.
-    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        return nil
+        return coordinates
     }
     
     //사용자 승인시 위치추적

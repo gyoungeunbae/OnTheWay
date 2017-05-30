@@ -16,7 +16,6 @@
 		28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */; };
 		28FBF8361EDBFC60000B668E /* SharePhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28FBF8351EDBFC60000B668E /* SharePhoto.storyboard */; };
 		4814513F1EDB1FA40063D092 /* StaticMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4814513E1EDB1FA40063D092 /* StaticMapViewController.swift */; };
-		481451411EDC2AEA0063D092 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481451401EDC2AEA0063D092 /* LineGraphView.swift */; };
 		481451431EDC81D70063D092 /* PointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481451421EDC81D70063D092 /* PointManager.swift */; };
 		481451451EDD04FF0063D092 /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481451441EDD04FE0063D092 /* PathView.swift */; };
 		482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */; };
@@ -49,11 +48,7 @@
 		48D7F5DA1EBC4070000D747B /* MyPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5D91EBC4070000D747B /* MyPathViewController.swift */; };
 		48F5EC0C1EC06A0C00101C6E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F5EC0B1EC06A0C00101C6E /* User.swift */; };
 		48F5EC0E1EC06A2000101C6E /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F5EC0D1EC06A2000101C6E /* UserLocation.swift */; };
-		9B3B07E01EC9B2EC00BA3CFB /* HealthData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3B07DF1EC9B2EC00BA3CFB /* HealthData.storyboard */; };
-		9B3B07E21EC9B30F00BA3CFB /* PieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3B07E11EC9B30F00BA3CFB /* PieView.swift */; };
-		9B3B07E41EC9B32400BA3CFB /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3B07E31EC9B32400BA3CFB /* HealthDataViewController.swift */; };
-		9B3E70801ECD839E00C0C58E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E707F1ECD839E00C0C58E /* GraphView.swift */; };
-		9B3E70821ECD950800C0C58E /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E70811ECD950800C0C58E /* PieChartView.swift */; };
+		9B4E3A3D1EDC1BF0002321A4 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E3A3C1EDC1BF0002321A4 /* LineGraphView.swift */; };
 		9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */; };
 		9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */; };
 		9B86D7961EB1E41B009FCAA6 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B86D7951EB1E41B009FCAA6 /* Register.storyboard */; };
@@ -87,7 +82,6 @@
 		28BB394F1EC0176F00A73F46 /* PresentLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentLocationTableViewCell.swift; sourceTree = "<group>"; };
 		28FBF8351EDBFC60000B668E /* SharePhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SharePhoto.storyboard; sourceTree = "<group>"; };
 		4814513E1EDB1FA40063D092 /* StaticMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMapViewController.swift; sourceTree = "<group>"; };
-		481451401EDC2AEA0063D092 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphView.swift; sourceTree = "<group>"; };
 		481451421EDC81D70063D092 /* PointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointManager.swift; sourceTree = "<group>"; };
 		481451441EDD04FE0063D092 /* PathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
 		482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
@@ -122,11 +116,7 @@
 		48D7F5D91EBC4070000D747B /* MyPathViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPathViewController.swift; sourceTree = "<group>"; };
 		48F5EC0B1EC06A0C00101C6E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		48F5EC0D1EC06A2000101C6E /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
-		9B3B07DF1EC9B2EC00BA3CFB /* HealthData.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HealthData.storyboard; sourceTree = "<group>"; };
-		9B3B07E11EC9B30F00BA3CFB /* PieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieView.swift; sourceTree = "<group>"; };
-		9B3B07E31EC9B32400BA3CFB /* HealthDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
-		9B3E707F1ECD839E00C0C58E /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
-		9B3E70811ECD950800C0C58E /* PieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		9B4E3A3C1EDC1BF0002321A4 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphView.swift; sourceTree = "<group>"; };
 		9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegiserManager.swift; sourceTree = "<group>"; };
 		9B86D7951EB1E41B009FCAA6 /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
@@ -213,7 +203,6 @@
 				288188A31EC1B2E400876BB6 /* SharePhotoView */,
 				482FBE161EC700AD00DE72AC /* Setting */,
 				48D7F5D61EBC4046000D747B /* MyPath */,
-				9B5246921EC0321A007B2F28 /* HealthDataView */,
 				9BEB12C41EB6DCC000772CF1 /* network */,
 				288B4D101EB49E5400F4B80F /* PresentLocation */,
 				9BEB127F1EB1FF1A00772CF1 /* Calender */,
@@ -262,22 +251,10 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9B5246921EC0321A007B2F28 /* HealthDataView */ = {
-			isa = PBXGroup;
-			children = (
-				9B3B07DF1EC9B2EC00BA3CFB /* HealthData.storyboard */,
-				9B3B07E11EC9B30F00BA3CFB /* PieView.swift */,
-				9B3B07E31EC9B32400BA3CFB /* HealthDataViewController.swift */,
-				9B3E70811ECD950800C0C58E /* PieChartView.swift */,
-			);
-			name = HealthDataView;
-			sourceTree = "<group>";
-		};
 		9BEB127B1EB1FF1100772CF1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				481451401EDC2AEA0063D092 /* LineGraphView.swift */,
-				9B3E707F1ECD839E00C0C58E /* GraphView.swift */,
+				9B4E3A3C1EDC1BF0002321A4 /* LineGraphView.swift */,
 				484F4C011EAB680100754888 /* CounterView.swift */,
 				48D76D071ED8C1E500C66667 /* LocationService.swift */,
 				484F4BED1EAA63A300754888 /* Main.storyboard */,
@@ -413,7 +390,6 @@
 				484F4BF41EAA63A300754888 /* LaunchScreen.storyboard in Resources */,
 				48D7F5BE1EB2524C000D747B /* Login.storyboard in Resources */,
 				288A65FD1ECE961500B4CC5E /* connect.storyboard in Resources */,
-				9B3B07E01EC9B2EC00BA3CFB /* HealthData.storyboard in Resources */,
 				48D7F5D81EBC405D000D747B /* MyPath.storyboard in Resources */,
 				28FBF8361EDBFC60000B668E /* SharePhoto.storyboard in Resources */,
 				48D7F5BC1EB2237B000D747B /* AccountKitStrings.bundle in Resources */,
@@ -497,14 +473,11 @@
 				288A65FF1ED0291E00B4CC5E /* SharePhotoPreViewController.swift in Sources */,
 				28BB39501EC0176F00A73F46 /* PresentLocationTableViewCell.swift in Sources */,
 				9BEB12811EB3284400772CF1 /* MainViewController.swift in Sources */,
-				9B3E70801ECD839E00C0C58E /* GraphView.swift in Sources */,
 				48D76D041ED8AB4000C66667 /* CustomAnnotationView.swift in Sources */,
 				9BEB12C61EB6DCFB00772CF1 /* ServerManager.swift in Sources */,
-				9B3E70821ECD950800C0C58E /* PieChartView.swift in Sources */,
 				48D76CFE1ED887B500C66667 /* Friends.swift in Sources */,
 				481451431EDC81D70063D092 /* PointManager.swift in Sources */,
-				481451411EDC2AEA0063D092 /* LineGraphView.swift in Sources */,
-				9B3B07E41EC9B32400BA3CFB /* HealthDataViewController.swift in Sources */,
+				9B4E3A3D1EDC1BF0002321A4 /* LineGraphView.swift in Sources */,
 				48D76D021ED891EC00C66667 /* FriendsManager.swift in Sources */,
 				481451451EDD04FF0063D092 /* PathView.swift in Sources */,
 				482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */,
@@ -520,7 +493,6 @@
 				48D7F5CE1EBB18F6000D747B /* ForgetPasswordViewController.swift in Sources */,
 				48F5EC0C1EC06A0C00101C6E /* User.swift in Sources */,
 				48D7F5DA1EBC4070000D747B /* MyPathViewController.swift in Sources */,
-				9B3B07E21EC9B30F00BA3CFB /* PieView.swift in Sources */,
 				484F4C021EAB680100754888 /* CounterView.swift in Sources */,
 				482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */,
 				48D76D081ED8C1E500C66667 /* LocationService.swift in Sources */,

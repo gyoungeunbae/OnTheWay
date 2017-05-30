@@ -22,7 +22,6 @@
                         <segue destination="jFH-ER-tbQ" kind="relationship" relationship="viewControllers" id="bUF-S2-qZw"/>
                         <segue destination="JZY-jZ-acS" kind="relationship" relationship="viewControllers" id="78D-aS-eab"/>
                         <segue destination="zzp-7w-Wbf" kind="relationship" relationship="viewControllers" id="UxP-He-pMS"/>
-                        <segue destination="9Ih-mG-THX" kind="relationship" relationship="viewControllers" id="WjJ-gq-30n"/>
                         <segue destination="5gW-0g-vcU" kind="relationship" relationship="viewControllers" id="l8d-GB-KOa"/>
                     </connections>
                 </tabBarController>
@@ -53,14 +52,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTy-gg-E0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2662" y="-554"/>
-        </scene>
-        <!--healthdataVC-->
-        <scene sceneID="dm2-XO-YaL">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="healthdataVC" storyboardName="HealthData" referencedIdentifier="healthdataVC" id="9Ih-mG-THX" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1tg-8i-BVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1934" y="-948"/>
         </scene>
         <!--settingVC-->
         <scene sceneID="lOX-kD-lSN">
