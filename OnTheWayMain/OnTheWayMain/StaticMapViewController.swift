@@ -32,6 +32,7 @@ class StaticMapViewController: UIViewController {
                 coordinates.append(point)
             }
             
+            
             let path = Path(coordinates: coordinates)
             path.fillColor = UIColor.red.withAlphaComponent(0.5)
             path.strokeColor = UIColor.green.withAlphaComponent(0.5)

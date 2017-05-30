@@ -37,7 +37,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         let thisWeek = self.calenderManager.getLastWeekArr()
-        let valueGap = Int((self.lineGraphView.bounds.size.width) / 7)
+       
+        
         
         LocationService.sharedInstance.startUpdatingLocation()
         
@@ -110,15 +111,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             dayTextArray.append(UILabel())
         }
         
-        mainScrollView.frame = CGRect(x: 0, y: 50, width: screenWidth, height: screenHeight / 2)
+        mainScrollView.frame = CGRect(x: 0, y: 30, width: screenWidth, height: screenHeight / 2)
         mainScrollView.backgroundColor = UIColor.clear
         
-        lineGraphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 80 , width: self.view.frame.width, height: self.view.frame.height / 2)
-        lineGraphView.backgroundColor = UIColor.clear
+        lineGraphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 110 , width: self.view.frame.width, height: self.view.frame.height / 2)
+        lineGraphView.backgroundColor = UIColor.white
         
         
         for i in 0...6 {
-            dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 50 ,width: screenWidth ,height: screenHeight / 2 - 50)
+            dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 30 ,width: screenWidth ,height: screenHeight / 2 - 50)
             
             if(i == 5 || i == 6){
                 dailyCounterViewDayTextArray[i].frame = CGRect(x: screenWidth * CGFloat(i)+(screenWidth/2 - 20) , y: 0, width: screenWidth, height: 50)
@@ -139,7 +140,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             
             goalTextArray[i].frame = CGRect(x: screenWidth / 2 - 35  ,y:centerY + 50  ,width: screenWidth ,height: 50)
             
-            dayTextArray[i].frame = CGRect(x: 23 + CGFloat(valueGap * i), y:screenHeight/2 + 55,width: 20 ,height: 20)
+            dayTextArray[i].frame = CGRect(x: 23 + CGFloat(valueGap * i), y:screenHeight/2 + 85,width: 20 ,height: 20)
             dayTextArray[i].textColor = UIColor.blue
         }
         
@@ -185,6 +186,89 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first! as UITouch
+        let point = touch.location(in:self.view)
+        let pointX = point.x
+        let pointY = point.y
+        let gapValue = CGFloat(Int((view.frame.width - 60) / 6))/2
+        
+        
+        if(pointY > view.frame.height / 2 + 110) {
+            if(pointX < 30 + gapValue) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 0, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 2) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 1, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 4) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 2, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 6) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 3, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 8) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 4, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 10) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 5, y: 0), animated: false)
+                
+            } else {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: false)
+                
+            }
+        }
+        
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first! as UITouch
+        let point = touch.location(in:self.view)
+        let pointX = point.x
+        let pointY = point.y
+        let gapValue = (view.frame.width / 7) / 2
+        
+        if(pointY > view.frame.height / 2 + 110) {
+            if(pointX < 30 + gapValue) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 0, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 2) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 1, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 4) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 2, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 6) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 3, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 8) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 4, y: 0), animated: false)
+                
+            } else if(pointX < (30 + gapValue) + gapValue * 10) {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 5, y: 0), animated: false)
+                
+            } else {
+                
+                mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: false)
+            }
+        }
+    }
+    
+    
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width: CGFloat = self.mainScrollView.frame.size.width
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
@@ -205,5 +289,4 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             self.dailyCounterViewArray[index].setNeedsDisplay()
         }
     }
-    
 }

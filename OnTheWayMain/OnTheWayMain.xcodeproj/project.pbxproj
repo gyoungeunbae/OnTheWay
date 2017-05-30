@@ -17,6 +17,7 @@
 		28FBF8361EDBFC60000B668E /* SharePhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28FBF8351EDBFC60000B668E /* SharePhoto.storyboard */; };
 		28FBF8381EDC1025000B668E /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBF8371EDC1025000B668E /* LineGraphView.swift */; };
 		4814513F1EDB1FA40063D092 /* StaticMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4814513E1EDB1FA40063D092 /* StaticMapViewController.swift */; };
+		481451411EDC2AEA0063D092 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481451401EDC2AEA0063D092 /* LineGraphView.swift */; };
 		482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */; };
 		482FBE181EC700C500DE72AC /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 482FBE171EC700C500DE72AC /* Setting.storyboard */; };
 		482FBE401EC964D100DE72AC /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FBE3F1EC964D100DE72AC /* SettingViewController.swift */; };
@@ -53,6 +54,7 @@
 		9B3B07E41EC9B32400BA3CFB /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3B07E31EC9B32400BA3CFB /* HealthDataViewController.swift */; };
 		9B3E70801ECD839E00C0C58E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E707F1ECD839E00C0C58E /* GraphView.swift */; };
 		9B3E70821ECD950800C0C58E /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E70811ECD950800C0C58E /* PieChartView.swift */; };
+		9B4E3A3D1EDC1BF0002321A4 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E3A3C1EDC1BF0002321A4 /* LineGraphView.swift */; };
 		9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */; };
 		9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */; };
 		9B86D7961EB1E41B009FCAA6 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B86D7951EB1E41B009FCAA6 /* Register.storyboard */; };
@@ -86,6 +88,7 @@
 		28FBF8371EDC1025000B668E /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphView.swift; sourceTree = "<group>"; };
 		453DAB75E43FFCC855F73C4A /* Pods_OnTheWayMain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheWayMain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4814513E1EDB1FA40063D092 /* StaticMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMapViewController.swift; sourceTree = "<group>"; };
+		481451401EDC2AEA0063D092 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphView.swift; sourceTree = "<group>"; };
 		482FBE0B1EC4908A00DE72AC /* MenuPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPageViewController.swift; sourceTree = "<group>"; };
 		482FBE171EC700C500DE72AC /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		482FBE3F1EC964D100DE72AC /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 		9B3B07E31EC9B32400BA3CFB /* HealthDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthDataViewController.swift; sourceTree = "<group>"; };
 		9B3E707F1ECD839E00C0C58E /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		9B3E70811ECD950800C0C58E /* PieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
+		9B4E3A3C1EDC1BF0002321A4 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineGraphView.swift; sourceTree = "<group>"; };
 		9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegiserManager.swift; sourceTree = "<group>"; };
 		9B86D7951EB1E41B009FCAA6 /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 			children = (
 				9B3B07DF1EC9B2EC00BA3CFB /* HealthData.storyboard */,
 				9B3B07E11EC9B30F00BA3CFB /* PieView.swift */,
+				9B3E707F1ECD839E00C0C58E /* GraphView.swift */,
 				9B3B07E31EC9B32400BA3CFB /* HealthDataViewController.swift */,
 				9B3E70811ECD950800C0C58E /* PieChartView.swift */,
 			);
@@ -261,7 +266,9 @@
 		9BEB127B1EB1FF1100772CF1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				9B3E707F1ECD839E00C0C58E /* GraphView.swift */,
+
+				9B4E3A3C1EDC1BF0002321A4 /* LineGraphView.swift */,
+
 				484F4C011EAB680100754888 /* CounterView.swift */,
 				28FBF8371EDC1025000B668E /* LineGraphView.swift */,
 				48D76D071ED8C1E500C66667 /* LocationService.swift */,
@@ -365,7 +372,9 @@
 				TargetAttributes = {
 					484F4BE51EAA63A300754888 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = NZC4Q7J74G;
+
+						DevelopmentTeam = QLAGA64KZQ;
+
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -496,7 +505,9 @@
 				9BEB12C61EB6DCFB00772CF1 /* ServerManager.swift in Sources */,
 				9B3E70821ECD950800C0C58E /* PieChartView.swift in Sources */,
 				48D76CFE1ED887B500C66667 /* Friends.swift in Sources */,
-				28FBF8381EDC1025000B668E /* LineGraphView.swift in Sources */,
+
+				9B4E3A3D1EDC1BF0002321A4 /* LineGraphView.swift in Sources */,
+
 				9B3B07E41EC9B32400BA3CFB /* HealthDataViewController.swift in Sources */,
 				48D76D021ED891EC00C66667 /* FriendsManager.swift in Sources */,
 				482FBE0C1EC4908A00DE72AC /* MenuPageViewController.swift in Sources */,
@@ -656,14 +667,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.tho;
+
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.lee;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -677,14 +692,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OnTheWayMain/OnTheWayMain.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NZC4Q7J74G;
+
+				DEVELOPMENT_TEAM = QLAGA64KZQ;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = OnTheWayMain/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codesquad.tho;
+				PRODUCT_BUNDLE_IDENTIFIER = codesquad.lee;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

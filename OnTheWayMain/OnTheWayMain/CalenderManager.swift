@@ -45,6 +45,14 @@ struct CalenderManager {
         }
         return weekArr
     }
+    
+    func getPastDateStr() -> String {
+        let lastDate = getLastweekDate(myDate: myDate)
+        let startOfDate = myCalender.startOfDay(for: lastDate)
+        let pastDate = startOfDate.addingTimeInterval(TimeInterval(-60*60*24))
+        return getKoreanStr(todayDate: pastDate)
+    }
+    
     func getDayArr(todayDate: Date) -> Int {
         
         var today = myCalender.dateComponents([.weekday], from: todayDate)
