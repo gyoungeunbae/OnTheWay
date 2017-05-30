@@ -33,11 +33,15 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     // 뷰 전체 높이 길이
     let screenHeight = UIScreen.main.bounds.size.height
     let weeklyStepsDic = StepManager.sharedInstance.getWeeklyStepsDic()
-    
+    let subBackgroundView = UIView()
     override func viewDidLoad() {
         super.viewDidLoad()
         let thisWeek = self.calenderManager.getLastWeekArr()
-       
+        subBackgroundView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 50 , width: self.view.frame.width, height: self.view.frame.height / 3 - 50)
+        subBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        self.view.addSubview(subBackgroundView)
+        
+        
         
         
         LocationService.sharedInstance.startUpdatingLocation()
@@ -115,8 +119,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.backgroundColor = UIColor.clear
         
         lineGraphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 110 , width: self.view.frame.width, height: self.view.frame.height / 2)
-        lineGraphView.backgroundColor = UIColor.white
-        
+        lineGraphView.backgroundColor = UIColor.clear
         
         for i in 0...6 {
             dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 30 ,width: screenWidth ,height: screenHeight / 2 - 50)
@@ -141,7 +144,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             goalTextArray[i].frame = CGRect(x: screenWidth / 2 - 35  ,y:centerY + 50  ,width: screenWidth ,height: 50)
             
             dayTextArray[i].frame = CGRect(x: 23 + CGFloat(valueGap * i), y:screenHeight/2 + 85,width: 20 ,height: 20)
-            dayTextArray[i].textColor = UIColor.blue
+            dayTextArray[i].textColor = UIColor.white
+            
         }
         
         for i in 0...6{
@@ -163,7 +167,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         
         self.view.addSubview(mainScrollView)
         self.view.addSubview(lineGraphView)
-        
         self.mainScrollView.delegate = self
         
         //로그인 사용자의 정보 가져오기
@@ -290,3 +293,4 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 }
+
