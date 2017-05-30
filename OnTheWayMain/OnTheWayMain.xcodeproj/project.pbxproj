@@ -49,16 +49,12 @@
 		48D7F5DA1EBC4070000D747B /* MyPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D7F5D91EBC4070000D747B /* MyPathViewController.swift */; };
 		48F5EC0C1EC06A0C00101C6E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F5EC0B1EC06A0C00101C6E /* User.swift */; };
 		48F5EC0E1EC06A2000101C6E /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F5EC0D1EC06A2000101C6E /* UserLocation.swift */; };
-<<<<<<< HEAD
 		7C4471B7670FC72B0D941899 /* Pods_OnTheWayMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 453DAB75E43FFCC855F73C4A /* Pods_OnTheWayMain.framework */; };
 		9B3B07E01EC9B2EC00BA3CFB /* HealthData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3B07DF1EC9B2EC00BA3CFB /* HealthData.storyboard */; };
 		9B3B07E21EC9B30F00BA3CFB /* PieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3B07E11EC9B30F00BA3CFB /* PieView.swift */; };
 		9B3B07E41EC9B32400BA3CFB /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3B07E31EC9B32400BA3CFB /* HealthDataViewController.swift */; };
 		9B3E70801ECD839E00C0C58E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E707F1ECD839E00C0C58E /* GraphView.swift */; };
 		9B3E70821ECD950800C0C58E /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E70811ECD950800C0C58E /* PieChartView.swift */; };
-=======
-		9B4E3A3D1EDC1BF0002321A4 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4E3A3C1EDC1BF0002321A4 /* LineGraphView.swift */; };
->>>>>>> develop
 		9B86D78E1EB0CBF0009FCAA6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78D1EB0CBF0009FCAA6 /* RegisterViewController.swift */; };
 		9B86D7901EB0D7DE009FCAA6 /* RegiserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B86D78F1EB0D7DE009FCAA6 /* RegiserManager.swift */; };
 		9B86D7961EB1E41B009FCAA6 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B86D7951EB1E41B009FCAA6 /* Register.storyboard */; };
