@@ -11,8 +11,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
-
     var lineGraphView = LineGraphView()
+    
+    var currentValue: Int = 6
     
     
 
@@ -37,11 +38,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         let thisWeek = self.calenderManager.getLastWeekArr()
-       
-        
-        
         LocationService.sharedInstance.startUpdatingLocation()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(draw), name: Notification.Name("goalChanged"), object: nil)
         
         DispatchQueue.main.async {
@@ -59,6 +57,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 self.lineGraphView.graphValues[indexOfDay] = CGFloat(steps)
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
+            
                 
                 switch today {
                     
@@ -81,7 +80,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 }
                 
                 
-                
                 if(indexOfDay == 5){
                     self.dailyCounterViewDayTextArray[indexOfDay].text = "어제"
                 } else if(indexOfDay == 6) {
@@ -100,9 +98,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         
-        
-        
-        
         for _ in 0...6 {
             dailyCounterViewArray.append(CounterView())
             dailyCounterViewTextArray.append(UILabel())
@@ -115,7 +110,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         mainScrollView.backgroundColor = UIColor.clear
         
         lineGraphView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 110 , width: self.view.frame.width, height: self.view.frame.height / 2)
-        lineGraphView.backgroundColor = UIColor.white
+        lineGraphView.backgroundColor = UIColor.clear
         
         
         for i in 0...6 {
@@ -141,7 +136,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             goalTextArray[i].frame = CGRect(x: screenWidth / 2 - 35  ,y:centerY + 50  ,width: screenWidth ,height: 50)
             
             dayTextArray[i].frame = CGRect(x: 23 + CGFloat(valueGap * i), y:screenHeight/2 + 85,width: 20 ,height: 20)
-            dayTextArray[i].textColor = UIColor.blue
+            
         }
         
         for i in 0...6{
@@ -183,7 +178,6 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 LocationService.sharedInstance.sendLocationToServer()
             }
         }
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -193,39 +187,57 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         let pointY = point.y
         let gapValue = CGFloat(Int((view.frame.width - 60) / 6))/2
         
-        
         if(pointY > view.frame.height / 2 + 110) {
             if(pointX < 30 + gapValue) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 0, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 0)
+                animation(value: 0)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 2) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 1, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 1)
+                animation(value: 1)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 4) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 2, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 2)
+                animation(value: 2)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 6) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 3, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 3)
+                animation(value: 3)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 8) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 4, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 4)
+                animation(value: 4)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 10) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 5, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 5)
+                animation(value: 5)
+                lineGraphView.setNeedsDisplay()
                 
             } else {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: false)
-                
+                lineGraphView.setSelectedDayLine(value: 6)
+                animation(value: 6)
+                lineGraphView.setNeedsDisplay()
             }
         }
-        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -239,30 +251,51 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             if(pointX < 30 + gapValue) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 0, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 0)
+                animation(value: 0)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 2) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 1, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 1)
+                animation(value: 1)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 4) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 2, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 2)
+                animation(value: 2)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 6) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 3, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 3)
+                animation(value: 3)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 8) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 4, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 4)
+                animation(value: 4)
+                lineGraphView.setNeedsDisplay()
                 
             } else if(pointX < (30 + gapValue) + gapValue * 10) {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 5, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 5)
+                animation(value: 5)
+                lineGraphView.setNeedsDisplay()
                 
             } else {
                 
                 mainScrollView.setContentOffset(CGPoint(x:screenWidth * 6, y: 0), animated: false)
+                lineGraphView.setSelectedDayLine(value: 6)
+                animation(value: 6)
+                lineGraphView.setNeedsDisplay()
             }
         }
     }
@@ -287,6 +320,20 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             }
             
             self.dailyCounterViewArray[index].setNeedsDisplay()
+        }
+    }
+    
+    func animation(value: Int) {
+        for index in 0...6 {
+            
+            if(value == index) {
+                
+                self.dayTextArray[index].textColor = .white
+                
+            } else {
+                
+                self.dayTextArray[index].textColor = .blue
+            }
         }
     }
 }
