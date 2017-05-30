@@ -38,7 +38,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         let thisWeek = self.calenderManager.getLastWeekArr()
-
+        
         subBackgroundView.frame = CGRect(x: 0, y: self.view.frame.height / 2 + 50 , width: self.view.frame.width, height: self.view.frame.height / 3 - 50)
         subBackgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         self.view.addSubview(subBackgroundView)
@@ -90,10 +90,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 
                 if(indexOfDay == 5){
                     self.dailyCounterViewDayTextArray[indexOfDay].text = "어제"
+                    self.dailyCounterViewDayTextArray[indexOfDay].textColor = UIColor.white
                 } else if(indexOfDay == 6) {
                     self.dailyCounterViewDayTextArray[indexOfDay].text = "오늘"
+                    self.dailyCounterViewDayTextArray[indexOfDay].textColor = UIColor.white
                 } else {
                     self.dailyCounterViewDayTextArray[indexOfDay].text = "\(self.calenderManager.getTimeString(todayDate: thisWeek[indexOfDay]))"
+                    self.dailyCounterViewDayTextArray[indexOfDay].textColor = UIColor.white
                 }
                 self.goalTextArray[indexOfDay].text = "\(self.dailyCounterViewArray[indexOfDay].getGoal())"
                 
@@ -125,13 +128,22 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             dailyCounterViewArray[i].frame = CGRect(x: screenWidth * CGFloat(i)  ,y: 30 ,width: screenWidth ,height: screenHeight / 2 - 50)
             
             if(i == 5 || i == 6){
+               // dailyCounterViewDayTextArray[i].center.x = dailyCounterViewArray[i].center.x
                 dailyCounterViewDayTextArray[i].frame = CGRect(x: screenWidth * CGFloat(i)+(screenWidth/2 - 20) , y: 0, width: screenWidth, height: 50)
+                dailyCounterViewDayTextArray[i].center.x = dailyCounterViewTextArray[i].center.x
+                
             } else {
                 dailyCounterViewDayTextArray[i].frame = CGRect(x: screenWidth * CGFloat(i)+(screenWidth/2 - 40) , y: 0, width: screenWidth, height: 50)
+            //dailyCounterViewDayTextArray[i].center.x = self.view.center.x
+                dailyCounterViewDayTextArray[i].center.x = dailyCounterViewTextArray[i].center.x
+                
             }
             
             dailyCounterViewArray[i].backgroundColor = UIColor.clear
             dailyCounterViewDayTextArray[i].font = dailyCounterViewDayTextArray[i].font.withSize(30)
+           // dailyCounterViewDayTextArray[i].center.x = self.view.center.x
+            dailyCounterViewDayTextArray[i].center.x = dailyCounterViewArray[i].center.x
+            
         }
         
         for i in 0...6 {
