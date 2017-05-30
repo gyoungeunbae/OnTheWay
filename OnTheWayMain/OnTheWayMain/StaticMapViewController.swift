@@ -30,6 +30,7 @@ class StaticMapViewController: UIViewController {
             for coordinate in results {
                 let point = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
                 coordinates.append(point)
+                
             }
             
             

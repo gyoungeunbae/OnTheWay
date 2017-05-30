@@ -31,6 +31,7 @@
         <!--My Path View Controller-->
         <scene sceneID="fbE-xH-K72">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ey-H7-HRe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="myPathVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hM3-r4-8cY" customClass="MyPathViewController" customModule="OnTheWayMain" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cEd-n2-rwu"/>
@@ -74,7 +75,6 @@
                         <outlet property="mapView" destination="foS-ku-frZ" id="kgc-MR-a5M"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7ey-H7-HRe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="740" y="133.5832083958021"/>
         </scene>
