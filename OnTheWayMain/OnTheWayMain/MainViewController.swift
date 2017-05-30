@@ -58,6 +58,8 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 let today = self.calenderManager.getDayArr(todayDate: thisWeek[indexOfDay])
                 
                 StepManager.sharedInstance.updateWeeklySteps(indexOfDay: indexOfDay, steps: steps)
+                self.dailyCounterViewDayTextArray[indexOfDay].textColor = UIColor.white
+                //self.dailyCounterViewDayTextArray[indexOfDay].font = UIFont.boldSystemFont(ofSize: 23)
                 
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.lineGraphView.graphValues[indexOfDay] = CGFloat(steps)
@@ -330,6 +332,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     func draw() {
         
         for index in 0...6 {
+            self.goalTextArray[index].textColor = UIColor.white
+            self.goalTextArray[index].textAlignment = .left
+            self.dailyCounterViewArray[index].counterColor = UIColor.white
             if UserSettingManager.sharedInstance.getUserSetting().items.count != 0 {
                 let userGoal = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
                 self.dailyCounterViewArray[index].setGoal(Int(userGoal!)!)
@@ -352,7 +357,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 
             } else {
                 
-                self.dayTextArray[index].textColor = .blue
+                self.dayTextArray[index].textColor = .black
             }
         }
     }

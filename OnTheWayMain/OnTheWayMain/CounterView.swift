@@ -9,7 +9,7 @@ import UIKit
     let π: CGFloat = CGFloat.pi
 
     @IBInspectable var stepOfWalked: Int = 0
-    @IBInspectable var outlineColor: UIColor = UIColor.init(red: 87.0/255.0, green: 65.0/255.0, blue: 249.0/255.0, alpha: 1)
+    @IBInspectable var outlineColor: UIColor = UIColor.init(red: 27.0/255.0, green: 235.0/255.0, blue: 141.0/255.0, alpha: 1)
 
     @IBInspectable var counterColor: UIColor = UIColor.white
     
@@ -23,7 +23,7 @@ import UIKit
         let radius: CGFloat = max(bounds.width * 0.7, bounds.height * 0.7)
 
         // 두께
-        let arcWidth: CGFloat = 5
+        let arcWidth: CGFloat = 10
 
         // 시작각도, 마침각도
         let startAngle: CGFloat = 3 * π / 2
@@ -54,13 +54,14 @@ import UIKit
 
         //경로 닫기
         outlinePath.addArc(withCenter: center, radius: (bounds.width/2 - arcWidth + 2.5) * 0.7 - 1.5 , startAngle: outlineEndAngle, endAngle: startAngle, clockwise: false)
-
+        
         //그리기
         outlineColor.setStroke()
 
-        outlinePath.lineWidth = 6.0
-        UIColor.init(red: 87.0/255.0, green: 65.0/255.0, blue: 249.0/255.0, alpha: 1.0).setFill()
+        outlinePath.lineWidth = 30.0
+        UIColor.init(red: 27.0/255.0, green: 235.0/255.0, blue: 141.0/255.0, alpha: 1).withAlphaComponent(0.5).setFill()
         outlinePath.stroke()
+        
         outlinePath.fill()
     }
     func getGoal() -> Int{

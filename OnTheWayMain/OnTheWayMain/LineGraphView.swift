@@ -52,11 +52,11 @@ class LineGraphView: UIView {
         dotLineZero.addLine(to: CGPoint(x:bounds.size.width - 10, y: bounds.size.height * 0.5))
         
         dotLineGoal.setLineDash(pattern, count: 2, phase: 0.0)
-        UIColor.white.setStroke()
+        UIColor.init(red: 206.0/255.0, green: 227.0/255.0, blue: 124.0/255.0, alpha: 1).setStroke()
         dotLineGoal.stroke()
-        //dotLineZero.setLineDash(pattern, count: 2, phase: 0.0)
-        //UIColor.white.setStroke()
-        //dotLineZero.stroke()
+        dotLineZero.setLineDash(pattern, count: 2, phase: 0.0)
+        UIColor.white.setStroke()
+        dotLineZero.stroke()
         
         for index in 0...6 {
             
@@ -68,8 +68,8 @@ class LineGraphView: UIView {
         for index in 0...5{
             let context = UIGraphicsGetCurrentContext()
             
-            context?.setStrokeColor(UIColor.init(red: 27.0/255.0, green: 235.0/255.0, blue: 141.0/255.0, alpha: 1).cgColor)
-            context?.setLineWidth(5.0)
+            context?.setStrokeColor(UIColor.init(red: 206.0/255.0, green: 227.0/255.0, blue: 124.0/255.0, alpha: 1).cgColor)
+            context?.setLineWidth(3.0)
             
             context?.move(to: point[index])
             
@@ -77,15 +77,15 @@ class LineGraphView: UIView {
             
             context?.strokePath()
             
-            context?.setLineWidth(5.0)
+            context?.setLineWidth(4.0)
         }
         
         for index in 0...6 {
             circle?.addArc(center: CGPoint(x: 30 + CGFloat(valueGap * index), y: ((bounds.size.height * 0.5) - graphValues[index] * goalRate)), radius: 5, startAngle: 3 * π / 2, endAngle: 7 * π / 2, clockwise: false)
             if(graphValues[index] >= 10000){
-                circle?.setFillColor(UIColor.white.withAlphaComponent(0.7).cgColor)
+                circle?.setFillColor(UIColor.white.cgColor)
             } else {
-                circle?.setFillColor(UIColor.white.withAlphaComponent(0.7).cgColor)
+                circle?.setFillColor(UIColor.white.cgColor)
             }
             
             circle?.fillPath()

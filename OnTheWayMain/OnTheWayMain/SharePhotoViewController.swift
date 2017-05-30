@@ -14,10 +14,6 @@ class SharePhotoViewController: UIViewController {
     var cameraCaptureOutput = AVCapturePhotoOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     
-<<<<<<< HEAD
-    
-=======
->>>>>>> develop
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeCapturreSession()
