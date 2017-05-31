@@ -20,7 +20,7 @@ class SharePhotoViewController: UIViewController {
         self.square.layer.borderWidth = 1
         self.square.layer.borderColor = UIColor.white.cgColor
         cameraView.addSubview(square)
-               let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80))
         
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "");
