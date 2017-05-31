@@ -57,7 +57,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 self.lineGraphView.graphValues[indexOfDay] = CGFloat(steps)
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
-            
+                
                 
                 switch today {
                     
@@ -137,7 +137,9 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             
             dayTextArray[i].frame = CGRect(x: 23 + CGFloat(valueGap * i), y:screenHeight/2 + 85,width: 20 ,height: 20)
             
+            
         }
+        
         
         for i in 0...6{
             dailyCounterViewArray[i].addSubview(dailyCounterViewTextArray[i])
@@ -160,6 +162,11 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(lineGraphView)
         
         self.mainScrollView.delegate = self
+        
+        
+        self.animation(value: currentValue)
+        scrollViewDidEndDecelerating(mainScrollView)
+        
         
         //로그인 사용자의 정보 가져오기
         serverManager.getSession { (user) in
@@ -305,6 +312,36 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width: CGFloat = self.mainScrollView.frame.size.width
         let page: Int = Int(self.mainScrollView.contentOffset.x / width)
+        
+        if(page == 0) {
+            lineGraphView.setSelectedDayLine(value: 0)
+            animation(value: 0)
+            lineGraphView.setNeedsDisplay()
+        } else if(page == 1) {
+            lineGraphView.setSelectedDayLine(value: 1)
+            animation(value: 1)
+            lineGraphView.setNeedsDisplay()
+        } else if(page == 2) {
+            lineGraphView.setSelectedDayLine(value: 2)
+            animation(value: 2)
+            lineGraphView.setNeedsDisplay()
+        } else if(page == 3) {
+            lineGraphView.setSelectedDayLine(value: 3)
+            animation(value: 3)
+            lineGraphView.setNeedsDisplay()
+        } else if(page == 4) {
+            lineGraphView.setSelectedDayLine(value: 4)
+            animation(value: 4)
+            lineGraphView.setNeedsDisplay()
+        } else if(page == 5) {
+            lineGraphView.setSelectedDayLine(value: 5)
+            animation(value: 5)
+            lineGraphView.setNeedsDisplay()
+        } else if(page == 6) {
+            lineGraphView.setSelectedDayLine(value: 6)
+            animation(value: 6)
+            lineGraphView.setNeedsDisplay()
+        }
     }
     
     func draw() {
@@ -327,13 +364,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         for index in 0...6 {
             
             if(value == index) {
-                
                 self.dayTextArray[index].textColor = .white
                 
             } else {
-                
                 self.dayTextArray[index].textColor = .blue
             }
         }
     }
+    
+    
 }
