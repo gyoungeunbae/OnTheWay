@@ -16,7 +16,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     var currentValue: Int = 6
     
     
-
+    
     // 메인 스크롤뷰
     var mainScrollView = UIScrollView()
     // 메인 스크롤뷰에 추가할 뷰
@@ -44,7 +44,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(subBackgroundView)
         
         LocationService.sharedInstance.startUpdatingLocation()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(draw), name: Notification.Name("goalChanged"), object: nil)
         
         DispatchQueue.main.async {
@@ -363,7 +363,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func draw() {
-        
+        print("draw")
         for index in 0...6 {
             self.goalTextArray[index].textColor = UIColor.white
             self.goalTextArray[index].textAlignment = .left
@@ -378,6 +378,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             }
             
             self.dailyCounterViewArray[index].setNeedsDisplay()
+            
         }
     }
     

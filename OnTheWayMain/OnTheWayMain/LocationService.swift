@@ -4,13 +4,13 @@
 //
 //  Created by junwoo on 2017. 5. 27..
 //
-//
 
 import Foundation
 import CoreLocation
 import RealmSwift
 import CoreLocation
 import CoreMotion
+import HealthKit
 
 class LocationService: NSObject, CLLocationManagerDelegate {
     static let sharedInstance: LocationService = {
@@ -83,7 +83,6 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                     
                     if UIApplication.shared.applicationState == .active {
                         print("app is active")
-                        NotificationCenter.default.post(name: Notification.Name("locationDraw"), object: nil)
                         
                     } else {
                         print("app is not active")

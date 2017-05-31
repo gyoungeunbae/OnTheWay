@@ -21,5 +21,6 @@ struct StepManager {
     func getWeeklyStepsDic() -> [Int:Int] {
         return weeklySteps
     }
+    
 }
 
