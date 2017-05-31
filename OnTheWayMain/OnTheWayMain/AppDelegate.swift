@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  OnTheWayMain
-//
-//  Created by junwoo on 2017. 4. 22..
-//  Copyright © 2017년 junwoo. All rights reserved.
-//
-
 import UIKit
 import FBSDKLoginKit
 import RealmSwift
@@ -16,7 +8,7 @@ import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     var serverManager = ServerManager()
     var calenderManager = CalenderManager()
@@ -73,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         HealthKitManager.sharedInstance.healthStore?.requestAuthorization(toShare: nil, read: dataTypesToRead as? Set<HKObjectType>, completion: { [unowned self] (success, error) in
             if success {
-                
                 for i in 0...6 {
                     self.dailyStepQuery(indexOfDay: i)
                 }
@@ -82,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("healthkit request fail")
             }
         })
+        print("requesthealthkit")
     }
     
     //이번주 일주일 걸음수 요청
@@ -108,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         HealthKitManager.sharedInstance.healthStore?.execute(query)
         
     }
- 
+    
     //알림해제
     func removeNotification() {
         let center = UNUserNotificationCenter.current()
@@ -126,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var dateComponents = DateComponents()
         dateComponents.hour = 08
         dateComponents.minute = 00
-
+        
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
         let request = UNNotificationRequest(identifier: "MorningAlarm", content: content, trigger: trigger)
@@ -135,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(theError.localizedDescription)
             }
         }
-    
+        
     }
     
     func scheduleStepNotification() {
@@ -158,17 +150,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         LocationService.sharedInstance.startUpdatingLocation()
     }
     
     
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         //걸음수 요청
         requestHealthKitAuthorization()
@@ -201,19 +193,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         print("app will be suspended")
         LocationService.sharedInstance.startUpdatingLocation()
     }
-
+    
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-
+        
         let handled = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
-
+        
         return handled
     }
-
-        
-
+    
+    
+    
 }

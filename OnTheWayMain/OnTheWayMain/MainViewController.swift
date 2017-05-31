@@ -16,7 +16,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     var currentValue: Int = 6
     
     
-
+    
     // 메인 스크롤뷰
     var mainScrollView = UIScrollView()
     // 메인 스크롤뷰에 추가할 뷰
@@ -39,7 +39,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         let thisWeek = self.calenderManager.getLastWeekArr()
         LocationService.sharedInstance.startUpdatingLocation()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(draw), name: Notification.Name("goalChanged"), object: nil)
         
         DispatchQueue.main.async {
@@ -57,7 +57,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                 self.lineGraphView.graphValues[indexOfDay] = CGFloat(steps)
                 self.dailyCounterViewArray[indexOfDay].stepOfWalked = steps
                 self.dailyCounterViewTextArray[indexOfDay].text = "\(steps)"
-            
+                
                 
                 switch today {
                     
@@ -308,7 +308,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func draw() {
-        
+        print("draw")
         for index in 0...6 {
             if UserSettingManager.sharedInstance.getUserSetting().items.count != 0 {
                 let userGoal = UserSettingManager.sharedInstance.getUserSetting().items.last?.dailyGoal
@@ -320,6 +320,7 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
             }
             
             self.dailyCounterViewArray[index].setNeedsDisplay()
+            
         }
     }
     
