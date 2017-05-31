@@ -9,7 +9,7 @@ var multer = require('multer')
 var app = express();
 var routes = require('./routes');
 
-mongoose.connect('mongodb://localhost:27017/db');
+mongoose.connect('mongodb://52.78.134.28:27017/db');
 
 //서버 이미지파일 저장소
 app.use(express.static('uploads'))
