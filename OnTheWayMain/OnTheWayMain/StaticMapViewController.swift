@@ -35,8 +35,8 @@ class StaticMapViewController: UIViewController {
             
             
             let path = Path(coordinates: coordinates)
-            path.fillColor = UIColor.red.withAlphaComponent(0.5)
-            path.strokeColor = UIColor.green.withAlphaComponent(0.5)
+            path.fillColor = UIColor.init(red: 27.0/255.0, green: 235.0/255.0, blue: 141.0/255.0, alpha: 1).withAlphaComponent(0.5)
+            path.strokeColor = UIColor.init(red: 27.0/255.0, green: 235.0/255.0, blue: 141.0/255.0, alpha: 1).withAlphaComponent(0.5)
             
             
             let options = SnapshotOptions(
