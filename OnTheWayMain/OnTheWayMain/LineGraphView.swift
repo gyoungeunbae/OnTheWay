@@ -105,6 +105,4 @@ class LineGraphView: UIView {
         selectedDayLine = value
     }
     
-       
-    
 }
