@@ -142,8 +142,7 @@ fastlane/test_output
 .DS_Store?
 
 # ignore uploads folder
-uploads/
-OnTheWayMain/Server/uploads/
+
 
 ## Various settings
 
