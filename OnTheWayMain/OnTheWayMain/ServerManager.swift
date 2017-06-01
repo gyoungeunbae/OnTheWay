@@ -15,7 +15,7 @@ struct ServerManager {
 
         var isUser = Bool()
 
-        let url = URL(string: "http://52.78.134.28:8080/ontheway/register")
+        let url = URL(string: "http://localhost:8080/ontheway/register")
 
         let parameters: Parameters = [
             "email": email,
@@ -37,7 +37,7 @@ struct ServerManager {
 
         var isUser = Bool()
 
-        let url = URL(string: "http://52.78.134.28:8080/ontheway/login")
+        let url = URL(string: "http://localhost:8080/ontheway/login")
 
         let parameters: Parameters = [
             "email": email,
@@ -57,7 +57,7 @@ struct ServerManager {
     func findPasswordByEmail(email: String, callback: @escaping (_ password: String) -> Void) {
         var password = String()
 
-        let url = URL(string: "http://52.78.134.28:8080/ontheway/email")
+        let url = URL(string: "http://localhost:8080/ontheway/email")
 
         let parameters: Parameters = [
             "email": email
@@ -83,14 +83,14 @@ struct ServerManager {
 
     
     func logout() {
-        let urlString = "http://52.78.134.28:8080/ontheway/logout"
+        let urlString = "http://localhost:8080/ontheway/logout"
         Alamofire.request(urlString)
 
     }
 
     func getSession(completion: @escaping(User) -> Void) {
         
-        let urlString = "http://52.78.134.28:8080/ontheway/session"
+        let urlString = "http://localhost:8080/ontheway/session"
         Alamofire.request(urlString)
             .validate(statusCode: 200..<400)
             .responseJSON { response in
@@ -107,7 +107,7 @@ struct ServerManager {
     //이미지를 업로드하고 이미지id를 user의 image에 업데이트
     func uploadImage(pickedImage:UIImage, userId: String, completion: @escaping (User) -> Void) {
         
-        let url = "http://52.78.134.28:8080/ontheway/upload"
+        let url = "http://localhost:8080/ontheway/upload"
         
         Alamofire.upload(multipartFormData: {
             multipartFormData in
@@ -128,7 +128,7 @@ struct ServerManager {
                     ]
                     
                     // Fetch Request
-                    Alamofire.request("http://52.78.134.28:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
+                    Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
                         .validate(statusCode: 200..<300)
                         .responseJSON { response in
                             var user = User()
@@ -158,7 +158,7 @@ struct ServerManager {
         ]
         
         // Fetch Request
-        Alamofire.request("http://52.78.134.28:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
+        Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 var user = User()
@@ -184,7 +184,7 @@ struct ServerManager {
         ]
 
         // Fetch Request
-        Alamofire.request("http://52.78.134.28:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
+        Alamofire.request("http://localhost:8080/ontheway/user/\(userId)", method: .put, parameters: body, encoding: JSONEncoding.default, headers: nil)
             .validate(statusCode: 200..<300)
             .responseJSON { response in
                 if (response.result.error != nil) {

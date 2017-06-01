@@ -143,7 +143,6 @@ fastlane/test_output
 
 # ignore uploads folder
 uploads/
-OnTheWayMain/Server/uploads/
 
 ## Various settings
 

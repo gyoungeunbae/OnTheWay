@@ -181,7 +181,6 @@
 		484F4BDD1EAA63A300754888 = {
 			isa = PBXGroup;
 			children = (
-				48D7F5CF1EBC36F9000D747B /* Mapbox.framework */,
 				484F4BE81EAA63A300754888 /* OnTheWayMain */,
 				484F4BE71EAA63A300754888 /* Products */,
 				484F4BFC1EAA6D3900754888 /* Frameworks */,
@@ -222,6 +221,7 @@
 		484F4BFC1EAA6D3900754888 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48D7F5CF1EBC36F9000D747B /* Mapbox.framework */,
 				48D7F5B91EB2237B000D747B /* AccountKit.framework */,
 				48D7F5BA1EB2237B000D747B /* AccountKitStrings.bundle */,
 				484F4BFD1EAA6D3900754888 /* HealthKit.framework */,
