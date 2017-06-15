@@ -4,7 +4,7 @@
 - 당신의 일주일 동안의 발자취 데이터를 제공합니다
 
 ## LoginView
-![Image of Login](https://github.com/gyoungeunbae/OnTheWay/tree/fu/OnTheWayMain/Server/uploads/login.png)
+![Image of Login](/OnTheWayMain/Server/uploads/login.png)
 - passport session 관리
 - facebook login 연동
 - 로그인
