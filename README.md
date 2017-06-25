@@ -1,7 +1,7 @@
 # Ontheway
 ## System Structure
 
-  ![그림입니다.원본 그림의 이름: CLP000029000006.bmp원본 그림의 크기: 가로 949pixel, 세로 462pixel](file:///C:\Users\PC\AppData\Local\Temp\Hnc\BinData\EMB000031d81039.bmp)  
+![https://user-images.githubusercontent.com/24830023/27513171-d8d2c72c-5996-11e7-95a5-8e268fa98eea.GIF](https://user-images.githubusercontent.com/24830023/27513171-d8d2c72c-5996-11e7-95a5-8e268fa98eea.GIF)
 
 ## 서비스 설명
 
