@@ -1,5 +1,10 @@
 # Ontheway
+## System Structure
+
+  ![그림입니다.원본 그림의 이름: CLP000029000006.bmp원본 그림의 크기: 가로 949pixel, 세로 462pixel](file:///C:\Users\PC\AppData\Local\Temp\Hnc\BinData\EMB000031d81039.bmp)  
+
 ## 서비스 설명
+
 - human이라는 기존의 application을 모방
 - 당신의 일주일 동안의 발자취 데이터를 제공합니다
 
