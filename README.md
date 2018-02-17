@@ -1,7 +1,4 @@
 # Ontheway
-## System Structure
-
-![https://user-images.githubusercontent.com/24830023/27513171-d8d2c72c-5996-11e7-95a5-8e268fa98eea.GIF](https://user-images.githubusercontent.com/24830023/27513171-d8d2c72c-5996-11e7-95a5-8e268fa98eea.GIF)
 
 ## 서비스 설명
 
